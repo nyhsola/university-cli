@@ -7,7 +7,7 @@ import kotlinx.serialization.Transient
 data class IndexConfiguration(
     val id: Long,
     val embeddingModel: String,
-    val strategy: ChunkingStrategy,
+    val chunkingStrategy: ChunkingStrategy,
     val parameters: Map<String, String>,
     @Transient val hash: String = "",
 ) {

@@ -34,6 +34,7 @@ class DocumentIndexingService(
         onChunkProgress: (ChunkIndexingProgress) -> Unit,
     ): DocumentIndexingResult {
         val file = Path.of(fileName).toAbsolutePath().normalize()
+
         require(Files.isRegularFile(file)) { "File does not exist or is not a regular file: $file" }
         require(indexConfiguration.hash.isNotBlank()) { "Indexing configuration hash is missing" }
 
@@ -52,8 +53,8 @@ class DocumentIndexingService(
             )
         }
 
-        val chunker = checkNotNull(chunkersByStrategy[indexConfiguration.strategy]) {
-            "Chunking strategy is not supported: ${indexConfiguration.strategy}"
+        val chunker = checkNotNull(chunkersByStrategy[indexConfiguration.chunkingStrategy]) {
+            "Chunking strategy is not supported: ${indexConfiguration.chunkingStrategy}"
         }
         val configuration = if (existingConfiguration == null) {
             configurationRepository.create(

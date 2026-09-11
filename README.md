@@ -25,8 +25,8 @@ __  __     ______     ______     ______
 
 - Fully local document indexing and question answering
 - Dense vector search powered by `sqlite-vec`
-- Configurable embedding model and chunking strategy
-- Configuration files stored as JSON resources and selected by ID
+- Separate indexing and question configurations selected by ID
+- Configurable embedding model, chunking strategy, and retrieval `topK`
 - Structured JSON responses from Ollama
 - One-shot shell commands and a full-screen interactive terminal
 - Persistent operation cancellation with `Ctrl+C`
@@ -80,20 +80,26 @@ The executable fat JAR is created at `build/libs/urag.jar`.
 List the available indexing configurations and select one by its resource ID:
 
 ```shell
-java -jar build/libs/urag.jar configurations
+java -jar build/libs/urag.jar cf-index
 java -jar build/libs/urag.jar index 1
 ```
 
-Inspect the generated indexes, then retrieve context or ask a question using an index ID from `list`:
+Inspect the generated indexes and available question configurations:
 
 ```shell
 java -jar build/libs/urag.jar list
+java -jar build/libs/urag.jar cf-question
+```
+
+Retrieve context using an index ID from `list`, or ask a question using both the index ID and question-configuration ID:
+
+```shell
 java -jar build/libs/urag.jar relevant 1 "What is dependency injection?"
-java -jar build/libs/urag.jar question 1 "Summarize this document"
+java -jar build/libs/urag.jar question 1 1 "Summarize this document"
 ```
 
 > [!IMPORTANT]
-> `/index` accepts a **resource configuration ID** shown by `configurations`. Commands `relevant` and `question` accept an **index ID** shown by `list`. An index is a stored combination of one document and one configuration hash.
+> `/index` accepts an **indexing-configuration ID** shown by `cf-index`. `/question` accepts an **index ID** shown by `list`, followed by a **question-configuration ID** shown by `cf-question`.
 
 ## Commands
 
@@ -101,11 +107,12 @@ The `/` prefix is required in interactive mode and optional in one-shot shell mo
 
 | Command | Description |
 | --- | --- |
-| `configurations` | List JSON indexing configurations, their IDs, models, strategies, and parameters. |
+| `cf-index` | List indexing configurations, their IDs, models, strategies, and parameters. |
 | `index <configurationId>` | Recursively index project `.txt` files using the selected resource configuration. |
-| `list` | List stored index IDs, source files, and indexing statuses. |
+| `list` | Show stored indexes with source files, statuses, and indexing configurations. |
 | `relevant <indexId> "question"` | Print the three chunks most relevant to the question. |
-| `question <indexId> "question"` | Retrieve context and generate an answer with Ollama. |
+| `cf-question` | List question configurations and their parameters. |
+| `question <indexId> <questionConfigurationId> "question"` | Retrieve configured context and generate an answer with Ollama. |
 | `help` | Display the available commands. |
 | `exit` | Exit interactive mode. |
 
@@ -130,24 +137,35 @@ Start typing `/` to open command suggestions. Available terminal controls:
 
 Text can be selected normally with the mouse, without holding `Shift`.
 
-## Indexing configurations
+## Configurations
 
-Configuration files live in `src/main/resources/configurations` and are loaded at runtime. Each file has a stable positive ID:
+Indexing configurations live in `src/main/resources/configurations/indexing`. They select the embedding model and chunking behavior:
 
 ```json
 {
   "id": 1,
   "embeddingModel": "qwen3-embedding:8b",
-  "strategy": "FIXED_SIZE",
+  "chunkingStrategy": "FIXED_SIZE",
   "parameters": {
     "chunkSize": "1000"
   }
 }
 ```
 
-IDs must be unique across configuration files. Configurations are displayed in ascending ID order, and `default.json` is marked with `*`.
+Question configurations live in `src/main/resources/configurations/question`. Currently they control how many relevant chunks are passed to the model:
 
-The application stores only the SHA-256 hash of the selected JSON configuration in the indexing database. Changing the file—including formatting—changes its hash and requires reindexing affected documents.
+```json
+{
+  "id": 1,
+  "parameters": {
+    "topK": "3"
+  }
+}
+```
+
+IDs must be unique within each configuration type. Configurations are displayed in ascending ID order, and each type has a `default.json` marked with `*`.
+
+The application stores only the SHA-256 hash of the selected indexing JSON in the database. Changing that file—including formatting—changes its hash and requires reindexing affected documents. Question configurations are selected at request time and are not persisted with an index.
 
 ## Runtime data
 

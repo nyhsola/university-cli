@@ -5,13 +5,13 @@ import university.cli.model.ProjectIndexingResult
 import university.cli.service.chat.ChatOutputService
 import university.cli.service.chat.ChatStatusService
 import university.cli.service.indexing.ProjectIndexingService
-import university.cli.service.indexing.ConfigurationService
+import university.cli.service.configuration.IndexConfigurationService
 import java.util.concurrent.CancellationException
 
 class IndexCommand(
     private val migrator: FlywayMigrator,
     private val projectIndexingService: ProjectIndexingService,
-    private val configurationService: ConfigurationService,
+    private val configurationService: IndexConfigurationService,
     private val chatStatusService: ChatStatusService,
     private val chatOutputService: ChatOutputService,
 ) : ChatCommand {

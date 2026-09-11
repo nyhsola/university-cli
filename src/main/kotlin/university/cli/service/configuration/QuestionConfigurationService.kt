@@ -1,57 +1,51 @@
-package university.cli.service.indexing
+package university.cli.service.configuration
 
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import university.cli.model.IndexConfiguration
-import university.cli.util.FileUtil
+import university.cli.model.QuestionConfiguration
 import university.cli.util.JsonUtil
 import university.cli.util.loadResource
 import java.net.JarURLConnection
 import java.nio.file.Files
 import java.nio.file.Path
 
-class ConfigurationService(
+class QuestionConfigurationService(
     private val json: Json = JsonUtil.json,
 ) {
     private val configurations by lazy(::loadConfigurations)
 
     private companion object {
-        const val CONFIGURATION_DIRECTORY = "configurations"
+        const val CONFIGURATION_DIRECTORY = "configurations/question"
         const val DEFAULT_CONFIGURATION = "default"
         const val JSON_EXTENSION = ".json"
     }
 
-    fun getAll(): Map<String, IndexConfiguration> = configurations
+    fun getAll(): Map<String, QuestionConfiguration> = configurations
 
-    fun get(id: Long): IndexConfiguration = checkNotNull(configurations.values.find { it.id == id }) {
-        "Indexing configuration not found: $id"
+    fun get(id: Long): QuestionConfiguration = checkNotNull(configurations.values.find { it.id == id }) {
+        "Question configuration not found: $id"
     }
 
-    fun findByHash(hash: String): IndexConfiguration? = configurations.values.find { it.hash == hash }
-
-    fun default(): IndexConfiguration = checkNotNull(configurations[DEFAULT_CONFIGURATION]) {
-        "Default indexing configuration not found: $DEFAULT_CONFIGURATION$JSON_EXTENSION"
+    fun default(): QuestionConfiguration = checkNotNull(configurations[DEFAULT_CONFIGURATION]) {
+        "Default question configuration not found: $DEFAULT_CONFIGURATION$JSON_EXTENSION"
     }
 
-    private fun loadConfigurations(): Map<String, IndexConfiguration> {
+    private fun loadConfigurations(): Map<String, QuestionConfiguration> {
         val files = configurationFiles()
-        check(files.isNotEmpty()) { "No indexing configurations found in $CONFIGURATION_DIRECTORY" }
+        check(files.isNotEmpty()) { "No question configurations found in $CONFIGURATION_DIRECTORY" }
 
         val loaded = files.associate { fileName ->
             val name = fileName.removeSuffix(JSON_EXTENSION)
-            val content = ConfigurationService::class.loadResource("$CONFIGURATION_DIRECTORY/$fileName")
-            val configuration = json.decodeFromString<IndexConfiguration>(content)
-                .copy(hash = FileUtil.sha256(content))
-            name to configuration
+            val content = QuestionConfigurationService::class.loadResource("$CONFIGURATION_DIRECTORY/$fileName")
+            name to json.decodeFromString<QuestionConfiguration>(content)
         }
-
-        val duplicateIds = loaded.values.groupBy(IndexConfiguration::id).filterValues { it.size > 1 }.keys
-        check(duplicateIds.isEmpty()) { "Duplicate indexing configuration ids: ${duplicateIds.sorted()}" }
+        val duplicateIds = loaded.values.groupBy(QuestionConfiguration::id).filterValues { it.size > 1 }.keys
+        check(duplicateIds.isEmpty()) { "Duplicate question configuration ids: ${duplicateIds.sorted()}" }
         return loaded.entries.sortedBy { it.value.id }.associate { it.toPair() }
     }
 
     private fun configurationFiles(): List<String> {
-        val resources = ConfigurationService::class.java.classLoader.getResources(CONFIGURATION_DIRECTORY)
+        val resources = QuestionConfigurationService::class.java.classLoader.getResources(CONFIGURATION_DIRECTORY)
         return buildSet {
             while (resources.hasMoreElements()) {
                 val resource = resources.nextElement()

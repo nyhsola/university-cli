@@ -66,6 +66,7 @@ class JdbcIndexingConfigurationRepository(private val dataSource: DataSource) {
                                 resultSet.getLong("configurationId"),
                                 resultSet.getLong("documentId"),
                                 resultSet.getString("fileName"),
+                                resultSet.getString("configurationHash"),
                                 IndexingStatus.fromCode(resultSet.getInt("status")),
                             ),
                         )

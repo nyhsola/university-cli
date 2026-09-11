@@ -8,13 +8,13 @@ import university.cli.model.Vector
 import university.cli.repository.JdbcDocumentRepository
 import university.cli.repository.JdbcIndexingConfigurationRepository
 import university.cli.service.indexing.ChunkFileReaderService
-import university.cli.service.indexing.ConfigurationService
+import university.cli.service.configuration.IndexConfigurationService
 import university.cli.service.llm.EmbedService
 import university.cli.service.operation.OperationCancellationService
 
 class RelevantService(
     private val configurationRepository: JdbcIndexingConfigurationRepository,
-    private val configurationService: ConfigurationService,
+    private val configurationService: IndexConfigurationService,
     private val documentRepository: JdbcDocumentRepository,
     private val chunkFileReaderService: ChunkFileReaderService,
     private val embedService: EmbedService,

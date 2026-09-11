@@ -43,6 +43,17 @@ data class CommandSuggestion(
 )
 
 internal fun Iterable<ChatCommand>.sortedForDisplay(): List<ChatCommand> = sortedWith(
-    compareBy<ChatCommand> { it.name == "/exit" }
-        .thenBy(ChatCommand::name),
-)
+        compareBy<ChatCommand> { COMMAND_DISPLAY_ORDER[it.name] ?: Int.MAX_VALUE }
+            .thenBy(ChatCommand::name),
+    )
+
+private val COMMAND_DISPLAY_ORDER = listOf(
+    "/cf-index",
+    "/index",
+    "/list",
+    "/relevant",
+    "/cf-question",
+    "/question",
+    "/help",
+    "/exit",
+).withIndex().associate { (index, name) -> name to index }

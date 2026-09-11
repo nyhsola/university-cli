@@ -18,9 +18,7 @@ class ProjectIndexingService(
     private val directoryConfig: DirectoryConfig,
     private val documentIndexingService: DocumentIndexingService,
 ) {
-    private val projectDirectory = checkNotNull(directoryConfig.dataDirectory.parent) {
-        "Data directory must have a project parent"
-    }
+    private val projectDirectory = checkNotNull(directoryConfig.dataDirectory.parent) { "Data directory must have a project parent" }
 
     fun index(
         indexConfiguration: IndexConfiguration,

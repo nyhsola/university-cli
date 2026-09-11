@@ -1,6 +1,5 @@
 package university.cli.service.indexing
 
-import kotlinx.serialization.encodeToString
 import university.cli.config.DirectoryConfig
 import university.cli.model.DocumentChunk
 import university.cli.util.JsonUtil
@@ -15,6 +14,7 @@ class ChunkFileWriterService(
 ) {
     fun write(configurationId: Long, chunks: List<DocumentChunk>): Path {
         Files.createDirectories(directoryConfig.chunksDirectory)
+
         val target = directoryConfig.chunksDirectory.resolve("chunks_$configurationId.jsonl")
         val temporary = Files.createTempFile(directoryConfig.chunksDirectory, "chunks_${configurationId}_", ".tmp")
 

@@ -1,6 +1,7 @@
 package university.cli.service.retrieval
 
 import university.cli.config.OllamaConfig
+import university.cli.model.QuestionConfiguration
 import university.cli.model.StructuredAnswer
 import university.cli.service.llm.OllamaService
 
@@ -10,15 +11,20 @@ class QuestionService(
     private val ollamaConfig: OllamaConfig,
 ) {
     private companion object {
-        const val CONTEXT_CHUNKS = 3
+        const val TOP_K_PARAMETER = "topK"
     }
 
     fun question(
-        configurationId: Long,
+        indexConfigurationId: Long,
+        questionConfiguration: QuestionConfiguration,
         question: String,
         onContextReady: () -> Unit = {},
     ): StructuredAnswer {
-        val relevantChunks = relevantService.getTopRelevant(configurationId, question, CONTEXT_CHUNKS)
+        val topK = questionConfiguration.parameters[TOP_K_PARAMETER]?.toIntOrNull()
+        require(topK != null && topK > 0) {
+            "Question configuration ${questionConfiguration.id} must contain a positive $TOP_K_PARAMETER parameter"
+        }
+        val relevantChunks = relevantService.getTopRelevant(indexConfigurationId, question, topK)
         require(relevantChunks.isNotEmpty()) { "No relevant chunks found" }
 
         val context = relevantChunks.joinToString("\n\n") { chunk ->

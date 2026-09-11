@@ -7,8 +7,8 @@ class HelpCommand(
     override val description = "Show available commands"
 
     private companion object {
-        const val COMMAND_COLUMN_WIDTH = 15
-        const val DESCRIPTION_COLUMN_WIDTH = 58
+        const val COMMAND_COLUMN_WIDTH = 24
+        const val DESCRIPTION_COLUMN_WIDTH = 49
     }
 
     override fun execute(arguments: List<String>): CommandResult {
