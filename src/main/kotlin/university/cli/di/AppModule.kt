@@ -3,6 +3,7 @@ package university.cli.di
 import com.github.ajalt.mordant.terminal.Terminal
 import org.koin.dsl.module
 import university.cli.command.CommandDispatcher
+import university.cli.command.ConfigurationsCommand
 import university.cli.command.ExitCommand
 import university.cli.command.HelpCommand
 import university.cli.command.IndexCommand
@@ -23,9 +24,11 @@ import university.cli.service.cli.CliService
 import university.cli.service.indexing.ChunkFileReaderService
 import university.cli.service.indexing.ChunkFileWriterService
 import university.cli.service.indexing.ChunkerService
+import university.cli.service.indexing.ConfigurationService
 import university.cli.service.indexing.DocumentIndexingService
 import university.cli.service.indexing.FixedSizeChunkerService
 import university.cli.service.indexing.ProjectIndexingService
+import university.cli.service.llm.EmbedService
 import university.cli.service.llm.OllamaService
 import university.cli.service.operation.OperationCancellationService
 import university.cli.service.retrieval.QuestionService
@@ -50,28 +53,31 @@ val appModule = module {
     single { JdbcVectorRepository(get()) }
 
     single<ChunkerService> { FixedSizeChunkerService() }
+    single { ConfigurationService() }
     single { ChunkFileWriterService(get()) }
     single { ChunkFileReaderService(get()) }
 
     single { OllamaService(get()) }
+    single { EmbedService(get()) }
     single { VectorService(get()) }
     single { OperationCancellationService() }
     single { DocumentIndexingService(getAll(), get(), get(), get(), get(), get(), get()) }
     single { ProjectIndexingService(get(), get()) }
-    single { RelevantService(get(), get(), get(), get(), get(), get()) }
+    single { RelevantService(get(), get(), get(), get(), get(), get(), get()) }
     single { QuestionService(get(), get(), get()) }
 
     single { ChatStatusService() }
     single { ChatOutputService() }
 
-    single { IndexCommand(get(), get(), get(), get()) }
+    single { IndexCommand(get(), get(), get(), get(), get()) }
+    single { ConfigurationsCommand(get()) }
     single { ListCommand(get(), get()) }
     single { QuestionCommand(get(), get(), get()) }
     single { RelevantCommand(get(), get(), get()) }
     single { ExitCommand() }
-    single { HelpCommand(listOf(get<IndexCommand>(), get<ListCommand>(), get<QuestionCommand>(), get<RelevantCommand>(), get<ExitCommand>())) }
+    single { HelpCommand(listOf(get<ConfigurationsCommand>(), get<IndexCommand>(), get<ListCommand>(), get<QuestionCommand>(), get<RelevantCommand>(), get<ExitCommand>())) }
 
-    single { CommandDispatcher(listOf(get<IndexCommand>(), get<ListCommand>(), get<QuestionCommand>(), get<RelevantCommand>(), get<ExitCommand>(), get<HelpCommand>())) }
+    single { CommandDispatcher(listOf(get<ConfigurationsCommand>(), get<IndexCommand>(), get<ListCommand>(), get<QuestionCommand>(), get<RelevantCommand>(), get<ExitCommand>(), get<HelpCommand>())) }
 
     single { ChatService(get(), get(), get(), get(), get()) }
     single { CliService(get(), get(), get(), get()) }

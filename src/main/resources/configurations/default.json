@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "embeddingModel": "qwen3-embedding:8b",
+  "strategy": "FIXED_SIZE",
+  "parameters": {
+    "chunkSize": "1000"
+  }
+}

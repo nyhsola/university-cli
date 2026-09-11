@@ -1,11 +1,18 @@
 package university.cli.repository
 
 import university.cli.model.Document
+import university.cli.util.loadResource
 import javax.sql.DataSource
 
 class JdbcDocumentRepository(
     private val dataSource: DataSource,
 ) {
+    private companion object {
+        val FIND_BY_ID = JdbcDocumentRepository::class.loadResource("db/sql/document/find_by_id.sql")
+        val FIND_BY_HASH = JdbcDocumentRepository::class.loadResource("db/sql/document/find_by_hash.sql")
+        val INSERT_OR_UPDATE = JdbcDocumentRepository::class.loadResource("db/sql/document/insert_or_update.sql")
+    }
+
     fun findById(id: Long): Document? = dataSource.connection.use { connection ->
         connection.prepareStatement(FIND_BY_ID).use { statement ->
             statement.setLong(1, id)
@@ -46,12 +53,4 @@ class JdbcDocumentRepository(
         getString("fileHash"),
     )
 
-    private companion object {
-        const val FIND_BY_ID = "SELECT id, fileName, fileHash FROM document WHERE id = ?"
-        const val FIND_BY_HASH = "SELECT id, fileName, fileHash FROM document WHERE fileHash = ?"
-        const val INSERT_OR_UPDATE = """
-            INSERT INTO document(fileName, fileHash) VALUES (?, ?)
-            ON CONFLICT(fileHash) DO UPDATE SET fileName = excluded.fileName
-        """
-    }
 }

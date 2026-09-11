@@ -3,7 +3,7 @@ package university.cli.command
 class CommandDispatcher(
     commands: List<ChatCommand>,
 ) {
-    private val registeredCommands = commands.sortedBy(ChatCommand::name)
+    private val registeredCommands = commands.sortedForDisplay()
     private val commandsByName = registeredCommands.associateBy(ChatCommand::name)
 
     fun suggestions(input: String): List<CommandSuggestion> {
@@ -40,4 +40,9 @@ class CommandDispatcher(
 data class CommandSuggestion(
     val name: String,
     val description: String,
+)
+
+internal fun Iterable<ChatCommand>.sortedForDisplay(): List<ChatCommand> = sortedWith(
+    compareBy<ChatCommand> { it.name == "/exit" }
+        .thenBy(ChatCommand::name),
 )

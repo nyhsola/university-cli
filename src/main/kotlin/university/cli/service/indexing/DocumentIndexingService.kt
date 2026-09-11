@@ -3,15 +3,14 @@ package university.cli.service.indexing
 import university.cli.model.ChunkIndexingProgress
 import university.cli.model.DocumentIndexingOutcome
 import university.cli.model.DocumentIndexingResult
-import university.cli.model.IndexParameters
+import university.cli.model.IndexConfiguration
 import university.cli.model.IndexingStatus
 import university.cli.repository.JdbcDocumentRepository
 import university.cli.repository.JdbcIndexingConfigurationRepository
-import university.cli.service.llm.OllamaService
+import university.cli.service.llm.EmbedService
 import university.cli.service.operation.OperationCancellationService
 import university.cli.service.retrieval.VectorService
 import university.cli.util.FileUtil
-import university.cli.util.JsonUtil
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Path
@@ -23,7 +22,7 @@ class DocumentIndexingService(
     private val documentRepository: JdbcDocumentRepository,
     private val configurationRepository: JdbcIndexingConfigurationRepository,
     private val chunkFileWriterService: ChunkFileWriterService,
-    private val ollamaService: OllamaService,
+    private val embedService: EmbedService,
     private val vectorService: VectorService,
     private val cancellationService: OperationCancellationService,
 ) {
@@ -31,22 +30,15 @@ class DocumentIndexingService(
 
     fun index(
         fileName: String,
-        indexParameters: IndexParameters,
+        indexConfiguration: IndexConfiguration,
         onChunkProgress: (ChunkIndexingProgress) -> Unit,
     ): DocumentIndexingResult {
         val file = Path.of(fileName).toAbsolutePath().normalize()
         require(Files.isRegularFile(file)) { "File does not exist or is not a regular file: $file" }
+        require(indexConfiguration.hash.isNotBlank()) { "Indexing configuration hash is missing" }
 
         val document = documentRepository.save(file.fileName.toString(), FileUtil.sha256(file))
-        val parametersJson = JsonUtil.objectOf(indexParameters.parameters.toSortedMap())
-        val configurationIdentity = mapOf(
-            "documentId" to document.id.toString(),
-            "embeddingModel" to indexParameters.model,
-            "strategy" to indexParameters.strategy.code.toString(),
-            "parameters" to parametersJson,
-        )
-        val configurationHash = FileUtil.sha256(JsonUtil.objectOf(configurationIdentity.toSortedMap()))
-        val existingConfiguration = configurationRepository.findByHash(configurationHash)
+        val existingConfiguration = configurationRepository.findByDocumentAndHash(document.id, indexConfiguration.hash)
 
         if (existingConfiguration?.status == IndexingStatus.READY) {
             onChunkProgress(ChunkIndexingProgress(1, 1))
@@ -60,17 +52,14 @@ class DocumentIndexingService(
             )
         }
 
-        val chunker = checkNotNull(chunkersByStrategy[indexParameters.strategy]) {
-            "Chunking strategy is not registered: ${indexParameters.strategy}"
+        val chunker = checkNotNull(chunkersByStrategy[indexConfiguration.strategy]) {
+            "Chunking strategy is not supported: ${indexConfiguration.strategy}"
         }
         val configuration = if (existingConfiguration == null) {
             configurationRepository.create(
                 document.id,
-                indexParameters.model,
-                indexParameters.strategy,
+                indexConfiguration.hash,
                 IndexingStatus.PROCESSING,
-                parametersJson,
-                configurationHash,
                 Instant.now(),
             )
         } else {
@@ -81,13 +70,13 @@ class DocumentIndexingService(
         return try {
             cancellationService.ensureActive()
             val content = String(Files.readAllBytes(file), StandardCharsets.UTF_8)
-            val chunks = chunker.chunk(content, indexParameters.parameters)
+            val chunks = chunker.chunk(content, indexConfiguration.parameters)
             val chunksFile = chunkFileWriterService.write(configuration.id, chunks)
             onChunkProgress(ChunkIndexingProgress(0, chunks.size))
 
             val vectors = chunks.mapIndexed { index, chunk ->
                 cancellationService.ensureActive()
-                val vector = ollamaService.embed(configuration.embeddingModel, chunk.content)
+                val vector = embedService.embedDocument(indexConfiguration.embeddingModel, chunk.content)
                 cancellationService.ensureActive()
                 onChunkProgress(ChunkIndexingProgress(index + 1, chunks.size))
                 vector

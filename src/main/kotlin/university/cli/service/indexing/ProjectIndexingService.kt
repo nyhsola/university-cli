@@ -4,7 +4,7 @@ import university.cli.config.DirectoryConfig
 import university.cli.model.ChunkIndexingProgress
 import university.cli.model.DocumentIndexingOutcome
 import university.cli.model.FailedFile
-import university.cli.model.IndexParameters
+import university.cli.model.IndexConfiguration
 import university.cli.model.IndexedFile
 import university.cli.model.ProjectIndexingProgress
 import university.cli.model.ProjectIndexingResult
@@ -23,7 +23,7 @@ class ProjectIndexingService(
     }
 
     fun index(
-        indexParameters: IndexParameters,
+        indexConfiguration: IndexConfiguration,
         onFileProgress: (ProjectIndexingProgress) -> Unit,
         onChunkProgress: (ChunkIndexingProgress) -> Unit,
     ): ProjectIndexingResult {
@@ -36,7 +36,7 @@ class ProjectIndexingService(
             val relativePath = file.relativeTo(projectDirectory)
             onFileProgress(ProjectIndexingProgress(index + 1, files.size, relativePath))
             try {
-                val result = documentIndexingService.index(file.toString(), indexParameters, onChunkProgress)
+                val result = documentIndexingService.index(file.toString(), indexConfiguration, onChunkProgress)
                 val indexedFile = IndexedFile(relativePath, result)
                 when (result.outcome) {
                     DocumentIndexingOutcome.INDEXED -> indexedFiles += indexedFile

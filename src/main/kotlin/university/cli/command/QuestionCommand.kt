@@ -33,10 +33,10 @@ class QuestionCommand(
             val answer = questionService.question(configurationId, question) {
                 chatStatusService.set("Generating answer...")
             }
-            if (answer.text.isBlank()) {
+            if (answer.answer.isBlank()) {
                 CommandResult("Model returned an empty answer.", CommandMessageType.WARNING)
             } else {
-                CommandResult(lines = formatAnswer(answer.text))
+                CommandResult(lines = formatAnswer(answer.answer))
             }
         } catch (_: CancellationException) {
             CommandResult("Question cancelled.", CommandMessageType.MUTED)

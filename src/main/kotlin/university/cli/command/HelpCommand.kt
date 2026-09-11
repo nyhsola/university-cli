@@ -7,7 +7,7 @@ class HelpCommand(
     override val description = "Show available commands"
 
     private companion object {
-        const val COMMAND_COLUMN_WIDTH = 12
+        const val COMMAND_COLUMN_WIDTH = 15
         const val DESCRIPTION_COLUMN_WIDTH = 58
     }
 
@@ -16,7 +16,7 @@ class HelpCommand(
             return CommandResult("Usage: /help", CommandMessageType.WARNING)
         }
 
-        val availableCommands = (commands + this).sortedBy(ChatCommand::name)
+        val availableCommands = (commands + this).sortedForDisplay()
         val divider = "├${"─".repeat(COMMAND_COLUMN_WIDTH + 2)}┼${"─".repeat(DESCRIPTION_COLUMN_WIDTH + 2)}┤"
         val lines = buildList {
             add(CommandOutputLine(topBorder(), CommandMessageType.ACCENT))

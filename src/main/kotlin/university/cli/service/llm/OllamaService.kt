@@ -1,16 +1,13 @@
 package university.cli.service.llm
 
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.contentOrNull
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.*
+import kotlinx.serialization.serializer
 import university.cli.config.OllamaConfig
-import university.cli.model.Answer
 import university.cli.model.Vector
+import university.cli.util.JsonSchemaUtil
 import university.cli.util.JsonUtil
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -27,28 +24,36 @@ class OllamaService(
         const val CONTENT_TYPE = "application/json"
     }
 
-    fun embed(model: String, text: String): Vector {
+    internal fun embed(model: String, text: String): Vector {
         require(model.isNotBlank()) { "Ollama model must not be blank" }
         require(text.isNotBlank()) { "Embedding text must not be blank" }
 
         val response = json.decodeFromString<EmbedResponse>(
-            post(EMBED_ENDPOINT, EmbedRequest(model, text))
+            post(EMBED_ENDPOINT, EmbedRequest(model, text)),
         )
         val values = response.embeddings.firstOrNull() ?: error("Ollama returned no embeddings for model: $model")
+
         return Vector(values)
     }
 
-    fun question(model: String, text: String): Answer {
+    inline fun <reified T> question(model: String, text: String): T =
+        question(model, text, serializer())
+
+    @PublishedApi
+    internal fun <T> question(model: String, text: String, serializer: KSerializer<T>): T {
         require(model.isNotBlank()) { "Ollama model must not be blank" }
         require(text.isNotBlank()) { "Question text must not be blank" }
 
         val response = json.decodeFromString<GenerateResponse>(
-            post(GENERATE_ENDPOINT, GenerateRequest(model, text, false, false)),
+            post(
+                GENERATE_ENDPOINT,
+                GenerateRequest(model, text, false, false, JsonSchemaUtil.from(serializer.descriptor)),
+            ),
         )
         check(response.response.isNotBlank()) {
             "Ollama returned an empty response (doneReason=${response.doneReason ?: "unknown"})"
         }
-        return Answer(response.response)
+        return json.decodeFromString(serializer, response.response)
     }
 
     private inline fun <reified T> post(endpoint: String, payload: T): String {
@@ -92,6 +97,7 @@ private data class GenerateRequest(
     val prompt: String,
     val stream: Boolean,
     val think: Boolean,
+    val format: JsonObject,
 )
 
 @Serializable

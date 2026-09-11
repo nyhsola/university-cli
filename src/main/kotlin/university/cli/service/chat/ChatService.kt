@@ -33,17 +33,17 @@ class ChatService(
     private val cancellationService: OperationCancellationService = OperationCancellationService(),
 ) {
     fun start() {
-        val rawMode = terminal.enterRawModeOrNull(MouseTracking.Normal)
+        val rawMode = terminal.enterRawModeOrNull(MouseTracking.Off)
         if (rawMode == null) {
             startLineMode()
             return
         }
 
-        terminal.rawPrint(ENTER_ALTERNATE_SCREEN + HIDE_CURSOR)
+        terminal.rawPrint(ENTER_ALTERNATE_SCREEN + ENABLE_ALTERNATE_SCROLL + SHOW_CURSOR + BLINKING_BAR_CURSOR)
         val history = try {
             rawMode.use(::startInteractiveMode)
         } finally {
-            terminal.rawPrint(SHOW_CURSOR + LEAVE_ALTERNATE_SCREEN)
+            terminal.rawPrint(DISABLE_ALTERNATE_SCROLL + DEFAULT_CURSOR + SHOW_CURSOR + LEAVE_ALTERNATE_SCREEN)
         }
         printTranscript(history)
     }
@@ -56,7 +56,7 @@ class ChatService(
         }
         try {
             while (true) {
-                val input = terminal.prompt("You", promptSuffix = " > ") ?: break
+                val input = terminal.prompt("", promptSuffix = "> ") ?: break
                 val result = commandDispatcher.dispatch(input)
                 printResult(result)
                 if (result.shouldExit) break
@@ -104,7 +104,7 @@ class ChatService(
                 "Enter" -> {
                     val enteredValue = completeInput(buffer.toString(), suggestions.getOrNull(selectedIndex))
                     if (enteredValue.isNotBlank()) {
-                        history += ScreenMessage(" > $enteredValue", CommandMessageType.INFO)
+                        history += ScreenMessage("> $enteredValue", CommandMessageType.INFO, isUser = true)
                         scrollOffset = renderScreen(history, StringBuilder(), emptyList(), 0, 0)
 
                         val result = executeCommand(inputReader, commandExecutor, enteredValue) { mouseEvent ->
@@ -126,12 +126,20 @@ class ChatService(
                     suggestionsDismissed = false
                 }
 
-                "ArrowUp" -> if (suggestions.isNotEmpty()) {
-                    selectedIndex = (selectedIndex - 1 + suggestions.size) % suggestions.size
+                "ArrowUp" -> {
+                    if (suggestions.isNotEmpty()) {
+                        selectedIndex = (selectedIndex - 1 + suggestions.size) % suggestions.size
+                    } else {
+                        scrollOffset += HISTORY_SCROLL_STEP
+                    }
                 }
 
-                "ArrowDown" -> if (suggestions.isNotEmpty()) {
-                    selectedIndex = (selectedIndex + 1) % suggestions.size
+                "ArrowDown" -> {
+                    if (suggestions.isNotEmpty()) {
+                        selectedIndex = (selectedIndex + 1) % suggestions.size
+                    } else {
+                        scrollOffset = (scrollOffset - HISTORY_SCROLL_STEP).coerceAtLeast(0)
+                    }
                 }
 
                 "PageUp", "Page Up" -> scrollOffset += HISTORY_SCROLL_STEP
@@ -229,12 +237,17 @@ class ChatService(
         val width = terminal.size.width.coerceAtLeast(MINIMUM_WIDTH)
         val height = terminal.size.height.coerceAtLeast(MINIMUM_HEIGHT)
         val headerLines = headerLines()
-        val suggestionLines = suggestions.take(MAX_SUGGESTIONS)
+        val suggestionStart = (selectedIndex - MAX_SUGGESTIONS + 1)
+            .coerceAtLeast(0)
+            .coerceAtMost((suggestions.size - MAX_SUGGESTIONS).coerceAtLeast(0))
+        val suggestionLines = suggestions.drop(suggestionStart).take(MAX_SUGGESTIONS)
         val fixedLineCount = suggestionLines.size + COMPOSER_HEIGHT
         val historyHeight = (height - fixedLineCount).coerceAtLeast(0)
-        val historyWidth = (width - CHAT_PADDING.length).coerceAtLeast(1)
         val renderedHistory = history.flatMap { message ->
-            wrapLine(message.text, historyWidth).map { line -> ScreenMessage(line, message.type) }
+            val messageWidth = (width - message.padding().length).coerceAtLeast(1)
+            wrapLine(message.text, messageWidth).map { line ->
+                ScreenMessage(line, message.type, message.isUser)
+            }
         }
         val maximumScrollOffset = (renderedHistory.size - historyHeight).coerceAtLeast(0)
         val boundedScrollOffset = scrollOffset.coerceIn(0, maximumScrollOffset)
@@ -258,9 +271,10 @@ class ChatService(
             }
 
             suggestionLines.forEachIndexed { index, suggestion ->
-                val marker = if (index == selectedIndex) ">" else " "
+                val suggestionIndex = suggestionStart + index
+                val marker = if (suggestionIndex == selectedIndex) ">" else " "
                 val line = fitLine("$marker ${suggestion.name}  ${suggestion.description}", width)
-                terminal.println(if (index == selectedIndex) (bold + cyan)(line) else dim(line))
+                terminal.println(if (suggestionIndex == selectedIndex) (bold + cyan)(line) else dim(line))
             }
 
             printComposer(buffer, width, chatStatusService.status)
@@ -271,7 +285,7 @@ class ChatService(
     }
 
     private fun printComposer(buffer: StringBuilder, width: Int, status: String?) {
-        val inputPrefix = " You > "
+        val inputPrefix = "> "
         val availableInputWidth = (width - inputPrefix.length).coerceAtLeast(0)
         val visibleInput = buffer.takeLast(availableInputWidth).toString()
         val inputLine = (inputPrefix + visibleInput).padEnd(width)
@@ -302,7 +316,7 @@ class ChatService(
     private fun printTranscript(history: List<ScreenMessage>) {
         terminal.println((bold + red)("UNIVERSITY RAG session"))
         history.forEach { message ->
-            terminal.println(CHAT_PADDING + styleMessage(message.text, message.type))
+            terminal.println(message.padding() + styleMessage(message.text, message.type))
         }
     }
 
@@ -339,7 +353,8 @@ class ChatService(
         val headerLine = headerLines.getOrNull(row)?.takeLast(width)
         if (headerLine == null) {
             val content = message?.let {
-                CHAT_PADDING + styleMessage(fitLine(it.text, width - CHAT_PADDING.length), it.type)
+                val padding = it.padding()
+                padding + styleMessage(fitLine(it.text, width - padding.length), it.type)
             }.orEmpty()
             terminal.println(content)
             return
@@ -347,9 +362,10 @@ class ChatService(
 
         val gapWidth = HEADER_GAP.coerceAtMost((width - headerLine.length).coerceAtLeast(0))
         val historyAreaWidth = (width - headerLine.length - gapWidth).coerceAtLeast(0)
-        val historyContentWidth = (historyAreaWidth - CHAT_PADDING.length).coerceAtLeast(0)
+        val padding = message?.padding().orEmpty()
+        val historyContentWidth = (historyAreaWidth - padding.length).coerceAtLeast(0)
         val plainHistoryLine = message?.let {
-            CHAT_PADDING.take(historyAreaWidth) + fitLine(it.text, historyContentWidth)
+            padding.take(historyAreaWidth) + fitLine(it.text, historyContentWidth)
         }.orEmpty().padEnd(historyAreaWidth)
         val historyLine = message?.let { styleMessage(plainHistoryLine, it.type) } ?: plainHistoryLine
         terminal.print(historyLine)
@@ -392,7 +408,10 @@ class ChatService(
     private data class ScreenMessage(
         val text: String,
         val type: CommandMessageType,
+        val isUser: Boolean = false,
     )
+
+    private fun ScreenMessage.padding(): String = if (isUser) "" else CHAT_PADDING
 
     companion object {
         private const val MAX_SUGGESTIONS = 5
@@ -406,8 +425,11 @@ class ChatService(
         private const val DEFAULT_STATUS_HINT = "Type / for commands"
         private const val ENTER_ALTERNATE_SCREEN = "\u001B[?1049h"
         private const val LEAVE_ALTERNATE_SCREEN = "\u001B[?1049l"
-        private const val HIDE_CURSOR = "\u001B[?25l"
+        private const val ENABLE_ALTERNATE_SCROLL = "\u001B[?1007h"
+        private const val DISABLE_ALTERNATE_SCROLL = "\u001B[?1007l"
         private const val SHOW_CURSOR = "\u001B[?25h"
+        private const val BLINKING_BAR_CURSOR = "\u001B[5 q"
+        private const val DEFAULT_CURSOR = "\u001B[0 q"
         private const val SAVE_CURSOR = "\u001B[s"
         private const val RESTORE_CURSOR = "\u001B[u"
         private const val BEGIN_SYNCHRONIZED_UPDATE = "\u001B[?2026h"

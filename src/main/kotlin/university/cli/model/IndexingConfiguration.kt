@@ -5,11 +5,8 @@ import java.time.Instant
 data class IndexingConfiguration(
     val id: Long,
     val documentId: Long,
-    val embeddingModel: String,
-    val strategy: ChunkingStrategy,
-    val status: IndexingStatus,
-    val parameters: String,
     val hash: String,
+    val status: IndexingStatus,
     val chunkFile: String?,
     val createdAt: Instant,
 )

@@ -7,13 +7,11 @@ CREATE TABLE document (
 CREATE TABLE indexing_configuration (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     documentId INTEGER NOT NULL,
-    embeddingModel TEXT NOT NULL,
-    strategy INTEGER NOT NULL,
+    hash TEXT NOT NULL,
     status INTEGER NOT NULL,
-    parameters TEXT NOT NULL,
-    hash TEXT NOT NULL UNIQUE,
     chunkFile TEXT,
     createdAt TEXT NOT NULL,
+    UNIQUE (documentId, hash),
     FOREIGN KEY (documentId) REFERENCES document(id) ON DELETE CASCADE
 );
 

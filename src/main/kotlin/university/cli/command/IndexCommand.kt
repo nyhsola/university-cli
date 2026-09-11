@@ -1,31 +1,33 @@
 package university.cli.command
 
 import university.cli.database.FlywayMigrator
-import university.cli.model.IndexParameters
 import university.cli.model.ProjectIndexingResult
 import university.cli.service.chat.ChatOutputService
 import university.cli.service.chat.ChatStatusService
 import university.cli.service.indexing.ProjectIndexingService
+import university.cli.service.indexing.ConfigurationService
 import java.util.concurrent.CancellationException
 
 class IndexCommand(
     private val migrator: FlywayMigrator,
     private val projectIndexingService: ProjectIndexingService,
+    private val configurationService: ConfigurationService,
     private val chatStatusService: ChatStatusService,
     private val chatOutputService: ChatOutputService,
 ) : ChatCommand {
     override val name = "/index"
-    override val description = "Index all project text files"
+    override val description = "Index all project text files using a configuration id"
 
     override fun execute(arguments: List<String>): CommandResult {
-        if (arguments.isNotEmpty()) {
-            return CommandResult("Usage: /index", CommandMessageType.WARNING)
+        val configurationId = arguments.singleOrNull()?.toLongOrNull()
+        if (configurationId == null || configurationId <= 0) {
+            return CommandResult("Usage: /index <configurationId>", CommandMessageType.WARNING)
         }
 
         return try {
             migrator.migrate()
             val result = projectIndexingService.index(
-                IndexParameters.default(),
+                configurationService.get(configurationId),
                 { progress ->
                     chatOutputService.write("Indexing file (${progress.current} of ${progress.total}): ${progress.path}")
                     chatStatusService.set("Indexing chunks: 0%")

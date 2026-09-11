@@ -1,51 +1,28 @@
 package university.cli.repository
 
-import university.cli.model.ChunkingStrategy
+import university.cli.model.IndexedFileInfo
 import university.cli.model.IndexingConfiguration
 import university.cli.model.IndexingStatus
-import university.cli.model.IndexedFileInfo
+import university.cli.util.loadResource
 import java.time.Instant
 import javax.sql.DataSource
 
-class JdbcIndexingConfigurationRepository(
-    private val dataSource: DataSource,
-) {
+class JdbcIndexingConfigurationRepository(private val dataSource: DataSource) {
     private companion object {
-        const val SELECT_COLUMNS = """
-            id, documentId, embeddingModel, strategy, status, parameters, hash, chunkFile, createdAt
-        """
-        const val FIND_BY_ID = "SELECT $SELECT_COLUMNS FROM indexing_configuration WHERE id = ?"
-        const val FIND_BY_HASH = "SELECT $SELECT_COLUMNS FROM indexing_configuration WHERE hash = ?"
-        const val FIND_BY_STATUS = """
-            SELECT $SELECT_COLUMNS
-            FROM indexing_configuration
-            WHERE status = ?
-            ORDER BY id
-        """
-        const val LIST_FILES = """
-            SELECT
-                configuration.id AS configurationId,
-                document.id AS documentId,
-                document.fileName,
-                configuration.status
-            FROM indexing_configuration configuration
-            JOIN document ON document.id = configuration.documentId
-            ORDER BY configuration.id
-        """
-        const val INSERT = """
-            INSERT INTO indexing_configuration(
-                documentId, embeddingModel, strategy, status, parameters, hash, chunkFile, createdAt
-            ) VALUES (?, ?, ?, ?, ?, ?, NULL, ?)
-        """
-        const val MARK_READY = """
-            UPDATE indexing_configuration SET status = ?, chunkFile = ? WHERE id = ?
-        """
-        const val UPDATE_STATUS = "UPDATE indexing_configuration SET status = ? WHERE id = ?"
-        const val RESTART = """
-            UPDATE indexing_configuration
-            SET status = ?, chunkFile = NULL
-            WHERE id = ?
-        """
+        val FIND_BY_ID = JdbcIndexingConfigurationRepository::class.loadResource("db/sql/indexing_configuration/find_by_id.sql")
+        val FIND_BY_DOCUMENT_AND_HASH = JdbcIndexingConfigurationRepository::class
+            .loadResource("db/sql/indexing_configuration/find_by_document_and_hash.sql")
+        val FIND_BY_STATUS = JdbcIndexingConfigurationRepository::class
+            .loadResource("db/sql/indexing_configuration/find_by_status.sql")
+        val LIST_FILES = JdbcIndexingConfigurationRepository::class.loadResource("db/sql/indexing_configuration/list_files.sql")
+        val INSERT = JdbcIndexingConfigurationRepository::class.loadResource("db/sql/indexing_configuration/insert.sql")
+        val LAST_INSERT_ID = JdbcIndexingConfigurationRepository::class
+            .loadResource("db/sql/indexing_configuration/last_insert_id.sql")
+        val MARK_READY = JdbcIndexingConfigurationRepository::class
+            .loadResource("db/sql/indexing_configuration/mark_ready.sql")
+        val UPDATE_STATUS = JdbcIndexingConfigurationRepository::class
+            .loadResource("db/sql/indexing_configuration/update_status.sql")
+        val RESTART = JdbcIndexingConfigurationRepository::class.loadResource("db/sql/indexing_configuration/restart.sql")
     }
 
     fun findById(id: Long): IndexingConfiguration? = dataSource.connection.use { connection ->
@@ -57,26 +34,27 @@ class JdbcIndexingConfigurationRepository(
         }
     }
 
-    fun findByHash(hash: String): IndexingConfiguration? = dataSource.connection.use { connection ->
-        connection.prepareStatement(FIND_BY_HASH).use { statement ->
-            statement.setString(1, hash)
-            statement.executeQuery().use { resultSet ->
-                if (resultSet.next()) resultSet.toConfiguration() else null
-            }
-        }
-    }
-
-    fun findAllByStatus(status: IndexingStatus): List<IndexingConfiguration> =
+    fun findByDocumentAndHash(documentId: Long, hash: String): IndexingConfiguration? =
         dataSource.connection.use { connection ->
-            connection.prepareStatement(FIND_BY_STATUS).use { statement ->
-                statement.setInt(1, status.code)
+            connection.prepareStatement(FIND_BY_DOCUMENT_AND_HASH).use { statement ->
+                statement.setLong(1, documentId)
+                statement.setString(2, hash)
                 statement.executeQuery().use { resultSet ->
-                    buildList {
-                        while (resultSet.next()) add(resultSet.toConfiguration())
-                    }
+                    if (resultSet.next()) resultSet.toConfiguration() else null
                 }
             }
         }
+
+    fun findAllByStatus(status: IndexingStatus): List<IndexingConfiguration> = dataSource.connection.use { connection ->
+        connection.prepareStatement(FIND_BY_STATUS).use { statement ->
+            statement.setInt(1, status.code)
+            statement.executeQuery().use { resultSet ->
+                buildList {
+                    while (resultSet.next()) add(resultSet.toConfiguration())
+                }
+            }
+        }
+    }
 
     fun listFiles(): List<IndexedFileInfo> = dataSource.connection.use { connection ->
         connection.prepareStatement(LIST_FILES).use { statement ->
@@ -99,32 +77,25 @@ class JdbcIndexingConfigurationRepository(
 
     fun create(
         documentId: Long,
-        embeddingModel: String,
-        strategy: ChunkingStrategy,
-        status: IndexingStatus,
-        parameters: String,
         hash: String,
+        status: IndexingStatus,
         createdAt: Instant,
     ): IndexingConfiguration = dataSource.connection.use { connection ->
         connection.prepareStatement(INSERT).use { statement ->
             statement.setLong(1, documentId)
-            statement.setString(2, embeddingModel)
-            statement.setInt(3, strategy.code)
-            statement.setInt(4, status.code)
-            statement.setString(5, parameters)
-            statement.setString(6, hash)
-            statement.setString(7, createdAt.toString())
+            statement.setString(2, hash)
+            statement.setInt(3, status.code)
+            statement.setString(4, createdAt.toString())
             statement.executeUpdate()
         }
 
         val id = connection.createStatement().use { statement ->
-            statement.executeQuery("SELECT last_insert_rowid()").use { resultSet ->
+            statement.executeQuery(LAST_INSERT_ID).use { resultSet ->
                 check(resultSet.next()) { "Configuration id was not generated" }
                 resultSet.getLong(1)
             }
         }
-
-        IndexingConfiguration(id, documentId, embeddingModel, strategy, status, parameters, hash, null, createdAt)
+        IndexingConfiguration(id, documentId, hash, status, null, createdAt)
     }
 
     fun markReady(id: Long, chunkFile: String) {
@@ -162,11 +133,8 @@ class JdbcIndexingConfigurationRepository(
     private fun java.sql.ResultSet.toConfiguration() = IndexingConfiguration(
         getLong("id"),
         getLong("documentId"),
-        getString("embeddingModel"),
-        ChunkingStrategy.fromCode(getInt("strategy")),
-        IndexingStatus.fromCode(getInt("status")),
-        getString("parameters"),
         getString("hash"),
+        IndexingStatus.fromCode(getInt("status")),
         getString("chunkFile"),
         Instant.parse(getString("createdAt")),
     )

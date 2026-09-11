@@ -1,0 +1,1 @@
+Given a user question, retrieve relevant passages that contain the information needed to answer it.

@@ -4,26 +4,16 @@ import university.cli.model.RelevantVector
 import university.cli.model.Vector
 import university.cli.model.VectorRecord
 import university.cli.util.SqliteVectorUtil
+import university.cli.util.loadResource
 import javax.sql.DataSource
 
 class JdbcVectorRepository(
     private val dataSource: DataSource,
 ) {
     private companion object {
-        const val DELETE_BY_CONFIGURATION = "DELETE FROM vector WHERE indexConfigurationId = ?"
-        const val INSERT = """
-            INSERT INTO vector(id, indexConfigurationId, vector) VALUES (?, ?, ?)
-        """
-        const val FIND_TOP_RELEVANT = """
-            SELECT id,
-                   indexConfigurationId,
-                   vector,
-                   vec_distance_cosine(vector, ?) AS distance
-            FROM vector
-            WHERE indexConfigurationId = ?
-            ORDER BY distance
-            LIMIT ?
-        """
+        val DELETE_BY_CONFIGURATION = JdbcVectorRepository::class.loadResource("db/sql/vector/delete_by_configuration.sql")
+        val INSERT = JdbcVectorRepository::class.loadResource("db/sql/vector/insert.sql")
+        val FIND_TOP_RELEVANT = JdbcVectorRepository::class.loadResource("db/sql/vector/find_top_relevant.sql")
     }
 
     fun replace(indexConfigurationId: Long, vectors: List<VectorRecord>) {

@@ -1,7 +1,7 @@
 package university.cli.service.retrieval
 
 import university.cli.config.OllamaConfig
-import university.cli.model.Answer
+import university.cli.model.StructuredAnswer
 import university.cli.service.llm.OllamaService
 
 class QuestionService(
@@ -17,7 +17,7 @@ class QuestionService(
         configurationId: Long,
         question: String,
         onContextReady: () -> Unit = {},
-    ): Answer {
+    ): StructuredAnswer {
         val relevantChunks = relevantService.getTopRelevant(configurationId, question, CONTEXT_CHUNKS)
         require(relevantChunks.isNotEmpty()) { "No relevant chunks found" }
 
@@ -34,8 +34,8 @@ class QuestionService(
             Question:
             $question
         """.trimIndent()
-        onContextReady()
-        return ollamaService.question(ollamaConfig.questionModel, prompt)
-    }
 
+        onContextReady()
+        return ollamaService.question<StructuredAnswer>(ollamaConfig.questionModel, prompt)
+    }
 }

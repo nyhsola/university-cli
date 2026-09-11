@@ -1,5 +1,6 @@
 package university.cli.service.retrieval
 
+import university.cli.model.IndexConfiguration
 import university.cli.model.IndexingConfiguration
 import university.cli.model.IndexingStatus
 import university.cli.model.RelevantChunk
@@ -7,14 +8,16 @@ import university.cli.model.Vector
 import university.cli.repository.JdbcDocumentRepository
 import university.cli.repository.JdbcIndexingConfigurationRepository
 import university.cli.service.indexing.ChunkFileReaderService
-import university.cli.service.llm.OllamaService
+import university.cli.service.indexing.ConfigurationService
+import university.cli.service.llm.EmbedService
 import university.cli.service.operation.OperationCancellationService
 
 class RelevantService(
     private val configurationRepository: JdbcIndexingConfigurationRepository,
+    private val configurationService: ConfigurationService,
     private val documentRepository: JdbcDocumentRepository,
     private val chunkFileReaderService: ChunkFileReaderService,
-    private val ollamaService: OllamaService,
+    private val embedService: EmbedService,
     private val vectorService: VectorService,
     private val cancellationService: OperationCancellationService,
 ) {
@@ -26,9 +29,10 @@ class RelevantService(
         require(configuration.status == IndexingStatus.READY) {
             "Index configuration $configurationId is ${configuration.status}"
         }
+        val resourceConfiguration = resolveResourceConfiguration(configuration)
 
         cancellationService.ensureActive()
-        val query = ollamaService.embed(configuration.embeddingModel, question)
+        val query = embedService.embedQuery(resourceConfiguration.embeddingModel, question)
         return findRelevant(configuration, query, limit)
     }
 
@@ -38,10 +42,14 @@ class RelevantService(
         val queriesByModel = mutableMapOf<String, Vector>()
 
         return configurations
-            .flatMap { configuration ->
+            .mapNotNull { configuration ->
+                configurationService.findByHash(configuration.hash)?.let { configuration to it }
+            }
+            .flatMap { (configuration, resourceConfiguration) ->
                 cancellationService.ensureActive()
-                val query = queriesByModel.getOrPut(configuration.embeddingModel) {
-                    ollamaService.embed(configuration.embeddingModel, question)
+                val model = resourceConfiguration.embeddingModel
+                val query = queriesByModel.getOrPut(model) {
+                    embedService.embedQuery(model, question)
                 }
                 findRelevant(configuration, query, limit)
             }
@@ -49,13 +57,18 @@ class RelevantService(
             .take(limit)
     }
 
+    private fun resolveResourceConfiguration(configuration: IndexingConfiguration): IndexConfiguration =
+        checkNotNull(configurationService.findByHash(configuration.hash)) {
+            "Configuration resource for index ${configuration.id} was changed or removed; reindex the document"
+        }
+
     private fun findRelevant(
         configuration: IndexingConfiguration,
         query: Vector,
         limit: Int,
     ): List<RelevantChunk> {
         val chunkFile = checkNotNull(configuration.chunkFile) {
-            "Index configuration ${configuration.id} has no chunks file"
+            "Chunk file is not set for configuration ${configuration.id}"
         }
         val document = checkNotNull(documentRepository.findById(configuration.documentId)) {
             "Document not found: ${configuration.documentId}"
