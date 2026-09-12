@@ -5,6 +5,7 @@ data class DocumentIndexingResult(
     val documentId: Long,
     val chunksCount: Int,
     val outcome: DocumentIndexingOutcome,
+    val tokenUsage: TokenUsage = TokenUsage(),
 )
 
 enum class DocumentIndexingOutcome {

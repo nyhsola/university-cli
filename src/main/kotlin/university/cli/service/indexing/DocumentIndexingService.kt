@@ -75,12 +75,14 @@ class DocumentIndexingService(
 
             onChunkProgress(ChunkIndexingProgress(0, chunks.size))
 
+            var tokenUsage = university.cli.model.TokenUsage()
             val vectors = chunks.mapIndexed { index, chunk ->
                 cancellationService.ensureActive()
-                val vector = embedService.embedDocument(indexConfiguration.embeddingModel, chunk.content)
+                val embedding = embedService.embedDocument(indexConfiguration.embeddingModel, chunk.content)
+                tokenUsage += embedding.tokenUsage
                 cancellationService.ensureActive()
                 onChunkProgress(ChunkIndexingProgress(index + 1, chunks.size))
-                vector
+                embedding.value
             }
 
             cancellationService.ensureActive()
@@ -93,6 +95,7 @@ class DocumentIndexingService(
                 document.id,
                 chunks.size,
                 DocumentIndexingOutcome.INDEXED,
+                tokenUsage,
             )
         } catch (error: CancellationException) {
             configurationRepository.updateStatus(configuration.id, IndexingStatus.CANCELLED)

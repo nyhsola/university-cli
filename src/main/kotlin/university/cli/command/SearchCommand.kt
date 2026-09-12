@@ -23,8 +23,7 @@ class SearchCommand(
     private val chatStatusService: ChatStatusService,
 ) : ChatCommand {
     override val name = "/search"
-    override val usage =
-        "/search <query> [--all|--file PATH|--index ID] [--profile ID] [--explain]"
+    override val usage = "/search <query> [--all|--file PATH|--index ID] [--profile ID] [--explain]"
     override val description = "Search indexed chunks without generating an answer"
 
     private companion object {
@@ -35,15 +34,24 @@ class SearchCommand(
 
     override fun execute(arguments: List<String>): CommandResult = try {
         val startedAt = Instant.now()
-        val request = QueryCommandParser.parse(arguments, allowExplain = true, allowOutput = false)
+        val request = QueryCommandParser.parse(arguments, allowExplain = true)
         val scope = normalizeScope(request.scope)
         val profile = request.profileId?.let(profileService::get)
             ?: checkNotNull(profileService.getAll()[DEFAULT_PROFILE]) { "Default query profile not found" }
 
         migrator.migrate()
         chatStatusService.set("Searching indexed chunks...")
-        val chunks = searchService.search(scope, profile, request.query)
-        operationLogService.write("search", startedAt, scope, profile.id, request.query, chunks)
+        val searchResult = searchService.search(scope, profile, request.query)
+        val chunks = searchResult.chunks
+        operationLogService.write(
+            "search",
+            startedAt,
+            scope,
+            profile.id,
+            request.query,
+            chunks,
+            searchResult.tokenUsage,
+        )
         if (chunks.isEmpty()) {
             CommandResult("No relevant chunks found.", CommandMessageType.WARNING)
         } else {

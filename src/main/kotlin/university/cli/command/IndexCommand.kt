@@ -7,7 +7,9 @@ import university.cli.service.chat.ChatStatusService
 import university.cli.service.indexing.ProjectIndexingService
 import university.cli.service.indexing.ProjectFileService
 import university.cli.service.configuration.IndexProfileService
+import university.cli.service.operation.OperationLogService
 import university.cli.util.CommandOptionParser
+import java.time.Instant
 import java.util.concurrent.CancellationException
 
 class IndexCommand(
@@ -17,6 +19,7 @@ class IndexCommand(
     private val configurationService: IndexProfileService,
     private val chatStatusService: ChatStatusService,
     private val chatOutputService: ChatOutputService,
+    private val operationLogService: OperationLogService,
 ) : ChatCommand {
     override val name = "/index"
     override val usage = "/index (<file>|--all) --config ID"
@@ -24,6 +27,7 @@ class IndexCommand(
 
     override fun execute(arguments: List<String>): CommandResult {
         return try {
+            val startedAt = Instant.now()
             val parsed = CommandOptionParser.parse(
                 arguments,
                 valueOptions = mapOf("--config" to "config", "-c" to "config"),
@@ -47,17 +51,20 @@ class IndexCommand(
             val onChunkProgress = { progress: university.cli.model.ChunkIndexingProgress ->
                 chatStatusService.set("Indexing chunks: ${progress.percentage}%")
             }
-            val result = if (all) {
+            val file = if (all) {
+                null
+            } else {
+                projectFileService.resolve(parsed.positionals.joinToString(" ").trim('"'))
+            }
+
+            val result = if (file == null) {
                 projectIndexingService.indexAll(configuration, onFileProgress, onChunkProgress)
             } else {
-                val fileName = parsed.positionals.joinToString(" ").trim('"')
-                projectIndexingService.indexFile(
-                    projectFileService.resolve(fileName),
-                    configuration,
-                    onFileProgress,
-                    onChunkProgress,
-                )
+                projectIndexingService.indexFile(file, configuration, onFileProgress, onChunkProgress, )
             }
+
+            val scope = file?.let { "file:${projectFileService.relativeName(it)}" } ?: "all"
+            operationLogService.writeIndexing(startedAt, scope, configuration.id, result)
             result.toCommandResult()
         } catch (_: CancellationException) {
             CommandResult("Indexing cancelled.", CommandMessageType.MUTED)

@@ -18,7 +18,8 @@ class AskService(
         question: String,
         onContextReady: () -> Unit = {},
     ): AskResult {
-        val relevantChunks = searchService.search(scope, queryProfile, question)
+        val searchResult = searchService.search(scope, queryProfile, question)
+        val relevantChunks = searchResult.chunks
         require(relevantChunks.isNotEmpty()) { "No relevant chunks found" }
 
         val context = relevantChunks.joinToString("\n\n") { chunk ->
@@ -43,6 +44,6 @@ class AskService(
 
         onContextReady()
         val answer = ollamaService.question<StructuredAnswer>(ollamaConfig.questionModel, prompt)
-        return AskResult(answer, relevantChunks)
+        return AskResult(answer.value, relevantChunks, searchResult.tokenUsage + answer.tokenUsage)
     }
 }

@@ -6,6 +6,8 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
 import kotlinx.serialization.serializer
 import university.cli.config.OllamaConfig
+import university.cli.model.LlmResult
+import university.cli.model.TokenUsage
 import university.cli.model.Vector
 import university.cli.util.JsonSchemaUtil
 import university.cli.util.JsonUtil
@@ -24,7 +26,7 @@ class OllamaService(
         const val CONTENT_TYPE = "application/json"
     }
 
-    internal fun embed(model: String, text: String): Vector {
+    internal fun embed(model: String, text: String): LlmResult<Vector> {
         require(model.isNotBlank()) { "Ollama model must not be blank" }
         require(text.isNotBlank()) { "Embedding text must not be blank" }
 
@@ -33,14 +35,14 @@ class OllamaService(
         )
         val values = response.embeddings.firstOrNull() ?: error("Ollama returned no embeddings for model: $model")
 
-        return Vector(values)
+        return LlmResult(Vector(values), TokenUsage(inputTokens = response.promptEvalCount))
     }
 
-    inline fun <reified T> question(model: String, text: String): T =
+    inline fun <reified T> question(model: String, text: String): LlmResult<T> =
         question(model, text, serializer())
 
     @PublishedApi
-    internal fun <T> question(model: String, text: String, serializer: KSerializer<T>): T {
+    internal fun <T> question(model: String, text: String, serializer: KSerializer<T>): LlmResult<T> {
         require(model.isNotBlank()) { "Ollama model must not be blank" }
         require(text.isNotBlank()) { "Question text must not be blank" }
 
@@ -53,7 +55,10 @@ class OllamaService(
         check(response.response.isNotBlank()) {
             "Ollama returned an empty response (doneReason=${response.doneReason ?: "unknown"})"
         }
-        return json.decodeFromString(serializer, response.response)
+        return LlmResult(
+            json.decodeFromString(serializer, response.response),
+            TokenUsage(response.promptEvalCount, response.evalCount),
+        )
     }
 
     private inline fun <reified T> post(endpoint: String, payload: T): String {
@@ -89,6 +94,8 @@ private data class EmbedRequest(
 @Serializable
 private data class EmbedResponse(
     val embeddings: List<List<Float>> = emptyList(),
+    @SerialName("prompt_eval_count")
+    val promptEvalCount: Long = 0,
 )
 
 @Serializable
@@ -106,4 +113,8 @@ private data class GenerateResponse(
     val thinking: String = "",
     @SerialName("done_reason")
     val doneReason: String? = null,
+    @SerialName("prompt_eval_count")
+    val promptEvalCount: Long = 0,
+    @SerialName("eval_count")
+    val evalCount: Long = 0,
 )

@@ -78,9 +78,12 @@ internal fun Iterable<ChatCommand>.sortedForDisplay(): List<ChatCommand> =
 private val COMMAND_DISPLAY_ORDER = listOf(
     "/files",
     "/index",
+    "/unindex",
     "/profiles",
     "/search",
     "/ask",
     "/help",
     "/exit",
-).withIndex().associate { (index, name) -> name to index }
+)
+    .withIndex()
+    .associate { (index, name) -> name to index }

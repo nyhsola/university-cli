@@ -27,6 +27,8 @@ class JdbcIndexingConfigurationRepository(private val dataSource: DataSource) {
             .loadResource("db/sql/indexing_configuration/update_status.sql")
         val RESTART = JdbcIndexingConfigurationRepository::class
             .loadResource("db/sql/indexing_configuration/restart.sql")
+        val DELETE_BY_DOCUMENT = JdbcIndexingConfigurationRepository::class
+            .loadResource("db/sql/indexing_configuration/delete_by_document.sql")
     }
 
     fun findById(id: Long): IndexingConfiguration? = dataSource.connection.use { connection ->
@@ -135,6 +137,15 @@ class JdbcIndexingConfigurationRepository(private val dataSource: DataSource) {
                 statement.setLong(2, id)
                 check(statement.executeUpdate() == 1) { "Configuration not found: $id" }
             }
+        }
+    }
+
+    fun deleteByDocument(fileName: String, configurationHash: String?): Int = dataSource.connection.use { connection ->
+        connection.prepareStatement(DELETE_BY_DOCUMENT).use { statement ->
+            statement.setString(1, fileName)
+            statement.setString(2, configurationHash)
+            statement.setString(3, configurationHash)
+            statement.executeUpdate()
         }
     }
 

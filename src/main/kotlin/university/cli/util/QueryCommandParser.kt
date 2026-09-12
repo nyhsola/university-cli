@@ -6,30 +6,24 @@ data class QueryCommandRequest(
     val query: String,
     val scope: SearchScope,
     val profileId: Long?,
-    val explain: Boolean,
-    val outputFile: String?,
+    val explain: Boolean
 )
 
 object QueryCommandParser {
-    fun parse(
-        arguments: List<String>,
-        allowExplain: Boolean,
-        allowOutput: Boolean,
-    ): QueryCommandRequest {
+    fun parse(arguments: List<String>, allowExplain: Boolean): QueryCommandRequest {
+
         val valueOptions = buildMap {
             put("--file", "file")
             put("--index", "index")
             put("--profile", "profile")
             put("-p", "profile")
-            if (allowOutput) {
-                put("--output", "output")
-                put("-o", "output")
-            }
         }
+
         val flagOptions = buildMap {
             put("--all", "all")
             if (allowExplain) put("--explain", "explain")
         }
+
         val parsed = CommandOptionParser.parse(arguments, valueOptions, flagOptions)
         val query = parsed.positionals.joinToString(" ").trim()
         require(query.isNotBlank()) { "Query must not be blank" }
@@ -53,8 +47,7 @@ object QueryCommandParser {
             query,
             scopeOptions.singleOrNull() ?: SearchScope.All,
             profileId,
-            "explain" in parsed.flags,
-            parsed.options["output"],
+            "explain" in parsed.flags
         )
     }
 }

@@ -111,6 +111,7 @@ The `/` prefix is required in interactive mode and optional in one-shot shell mo
 | `files [--config ID] [--indexed\|--pending\|--failed]` | List project text files and indexing status. |
 | `index <file> --config ID` | Index one project text file. |
 | `index --all --config ID` | Recursively index all project text files. |
+| `unindex <file> [--config ID]` | Remove all stored indexes for a file, or only the selected index profile. |
 | `profiles [index\|query]` | List index and query profiles. |
 | `search "query" [--all\|--file PATH\|--index ID] [--profile ID] [--explain]` | Retrieve chunks without answer generation. |
 | `ask "question" [--all\|--file PATH\|--index ID] [--profile ID] [--output FILE]` | Retrieve context and generate an answer. |
@@ -184,7 +185,7 @@ The current working directory is treated as the project root. Run the JAR from t
 ```
 
 - `.data/university.db` contains documents, chunks, index records, statuses, vectors, and the FTS5 index.
-- `.data/logs/` contains automatic search and answer-generation diagnostics.
+- `.data/logs/` contains automatic indexing, search, and answer-generation diagnostics, including duration and token usage.
 - `.data` itself is excluded from recursive indexing.
 
 > [!NOTE]

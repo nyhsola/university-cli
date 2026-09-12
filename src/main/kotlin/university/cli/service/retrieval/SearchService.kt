@@ -7,6 +7,8 @@ import university.cli.model.QueryProfile
 import university.cli.model.RelevantChunk
 import university.cli.model.RetrievalMode
 import university.cli.model.SearchScope
+import university.cli.model.SearchResult
+import university.cli.model.TokenUsage
 import university.cli.repository.JdbcChunkRepository
 import university.cli.repository.JdbcDocumentRepository
 import university.cli.repository.JdbcIndexingConfigurationRepository
@@ -41,31 +43,33 @@ class SearchService(
         val topK: Int,
     )
 
-    fun search(
-        scope: SearchScope,
-        queryProfile: QueryProfile,
-        query: String,
-    ): List<RelevantChunk> {
+    fun search(scope: SearchScope, queryProfile: QueryProfile, query: String, ): SearchResult {
         require(query.isNotBlank()) { "Search query must not be blank" }
+
         val options = options(queryProfile)
         val configurations = configurations(scope)
-        if (configurations.isEmpty()) return emptyList()
+
+        if (configurations.isEmpty()) return SearchResult(emptyList(), TokenUsage())
 
         val resources = configurations.associateWith(::resolveResourceConfiguration)
+        var tokenUsage = TokenUsage()
+
         val dense = if (options.mode != RetrievalMode.LEXICAL) {
             val models = resources.values.map(IndexConfiguration::embeddingModel).distinct()
             require(models.size == 1) {
                 "Dense search across multiple embedding models is not supported; use --index or --file"
             }
             cancellationService.ensureActive()
-            val queryVector = embedService.embedQuery(models.single(), query)
+            val embedding = embedService.embedQuery(models.single(), query)
+            tokenUsage = embedding.tokenUsage
             configurations.flatMap { configuration ->
                 cancellationService.ensureActive()
-                vectorService.getTopRelevant(configuration.id, queryVector, options.denseCandidateLimit)
+                vectorService.getTopRelevant(configuration.id, embedding.value, options.denseCandidateLimit)
             }.sortedBy { it.distance }
         } else {
             emptyList()
         }
+
         val lexical = if (options.mode != RetrievalMode.DENSE) {
             configurations.flatMap { configuration ->
                 cancellationService.ensureActive()
@@ -102,13 +106,15 @@ class SearchService(
 
             RetrievalMode.HYBRID -> rankFusionService.fuse(dense, lexical, options.rrfK, options.topK)
         }
-        return resolveMatches(configurations, matches)
+        return SearchResult(resolveMatches(configurations, matches), tokenUsage)
     }
 
     private fun configurations(scope: SearchScope): List<IndexingConfiguration> {
         val ready = configurationRepository.findAllByStatus(IndexingStatus.READY)
+
         return when (scope) {
             SearchScope.All -> ready
+
             is SearchScope.File -> {
                 val documentIds = configurationRepository.findAllWithDocuments()
                     .filter { it.fileName == scope.fileName }
@@ -118,13 +124,10 @@ class SearchService(
             }
 
             is SearchScope.Index -> listOf(
-                checkNotNull(configurationRepository.findById(scope.id)) {
-                    "Index not found: ${scope.id}"
-                }.also { configuration ->
-                    require(configuration.status == IndexingStatus.READY) {
-                        "Index ${scope.id} is ${configuration.status}"
-                    }
-                },
+                checkNotNull(configurationRepository.findById(scope.id)) { "Index not found: ${scope.id}" }
+                    .also { configuration ->
+                        require(configuration.status == IndexingStatus.READY) { "Index ${scope.id} is ${configuration.status}" }
+                    },
             )
         }
     }

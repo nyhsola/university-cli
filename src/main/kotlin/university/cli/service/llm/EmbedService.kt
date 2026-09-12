@@ -1,5 +1,6 @@
 package university.cli.service.llm
 
+import university.cli.model.LlmResult
 import university.cli.model.Vector
 import university.cli.util.loadResource
 
@@ -12,9 +13,9 @@ class EmbedService(
             .trim()
     }
 
-    fun embedDocument(model: String, text: String): Vector = ollamaService.embed(model, text)
+    fun embedDocument(model: String, text: String): LlmResult<Vector> = ollamaService.embed(model, text)
 
-    fun embedQuery(model: String, text: String): Vector {
+    fun embedQuery(model: String, text: String): LlmResult<Vector> {
         require(text.isNotBlank()) { "Embedding query must not be blank" }
         val input = if (model.contains("qwen3-embedding", ignoreCase = true)) {
             "Instruct: $QWEN3_QUERY_INSTRUCTION\nQuery: $text"

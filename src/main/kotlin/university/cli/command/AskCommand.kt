@@ -6,26 +6,22 @@ import university.cli.service.chat.ChatStatusService
 import university.cli.service.configuration.QueryProfileService
 import university.cli.service.indexing.ProjectFileService
 import university.cli.service.operation.OperationLogService
-import university.cli.service.retrieval.AnswerOutputService
 import university.cli.service.retrieval.AskService
 import university.cli.util.QueryCommandParser
 import university.cli.util.TextUtil
 import java.util.concurrent.CancellationException
 import java.time.Instant
-import kotlin.io.path.relativeTo
 
 class AskCommand(
     private val migrator: FlywayMigrator,
     private val askService: AskService,
     private val profileService: QueryProfileService,
     private val projectFileService: ProjectFileService,
-    private val answerOutputService: AnswerOutputService,
     private val operationLogService: OperationLogService,
     private val chatStatusService: ChatStatusService,
 ) : ChatCommand {
     override val name = "/ask"
-    override val usage =
-        "/ask <question> [--all|--file PATH|--index ID] [--profile ID] [--output FILE]"
+    override val usage = "/ask <question> [--all|--file PATH|--index ID] [--profile ID] [--output FILE]"
     override val description = "Search indexed chunks and generate an answer"
 
     private companion object {
@@ -36,7 +32,7 @@ class AskCommand(
 
     override fun execute(arguments: List<String>): CommandResult = try {
         val startedAt = Instant.now()
-        val request = QueryCommandParser.parse(arguments, allowExplain = false, allowOutput = true)
+        val request = QueryCommandParser.parse(arguments, allowExplain = false)
         val scope = normalizeScope(request.scope)
         val profile = request.profileId?.let(profileService::get)
             ?: checkNotNull(profileService.getAll()[DEFAULT_PROFILE]) { "Default query profile not found" }
@@ -48,7 +44,6 @@ class AskCommand(
         }
         check(result.answer.answer.isNotBlank()) { "Model returned an empty answer" }
 
-        val outputFile = request.outputFile?.let { answerOutputService.write(it, result.answer.answer) }
         operationLogService.write(
             "ask",
             startedAt,
@@ -56,21 +51,12 @@ class AskCommand(
             profile.id,
             request.query,
             result.relevantChunks,
+            result.tokenUsage,
             result.answer.answer,
-            outputFile?.relativeTo(projectFileService.projectDirectory)?.toString(),
         )
         CommandResult(
             lines = buildList {
                 addAll(formatAnswer(result.answer.answer))
-                outputFile?.let { file ->
-                    add(CommandOutputLine(""))
-                    add(
-                        CommandOutputLine(
-                            "Saved to: ${file.relativeTo(projectFileService.projectDirectory)}",
-                            CommandMessageType.MUTED,
-                        ),
-                    )
-                }
             },
         )
     } catch (_: CancellationException) {
@@ -86,13 +72,15 @@ class AskCommand(
         chatStatusService.clear()
     }
 
-    private fun normalizeScope(scope: SearchScope): SearchScope = when (scope) {
-        SearchScope.All, is SearchScope.Index -> scope
-        is SearchScope.File -> {
-            val file = projectFileService.resolve(scope.fileName)
-            SearchScope.File(projectFileService.relativeName(file))
+    private fun normalizeScope(scope: SearchScope): SearchScope =
+        when (scope) {
+            SearchScope.All,
+            is SearchScope.Index -> scope
+            is SearchScope.File -> {
+                val file = projectFileService.resolve(scope.fileName)
+                SearchScope.File(projectFileService.relativeName(file))
+            }
         }
-    }
 
     private fun formatAnswer(answer: String): List<CommandOutputLine> = buildList {
         add(CommandOutputLine(answerTopBorder(), CommandMessageType.ACCENT))
