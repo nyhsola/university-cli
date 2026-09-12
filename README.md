@@ -19,14 +19,14 @@ __  __     ______     ______     ______
   <img alt="SQLite" src="https://img.shields.io/badge/SQLite-sqlite--vec-003B57?logo=sqlite&logoColor=white">
 </p>
 
-`urag` is a Kotlin/JVM command-line application that recursively indexes project `.txt` files, stores their vectors locally in SQLite, retrieves relevant chunks, and generates structured answers with a local Ollama model.
+`urag` is a Kotlin/JVM command-line application that recursively indexes project `.txt` files, stores vector and FTS5 indexes locally in SQLite, retrieves relevant chunks, and generates structured answers with a local Ollama model.
 
 ## Highlights
 
 - Fully local document indexing and question answering
 - Dense vector search powered by `sqlite-vec`
-- Separate indexing and question configurations selected by ID
-- Configurable embedding model, chunking strategy, and retrieval `topK`
+- Separate index and query profiles selected by ID
+- Configurable embedding model, chunking strategy, dense/lexical/hybrid retrieval, and `topK`
 - Structured JSON responses from Ollama
 - One-shot shell commands and a full-screen interactive terminal
 - Persistent operation cancellation with `Ctrl+C`
@@ -36,9 +36,9 @@ __  __     ______     ______     ______
 ```mermaid
 flowchart LR
     A[Project .txt files] --> B[Chunking]
-    B --> C[Document embeddings]
+    B --> C[Vector + FTS5 indexes]
     C --> D[(SQLite + sqlite-vec)]
-    Q[Question] --> E[Query embedding]
+    Q[Question] --> E[Dense / lexical / hybrid search]
     E --> D
     D --> F[Relevant chunks]
     F --> G[Ollama]
@@ -77,29 +77,30 @@ The executable fat JAR is created at `build/libs/urag.jar`.
 
 ## Quick start
 
-List the available indexing configurations and select one by its resource ID:
+List the available profiles and index either the whole project or one file:
 
 ```shell
-java -jar build/libs/urag.jar cf-index
-java -jar build/libs/urag.jar index 1
+java -jar build/libs/urag.jar profiles
+java -jar build/libs/urag.jar index --all --config 1
+java -jar build/libs/urag.jar index docs/admission.txt --config 1
 ```
 
-Inspect the generated indexes and available question configurations:
+Inspect project files and their indexing status:
 
 ```shell
-java -jar build/libs/urag.jar list
-java -jar build/libs/urag.jar cf-question
+java -jar build/libs/urag.jar files
+java -jar build/libs/urag.jar files --config 1 --pending
 ```
 
-Retrieve context using an index ID from `list`, or ask a question using both the index ID and question-configuration ID:
+Search without generation, or ask across all ready indexes:
 
 ```shell
-java -jar build/libs/urag.jar relevant 1 "What is dependency injection?"
-java -jar build/libs/urag.jar question 1 1 "Summarize this document"
+java -jar build/libs/urag.jar search "What is dependency injection?" --all --profile 1 --explain
+java -jar build/libs/urag.jar ask "Summarize this project" --all --profile 1 --output report.md
 ```
 
 > [!IMPORTANT]
-> `/index` accepts an **indexing-configuration ID** shown by `cf-index`. `/question` accepts an **index ID** shown by `list`, followed by a **question-configuration ID** shown by `cf-question`.
+> `--config` selects an index profile. `--profile` selects a query profile. Both IDs are shown by `profiles`.
 
 ## Commands
 
@@ -107,12 +108,12 @@ The `/` prefix is required in interactive mode and optional in one-shot shell mo
 
 | Command | Description |
 | --- | --- |
-| `cf-index` | List indexing configurations, their IDs, models, strategies, and parameters. |
-| `index <configurationId>` | Recursively index project `.txt` files using the selected resource configuration. |
-| `list` | Show stored indexes with source files, statuses, and indexing configurations. |
-| `relevant <indexId> "question"` | Print the three chunks most relevant to the question. |
-| `cf-question` | List question configurations and their parameters. |
-| `question <indexId> <questionConfigurationId> "question"` | Retrieve configured context and generate an answer with Ollama. |
+| `files [--config ID] [--indexed\|--pending\|--failed]` | List project text files and indexing status. |
+| `index <file> --config ID` | Index one project text file. |
+| `index --all --config ID` | Recursively index all project text files. |
+| `profiles [index\|query]` | List index and query profiles. |
+| `search "query" [--all\|--file PATH\|--index ID] [--profile ID] [--explain]` | Retrieve chunks without answer generation. |
+| `ask "question" [--all\|--file PATH\|--index ID] [--profile ID] [--output FILE]` | Retrieve context and generate an answer. |
 | `help` | Display the available commands. |
 | `exit` | Exit interactive mode. |
 
@@ -139,7 +140,7 @@ Text can be selected normally with the mouse, without holding `Shift`.
 
 ## Configurations
 
-Indexing configurations live in `src/main/resources/configurations/indexing`. They select the embedding model and chunking behavior:
+Index profiles live in `src/main/resources/configurations/indexing`. They select the embedding model and chunking behavior:
 
 ```json
 {
@@ -152,20 +153,24 @@ Indexing configurations live in `src/main/resources/configurations/indexing`. Th
 }
 ```
 
-Question configurations live in `src/main/resources/configurations/question`. Currently they control how many relevant chunks are passed to the model:
+Query profiles live in `src/main/resources/configurations/query`. They select dense, lexical, or hybrid retrieval and control candidate and final result counts:
 
 ```json
 {
   "id": 1,
   "parameters": {
+    "retrievalMode": "hybrid",
+    "denseCandidateLimit": "20",
+    "lexicalCandidateLimit": "20",
+    "rrfK": "60",
     "topK": "3"
   }
 }
 ```
 
-IDs must be unique within each configuration type. Configurations are displayed in ascending ID order, and each type has a `default.json` marked with `*`.
+IDs must be unique within each profile type. Profiles are displayed in ascending ID order, and each type has a `default.json` marked with `*`.
 
-The application stores only the SHA-256 hash of the selected indexing JSON in the database. Changing that file—including formatting—changes its hash and requires reindexing affected documents. Question configurations are selected at request time and are not persisted with an index.
+The application stores only the SHA-256 hash of the selected index profile JSON in the database. Changing that file—including formatting—changes its hash and requires reindexing affected documents. Query profiles are selected at request time and are not persisted with an index.
 
 ## Runtime data
 
@@ -174,12 +179,12 @@ The current working directory is treated as the project root. Run the JAR from t
 ```text
 .data/
 ├── university.db
-└── chunks/
-    └── chunks_{indexId}.jsonl
+└── logs/
+    └── <timestamp>-<command>-<id>.json
 ```
 
-- `.data/university.db` contains documents, index records, statuses, and vectors.
-- `.data/chunks/` contains the generated document chunks.
+- `.data/university.db` contains documents, chunks, index records, statuses, vectors, and the FTS5 index.
+- `.data/logs/` contains automatic search and answer-generation diagnostics.
 - `.data` itself is excluded from recursive indexing.
 
 > [!NOTE]

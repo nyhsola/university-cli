@@ -1,6 +1,5 @@
 package university.cli.service.configuration
 
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import university.cli.model.IndexConfiguration
 import university.cli.util.FileUtil
@@ -10,48 +9,43 @@ import java.net.JarURLConnection
 import java.nio.file.Files
 import java.nio.file.Path
 
-class IndexConfigurationService(
+class IndexProfileService(
     private val json: Json = JsonUtil.json,
 ) {
     private val configurations by lazy(::loadConfigurations)
 
     private companion object {
         const val CONFIGURATION_DIRECTORY = "configurations/indexing"
-        const val DEFAULT_CONFIGURATION = "default"
         const val JSON_EXTENSION = ".json"
     }
 
     fun getAll(): Map<String, IndexConfiguration> = configurations
 
     fun get(id: Long): IndexConfiguration = checkNotNull(configurations.values.find { it.id == id }) {
-        "Indexing configuration not found: $id"
+        "Index profile not found: $id"
     }
 
     fun findByHash(hash: String): IndexConfiguration? = configurations.values.find { it.hash == hash }
 
-    fun default(): IndexConfiguration = checkNotNull(configurations[DEFAULT_CONFIGURATION]) {
-        "Default indexing configuration not found: $DEFAULT_CONFIGURATION$JSON_EXTENSION"
-    }
-
     private fun loadConfigurations(): Map<String, IndexConfiguration> {
         val files = configurationFiles()
-        check(files.isNotEmpty()) { "No indexing configurations found in $CONFIGURATION_DIRECTORY" }
+        check(files.isNotEmpty()) { "No index profiles found in $CONFIGURATION_DIRECTORY" }
 
         val loaded = files.associate { fileName ->
             val name = fileName.removeSuffix(JSON_EXTENSION)
-            val content = IndexConfigurationService::class.loadResource("$CONFIGURATION_DIRECTORY/$fileName")
+            val content = IndexProfileService::class.loadResource("$CONFIGURATION_DIRECTORY/$fileName")
             val configuration = json.decodeFromString<IndexConfiguration>(content)
                 .copy(hash = FileUtil.sha256(content))
             name to configuration
         }
 
         val duplicateIds = loaded.values.groupBy(IndexConfiguration::id).filterValues { it.size > 1 }.keys
-        check(duplicateIds.isEmpty()) { "Duplicate indexing configuration ids: ${duplicateIds.sorted()}" }
+        check(duplicateIds.isEmpty()) { "Duplicate index profile ids: ${duplicateIds.sorted()}" }
         return loaded.entries.sortedBy { it.value.id }.associate { it.toPair() }
     }
 
     private fun configurationFiles(): List<String> {
-        val resources = IndexConfigurationService::class.java.classLoader.getResources(CONFIGURATION_DIRECTORY)
+        val resources = IndexProfileService::class.java.classLoader.getResources(CONFIGURATION_DIRECTORY)
         return buildSet {
             while (resources.hasMoreElements()) {
                 val resource = resources.nextElement()

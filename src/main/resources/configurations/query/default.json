@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "parameters": {
+    "retrievalMode": "hybrid",
+    "denseCandidateLimit": "20",
+    "lexicalCandidateLimit": "20",
+    "rrfK": "60",
+    "topK": "3"
+  }
+}

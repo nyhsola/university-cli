@@ -1,5 +1,7 @@
 package university.cli.command
 
+import university.cli.util.TextUtil
+
 class HelpCommand(
     private val commands: List<ChatCommand>,
 ) : ChatCommand {
@@ -13,7 +15,7 @@ class HelpCommand(
 
     override fun execute(arguments: List<String>): CommandResult {
         if (arguments.isNotEmpty()) {
-            return CommandResult("Usage: /help", CommandMessageType.WARNING)
+            return usageError("Unexpected arguments")
         }
 
         val availableCommands = (commands + this).sortedForDisplay()
@@ -23,7 +25,7 @@ class HelpCommand(
             add(CommandOutputLine(row("COMMAND", "DESCRIPTION"), CommandMessageType.ACCENT))
             add(CommandOutputLine(divider, CommandMessageType.ACCENT))
             availableCommands.forEach { command ->
-                add(CommandOutputLine(row(command.name, command.description)))
+                addAll(rows(command.name, command.description))
             }
             add(CommandOutputLine(bottomBorder(), CommandMessageType.ACCENT))
         }
@@ -42,6 +44,18 @@ class HelpCommand(
     }
 
     private fun row(command: String, description: String): String =
-        "│ ${command.take(COMMAND_COLUMN_WIDTH).padEnd(COMMAND_COLUMN_WIDTH)} │ " +
-            "${description.take(DESCRIPTION_COLUMN_WIDTH).padEnd(DESCRIPTION_COLUMN_WIDTH)} │"
+        "│ ${command.padEnd(COMMAND_COLUMN_WIDTH)} │ ${description.padEnd(DESCRIPTION_COLUMN_WIDTH)} │"
+
+    private fun rows(command: String, description: String): List<CommandOutputLine> {
+        val commandLines = TextUtil.wrap(command, COMMAND_COLUMN_WIDTH)
+        val descriptionLines = TextUtil.wrap(description, DESCRIPTION_COLUMN_WIDTH)
+        return List(maxOf(commandLines.size, descriptionLines.size)) { index ->
+            CommandOutputLine(
+                row(
+                    commandLines.getOrElse(index) { "" },
+                    descriptionLines.getOrElse(index) { "" },
+                ),
+            )
+        }
+    }
 }

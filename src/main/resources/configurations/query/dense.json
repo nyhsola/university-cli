@@ -1,0 +1,8 @@
+{
+  "id": 2,
+  "parameters": {
+    "retrievalMode": "dense",
+    "denseCandidateLimit": "20",
+    "topK": "3"
+  }
+}

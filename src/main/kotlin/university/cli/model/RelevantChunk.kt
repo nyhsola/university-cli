@@ -6,5 +6,9 @@ data class RelevantChunk(
     val documentId: Long,
     val fileName: String,
     val content: String,
-    val distance: Double,
+    val distance: Double? = null,
+    val bm25Score: Double? = null,
+    val denseRank: Int? = null,
+    val lexicalRank: Int? = null,
+    val rrfScore: Double? = null,
 )

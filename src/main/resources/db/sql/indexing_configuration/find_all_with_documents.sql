@@ -2,6 +2,7 @@ SELECT
     configuration.id AS configurationId,
     document.id AS documentId,
     document.fileName,
+    configuration.documentHash,
     configuration.hash AS configurationHash,
     configuration.status
 FROM indexing_configuration configuration

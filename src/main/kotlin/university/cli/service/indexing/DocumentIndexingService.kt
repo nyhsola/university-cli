@@ -9,7 +9,6 @@ import university.cli.repository.JdbcDocumentRepository
 import university.cli.repository.JdbcIndexingConfigurationRepository
 import university.cli.service.llm.EmbedService
 import university.cli.service.operation.OperationCancellationService
-import university.cli.service.retrieval.VectorService
 import university.cli.util.FileUtil
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
@@ -21,34 +20,35 @@ class DocumentIndexingService(
     chunkers: List<ChunkerService>,
     private val documentRepository: JdbcDocumentRepository,
     private val configurationRepository: JdbcIndexingConfigurationRepository,
-    private val chunkFileWriterService: ChunkFileWriterService,
     private val embedService: EmbedService,
-    private val vectorService: VectorService,
+    private val searchIndexService: SearchIndexService,
     private val cancellationService: OperationCancellationService,
 ) {
     private val chunkersByStrategy = chunkers.associateBy(ChunkerService::strategy)
 
     fun index(
-        fileName: String,
+        source: Path,
+        relativeFileName: String,
         indexConfiguration: IndexConfiguration,
         onChunkProgress: (ChunkIndexingProgress) -> Unit,
     ): DocumentIndexingResult {
-        val file = Path.of(fileName).toAbsolutePath().normalize()
+        val file = source.toAbsolutePath().normalize()
 
         require(Files.isRegularFile(file)) { "File does not exist or is not a regular file: $file" }
         require(indexConfiguration.hash.isNotBlank()) { "Indexing configuration hash is missing" }
 
-        val document = documentRepository.save(file.fileName.toString(), FileUtil.sha256(file))
+        val documentHash = FileUtil.sha256(file)
+        val document = documentRepository.save(relativeFileName, documentHash)
         val existingConfiguration = configurationRepository.findByDocumentAndHash(document.id, indexConfiguration.hash)
 
-        if (existingConfiguration?.status == IndexingStatus.READY) {
+        if (existingConfiguration?.status == IndexingStatus.READY &&
+            existingConfiguration.documentHash == documentHash
+        ) {
             onChunkProgress(ChunkIndexingProgress(1, 1))
-            val chunksFile = existingConfiguration.chunkFile?.let(chunkFileWriterService::resolve)
             return DocumentIndexingResult(
                 existingConfiguration.id,
                 document.id,
                 0,
-                chunksFile,
                 DocumentIndexingOutcome.SKIPPED,
             )
         }
@@ -60,19 +60,19 @@ class DocumentIndexingService(
             configurationRepository.create(
                 document.id,
                 indexConfiguration.hash,
+                documentHash,
                 IndexingStatus.PROCESSING,
                 Instant.now(),
             )
         } else {
-            vectorService.deleteVectors(existingConfiguration.id)
-            configurationRepository.restart(existingConfiguration.id)
+            configurationRepository.restart(existingConfiguration.id, documentHash)
         }
 
         return try {
             cancellationService.ensureActive()
             val content = String(Files.readAllBytes(file), StandardCharsets.UTF_8)
             val chunks = chunker.chunk(content, indexConfiguration.parameters)
-            val chunksFile = chunkFileWriterService.write(configuration.id, chunks)
+
             onChunkProgress(ChunkIndexingProgress(0, chunks.size))
 
             val vectors = chunks.mapIndexed { index, chunk ->
@@ -84,14 +84,14 @@ class DocumentIndexingService(
             }
 
             cancellationService.ensureActive()
-            vectorService.insertVectors(configuration.id, vectors)
+            searchIndexService.replace(configuration.id, chunks, vectors)
+
             cancellationService.ensureActive()
-            configurationRepository.markReady(configuration.id, chunksFile.fileName.toString())
+            configurationRepository.markReady(configuration.id)
             DocumentIndexingResult(
                 configuration.id,
                 document.id,
                 chunks.size,
-                chunksFile,
                 DocumentIndexingOutcome.INDEXED,
             )
         } catch (error: CancellationException) {

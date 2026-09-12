@@ -6,8 +6,8 @@ data class IndexingConfiguration(
     val id: Long,
     val documentId: Long,
     val hash: String,
+    val documentHash: String,
     val status: IndexingStatus,
-    val chunkFile: String?,
     val createdAt: Instant,
 )
 

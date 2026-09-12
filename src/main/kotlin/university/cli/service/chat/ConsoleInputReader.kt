@@ -13,10 +13,11 @@ internal class ConsoleInputReader(
     @Volatile
     private var running = true
 
-    private val readerThread = Thread(::readEvents, "university-console-input").apply {
-        isDaemon = true
-        start()
-    }
+    private val readerThread = Thread(::readEvents, "university-console-input")
+        .apply {
+            isDaemon = true
+            start()
+        }
 
     fun read(): InputEvent = events.take().getOrThrow()
 

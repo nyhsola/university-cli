@@ -1,3 +1,3 @@
 SELECT id, fileName, fileHash
 FROM document
-WHERE fileHash = ?
+WHERE fileName = ?

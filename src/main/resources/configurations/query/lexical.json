@@ -1,0 +1,8 @@
+{
+  "id": 3,
+  "parameters": {
+    "retrievalMode": "lexical",
+    "lexicalCandidateLimit": "20",
+    "topK": "3"
+  }
+}

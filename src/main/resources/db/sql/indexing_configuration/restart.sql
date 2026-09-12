@@ -1,3 +1,3 @@
 UPDATE indexing_configuration
-SET status = ?, chunkFile = NULL
+SET status = ?, documentHash = ?
 WHERE id = ?

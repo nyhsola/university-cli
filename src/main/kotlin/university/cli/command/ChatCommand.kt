@@ -2,9 +2,14 @@ package university.cli.command
 
 interface ChatCommand {
     val name: String
+    val usage: String
+        get() = name
     val description: String
 
     fun execute(arguments: List<String>): CommandResult
+
+    fun usageError(message: String): CommandResult =
+        CommandResult("$message\nUsage: $usage", CommandMessageType.WARNING)
 }
 
 data class CommandResult(

@@ -1,8 +1,8 @@
 INSERT INTO indexing_configuration(
     documentId,
     hash,
+    documentHash,
     status,
-    chunkFile,
     createdAt
 )
-VALUES (?, ?, ?, NULL, ?)
+VALUES (?, ?, ?, ?, ?)

@@ -19,7 +19,11 @@ class CommandDispatcher(
 
     fun dispatch(input: String): CommandResult {
         val normalizedInput = input.trim().trimStart('\uFEFF')
-        val tokens = normalizedInput.split(Regex("\\s+")).filter(String::isNotEmpty)
+        val tokens = try {
+            tokenize(normalizedInput)
+        } catch (error: IllegalArgumentException) {
+            return CommandResult(error.message, CommandMessageType.WARNING)
+        }
         if (tokens.isEmpty()) {
             return CommandResult()
         }
@@ -35,6 +39,29 @@ class CommandDispatcher(
 
         return command.execute(arguments)
     }
+
+    private fun tokenize(input: String): List<String> {
+        val tokens = mutableListOf<String>()
+        val current = StringBuilder()
+        var quoted = false
+
+        input.forEach { character ->
+            when {
+                character == '"' -> quoted = !quoted
+                character.isWhitespace() && !quoted -> {
+                    if (current.isNotEmpty()) {
+                        tokens += current.toString()
+                        current.clear()
+                    }
+                }
+
+                else -> current.append(character)
+            }
+        }
+        require(!quoted) { "Unclosed quoted argument" }
+        if (current.isNotEmpty()) tokens += current.toString()
+        return tokens
+    }
 }
 
 data class CommandSuggestion(
@@ -42,18 +69,18 @@ data class CommandSuggestion(
     val description: String,
 )
 
-internal fun Iterable<ChatCommand>.sortedForDisplay(): List<ChatCommand> = sortedWith(
+internal fun Iterable<ChatCommand>.sortedForDisplay(): List<ChatCommand> =
+    sortedWith(
         compareBy<ChatCommand> { COMMAND_DISPLAY_ORDER[it.name] ?: Int.MAX_VALUE }
             .thenBy(ChatCommand::name),
     )
 
 private val COMMAND_DISPLAY_ORDER = listOf(
-    "/cf-index",
+    "/files",
     "/index",
-    "/list",
-    "/relevant",
-    "/cf-question",
-    "/question",
+    "/profiles",
+    "/search",
+    "/ask",
     "/help",
     "/exit",
 ).withIndex().associate { (index, name) -> name to index }

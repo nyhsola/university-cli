@@ -21,6 +21,7 @@ import university.cli.command.CommandMessageType
 import university.cli.command.CommandResult
 import university.cli.command.CommandSuggestion
 import university.cli.service.operation.OperationCancellationService
+import university.cli.util.TextUtil
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -241,7 +242,16 @@ class ChatService(
             .coerceAtLeast(0)
             .coerceAtMost((suggestions.size - MAX_SUGGESTIONS).coerceAtLeast(0))
         val suggestionLines = suggestions.drop(suggestionStart).take(MAX_SUGGESTIONS)
-        val fixedLineCount = suggestionLines.size + COMPOSER_HEIGHT
+        val renderedSuggestionLines = suggestionLines.flatMapIndexed { index, suggestion ->
+            val suggestionIndex = suggestionStart + index
+            val selected = suggestionIndex == selectedIndex
+            TextUtil.wrap("${suggestion.name} — ${suggestion.description}", (width - 2).coerceAtLeast(1))
+                .mapIndexed { lineIndex, line ->
+                    val marker = if (lineIndex == 0 && selected) ">" else " "
+                    "$marker $line" to selected
+                }
+        }
+        val fixedLineCount = renderedSuggestionLines.size + COMPOSER_HEIGHT
         val historyHeight = (height - fixedLineCount).coerceAtLeast(0)
         val renderedHistory = history.flatMap { message ->
             val messageWidth = (width - message.padding().length).coerceAtLeast(1)
@@ -270,11 +280,8 @@ class ChatService(
                 printHistoryRow(message, emptyHistoryRows + index, width, headerLines)
             }
 
-            suggestionLines.forEachIndexed { index, suggestion ->
-                val suggestionIndex = suggestionStart + index
-                val marker = if (suggestionIndex == selectedIndex) ">" else " "
-                val line = fitLine("$marker ${suggestion.name}  ${suggestion.description}", width)
-                terminal.println(if (suggestionIndex == selectedIndex) (bold + cyan)(line) else dim(line))
+            renderedSuggestionLines.forEach { (line, selected) ->
+                terminal.println(if (selected) (bold + cyan)(line) else dim(line))
             }
 
             printComposer(buffer, width, chatStatusService.status)

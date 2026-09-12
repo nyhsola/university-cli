@@ -1,3 +1,3 @@
 UPDATE indexing_configuration
-SET status = ?, chunkFile = ?
+SET status = ?
 WHERE id = ?

@@ -1,51 +1,45 @@
 package university.cli.service.configuration
 
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import university.cli.model.QuestionConfiguration
+import university.cli.model.QueryProfile
 import university.cli.util.JsonUtil
 import university.cli.util.loadResource
 import java.net.JarURLConnection
 import java.nio.file.Files
 import java.nio.file.Path
 
-class QuestionConfigurationService(
+class QueryProfileService(
     private val json: Json = JsonUtil.json,
 ) {
     private val configurations by lazy(::loadConfigurations)
 
     private companion object {
-        const val CONFIGURATION_DIRECTORY = "configurations/question"
-        const val DEFAULT_CONFIGURATION = "default"
+        const val CONFIGURATION_DIRECTORY = "configurations/query"
         const val JSON_EXTENSION = ".json"
     }
 
-    fun getAll(): Map<String, QuestionConfiguration> = configurations
+    fun getAll(): Map<String, QueryProfile> = configurations
 
-    fun get(id: Long): QuestionConfiguration = checkNotNull(configurations.values.find { it.id == id }) {
-        "Question configuration not found: $id"
+    fun get(id: Long): QueryProfile = checkNotNull(configurations.values.find { it.id == id }) {
+        "Query profile not found: $id"
     }
 
-    fun default(): QuestionConfiguration = checkNotNull(configurations[DEFAULT_CONFIGURATION]) {
-        "Default question configuration not found: $DEFAULT_CONFIGURATION$JSON_EXTENSION"
-    }
-
-    private fun loadConfigurations(): Map<String, QuestionConfiguration> {
+    private fun loadConfigurations(): Map<String, QueryProfile> {
         val files = configurationFiles()
-        check(files.isNotEmpty()) { "No question configurations found in $CONFIGURATION_DIRECTORY" }
+        check(files.isNotEmpty()) { "No query profiles found in $CONFIGURATION_DIRECTORY" }
 
         val loaded = files.associate { fileName ->
             val name = fileName.removeSuffix(JSON_EXTENSION)
-            val content = QuestionConfigurationService::class.loadResource("$CONFIGURATION_DIRECTORY/$fileName")
-            name to json.decodeFromString<QuestionConfiguration>(content)
+            val content = QueryProfileService::class.loadResource("$CONFIGURATION_DIRECTORY/$fileName")
+            name to json.decodeFromString<QueryProfile>(content)
         }
-        val duplicateIds = loaded.values.groupBy(QuestionConfiguration::id).filterValues { it.size > 1 }.keys
-        check(duplicateIds.isEmpty()) { "Duplicate question configuration ids: ${duplicateIds.sorted()}" }
+        val duplicateIds = loaded.values.groupBy(QueryProfile::id).filterValues { it.size > 1 }.keys
+        check(duplicateIds.isEmpty()) { "Duplicate query profile ids: ${duplicateIds.sorted()}" }
         return loaded.entries.sortedBy { it.value.id }.associate { it.toPair() }
     }
 
     private fun configurationFiles(): List<String> {
-        val resources = QuestionConfigurationService::class.java.classLoader.getResources(CONFIGURATION_DIRECTORY)
+        val resources = QueryProfileService::class.java.classLoader.getResources(CONFIGURATION_DIRECTORY)
         return buildSet {
             while (resources.hasMoreElements()) {
                 val resource = resources.nextElement()

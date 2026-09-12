@@ -17,15 +17,6 @@ class ChatStatusService {
         update(null)
     }
 
-    fun <T> withStatus(status: String, action: () -> T): T {
-        set(status)
-        return try {
-            action()
-        } finally {
-            clear()
-        }
-    }
-
     internal fun observe(listener: (String?) -> Unit): AutoCloseable {
         listeners += listener
         return AutoCloseable { listeners -= listener }

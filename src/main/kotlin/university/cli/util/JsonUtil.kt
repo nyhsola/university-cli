@@ -7,6 +7,4 @@ object JsonUtil {
         ignoreUnknownKeys = true
         explicitNulls = false
     }
-
-    fun objectOf(values: Map<String, String>): String = json.encodeToString(values)
 }

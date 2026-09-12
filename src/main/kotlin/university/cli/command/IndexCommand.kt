@@ -5,41 +5,67 @@ import university.cli.model.ProjectIndexingResult
 import university.cli.service.chat.ChatOutputService
 import university.cli.service.chat.ChatStatusService
 import university.cli.service.indexing.ProjectIndexingService
-import university.cli.service.configuration.IndexConfigurationService
+import university.cli.service.indexing.ProjectFileService
+import university.cli.service.configuration.IndexProfileService
+import university.cli.util.CommandOptionParser
 import java.util.concurrent.CancellationException
 
 class IndexCommand(
     private val migrator: FlywayMigrator,
     private val projectIndexingService: ProjectIndexingService,
-    private val configurationService: IndexConfigurationService,
+    private val projectFileService: ProjectFileService,
+    private val configurationService: IndexProfileService,
     private val chatStatusService: ChatStatusService,
     private val chatOutputService: ChatOutputService,
 ) : ChatCommand {
     override val name = "/index"
-    override val description = "Index all project text files using a configuration id"
+    override val usage = "/index (<file>|--all) --config ID"
+    override val description = "Index one text file or all project text files"
 
     override fun execute(arguments: List<String>): CommandResult {
-        val configurationId = arguments.singleOrNull()?.toLongOrNull()
-        if (configurationId == null || configurationId <= 0) {
-            return CommandResult("Usage: /index <configurationId>", CommandMessageType.WARNING)
-        }
-
         return try {
-            migrator.migrate()
-            val result = projectIndexingService.index(
-                configurationService.get(configurationId),
-                { progress ->
-                    chatOutputService.write("Indexing file (${progress.current} of ${progress.total}): ${progress.path}")
-                    chatStatusService.set("Indexing chunks: 0%")
-                },
-                { progress -> chatStatusService.set("Indexing chunks: ${progress.percentage}%") },
+            val parsed = CommandOptionParser.parse(
+                arguments,
+                valueOptions = mapOf("--config" to "config", "-c" to "config"),
+                flagOptions = mapOf("--all" to "all"),
             )
+            val configurationId = parsed.options["config"]?.toLongOrNull()
+            require(configurationId != null && configurationId > 0) {
+                "A positive index profile id is required"
+            }
+            val all = "all" in parsed.flags
+            require(all.xor(parsed.positionals.isNotEmpty())) {
+                "Specify exactly one file or --all"
+            }
+
+            migrator.migrate()
+            val configuration = configurationService.get(configurationId)
+            val onFileProgress = { progress: university.cli.model.ProjectIndexingProgress ->
+                chatOutputService.write("Indexing file (${progress.current} of ${progress.total}): ${progress.path}")
+                chatStatusService.set("Indexing chunks: 0%")
+            }
+            val onChunkProgress = { progress: university.cli.model.ChunkIndexingProgress ->
+                chatStatusService.set("Indexing chunks: ${progress.percentage}%")
+            }
+            val result = if (all) {
+                projectIndexingService.indexAll(configuration, onFileProgress, onChunkProgress)
+            } else {
+                val fileName = parsed.positionals.joinToString(" ").trim('"')
+                projectIndexingService.indexFile(
+                    projectFileService.resolve(fileName),
+                    configuration,
+                    onFileProgress,
+                    onChunkProgress,
+                )
+            }
             result.toCommandResult()
         } catch (_: CancellationException) {
             CommandResult("Indexing cancelled.", CommandMessageType.MUTED)
         } catch (_: InterruptedException) {
             Thread.currentThread().interrupt()
             CommandResult("Indexing cancelled.", CommandMessageType.MUTED)
+        } catch (error: IllegalArgumentException) {
+            usageError(error.message ?: "Invalid arguments")
         } catch (error: Exception) {
             CommandResult("Indexing failed: ${error.message}", CommandMessageType.WARNING)
         } finally {
