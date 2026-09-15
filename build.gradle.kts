@@ -78,6 +78,20 @@ tasks.test {
     useJUnitPlatform()
 }
 
+val copyExampleBooks = tasks.register<Sync>("copyExampleBooks") {
+    from(layout.projectDirectory.dir("examples/books"))
+    into(layout.buildDirectory.dir("libs/books"))
+}
+
+val copyExampleDatasets = tasks.register<Sync>("copyExampleDatasets") {
+    from(layout.projectDirectory.dir("examples/dataset"))
+    into(layout.buildDirectory.dir("libs/dataset"))
+}
+
+tasks.jar {
+    dependsOn(copyExampleBooks, copyExampleDatasets)
+}
+
 tasks.processResources {
     from({ tarTree(resources.gzip(sqliteVecExtension.singleFile)) }) {
         into("native/sqlite-vec")

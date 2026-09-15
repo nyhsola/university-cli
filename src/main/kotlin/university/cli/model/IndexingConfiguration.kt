@@ -12,7 +12,8 @@ data class IndexingConfiguration(
 )
 
 enum class ChunkingStrategy(val code: Int) {
-    FIXED_SIZE(0);
+    FIXED_SIZE(0),
+    RECURSIVE(1);
 
     companion object {
         fun fromCode(code: Int): ChunkingStrategy = entries.firstOrNull { it.code == code }

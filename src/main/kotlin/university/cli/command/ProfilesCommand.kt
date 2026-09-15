@@ -44,7 +44,8 @@ class ProfilesCommand(
                 index,
                 "Index profile ${configuration.id}",
                 buildList {
-                    add("Name" to name)
+                    add("Name" to configuration.name)
+                    add("Description" to configuration.description)
                     if (name == DEFAULT_PROFILE) add("Default" to "yes")
                     add("Embedding model" to configuration.embeddingModel)
                     add("Chunking strategy" to configuration.chunkingStrategy.name)
@@ -59,7 +60,8 @@ class ProfilesCommand(
                 index,
                 "Query profile ${configuration.id}",
                 buildList {
-                    add("Name" to name)
+                    add("Name" to configuration.name)
+                    add("Description" to configuration.description)
                     if (name == DEFAULT_PROFILE) add("Default" to "yes")
                     add("Parameters" to ConfigurationCommandFormatter.parameters(configuration.parameters))
                 },

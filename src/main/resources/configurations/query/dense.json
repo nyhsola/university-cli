@@ -1,8 +1,11 @@
 {
   "id": 2,
+  "name": "Dense search",
+  "description": "Finds semantically similar chunks using vector embeddings.",
   "parameters": {
     "retrievalMode": "dense",
     "denseCandidateLimit": "20",
-    "topK": "3"
+    "contextCharBudget": "5500",
+    "maxChunks": "10"
   }
 }

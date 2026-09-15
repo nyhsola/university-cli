@@ -10,7 +10,10 @@ class JdbcDocumentRepository(
     private companion object {
         val FIND_BY_ID = JdbcDocumentRepository::class.loadResource("db/sql/document/find_by_id.sql")
         val FIND_BY_FILE_NAME = JdbcDocumentRepository::class.loadResource("db/sql/document/find_by_file_name.sql")
-        val INSERT_OR_UPDATE = JdbcDocumentRepository::class.loadResource("db/sql/document/insert_or_update.sql")
+        val INSERT = JdbcDocumentRepository::class.loadResource("db/sql/document/insert.sql")
+        val DELETE_ALL = JdbcDocumentRepository::class.loadResource("db/sql/document/delete_all.sql")
+        val DELETE_IF_UNINDEXED = JdbcDocumentRepository::class
+            .loadResource("db/sql/document/delete_if_unindexed.sql")
     }
 
     fun findById(id: Long): Document? = dataSource.connection.use { connection ->
@@ -22,10 +25,9 @@ class JdbcDocumentRepository(
         }
     }
 
-    fun save(fileName: String, fileHash: String): Document = dataSource.connection.use { connection ->
-        connection.prepareStatement(INSERT_OR_UPDATE).use { statement ->
+    fun save(fileName: String): Document = dataSource.connection.use { connection ->
+        connection.prepareStatement(INSERT).use { statement ->
             statement.setString(1, fileName)
-            statement.setString(2, fileHash)
             statement.executeUpdate()
         }
 
@@ -38,10 +40,21 @@ class JdbcDocumentRepository(
         }
     }
 
+    fun deleteAll(): Int = dataSource.connection.use { connection ->
+        connection.prepareStatement(DELETE_ALL).use { statement ->
+            statement.executeUpdate()
+        }
+    }
+
+    fun deleteIfUnindexed(fileName: String): Boolean = dataSource.connection.use { connection ->
+        connection.prepareStatement(DELETE_IF_UNINDEXED).use { statement ->
+            statement.setString(1, fileName)
+            statement.executeUpdate() == 1
+        }
+    }
+
     private fun java.sql.ResultSet.toDocument() = Document(
         getLong("id"),
         getString("fileName"),
-        getString("fileHash"),
     )
-
 }

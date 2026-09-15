@@ -1,5 +1,7 @@
 {
   "id": 1,
+  "name": "Default indexing",
+  "description": "Indexes documents with fixed-size chunks and Qwen embeddings.",
   "embeddingModel": "qwen3-embedding:8b",
   "chunkingStrategy": "FIXED_SIZE",
   "parameters": {

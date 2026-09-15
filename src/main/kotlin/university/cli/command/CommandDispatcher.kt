@@ -82,6 +82,7 @@ private val COMMAND_DISPLAY_ORDER = listOf(
     "/profiles",
     "/search",
     "/ask",
+    "/report",
     "/help",
     "/exit",
 )

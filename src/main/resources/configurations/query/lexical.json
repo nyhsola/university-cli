@@ -1,8 +1,11 @@
 {
   "id": 3,
+  "name": "Lexical search",
+  "description": "Finds chunks by matching query terms in the indexed text.",
   "parameters": {
     "retrievalMode": "lexical",
     "lexicalCandidateLimit": "20",
-    "topK": "3"
+    "contextCharBudget": "5500",
+    "maxChunks": "10"
   }
 }

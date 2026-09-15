@@ -18,10 +18,8 @@ class RankFusionService {
         dense: List<RelevantVector>,
         lexical: List<LexicalMatch>,
         rrfK: Int,
-        limit: Int,
     ): List<FusedMatch> {
         require(rrfK > 0) { "RRF k must be positive" }
-        require(limit > 0) { "Limit must be positive" }
 
         val denseById = dense.withIndex().associate { (index, match) ->
             (match.indexConfigurationId to match.id) to (index + 1 to match)
@@ -48,6 +46,6 @@ class RankFusionService {
             compareByDescending<FusedMatch> { it.rrfScore }
                 .thenBy { it.indexConfigurationId }
                 .thenBy { it.chunkId },
-        ).take(limit)
+        )
     }
 }

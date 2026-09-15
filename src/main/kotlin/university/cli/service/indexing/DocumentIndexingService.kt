@@ -38,7 +38,7 @@ class DocumentIndexingService(
         require(indexConfiguration.hash.isNotBlank()) { "Indexing configuration hash is missing" }
 
         val documentHash = FileUtil.sha256(file)
-        val document = documentRepository.save(relativeFileName, documentHash)
+        val document = documentRepository.save(relativeFileName)
         val existingConfiguration = configurationRepository.findByDocumentAndHash(document.id, indexConfiguration.hash)
 
         if (existingConfiguration?.status == IndexingStatus.READY &&

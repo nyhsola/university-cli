@@ -21,7 +21,7 @@ class AskCommand(
     private val chatStatusService: ChatStatusService,
 ) : ChatCommand {
     override val name = "/ask"
-    override val usage = "/ask <question> [--all|--file PATH|--index ID] [--profile ID] [--output FILE]"
+    override val usage = "/ask <question> [--all|--file PATH|--index ID] [--profile ID]"
     override val description = "Search indexed chunks and generate an answer"
 
     private companion object {

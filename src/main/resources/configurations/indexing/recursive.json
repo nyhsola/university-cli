@@ -1,0 +1,12 @@
+{
+  "id": 2,
+  "name": "Recursive indexing",
+  "description": "Splits documents recursively at paragraph, line, sentence, word, and character boundaries with overlap.",
+  "embeddingModel": "qwen3-embedding:8b",
+  "chunkingStrategy": "RECURSIVE",
+  "parameters": {
+    "targetSize": "900",
+    "maxSize": "1000",
+    "overlap": "100"
+  }
+}

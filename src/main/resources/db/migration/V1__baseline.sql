@@ -1,7 +1,6 @@
 CREATE TABLE document (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    fileName TEXT NOT NULL UNIQUE,
-    fileHash TEXT NOT NULL
+    fileName TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE indexing_configuration (

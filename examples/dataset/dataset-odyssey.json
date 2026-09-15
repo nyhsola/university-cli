@@ -1,0 +1,151 @@
+{
+  "id": 1,
+  "name": "Odyssey indexing comparison",
+  "description": "Compares fixed-size and recursive indexing with the built-in retrieval profiles.",
+  "indexProfileIds": [1, 2],
+  "queryProfileIds": [1],
+  "file": "../books/Odyssey.txt",
+  "questions": [
+    {
+      "id": "calypso",
+      "question": "How many years does Odysseus say he remained with Calypso?",
+      "expectedAnswer": "Odysseus says he stayed with Calypso for seven years.",
+      "tags": ["exact-term", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 186, "relevance": 3, "description": "Odysseus explicitly says that he stayed with Calypso for seven years."}],
+        "2": [{"chunkId": 262, "relevance": 3, "description": "Odysseus explicitly says that he stayed with Calypso for seven years."}]
+      }
+    },
+    {
+      "id": "argos",
+      "question": "What happens to Odysseus's old dog immediately after recognizing his master?",
+      "expectedAnswer": "Argos dies immediately after recognizing Odysseus.",
+      "tags": ["paraphrase", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {"chunkId": 455, "relevance": 2, "description": "Argos recognizes Odysseus after his long absence."},
+          {"chunkId": 456, "relevance": 3, "description": "Argos dies immediately after recognizing his master."}
+        ],
+        "2": [
+          {"chunkId": 624, "relevance": 2, "description": "Argos recognizes Odysseus after his long absence."},
+          {"chunkId": 626, "relevance": 3, "description": "Argos dies immediately after recognizing his master."}
+        ]
+      }
+    },
+    {
+      "id": "bow-contest",
+      "question": "Who strings the great bow and shoots an arrow through all the axe handle-holes?",
+      "expectedAnswer": "Odysseus strings the bow and sends the arrow through every axe handle-hole.",
+      "tags": ["exact-term", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {"chunkId": 566, "relevance": 2, "description": "Odysseus receives and strings the bow."},
+          {"chunkId": 567, "relevance": 3, "description": "Odysseus's arrow passes through every axe handle-hole."}
+        ],
+        "2": [
+          {"chunkId": 775, "relevance": 2, "description": "Odysseus receives and strings the bow."},
+          {"chunkId": 776, "relevance": 3, "description": "Odysseus's arrow passes through every axe handle-hole."}
+        ]
+      }
+    },
+    {
+      "id": "calypso-and-argos",
+      "question": "How long did Odysseus stay with Calypso, and what happened to Argos after recognizing him?",
+      "expectedAnswer": "Odysseus stayed with Calypso for seven years, and Argos died immediately after recognizing him.",
+      "tags": ["multi-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {"chunkId": 186, "relevance": 3, "description": "Odysseus states how long he stayed with Calypso."},
+          {"chunkId": 456, "relevance": 3, "description": "The passage states what happens to Argos after recognition."}
+        ],
+        "2": [
+          {"chunkId": 262, "relevance": 3, "description": "Odysseus states how long he stayed with Calypso."},
+          {"chunkId": 626, "relevance": 3, "description": "The passage states what happens to Argos after recognition."}
+        ]
+      }
+    },
+    {
+      "id": "lotus-eaters",
+      "question": "What effect did eating the lotus have on Odysseus's men?",
+      "expectedAnswer": "It made them stop caring about home and want to remain with the Lotus-eaters.",
+      "tags": ["paraphrase", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 226, "relevance": 3, "description": "The lotus makes the men stop caring about home and want to remain with the Lotus-eaters."}],
+        "2": [
+          {"chunkId": 313, "relevance": 3, "description": "The lotus makes the men stop caring about home and want to remain with the Lotus-eaters."},
+          {"chunkId": 314, "relevance": 2, "description": "Odysseus forces the affected men aboard so the others do not eat lotus and stop wanting home."}
+        ]
+      }
+    },
+    {
+      "id": "sirens",
+      "question": "How did Odysseus and his crew protect themselves while passing the Sirens?",
+      "expectedAnswer": "Odysseus stopped his men's ears with wax, while they bound him hand and foot to the mast.",
+      "tags": ["multi-fact", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {"chunkId": 315, "relevance": 2, "description": "Circe instructs Odysseus to stop the crew's ears with wax and be tied to the mast."},
+          {"chunkId": 321, "relevance": 2, "description": "Odysseus repeats the plan and prepares the wax before reaching the Sirens."},
+          {"chunkId": 322, "relevance": 3, "description": "The crew's ears are stopped with wax and Odysseus is bound to the mast."}
+        ],
+        "2": [
+          {"chunkId": 437, "relevance": 2, "description": "Circe instructs Odysseus to stop the crew's ears with wax and be tied to the mast."},
+          {"chunkId": 445, "relevance": 3, "description": "The crew's ears are stopped with wax and Odysseus is bound to the mast."}
+        ]
+      }
+    },
+    {
+      "id": "scylla",
+      "question": "How many of Odysseus's men did Scylla snatch from the ship?",
+      "expectedAnswer": "Scylla snatched six of Odysseus's men.",
+      "tags": ["exact-term", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 325, "relevance": 3, "description": "Scylla suddenly snatches Odysseus's six best men."}],
+        "2": [{"chunkId": 450, "relevance": 3, "description": "Scylla suddenly snatches Odysseus's six best men."}]
+      }
+    },
+    {
+      "id": "euryclea-scar",
+      "question": "How did Euryclea recognize Odysseus while washing him?",
+      "expectedAnswer": "Euryclea recognized Odysseus by the scar a wild boar had given him.",
+      "tags": ["paraphrase", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {"chunkId": 513, "relevance": 3, "description": "Euryclea recognizes the scar Odysseus received from a wild boar."},
+          {"chunkId": 517, "relevance": 3, "description": "Euryclea recognizes Odysseus when she handles the scar left by the boar."}
+        ],
+        "2": [
+          {"chunkId": 703, "relevance": 3, "description": "Euryclea recognizes the scar Odysseus received from a wild boar."},
+          {"chunkId": 709, "relevance": 3, "description": "Euryclea recognizes Odysseus when she handles the scar left by the boar."}
+        ]
+      }
+    },
+    {
+      "id": "olive-tree-bed",
+      "question": "What secret about the marriage bed convinced Penelope that the stranger was Odysseus?",
+      "expectedAnswer": "He knew the bed was built around a rooted olive tree and could not be moved without cutting the tree.",
+      "tags": ["paraphrase", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {"chunkId": 601, "relevance": 2, "description": "Penelope tests Odysseus by ordering their immovable bed to be taken outside."},
+          {"chunkId": 602, "relevance": 3, "description": "Odysseus explains that he built the bed around a rooted olive tree and that no man could move it."},
+          {"chunkId": 603, "relevance": 2, "description": "Odysseus mentions cutting the olive roots, and Penelope accepts this knowledge as proof."},
+          {"chunkId": 604, "relevance": 2, "description": "Penelope confirms that knowledge of their private bed convinced her."}
+        ],
+        "2": [
+          {"chunkId": 822, "relevance": 2, "description": "Penelope tests Odysseus, who objects that no man could move the bed he made."},
+          {"chunkId": 823, "relevance": 3, "description": "Odysseus explains that he built the bed around a rooted olive tree."},
+          {"chunkId": 824, "relevance": 2, "description": "Odysseus mentions cutting the olive roots, and Penelope accepts this knowledge as proof."},
+          {"chunkId": 825, "relevance": 2, "description": "Penelope confirms that knowledge of their private bed convinced her."}
+        ]
+      }
+    },
+    {
+      "id": "unanswerable-tuition",
+      "question": "What tuition fee does the University of Kyiv charge for its computer science program?",
+      "expectedAnswer": "The indexed book does not contain this information.",
+      "tags": ["unanswerable"],
+      "goldChunksByIndexProfile": {"1": [], "2": []}
+    }
+  ]
+}

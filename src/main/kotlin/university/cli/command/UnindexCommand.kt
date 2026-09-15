@@ -13,31 +13,46 @@ class UnindexCommand(
     private val profileService: IndexProfileService,
 ) : ChatCommand {
     override val name = "/unindex"
-    override val usage = "/unindex <file> [--config ID]"
-    override val description = "Remove stored indexes for one project text file"
+    override val usage = "/unindex (<file> [--config ID]|--all)"
+    override val description = "Remove stored indexes for one file or all documents"
 
     override fun execute(arguments: List<String>): CommandResult = try {
         val parsed = CommandOptionParser.parse(
             arguments,
             valueOptions = mapOf("--config" to "config", "-c" to "config"),
+            flagOptions = mapOf("--all" to "all"),
         )
-        require(parsed.positionals.isNotEmpty()) { "File path is required" }
+        val all = "all" in parsed.flags
+        require(all.xor(parsed.positionals.isNotEmpty())) { "Specify either a file path or --all" }
+        require(!all || "config" !in parsed.options) { "--config cannot be used with --all" }
 
         val profileId = parsed.options["config"]?.toLongOrNull()
         require(parsed.options["config"] == null || profileId != null && profileId > 0) {
             "Index profile id must be positive"
         }
 
-        val file = projectFileService.resolve(parsed.positionals.joinToString(" ").trim('"'))
-        val profile = profileId?.let(profileService::get)
         migrator.migrate()
-        val removed = indexRemovalService.remove(file, profile)
-        val fileName = projectFileService.relativeName(file)
-
-        if (removed == 0) {
-            CommandResult("No matching indexes found for $fileName.", CommandMessageType.WARNING)
+        if (all) {
+            val removedDocuments = indexRemovalService.removeAll()
+            if (removedDocuments == 0) {
+                CommandResult("No stored indexes or documents found.", CommandMessageType.WARNING)
+            } else {
+                CommandResult(
+                    "Removed all stored indexes and $removedDocuments " +
+                        "document record${if (removedDocuments == 1) "" else "s"}.",
+                )
+            }
         } else {
-            CommandResult("Removed $removed index${if (removed == 1) "" else "es"} for $fileName.")
+            val file = projectFileService.resolve(parsed.positionals.joinToString(" ").trim('"'))
+            val profile = profileId?.let(profileService::get)
+            val removed = indexRemovalService.remove(file, profile)
+            val fileName = projectFileService.relativeName(file)
+
+            if (removed == 0) {
+                CommandResult("No matching indexes found for $fileName.", CommandMessageType.WARNING)
+            } else {
+                CommandResult("Removed $removed index${if (removed == 1) "" else "es"} for $fileName.")
+            }
         }
     } catch (error: IllegalArgumentException) {
         usageError(error.message ?: "Invalid arguments")

@@ -1,10 +1,13 @@
 {
   "id": 1,
+  "name": "Hybrid search",
+  "description": "Combines dense and lexical matches using reciprocal rank fusion.",
   "parameters": {
     "retrievalMode": "hybrid",
     "denseCandidateLimit": "20",
     "lexicalCandidateLimit": "20",
     "rrfK": "60",
-    "topK": "3"
+    "contextCharBudget": "5500",
+    "maxChunks": "10"
   }
 }

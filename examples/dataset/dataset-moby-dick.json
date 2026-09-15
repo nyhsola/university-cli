@@ -1,0 +1,137 @@
+{
+  "id": 2,
+  "name": "Moby-Dick indexing comparison",
+  "description": "Compares fixed-size and recursive indexing on Moby-Dick with the built-in retrieval profiles.",
+  "indexProfileIds": [1, 2],
+  "queryProfileIds": [1],
+  "file": "../books/Moby-Dick.txt",
+  "questions": [
+    {
+      "id": "narrator",
+      "question": "What name does the narrator ask the reader to call him?",
+      "expectedAnswer": "The narrator asks to be called Ishmael.",
+      "tags": ["exact-term", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 29, "relevance": 3, "description": "The narrator opens the story by asking the reader to call him Ishmael."}],
+        "2": [{"chunkId": 38, "relevance": 3, "description": "The narrator opens the story by asking the reader to call him Ishmael."}]
+      }
+    },
+    {
+      "id": "pequod",
+      "question": "Which whaling ship do Ishmael and Queequeg choose for their voyage?",
+      "expectedAnswer": "They choose the Pequod.",
+      "tags": ["exact-term", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 174, "relevance": 3, "description": "Ishmael decides that the Pequod is the ship for them."}],
+        "2": [{"chunkId": 227, "relevance": 3, "description": "Ishmael decides that the Pequod is the ship for them."}]
+      }
+    },
+    {
+      "id": "queequeg-role",
+      "question": "What role does Queequeg serve aboard the whaling ship?",
+      "expectedAnswer": "Queequeg serves as a harpooneer.",
+      "tags": ["paraphrase", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {"chunkId": 149, "relevance": 3, "description": "Queequeg explains that he was made a harpooneer."},
+          {"chunkId": 277, "relevance": 2, "description": "Queequeg is identified while the Pequod's harpooneers are assigned to their headsmen."}
+        ],
+        "2": [
+          {"chunkId": 195, "relevance": 3, "description": "Queequeg explains that he was made a harpooneer."},
+          {"chunkId": 361, "relevance": 2, "description": "Queequeg is identified among the Pequod's harpooneers."}
+        ]
+      }
+    },
+    {
+      "id": "ahab-leg",
+      "question": "What happened to Captain Ahab's leg on a previous voyage?",
+      "expectedAnswer": "Moby Dick took off Ahab's leg.",
+      "tags": ["paraphrase", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {"chunkId": 201, "relevance": 2, "description": "The passage says Ahab lost his leg to a whale on the previous voyage."},
+          {"chunkId": 373, "relevance": 3, "description": "Ahab explicitly confirms that Moby Dick took off his leg."},
+          {"chunkId": 412, "relevance": 3, "description": "The narration describes Moby Dick reaping away Ahab's leg."}
+        ],
+        "2": [
+          {"chunkId": 261, "relevance": 2, "description": "The passage says Ahab lost his leg to a whale on the previous voyage."},
+          {"chunkId": 487, "relevance": 3, "description": "Ahab explicitly confirms that Moby Dick took off his leg."},
+          {"chunkId": 538, "relevance": 3, "description": "The narration describes Moby Dick reaping away Ahab's leg."}
+        ]
+      }
+    },
+    {
+      "id": "starbuck-position",
+      "question": "What position does Starbuck hold on the Pequod?",
+      "expectedAnswer": "Starbuck is the Pequod's chief mate.",
+      "tags": ["exact-term", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {"chunkId": 241, "relevance": 3, "description": "Starbuck is directly called the chief mate."},
+          {"chunkId": 277, "relevance": 3, "description": "Starbuck is explicitly identified as the chief mate."}
+        ],
+        "2": [
+          {"chunkId": 316, "relevance": 3, "description": "Starbuck is directly called the chief mate."},
+          {"chunkId": 317, "relevance": 3, "description": "Peleg addresses the chief mate as Mr. Starbuck."},
+          {"chunkId": 361, "relevance": 3, "description": "Starbuck is explicitly identified as the chief mate."}
+        ]
+      }
+    },
+    {
+      "id": "gold-ounce",
+      "question": "What reward does Ahab promise to the first person who sights the white whale?",
+      "expectedAnswer": "Ahab promises a gold ounce.",
+      "tags": ["exact-term", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 371, "relevance": 3, "description": "Ahab offers a gold ounce for first sighting the white whale."}],
+        "2": [{"chunkId": 483, "relevance": 3, "description": "Ahab offers a gold ounce for first sighting the white whale."}]
+      }
+    },
+    {
+      "id": "white-whale-features",
+      "question": "Which visible features does Ahab use to distinguish Moby Dick from other white whales?",
+      "expectedAnswer": "Moby Dick has a snow-white wrinkled forehead and a high, pyramidal white hump.",
+      "tags": ["multi-fact", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 409, "relevance": 3, "description": "Ahab names the whale's white wrinkled forehead and high pyramidal white hump."}],
+        "2": [{"chunkId": 534, "relevance": 3, "description": "Ahab names the whale's white wrinkled forehead and high pyramidal white hump."}]
+      }
+    },
+    {
+      "id": "life-buoy",
+      "question": "What object is converted into a replacement life-buoy?",
+      "expectedAnswer": "Queequeg's coffin is converted into a life-buoy.",
+      "tags": ["paraphrase", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {"chunkId": 1136, "relevance": 3, "description": "The crew orders the carpenter to make a life-buoy from Queequeg's coffin."},
+          {"chunkId": 1137, "relevance": 2, "description": "The carpenter repeats that he was ordered to turn Queequeg's coffin into a life-buoy."}
+        ],
+        "2": [
+          {"chunkId": 1494, "relevance": 3, "description": "Queequeg proposes his coffin when the lost life-buoy must be replaced."},
+          {"chunkId": 1495, "relevance": 3, "description": "The carpenter is ordered to make a life-buoy from the coffin."}
+        ]
+      }
+    },
+    {
+      "id": "ishmael-survival",
+      "question": "What kept Ishmael afloat after the Pequod sank, and which ship rescued him?",
+      "expectedAnswer": "Queequeg's coffin, serving as a life-buoy, kept Ishmael afloat, and the Rachel rescued him.",
+      "tags": ["multi-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 1242, "relevance": 3, "description": "The epilogue describes Ishmael floating on the coffin and being rescued by the Rachel."}],
+        "2": [
+          {"chunkId": 1632, "relevance": 3, "description": "Ishmael survives by floating on the coffin life-buoy."},
+          {"chunkId": 1633, "relevance": 3, "description": "The Rachel finds and rescues Ishmael."}
+        ]
+      }
+    },
+    {
+      "id": "unanswerable-birth-year",
+      "question": "In what year was Ishmael born?",
+      "expectedAnswer": "The indexed book does not state Ishmael's birth year.",
+      "tags": ["unanswerable"],
+      "goldChunksByIndexProfile": {"1": [], "2": []}
+    }
+  ]
+}

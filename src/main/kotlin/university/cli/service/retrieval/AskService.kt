@@ -11,6 +11,7 @@ class AskService(
     private val searchService: SearchService,
     private val ollamaService: OllamaService,
     private val ollamaConfig: OllamaConfig,
+    private val contextFormatter: ContextFormatter,
 ) {
     fun ask(
         scope: SearchScope,
@@ -22,13 +23,7 @@ class AskService(
         val relevantChunks = searchResult.chunks
         require(relevantChunks.isNotEmpty()) { "No relevant chunks found" }
 
-        val context = relevantChunks.joinToString("\n\n") { chunk ->
-            val retrieval = buildList {
-                if (chunk.denseRank != null) add("dense rank ${chunk.denseRank}")
-                if (chunk.lexicalRank != null) add("lexical rank ${chunk.lexicalRank}")
-            }.joinToString(", ")
-            "[Chunk ${chunk.chunkId}; file: ${chunk.fileName}; retrieved by: $retrieval]\n${chunk.content}"
-        }
+        val context = contextFormatter.render(relevantChunks)
         val prompt = """
             Answer the question using only the provided relevant chunks.
             The chunks may have been selected by dense vector search, lexical FTS5/BM25 search,
@@ -44,6 +39,11 @@ class AskService(
 
         onContextReady()
         val answer = ollamaService.question<StructuredAnswer>(ollamaConfig.questionModel, prompt)
-        return AskResult(answer.value, relevantChunks, searchResult.tokenUsage + answer.tokenUsage)
+        return AskResult(
+            answer.value,
+            relevantChunks,
+            searchResult.tokenUsage + answer.tokenUsage,
+            searchResult.contextStats,
+        )
     }
 }

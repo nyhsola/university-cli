@@ -25,6 +25,7 @@ class SearchService(
     private val vectorService: VectorService,
     private val lexicalSearchService: LexicalSearchService,
     private val rankFusionService: RankFusionService,
+    private val contextSelectionService: ContextSelectionService,
     private val cancellationService: OperationCancellationService,
 ) {
     private companion object {
@@ -32,7 +33,8 @@ class SearchService(
         const val DENSE_CANDIDATE_LIMIT_PARAMETER = "denseCandidateLimit"
         const val LEXICAL_CANDIDATE_LIMIT_PARAMETER = "lexicalCandidateLimit"
         const val RRF_K_PARAMETER = "rrfK"
-        const val TOP_K_PARAMETER = "topK"
+        const val CONTEXT_CHAR_BUDGET_PARAMETER = "contextCharBudget"
+        const val MAX_CHUNKS_PARAMETER = "maxChunks"
     }
 
     private data class SearchOptions(
@@ -40,7 +42,8 @@ class SearchService(
         val denseCandidateLimit: Int,
         val lexicalCandidateLimit: Int,
         val rrfK: Int,
-        val topK: Int,
+        val contextCharBudget: Int,
+        val maxChunks: Int,
     )
 
     fun search(scope: SearchScope, queryProfile: QueryProfile, query: String, ): SearchResult {
@@ -49,7 +52,14 @@ class SearchService(
         val options = options(queryProfile)
         val configurations = configurations(scope)
 
-        if (configurations.isEmpty()) return SearchResult(emptyList(), TokenUsage())
+        if (configurations.isEmpty()) {
+            val context = contextSelectionService.select(
+                emptyList(),
+                options.contextCharBudget,
+                options.maxChunks,
+            )
+            return SearchResult(context.chunks, TokenUsage(), context.stats)
+        }
 
         val resources = configurations.associateWith(::resolveResourceConfiguration)
         var tokenUsage = TokenUsage()
@@ -80,7 +90,7 @@ class SearchService(
         }
 
         val matches = when (options.mode) {
-            RetrievalMode.DENSE -> dense.take(options.topK).mapIndexed { index, match ->
+            RetrievalMode.DENSE -> dense.mapIndexed { index, match ->
                 RankFusionService.FusedMatch(
                     match.indexConfigurationId,
                     match.id,
@@ -92,7 +102,7 @@ class SearchService(
                 )
             }
 
-            RetrievalMode.LEXICAL -> lexical.take(options.topK).mapIndexed { index, match ->
+            RetrievalMode.LEXICAL -> lexical.mapIndexed { index, match ->
                 RankFusionService.FusedMatch(
                     match.indexConfigurationId,
                     match.chunkId,
@@ -104,9 +114,15 @@ class SearchService(
                 )
             }
 
-            RetrievalMode.HYBRID -> rankFusionService.fuse(dense, lexical, options.rrfK, options.topK)
+            RetrievalMode.HYBRID -> rankFusionService.fuse(dense, lexical, options.rrfK)
         }
-        return SearchResult(resolveMatches(configurations, matches), tokenUsage)
+        val candidates = resolveMatches(configurations, matches)
+        val context = contextSelectionService.select(
+            candidates,
+            options.contextCharBudget,
+            options.maxChunks,
+        )
+        return SearchResult(context.chunks, tokenUsage, context.stats)
     }
 
     private fun configurations(scope: SearchScope): List<IndexingConfiguration> {
@@ -178,25 +194,30 @@ class SearchService(
             "Query profile ${configuration.id} must contain $RETRIEVAL_MODE_PARAMETER"
         }
         val mode = RetrievalMode.from(modeValue)
-        val topK = positiveParameter(configuration, TOP_K_PARAMETER)
+        val contextCharBudget = positiveParameter(configuration, CONTEXT_CHAR_BUDGET_PARAMETER)
+        val maxChunks = positiveParameter(configuration, MAX_CHUNKS_PARAMETER)
         val denseLimit = if (mode != RetrievalMode.LEXICAL) {
             positiveParameter(configuration, DENSE_CANDIDATE_LIMIT_PARAMETER)
         } else {
-            topK
+            maxChunks
         }
         val lexicalLimit = if (mode != RetrievalMode.DENSE) {
             positiveParameter(configuration, LEXICAL_CANDIDATE_LIMIT_PARAMETER)
         } else {
-            topK
+            maxChunks
         }
         val rrfK = if (mode == RetrievalMode.HYBRID) {
             positiveParameter(configuration, RRF_K_PARAMETER)
         } else {
             60
         }
-        require(denseLimit >= topK) { "$DENSE_CANDIDATE_LIMIT_PARAMETER must be at least $TOP_K_PARAMETER" }
-        require(lexicalLimit >= topK) { "$LEXICAL_CANDIDATE_LIMIT_PARAMETER must be at least $TOP_K_PARAMETER" }
-        return SearchOptions(mode, denseLimit, lexicalLimit, rrfK, topK)
+        require(denseLimit >= maxChunks) {
+            "$DENSE_CANDIDATE_LIMIT_PARAMETER must be at least $MAX_CHUNKS_PARAMETER"
+        }
+        require(lexicalLimit >= maxChunks) {
+            "$LEXICAL_CANDIDATE_LIMIT_PARAMETER must be at least $MAX_CHUNKS_PARAMETER"
+        }
+        return SearchOptions(mode, denseLimit, lexicalLimit, rrfK, contextCharBudget, maxChunks)
     }
 
     private fun positiveParameter(configuration: QueryProfile, name: String): Int {
