@@ -3,6 +3,7 @@ package university.cli.service.retrieval
 import university.cli.model.IndexConfiguration
 import university.cli.model.IndexingConfiguration
 import university.cli.model.IndexingStatus
+import university.cli.model.MultiQueryStrategy
 import university.cli.model.QueryProfile
 import university.cli.model.RelevantChunk
 import university.cli.model.RetrievalMode
@@ -25,6 +26,8 @@ class SearchService(
     private val vectorService: VectorService,
     private val lexicalSearchService: LexicalSearchService,
     private val rankFusionService: RankFusionService,
+    private val queryExpansionService: QueryExpansionService,
+    private val multiQueryFusionService: MultiQueryFusionService,
     private val contextSelectionService: ContextSelectionService,
     private val cancellationService: OperationCancellationService,
 ) {
@@ -35,13 +38,23 @@ class SearchService(
         const val RRF_K_PARAMETER = "rrfK"
         const val CONTEXT_CHAR_BUDGET_PARAMETER = "contextCharBudget"
         const val MAX_CHUNKS_PARAMETER = "maxChunks"
+        const val MULTI_QUERY_REWRITE_COUNT_PARAMETER = "rewriteCount"
+        const val MULTI_QUERY_MODEL_PARAMETER = "model"
+        const val MULTI_QUERY_RRF_K_PARAMETER = "rrfK"
     }
+
+    private data class MultiQueryOptions(
+        val rewriteCount: Int,
+        val model: String,
+        val rrfK: Int,
+    )
 
     private data class SearchOptions(
         val mode: RetrievalMode,
         val denseCandidateLimit: Int,
         val lexicalCandidateLimit: Int,
         val rrfK: Int,
+        val multiQuery: MultiQueryOptions?,
         val contextCharBudget: Int,
         val maxChunks: Int,
     )
@@ -69,13 +82,28 @@ class SearchService(
             require(models.size == 1) {
                 "Dense search across multiple embedding models is not supported; use --index or --file"
             }
-            cancellationService.ensureActive()
-            val embedding = embedService.embedQuery(models.single(), query)
-            tokenUsage = embedding.tokenUsage
-            configurations.flatMap { configuration ->
+            val queries = options.multiQuery?.let { multiQuery ->
                 cancellationService.ensureActive()
-                vectorService.getTopRelevant(configuration.id, embedding.value, options.denseCandidateLimit)
-            }.sortedBy { it.distance }
+                val expansion = queryExpansionService.expand(query, multiQuery.model, multiQuery.rewriteCount)
+                tokenUsage += expansion.tokenUsage
+                listOf(query) + expansion.value
+            } ?: listOf(query)
+            val rankings = queries.map { searchQuery ->
+                cancellationService.ensureActive()
+                val embedding = embedService.embedQuery(models.single(), searchQuery)
+                tokenUsage += embedding.tokenUsage
+                configurations.flatMap { configuration ->
+                    cancellationService.ensureActive()
+                    vectorService.getTopRelevant(configuration.id, embedding.value, options.denseCandidateLimit)
+                }.sortedBy { it.distance }
+            }
+            options.multiQuery?.let { multiQuery ->
+                multiQueryFusionService.fuse(
+                    rankings,
+                    multiQuery.rrfK,
+                    options.denseCandidateLimit * configurations.size,
+                )
+            } ?: rankings.single()
         } else {
             emptyList()
         }
@@ -211,19 +239,45 @@ class SearchService(
         } else {
             60
         }
+        val multiQuery = configuration.multiQuery?.let { multiQuery ->
+            require(mode != RetrievalMode.LEXICAL) {
+                "Query profile ${configuration.id} cannot use multi-query with lexical-only retrieval"
+            }
+            when (multiQuery.strategy) {
+                MultiQueryStrategy.LLM -> {
+                    val model = multiQuery.parameters[MULTI_QUERY_MODEL_PARAMETER]
+                    require(!model.isNullOrBlank()) {
+                        "Query profile ${configuration.id} multiQuery must contain $MULTI_QUERY_MODEL_PARAMETER"
+                    }
+                    MultiQueryOptions(
+                        positiveMultiQueryParameter(configuration, MULTI_QUERY_REWRITE_COUNT_PARAMETER),
+                        model,
+                        positiveMultiQueryParameter(configuration, MULTI_QUERY_RRF_K_PARAMETER),
+                    )
+                }
+            }
+        }
         require(denseLimit >= maxChunks) {
             "$DENSE_CANDIDATE_LIMIT_PARAMETER must be at least $MAX_CHUNKS_PARAMETER"
         }
         require(lexicalLimit >= maxChunks) {
             "$LEXICAL_CANDIDATE_LIMIT_PARAMETER must be at least $MAX_CHUNKS_PARAMETER"
         }
-        return SearchOptions(mode, denseLimit, lexicalLimit, rrfK, contextCharBudget, maxChunks)
+        return SearchOptions(mode, denseLimit, lexicalLimit, rrfK, multiQuery, contextCharBudget, maxChunks)
     }
 
     private fun positiveParameter(configuration: QueryProfile, name: String): Int {
         val value = configuration.parameters[name]?.toIntOrNull()
         require(value != null && value > 0) {
             "Query profile ${configuration.id} must contain a positive $name parameter"
+        }
+        return value
+    }
+
+    private fun positiveMultiQueryParameter(configuration: QueryProfile, name: String): Int {
+        val value = configuration.multiQuery?.parameters?.get(name)?.toIntOrNull()
+        require(value != null && value > 0) {
+            "Query profile ${configuration.id} multiQuery must contain a positive $name parameter"
         }
         return value
     }

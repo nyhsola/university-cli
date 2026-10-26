@@ -3,7 +3,7 @@
   "name": "Moby-Dick indexing comparison",
   "description": "Compares fixed-size and recursive indexing on Moby-Dick with the built-in retrieval profiles.",
   "indexProfileIds": [1, 2],
-  "queryProfileIds": [1],
+  "queryProfileIds": [1, 4],
   "file": "../books/Moby-Dick.txt",
   "questions": [
     {

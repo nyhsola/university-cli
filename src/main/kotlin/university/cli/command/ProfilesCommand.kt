@@ -64,6 +64,13 @@ class ProfilesCommand(
                     add("Description" to configuration.description)
                     if (name == DEFAULT_PROFILE) add("Default" to "yes")
                     add("Parameters" to ConfigurationCommandFormatter.parameters(configuration.parameters))
+                    configuration.multiQuery?.let { multiQuery ->
+                        add("Multi-query strategy" to multiQuery.strategy.name)
+                        add(
+                            "Multi-query parameters" to
+                                ConfigurationCommandFormatter.parameters(multiQuery.parameters),
+                        )
+                    }
                 },
             )
         }

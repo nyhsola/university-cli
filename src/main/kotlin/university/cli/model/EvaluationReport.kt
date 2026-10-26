@@ -31,6 +31,7 @@ data class ReportProfile(
     val name: String,
     val description: String,
     val parameters: Map<String, String>,
+    val multiQuery: MultiQueryConfiguration? = null,
 )
 
 @Serializable

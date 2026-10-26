@@ -49,6 +49,8 @@ import university.cli.service.retrieval.AskService
 import university.cli.service.retrieval.ContextFormatter
 import university.cli.service.retrieval.ContextSelectionService
 import university.cli.service.retrieval.LexicalSearchService
+import university.cli.service.retrieval.MultiQueryFusionService
+import university.cli.service.retrieval.QueryExpansionService
 import university.cli.service.retrieval.RankFusionService
 import university.cli.service.retrieval.SearchService
 import university.cli.service.retrieval.VectorService
@@ -86,6 +88,8 @@ val appModule = module {
     single { VectorService(get()) }
     single { LexicalSearchService(get()) }
     single { RankFusionService() }
+    single { QueryExpansionService(get()) }
+    single { MultiQueryFusionService() }
     single { ContextFormatter() }
     single { ContextSelectionService(get()) }
     single { OperationCancellationService() }
@@ -95,7 +99,7 @@ val appModule = module {
     single { ProjectIndexingService(get(), get()) }
     single { IndexRemovalService(get(), get(), get()) }
     single { ProjectFileStatusService(get(), get(), get()) }
-    single { SearchService(get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
+    single { SearchService(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
     single { QueryProfileService() }
     single { AskService(get(), get(), get(), get()) }
     single { JudgeService(get(), get()) }

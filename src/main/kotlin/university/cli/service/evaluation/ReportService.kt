@@ -122,7 +122,9 @@ class ReportService(
             durationMs = Duration.between(startedAt, completedAt).toMillis(),
             status = status,
             indexProfiles = indexProfiles.map { ReportProfile(it.id, it.name, it.description, it.parameters) },
-            queryProfiles = queryProfiles.map { ReportProfile(it.id, it.name, it.description, it.parameters) },
+            queryProfiles = queryProfiles.map {
+                ReportProfile(it.id, it.name, it.description, it.parameters, it.multiQuery)
+            },
             indexing = indexings,
             summary = metricsService.summarize(questionResults),
             questions = questionResults,
