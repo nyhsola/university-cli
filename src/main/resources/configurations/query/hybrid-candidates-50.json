@@ -1,0 +1,13 @@
+{
+  "id": 11,
+  "name": "Hybrid 50 candidates per channel",
+  "description": "Isolates candidate-pool coverage by increasing dense and lexical limits from 20 to 50 while retaining RRF k=60 and the baseline context budget.",
+  "parameters": {
+    "retrievalMode": "hybrid",
+    "denseCandidateLimit": "50",
+    "lexicalCandidateLimit": "50",
+    "rrfK": "60",
+    "contextCharBudget": "5500",
+    "maxChunks": "10"
+  }
+}

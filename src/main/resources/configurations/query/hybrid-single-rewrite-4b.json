@@ -1,0 +1,21 @@
+{
+  "id": 13,
+  "name": "Hybrid with one 4B rewrite",
+  "description": "Isolates rewrite model size against query profile 12: one semantic rewrite using Qwen3.5 4B with the same fusion and context settings.",
+  "parameters": {
+    "retrievalMode": "hybrid",
+    "denseCandidateLimit": "20",
+    "lexicalCandidateLimit": "20",
+    "rrfK": "60",
+    "contextCharBudget": "5500",
+    "maxChunks": "10"
+  },
+  "multiQuery": {
+    "strategy": "LLM",
+    "parameters": {
+      "rewriteCount": "1",
+      "model": "qwen3.5:4b",
+      "rrfK": "60"
+    }
+  }
+}

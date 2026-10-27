@@ -1,0 +1,12 @@
+{
+  "id": 6,
+  "name": "Recursive 1000 without overlap",
+  "description": "Tests natural text boundaries at a 1000-character target without overlap against fixed-size profile 1; actual chunk lengths may be shorter.",
+  "embeddingModel": "qwen3-embedding:8b",
+  "chunkingStrategy": "RECURSIVE",
+  "parameters": {
+    "targetSize": "1000",
+    "maxSize": "1000",
+    "overlap": "0"
+  }
+}

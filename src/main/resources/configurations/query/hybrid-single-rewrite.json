@@ -1,0 +1,21 @@
+{
+  "id": 12,
+  "name": "Hybrid with one 9B rewrite",
+  "description": "Isolates rewrite count against query profile 4: one semantic rewrite instead of two, using the same Qwen3.5 9B model and retrieval settings.",
+  "parameters": {
+    "retrievalMode": "hybrid",
+    "denseCandidateLimit": "20",
+    "lexicalCandidateLimit": "20",
+    "rrfK": "60",
+    "contextCharBudget": "5500",
+    "maxChunks": "10"
+  },
+  "multiQuery": {
+    "strategy": "LLM",
+    "parameters": {
+      "rewriteCount": "1",
+      "model": "qwen3.5:9b",
+      "rrfK": "60"
+    }
+  }
+}

@@ -1,9 +1,9 @@
 {
   "id": 3,
   "name": "Middlemarch indexing comparison",
-  "description": "Compares fixed-size and recursive indexing on Middlemarch with all built-in retrieval profiles.",
-  "indexProfileIds": [1, 2],
-  "queryProfileIds": [1, 2, 3, 4],
+  "description": "Compares baseline and experimental chunk sizes, recursive boundaries, overlap and embedding model sizes on Middlemarch across context budgets, fusion settings and semantic rewrites.",
+  "indexProfileIds": [1, 2, 3, 4, 5, 6, 7, 8],
+  "queryProfileIds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
   "file": "../books/Middlemarch.txt",
   "questions": [
     {
@@ -13,7 +13,13 @@
       "tags": ["exact-term", "single-hop"],
       "goldChunksByIndexProfile": {
         "1": [{"chunkId": 25, "relevance": 3, "description": "Celia is identified in relation to her elder sister Dorothea."}],
-        "2": [{"chunkId": 32, "relevance": 3, "description": "Celia is identified in relation to her elder sister Dorothea."}]
+        "2": [{"chunkId": 32, "relevance": 3, "description": "Celia is identified in relation to her elder sister Dorothea."}],
+        "3": [{"chunkId": 50, "relevance": 3, "description": "Celia and Dorothea are identified as sisters, with Dorothea the elder."}],
+        "4": [{"chunkId": 13, "relevance": 3, "description": "Celia and Dorothea are identified as sisters, with Dorothea the elder."}],
+        "5": [{"chunkId": 32, "relevance": 3, "description": "Celia and Dorothea are identified as sisters, with Dorothea the elder."}],
+        "6": [{"chunkId": 29, "relevance": 3, "description": "Celia and Dorothea are identified as sisters, with Dorothea the elder."}],
+        "7": [{"chunkId": 25, "relevance": 3, "description": "Celia is identified in relation to her elder sister Dorothea."}],
+        "8": [{"chunkId": 25, "relevance": 3, "description": "Celia is identified in relation to her elder sister Dorothea."}]
       }
     },
     {
@@ -23,7 +29,13 @@
       "tags": ["exact-term", "single-hop"],
       "goldChunksByIndexProfile": {
         "1": [{"chunkId": 129, "relevance": 3, "description": "Casaubon's great work is explicitly named the Key to All Mythologies."}],
-        "2": [{"chunkId": 171, "relevance": 3, "description": "Casaubon's great work is explicitly named the Key to All Mythologies."}]
+        "2": [{"chunkId": 171, "relevance": 3, "description": "Casaubon's great work is explicitly named the Key to All Mythologies."}],
+        "3": [{"chunkId": 257, "relevance": 3, "description": "Casaubon's scholarly work is named the Key to All Mythologies."}],
+        "4": [{"chunkId": 65, "relevance": 3, "description": "Casaubon's scholarly work is named the Key to All Mythologies."}],
+        "5": [{"chunkId": 171, "relevance": 3, "description": "Casaubon's scholarly work is named the Key to All Mythologies."}],
+        "6": [{"chunkId": 151, "relevance": 3, "description": "Casaubon's scholarly work is named the Key to All Mythologies."}],
+        "7": [{"chunkId": 129, "relevance": 3, "description": "Casaubon's great work is explicitly named the Key to All Mythologies."}],
+        "8": [{"chunkId": 129, "relevance": 3, "description": "Casaubon's great work is explicitly named the Key to All Mythologies."}]
       }
     },
     {
@@ -33,7 +45,13 @@
       "tags": ["paraphrase", "single-hop"],
       "goldChunksByIndexProfile": {
         "1": [{"chunkId": 588, "relevance": 3, "description": "The primitive tissue is described as the unresolved subject of Lydgate's research."}],
-        "2": [{"chunkId": 772, "relevance": 3, "description": "The primitive tissue is described as the unresolved subject of Lydgate's research."}]
+        "2": [{"chunkId": 772, "relevance": 3, "description": "The primitive tissue is described as the unresolved subject of Lydgate's research."}],
+        "3": [{"chunkId": 1176, "relevance": 3, "description": "Lydgate's unresolved scientific interest is primitive tissue."}],
+        "4": [{"chunkId": 294, "relevance": 3, "description": "Lydgate's unresolved scientific interest is primitive tissue."}],
+        "5": [{"chunkId": 771, "relevance": 2, "description": "Contains part of the evidence: Lydgate's unresolved scientific interest is primitive tissue."}, {"chunkId": 772, "relevance": 2, "description": "Contains part of the evidence: Lydgate's unresolved scientific interest is primitive tissue."}],
+        "6": [{"chunkId": 687, "relevance": 2, "description": "Contains part of the evidence: Lydgate's unresolved scientific interest is primitive tissue."}, {"chunkId": 688, "relevance": 2, "description": "Contains part of the evidence: Lydgate's unresolved scientific interest is primitive tissue."}],
+        "7": [{"chunkId": 588, "relevance": 3, "description": "The primitive tissue is described as the unresolved subject of Lydgate's research."}],
+        "8": [{"chunkId": 588, "relevance": 3, "description": "The primitive tissue is described as the unresolved subject of Lydgate's research."}]
       }
     },
     {
@@ -43,7 +61,13 @@
       "tags": ["exact-term", "single-hop"],
       "goldChunksByIndexProfile": {
         "1": [{"chunkId": 725, "relevance": 3, "description": "Joshua Rigg is named the residuary legatee and instructed to take the Featherstone name."}],
-        "2": [{"chunkId": 952, "relevance": 3, "description": "Joshua Rigg is named the residuary legatee and instructed to take the Featherstone name."}]
+        "2": [{"chunkId": 952, "relevance": 3, "description": "Joshua Rigg is named the residuary legatee and instructed to take the Featherstone name."}],
+        "3": [{"chunkId": 1450, "relevance": 3, "description": "Joshua Rigg receives the residue and must take the Featherstone name."}],
+        "4": [{"chunkId": 363, "relevance": 3, "description": "Joshua Rigg receives the residue and must take the Featherstone name."}],
+        "5": [{"chunkId": 952, "relevance": 3, "description": "Joshua Rigg receives the residue and must take the Featherstone name."}],
+        "6": [{"chunkId": 845, "relevance": 3, "description": "Joshua Rigg receives the residue and must take the Featherstone name."}],
+        "7": [{"chunkId": 725, "relevance": 3, "description": "Joshua Rigg is named the residuary legatee and instructed to take the Featherstone name."}],
+        "8": [{"chunkId": 725, "relevance": 3, "description": "Joshua Rigg is named the residuary legatee and instructed to take the Featherstone name."}]
       }
     },
     {
@@ -53,7 +77,13 @@
       "tags": ["paraphrase", "single-hop"],
       "goldChunksByIndexProfile": {
         "1": [{"chunkId": 1059, "relevance": 3, "description": "The codicil removes Dorothea's inheritance if she marries Will Ladislaw."}],
-        "2": [{"chunkId": 1395, "relevance": 3, "description": "The codicil removes Dorothea's inheritance if she marries Will Ladislaw."}]
+        "2": [{"chunkId": 1395, "relevance": 3, "description": "The codicil removes Dorothea's inheritance if she marries Will Ladislaw."}],
+        "3": [{"chunkId": 2117, "relevance": 2, "description": "Contains part of the evidence: Casaubon's codicil removes Dorothea's property if she marries Ladislaw."}, {"chunkId": 2118, "relevance": 2, "description": "Contains part of the evidence: Casaubon's codicil removes Dorothea's property if she marries Ladislaw."}],
+        "4": [{"chunkId": 530, "relevance": 3, "description": "Casaubon's codicil removes Dorothea's property if she marries Ladislaw."}],
+        "5": [{"chunkId": 1394, "relevance": 2, "description": "Contains part of the evidence: Casaubon's codicil removes Dorothea's property if she marries Ladislaw."}, {"chunkId": 1395, "relevance": 2, "description": "Contains part of the evidence: Casaubon's codicil removes Dorothea's property if she marries Ladislaw."}],
+        "6": [{"chunkId": 1239, "relevance": 3, "description": "Casaubon's codicil removes Dorothea's property if she marries Ladislaw."}],
+        "7": [{"chunkId": 1059, "relevance": 3, "description": "The codicil removes Dorothea's inheritance if she marries Will Ladislaw."}],
+        "8": [{"chunkId": 1059, "relevance": 3, "description": "The codicil removes Dorothea's inheritance if she marries Will Ladislaw."}]
       }
     },
     {
@@ -70,7 +100,13 @@
           {"chunkId": 2023, "relevance": 2, "description": "Lydgate explicitly orders that Raffles receive no alcohol."},
           {"chunkId": 2036, "relevance": 3, "description": "Bulstrode gives Mrs. Abel the wine-cooler key and makes brandy available."},
           {"chunkId": 2037, "relevance": 2, "description": "The overlapped continuation also records access to the brandy."}
-        ]
+        ],
+        "3": [{"chunkId": 3066, "relevance": 2, "description": "Lydgate explicitly prohibits alcohol for Raffles."}, {"chunkId": 3085, "relevance": 3, "description": "Bulstrode gives access to the wine-cooler and its brandy."}],
+        "4": [{"chunkId": 767, "relevance": 2, "description": "Lydgate explicitly prohibits alcohol for Raffles."}, {"chunkId": 772, "relevance": 3, "description": "Bulstrode gives access to the wine-cooler and its brandy."}],
+        "5": [{"chunkId": 2023, "relevance": 2, "description": "Lydgate explicitly prohibits alcohol for Raffles."}, {"chunkId": 2036, "relevance": 3, "description": "Bulstrode gives access to the wine-cooler and its brandy."}],
+        "6": [{"chunkId": 1801, "relevance": 2, "description": "Lydgate explicitly prohibits alcohol for Raffles."}, {"chunkId": 1813, "relevance": 3, "description": "Bulstrode gives access to the wine-cooler and its brandy."}],
+        "7": [{"chunkId": 1533, "relevance": 2, "description": "Lydgate explicitly orders that Raffles receive no alcohol."}, {"chunkId": 1543, "relevance": 3, "description": "Bulstrode gives Mrs. Abel the wine-cooler key and makes brandy available."}],
+        "8": [{"chunkId": 1533, "relevance": 2, "description": "Lydgate explicitly orders that Raffles receive no alcohol."}, {"chunkId": 1543, "relevance": 3, "description": "Bulstrode gives Mrs. Abel the wine-cooler key and makes brandy available."}]
       }
     },
     {
@@ -80,7 +116,13 @@
       "tags": ["multi-fact", "single-hop"],
       "goldChunksByIndexProfile": {
         "1": [{"chunkId": 1800, "relevance": 3, "description": "The finale describes Fred and Mary's happy marriage and Fred's work as a farmer."}],
-        "2": [{"chunkId": 2386, "relevance": 3, "description": "The finale describes Fred and Mary's happy marriage and Fred's work as a farmer."}]
+        "2": [{"chunkId": 2386, "relevance": 3, "description": "The finale describes Fred and Mary's happy marriage and Fred's work as a farmer."}],
+        "3": [{"chunkId": 3599, "relevance": 2, "description": "Contains part of the evidence: The finale describes Fred and Mary's happy union and his farming career."}, {"chunkId": 3600, "relevance": 2, "description": "Contains part of the evidence: The finale describes Fred and Mary's happy union and his farming career."}],
+        "4": [{"chunkId": 900, "relevance": 3, "description": "The finale describes Fred and Mary's happy union and his farming career."}],
+        "5": [{"chunkId": 2386, "relevance": 3, "description": "The finale describes Fred and Mary's happy union and his farming career."}],
+        "6": [{"chunkId": 2120, "relevance": 3, "description": "The finale describes Fred and Mary's happy union and his farming career."}],
+        "7": [{"chunkId": 1800, "relevance": 3, "description": "The finale describes Fred and Mary's happy marriage and Fred's work as a farmer."}],
+        "8": [{"chunkId": 1800, "relevance": 3, "description": "The finale describes Fred and Mary's happy marriage and Fred's work as a farmer."}]
       }
     },
     {
@@ -97,7 +139,13 @@
           {"chunkId": 1395, "relevance": 3, "description": "Casaubon's codicil makes marriage to Will cost Dorothea her inheritance."},
           {"chunkId": 2361, "relevance": 3, "description": "Dorothea states that she has promised to marry Will Ladislaw."},
           {"chunkId": 2362, "relevance": 2, "description": "The overlapped continuation confirms Dorothea's decision to marry Will."}
-        ]
+        ],
+        "3": [{"chunkId": 2117, "relevance": 2, "description": "Contains part of the evidence: Casaubon's codicil makes marrying Ladislaw cost Dorothea her inherited property."}, {"chunkId": 2118, "relevance": 2, "description": "Contains part of the evidence: Casaubon's codicil makes marrying Ladislaw cost Dorothea her inherited property."}, {"chunkId": 3563, "relevance": 3, "description": "Dorothea explicitly commits to marrying Ladislaw."}],
+        "4": [{"chunkId": 530, "relevance": 3, "description": "Casaubon's codicil makes marrying Ladislaw cost Dorothea her inherited property."}, {"chunkId": 891, "relevance": 3, "description": "Dorothea explicitly commits to marrying Ladislaw."}],
+        "5": [{"chunkId": 1394, "relevance": 2, "description": "Contains part of the evidence: Casaubon's codicil makes marrying Ladislaw cost Dorothea her inherited property."}, {"chunkId": 1395, "relevance": 2, "description": "Contains part of the evidence: Casaubon's codicil makes marrying Ladislaw cost Dorothea her inherited property."}, {"chunkId": 2361, "relevance": 3, "description": "Dorothea explicitly commits to marrying Ladislaw."}],
+        "6": [{"chunkId": 1239, "relevance": 3, "description": "Casaubon's codicil makes marrying Ladislaw cost Dorothea her inherited property."}, {"chunkId": 2099, "relevance": 3, "description": "Dorothea explicitly commits to marrying Ladislaw."}],
+        "7": [{"chunkId": 1059, "relevance": 3, "description": "Casaubon's codicil makes marriage to Will cost Dorothea her inheritance."}, {"chunkId": 1782, "relevance": 3, "description": "Dorothea states that she has promised to marry Will Ladislaw."}],
+        "8": [{"chunkId": 1059, "relevance": 3, "description": "Casaubon's codicil makes marriage to Will cost Dorothea her inheritance."}, {"chunkId": 1782, "relevance": 3, "description": "Dorothea states that she has promised to marry Will Ladislaw."}]
       }
     },
     {
@@ -107,7 +155,13 @@
       "tags": ["multi-fact", "single-hop"],
       "goldChunksByIndexProfile": {
         "1": [{"chunkId": 1805, "relevance": 3, "description": "The finale gives Lydgate's age at death and explains his sense of failure."}],
-        "2": [{"chunkId": 2393, "relevance": 3, "description": "The finale gives Lydgate's age at death and explains his sense of failure."}]
+        "2": [{"chunkId": 2393, "relevance": 3, "description": "The finale gives Lydgate's age at death and explains his sense of failure."}],
+        "3": [{"chunkId": 3610, "relevance": 2, "description": "Contains part of the evidence: The finale gives his age at death and his failure to achieve his original ambitions."}, {"chunkId": 3611, "relevance": 2, "description": "Contains part of the evidence: The finale gives his age at death and his failure to achieve his original ambitions."}],
+        "4": [{"chunkId": 903, "relevance": 3, "description": "The finale gives his age at death and his failure to achieve his original ambitions."}],
+        "5": [{"chunkId": 2393, "relevance": 3, "description": "The finale gives his age at death and his failure to achieve his original ambitions."}],
+        "6": [{"chunkId": 2126, "relevance": 2, "description": "Contains part of the evidence: The finale gives his age at death and his failure to achieve his original ambitions."}, {"chunkId": 2127, "relevance": 2, "description": "Contains part of the evidence: The finale gives his age at death and his failure to achieve his original ambitions."}],
+        "7": [{"chunkId": 1805, "relevance": 3, "description": "The finale gives Lydgate's age at death and explains his sense of failure."}],
+        "8": [{"chunkId": 1805, "relevance": 3, "description": "The finale gives Lydgate's age at death and explains his sense of failure."}]
       }
     },
     {
@@ -115,7 +169,7 @@
       "question": "How many printed copies of Middlemarch were sold during 2025?",
       "expectedAnswer": "The indexed book does not contain this information.",
       "tags": ["unanswerable"],
-      "goldChunksByIndexProfile": {"1": [], "2": []}
+      "goldChunksByIndexProfile": {"1": [], "2": [], "3": [], "4": [], "5": [], "6": [], "7": [], "8": []}
     }
   ]
 }

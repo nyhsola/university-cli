@@ -1,0 +1,10 @@
+{
+  "id": 7,
+  "name": "Fixed 1000 with 0.6B embeddings",
+  "description": "Isolates embedding model size by retaining the exact 1000-character fixed chunks of profile 1 and using Qwen3 Embedding 0.6B.",
+  "embeddingModel": "qwen3-embedding:0.6b",
+  "chunkingStrategy": "FIXED_SIZE",
+  "parameters": {
+    "chunkSize": "1000"
+  }
+}

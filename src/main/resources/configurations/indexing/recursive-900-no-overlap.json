@@ -1,0 +1,12 @@
+{
+  "id": 5,
+  "name": "Recursive 900 without overlap",
+  "description": "Controls the effect of overlap against index profile 2 by retaining its 900-character target and removing repeated boundary text.",
+  "embeddingModel": "qwen3-embedding:8b",
+  "chunkingStrategy": "RECURSIVE",
+  "parameters": {
+    "targetSize": "900",
+    "maxSize": "1000",
+    "overlap": "0"
+  }
+}

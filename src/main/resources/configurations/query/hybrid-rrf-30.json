@@ -1,0 +1,13 @@
+{
+  "id": 10,
+  "name": "Hybrid RRF k=30",
+  "description": "Isolates fusion sensitivity by changing only RRF k from 60 to 30 relative to query profile 1.",
+  "parameters": {
+    "retrievalMode": "hybrid",
+    "denseCandidateLimit": "20",
+    "lexicalCandidateLimit": "20",
+    "rrfK": "30",
+    "contextCharBudget": "5500",
+    "maxChunks": "10"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": 3,
+  "name": "Fixed 500 characters",
+  "description": "Tests finer retrieval granularity with non-overlapping 500-character chunks; keeps the baseline 8B embedding model.",
+  "embeddingModel": "qwen3-embedding:8b",
+  "chunkingStrategy": "FIXED_SIZE",
+  "parameters": {
+    "chunkSize": "500"
+  }
+}

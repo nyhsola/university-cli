@@ -1,0 +1,468 @@
+{
+  "offsetConvention": "Zero-based UTF-16 character offsets; end is exclusive. Sources retain original CRLF bytes decoded as UTF-8.",
+  "notes": "Curated source evidence for new chunk layouts. Baseline gold for index profiles 1 and 2 is preserved. Profiles 7 and 8 copy profile 1 gold because their chunk layouts are identical. Flat chunk recall still counts alternative evidence and split spans separately.",
+  "datasets": [
+    {
+      "datasetId": 3,
+      "source": "../books/Middlemarch.txt",
+      "sourceSha256": "dc2e0107e6ae07e8e33da934b2ec4e8e600826a2e0cd48df265119cd02e5fb50",
+      "questions": [
+        {
+          "questionId": "dorothea-sister",
+          "evidence": [
+            {
+              "start": 24642,
+              "end": 24965,
+              "relevance": 3,
+              "description": "Celia and Dorothea are identified as sisters, with Dorothea the elder.",
+              "quote": "As Celia bent over the paper, Dorothea put her cheek against her\r\nsister’s arm caressingly. Celia understood the action. Dorothea saw\r\nthat she had been in the wrong, and Celia pardoned her. Since they\r\ncould remember, there had been a mixture of criticism and awe in the\r\nattitude of Celia’s mind towards her elder sister."
+            }
+          ]
+        },
+        {
+          "questionId": "casaubon-work",
+          "evidence": [
+            {
+              "start": 128079,
+              "end": 128136,
+              "relevance": 3,
+              "description": "Casaubon's scholarly work is named the Key to All Mythologies.",
+              "quote": "the progress of his great work—the Key to all Mythologies"
+            }
+          ]
+        },
+        {
+          "questionId": "lydgate-research",
+          "evidence": [
+            {
+              "start": 587712,
+              "end": 587902,
+              "relevance": 3,
+              "description": "Lydgate's unresolved scientific interest is primitive tissue.",
+              "quote": "The reveries\r\nfrom which it was difficult for him to detach himself were ideal\r\nconstructions of something else than Rosamond’s virtues, and the\r\nprimitive tissue was still his fair unknown."
+            }
+          ]
+        },
+        {
+          "questionId": "featherstone-heir",
+          "evidence": [
+            {
+              "start": 724543,
+              "end": 724670,
+              "relevance": 3,
+              "description": "Joshua Rigg receives the residue and must take the Featherstone name.",
+              "quote": "that residuary legatee was Joshua Rigg,\r\nwho was also sole executor, and who was to take thenceforth the name of\r\nFeatherstone."
+            }
+          ]
+        },
+        {
+          "questionId": "casaubon-codicil",
+          "evidence": [
+            {
+              "start": 1058486,
+              "end": 1058719,
+              "relevance": 3,
+              "description": "Casaubon's codicil removes Dorothea's property if she marries Ladislaw.",
+              "quote": "he has made a codicil to his will, to say the property was all to\r\ngo away from you if you married—I mean—”\r\n\r\n“That is of no consequence,” said Dorothea, breaking in impetuously.\r\n\r\n“But if you married Mr. Ladislaw, not anybody else"
+            }
+          ]
+        },
+        {
+          "questionId": "bulstrode-raffles",
+          "evidence": [
+            {
+              "start": 1532857,
+              "end": 1532909,
+              "relevance": 2,
+              "description": "Lydgate explicitly prohibits alcohol for Raffles.",
+              "quote": "repeated his\r\norder that no alcohol should be given."
+            },
+            {
+              "start": 1542182,
+              "end": 1542341,
+              "relevance": 3,
+              "description": "Bulstrode gives access to the wine-cooler and its brandy.",
+              "quote": "Here a key was thrust through the inch of doorway, and Mr. Bulstrode\r\nsaid huskily, “That is the key of the wine-cooler. You will find plenty\r\nof brandy there."
+            }
+          ]
+        },
+        {
+          "questionId": "fred-mary",
+          "evidence": [
+            {
+              "start": 1799323,
+              "end": 1799609,
+              "relevance": 3,
+              "description": "The finale describes Fred and Mary's happy union and his farming career.",
+              "quote": "All who have cared for Fred Vincy and Mary Garth will like to know that\r\nthese two made no such failure, but achieved a solid mutual happiness.\r\nFred surprised his neighbors in various ways. He became rather\r\ndistinguished in his side of the county as a theoretic and practical\r\nfarmer,"
+            }
+          ]
+        },
+        {
+          "questionId": "dorothea-choice",
+          "evidence": [
+            {
+              "start": 1058486,
+              "end": 1058719,
+              "relevance": 3,
+              "description": "Casaubon's codicil makes marrying Ladislaw cost Dorothea her inherited property.",
+              "quote": "he has made a codicil to his will, to say the property was all to\r\ngo away from you if you married—I mean—”\r\n\r\n“That is of no consequence,” said Dorothea, breaking in impetuously.\r\n\r\n“But if you married Mr. Ladislaw, not anybody else"
+            },
+            {
+              "start": 1781290,
+              "end": 1781358,
+              "relevance": 3,
+              "description": "Dorothea explicitly commits to marrying Ladislaw.",
+              "quote": "I have promised to marry Mr.\r\nLadislaw; and I am going to marry him."
+            }
+          ]
+        },
+        {
+          "questionId": "lydgate-fate",
+          "evidence": [
+            {
+              "start": 1804900,
+              "end": 1805364,
+              "relevance": 3,
+              "description": "The finale gives his age at death and his failure to achieve his original ambitions.",
+              "quote": "He died when he was only fifty,\r\nleaving his wife and children provided for by a heavy insurance on his\r\nlife. He had gained an excellent practice, alternating, according to\r\nthe season, between London and a Continental bathing-place; having\r\nwritten a treatise on Gout, a disease which has a good deal of wealth\r\non its side. His skill was relied on by many paying patients, but he\r\nalways regarded himself as a failure: he had not done what he once\r\nmeant to do."
+            }
+          ]
+        },
+        {
+          "questionId": "unanswerable-publication-sales",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "datasetId": 2,
+      "source": "../books/Moby-Dick.txt",
+      "sourceSha256": "9a6844ac0703853720010787c7b6c70b0020f1ab1862dcd74452fa46474d1215",
+      "questions": [
+        {
+          "questionId": "narrator",
+          "evidence": [
+            {
+              "start": 28899,
+              "end": 28915,
+              "relevance": 3,
+              "description": "The narrator explicitly asks to be called Ishmael.",
+              "quote": "Call me Ishmael."
+            }
+          ]
+        },
+        {
+          "questionId": "pequod",
+          "evidence": [
+            {
+              "start": 173000,
+              "end": 173106,
+              "relevance": 3,
+              "description": "The Pequod is chosen for the voyage.",
+              "quote": "on board the Pequod, looked around her for\r\na moment, and then decided that this was the very ship for us."
+            }
+          ]
+        },
+        {
+          "questionId": "queequeg-role",
+          "evidence": [
+            {
+              "start": 148826,
+              "end": 148883,
+              "relevance": 3,
+              "description": "Queequeg is explicitly described as an experienced harpooneer.",
+              "quote": "I now felt for Queequeg, he was an experienced harpooneer"
+            },
+            {
+              "start": 276035,
+              "end": 276122,
+              "relevance": 2,
+              "description": "Queequeg is assigned to Starbuck among the harpooneers.",
+              "quote": "First of all was Queequeg, whom Starbuck, the chief mate, had selected\r\nfor his squire."
+            }
+          ]
+        },
+        {
+          "questionId": "ahab-leg",
+          "evidence": [
+            {
+              "start": 200016,
+              "end": 200072,
+              "relevance": 2,
+              "description": "Ahab's lost leg is attributed to a whale on the previous voyage.",
+              "quote": "since he lost his leg last voyage by that accursed whale"
+            },
+            {
+              "start": 372308,
+              "end": 372405,
+              "relevance": 3,
+              "description": "Ahab identifies Moby Dick as the whale that took his leg.",
+              "quote": "it was Moby Dick that dismasted me; Moby Dick that\r\nbrought me to this dead stump I stand on now."
+            },
+            {
+              "start": 411021,
+              "end": 411058,
+              "relevance": 3,
+              "description": "The narrative directly states that Moby Dick took Ahab's leg.",
+              "quote": "Moby Dick had reaped away\r\nAhab’s leg"
+            }
+          ]
+        },
+        {
+          "questionId": "starbuck-position",
+          "evidence": [
+            {
+              "start": 240884,
+              "end": 240945,
+              "relevance": 3,
+              "description": "Peleg addresses Starbuck as the chief mate.",
+              "quote": "turning to\r\nthe chief mate, Peleg said:\r\n\r\n“Now, Mr. Starbuck"
+            },
+            {
+              "start": 276067,
+              "end": 276122,
+              "relevance": 3,
+              "description": "Starbuck is explicitly identified as chief mate.",
+              "quote": "Starbuck, the chief mate, had selected\r\nfor his squire."
+            }
+          ]
+        },
+        {
+          "questionId": "gold-ounce",
+          "evidence": [
+            {
+              "start": 370244,
+              "end": 370305,
+              "relevance": 3,
+              "description": "Ahab offers a gold ounce for the first sighting of the white whale.",
+              "quote": "that same white whale, he shall have this gold ounce, my boys"
+            }
+          ]
+        },
+        {
+          "questionId": "white-whale-features",
+          "evidence": [
+            {
+              "start": 408659,
+              "end": 408736,
+              "relevance": 3,
+              "description": "Moby Dick's distinguishing forehead and white hump are described.",
+              "quote": "a peculiar snow-white wrinkled\r\nforehead, and a high, pyramidical white hump."
+            }
+          ]
+        },
+        {
+          "questionId": "life-buoy",
+          "evidence": [
+            {
+              "start": 1135223,
+              "end": 1136388,
+              "relevance": 3,
+              "description": "Queequeg's coffin is ordered to be converted into a life-buoy.",
+              "quote": "Queequeg hinted a\r\nhint concerning his coffin.\r\n\r\n“A life-buoy of a coffin!” cried Starbuck, starting.\r\n\r\n“Rather queer, that, I should say,” said Stubb.\r\n\r\n“It will make a good enough one,” said Flask, “the carpenter here can\r\narrange it easily.”\r\n\r\n“Bring it up; there’s nothing else for it,” said Starbuck, after a\r\nmelancholy pause. “Rig it, carpenter; do not look at me so—the coffin,\r\nI mean. Dost thou hear me? Rig it.”\r\n\r\n“And shall I nail down the lid, sir?” moving his hand as with a hammer.\r\n\r\n“Aye.”\r\n\r\n“And shall I caulk the seams, sir?” moving his hand as with a\r\ncaulking-iron.\r\n\r\n“Aye.”\r\n\r\n“And shall I then pay over the same with pitch, sir?” moving his hand\r\nas with a pitch-pot.\r\n\r\n“Away! what possesses thee to this? Make a life-buoy of the coffin, and\r\nno more.—Mr. Stubb, Mr. Flask, come forward with me.”\r\n\r\n“He goes off in a huff. The whole he can endure; at the parts he\r\nbaulks. Now I don’t like this. I make a leg for Captain Ahab, and he\r\nwears it like a gentleman; but I make a bandbox for Queequeg, and he\r\nwon’t put his head into it. Are all my pains to go for nothing with\r\nthat coffin? And now I’m ordered to make a life-buoy of it."
+            }
+          ]
+        },
+        {
+          "questionId": "ishmael-survival",
+          "evidence": [
+            {
+              "start": 1241355,
+              "end": 1241457,
+              "relevance": 3,
+              "description": "The narrator survives by floating on the coffin.",
+              "quote": "Buoyed up by that coffin, for almost\r\none whole day and night, I floated on a soft and dirgelike main."
+            },
+            {
+              "start": 1241667,
+              "end": 1241776,
+              "relevance": 3,
+              "description": "The Rachel rescues the surviving narrator.",
+              "quote": "devious-cruising Rachel, that in her retracing search after her missing\r\nchildren, only found another orphan."
+            }
+          ]
+        },
+        {
+          "questionId": "unanswerable-birth-year",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "datasetId": 1,
+      "source": "../books/Odyssey.txt",
+      "sourceSha256": "ffbdb29c3dda284b65c11243db1a98167826a70c81bca2ed4b6232f86c905fb9",
+      "questions": [
+        {
+          "questionId": "calypso",
+          "evidence": [
+            {
+              "start": 185656,
+              "end": 185705,
+              "relevance": 3,
+              "description": "Odysseus explicitly states that he stayed with Calypso for seven years.",
+              "quote": "I stayed with Calypso seven years straight on end"
+            }
+          ]
+        },
+        {
+          "questionId": "argos",
+          "evidence": [
+            {
+              "start": 453907,
+              "end": 454036,
+              "relevance": 2,
+              "description": "Argos recognizes his returning master and reacts to him.",
+              "quote": "As soon as he saw\r\nUlysses standing there, he dropped his ears and wagged his tail, but he\r\ncould not get close up to his master."
+            },
+            {
+              "start": 455026,
+              "end": 455077,
+              "relevance": 3,
+              "description": "Argos dies immediately after recognizing his master.",
+              "quote": "Argos died as soon as he had recognised his master."
+            }
+          ]
+        },
+        {
+          "questionId": "bow-contest",
+          "evidence": [
+            {
+              "start": 565158,
+              "end": 565289,
+              "relevance": 2,
+              "description": "Ulysses strings the great bow.",
+              "quote": "But Ulysses, when he had taken it up and examined it all over, strung\r\nit as easily as a skilled bard strings a new peg of his lyre"
+            },
+            {
+              "start": 565999,
+              "end": 566118,
+              "relevance": 3,
+              "description": "His arrow passes through all the axe handle-holes.",
+              "quote": "his arrow pierced every one of the handle-holes of\r\nthe axes from the first onwards till it had gone right through them"
+            }
+          ]
+        },
+        {
+          "questionId": "calypso-and-argos",
+          "evidence": [
+            {
+              "start": 185656,
+              "end": 185705,
+              "relevance": 3,
+              "description": "Odysseus stayed with Calypso for seven years.",
+              "quote": "I stayed with Calypso seven years straight on end"
+            },
+            {
+              "start": 455026,
+              "end": 455077,
+              "relevance": 3,
+              "description": "Argos died immediately after recognizing his master.",
+              "quote": "Argos died as soon as he had recognised his master."
+            }
+          ]
+        },
+        {
+          "questionId": "lotus-eaters",
+          "evidence": [
+            {
+              "start": 225378,
+              "end": 225601,
+              "relevance": 3,
+              "description": "The lotus makes the men forget home and want to remain with the Lotus-eaters.",
+              "quote": "those who ate of it left off caring about\r\nhome, and did not even want to go back and say what had happened to\r\nthem, but were for staying and munching lotus77 with the Lotus-eaters\r\nwithout thinking further of their return"
+            }
+          ]
+        },
+        {
+          "questionId": "sirens",
+          "evidence": [
+            {
+              "start": 314210,
+              "end": 314464,
+              "relevance": 2,
+              "description": "Circe instructs Odysseus to use wax and have himself tied to the mast.",
+              "quote": "stop your men’s ears with wax that\r\nnone of them may hear; but if you like you can listen yourself, for you\r\nmay get the men to bind you as you stand upright on a cross piece half\r\nway up the mast,99 and they must lash the rope’s ends to the mast\r\nitself"
+            },
+            {
+              "start": 320906,
+              "end": 321272,
+              "relevance": 3,
+              "description": "The crew use wax and bind Odysseus hand and foot to the mast.",
+              "quote": "a large wheel of wax and cut it\r\nup small with my sword. Then I kneaded the wax in my strong hands till\r\nit became soft, which it soon did between the kneading and the rays of\r\nthe sun-god son of Hyperion. Then I stopped the ears of all my men, and\r\nthey bound me hands and feet to the mast as I stood upright on the\r\ncross piece; but they went on rowing themselves."
+            }
+          ]
+        },
+        {
+          "questionId": "scylla",
+          "evidence": [
+            {
+              "start": 324476,
+              "end": 324546,
+              "relevance": 3,
+              "description": "Scylla snatches six men from the ship.",
+              "quote": "Scylla pounced down suddenly upon us and\r\nsnatched up my six best men."
+            }
+          ]
+        },
+        {
+          "questionId": "euryclea-scar",
+          "evidence": [
+            {
+              "start": 512674,
+              "end": 512808,
+              "relevance": 3,
+              "description": "The old nurse recognizes the scar caused by a wild boar.",
+              "quote": "as soon as she began washing\r\nher master, she at once knew the scar as one that had been given him by\r\na wild boar when he was hunting"
+            },
+            {
+              "start": 516514,
+              "end": 516747,
+              "relevance": 3,
+              "description": "Euryclea recognizes Odysseus by the scar on his leg.",
+              "quote": "how the boar had ripped him when he was\r\nout hunting with Autolycus and his sons on Mt. Parnassus.\r\n\r\nAs soon as Euryclea had got the scarred limb in her hands and had well\r\nhold of it, she recognised it and dropped the foot at once."
+            }
+          ]
+        },
+        {
+          "questionId": "olive-tree-bed",
+          "evidence": [
+            {
+              "start": 600684,
+              "end": 600875,
+              "relevance": 2,
+              "description": "Penelope tests Odysseus by ordering the bed to be moved.",
+              "quote": "take his bed outside the bed chamber that he\r\nhimself built. Bring the bed outside this room, and put bedding upon it\r\nwith fleeces, good coverlets, and blankets.”\r\n\r\nShe said this to try him"
+            },
+            {
+              "start": 601330,
+              "end": 601925,
+              "relevance": 3,
+              "description": "Odysseus describes making the bed from a rooted olive tree.",
+              "quote": "There was a\r\nyoung olive growing within the precincts of the house, in full vigour,\r\nand about as thick as a bearing-post. I built my room round this with\r\nstrong walls of stone and a roof to cover them, and I made the doors\r\nstrong and well-fitting. Then I cut off the top boughs of the olive\r\ntree and left the stump standing. This I dressed roughly from the root\r\nupwards and then worked with carpenter’s tools well and skilfully,\r\nstraightening my work by drawing a line on the wood, and making it into\r\na bed-prop. I then bored a hole down the middle, and made it the\r\ncentre-post of my bed"
+            },
+            {
+              "start": 602211,
+              "end": 602256,
+              "relevance": 2,
+              "description": "Moving the bed would require cutting the olive tree at its roots.",
+              "quote": "by cutting down the olive tree at its\r\nroots."
+            },
+            {
+              "start": 603182,
+              "end": 603512,
+              "relevance": 2,
+              "description": "Penelope accepts his knowledge of their private bed as proof.",
+              "quote": "Now,\r\nhowever, that you have convinced me by showing that you know all about\r\nour bed (which no human being has ever seen but you and I and a single\r\nmaidservant, the daughter of Actor, who was given me by my father on my\r\nmarriage, and who keeps the doors of our room) hard of belief though I\r\nhave been I can mistrust no longer."
+            }
+          ]
+        },
+        {
+          "questionId": "unanswerable-tuition",
+          "evidence": []
+        }
+      ]
+    }
+  ]
+}

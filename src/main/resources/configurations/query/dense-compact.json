@@ -1,0 +1,11 @@
+{
+  "id": 5,
+  "name": "Dense compact context",
+  "description": "Tests dense retrieval under a 2500-character context budget; 32 candidates and a 32-chunk cap keep the character budget as the main constraint.",
+  "parameters": {
+    "retrievalMode": "dense",
+    "denseCandidateLimit": "32",
+    "contextCharBudget": "2500",
+    "maxChunks": "32"
+  }
+}

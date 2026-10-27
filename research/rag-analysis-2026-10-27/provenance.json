@@ -1,0 +1,14 @@
+{
+  "source_report": "/mnt/d/projects/@UNIVERSITY/university-cli/build/libs/reports/run-2026-10-26-23-21-59/report.json",
+  "source_compare": "/mnt/d/projects/@UNIVERSITY/university-cli/build/libs/reports/run-2026-10-26-23-21-59/compare.json",
+  "report_sha256": "965564c8b957c473849eb786b882c2df6dda2905def140ce26dbd7c1cf2be011",
+  "compare_sha256": "ad33196297b8dee974db38b7ddd320e751d16fcf6299cfb2eef0066b2f66314e",
+  "evaluation_rows": 240,
+  "unique_questions": 30,
+  "notes": [
+    "No new model inference was run.",
+    "Query tokens combine embedding and generation counts as reported; judge excluded.",
+    "Latency is ask operation log duration, excluding judge.",
+    "Scores are original automated verdicts, without manual corrections."
+  ]
+}

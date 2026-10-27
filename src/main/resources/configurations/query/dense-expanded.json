@@ -1,0 +1,11 @@
+{
+  "id": 6,
+  "name": "Dense expanded context",
+  "description": "Tests dense retrieval under an 11000-character context budget; 32 candidates and a 32-chunk cap accommodate the finer 500-character index.",
+  "parameters": {
+    "retrievalMode": "dense",
+    "denseCandidateLimit": "32",
+    "contextCharBudget": "11000",
+    "maxChunks": "32"
+  }
+}
