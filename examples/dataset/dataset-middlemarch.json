@@ -1,0 +1,121 @@
+{
+  "id": 3,
+  "name": "Middlemarch indexing comparison",
+  "description": "Compares fixed-size and recursive indexing on Middlemarch with all built-in retrieval profiles.",
+  "indexProfileIds": [1, 2],
+  "queryProfileIds": [1, 2, 3, 4],
+  "file": "../books/Middlemarch.txt",
+  "questions": [
+    {
+      "id": "dorothea-sister",
+      "question": "What is the name of Dorothea Brooke's younger sister?",
+      "expectedAnswer": "Dorothea's younger sister is Celia Brooke.",
+      "tags": ["exact-term", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 25, "relevance": 3, "description": "Celia is identified in relation to her elder sister Dorothea."}],
+        "2": [{"chunkId": 32, "relevance": 3, "description": "Celia is identified in relation to her elder sister Dorothea."}]
+      }
+    },
+    {
+      "id": "casaubon-work",
+      "question": "What is the title of the scholarly work Mr. Casaubon is trying to complete?",
+      "expectedAnswer": "Casaubon's work is titled the Key to All Mythologies.",
+      "tags": ["exact-term", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 129, "relevance": 3, "description": "Casaubon's great work is explicitly named the Key to All Mythologies."}],
+        "2": [{"chunkId": 171, "relevance": 3, "description": "Casaubon's great work is explicitly named the Key to All Mythologies."}]
+      }
+    },
+    {
+      "id": "lydgate-research",
+      "question": "What scientific subject does Lydgate hope to investigate?",
+      "expectedAnswer": "Lydgate hopes to investigate primitive tissue and discover its fundamental nature.",
+      "tags": ["paraphrase", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 588, "relevance": 3, "description": "The primitive tissue is described as the unresolved subject of Lydgate's research."}],
+        "2": [{"chunkId": 772, "relevance": 3, "description": "The primitive tissue is described as the unresolved subject of Lydgate's research."}]
+      }
+    },
+    {
+      "id": "featherstone-heir",
+      "question": "Who receives the residue of Peter Featherstone's property and must take the Featherstone name?",
+      "expectedAnswer": "Joshua Rigg receives the residue and is required to take the name Featherstone.",
+      "tags": ["exact-term", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 725, "relevance": 3, "description": "Joshua Rigg is named the residuary legatee and instructed to take the Featherstone name."}],
+        "2": [{"chunkId": 952, "relevance": 3, "description": "Joshua Rigg is named the residuary legatee and instructed to take the Featherstone name."}]
+      }
+    },
+    {
+      "id": "casaubon-codicil",
+      "question": "Under what condition would Dorothea lose the property left to her by Casaubon?",
+      "expectedAnswer": "Dorothea would lose Casaubon's property if she married Will Ladislaw.",
+      "tags": ["paraphrase", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 1059, "relevance": 3, "description": "The codicil removes Dorothea's inheritance if she marries Will Ladislaw."}],
+        "2": [{"chunkId": 1395, "relevance": 3, "description": "The codicil removes Dorothea's inheritance if she marries Will Ladislaw."}]
+      }
+    },
+    {
+      "id": "bulstrode-raffles",
+      "question": "How does Bulstrode disobey Lydgate's instruction that Raffles must receive no alcohol?",
+      "expectedAnswer": "Bulstrode gives Mrs. Abel the key to the wine-cooler and allows her to give Raffles brandy.",
+      "tags": ["multi-fact", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {"chunkId": 1533, "relevance": 2, "description": "Lydgate explicitly orders that Raffles receive no alcohol."},
+          {"chunkId": 1543, "relevance": 3, "description": "Bulstrode gives Mrs. Abel the wine-cooler key and makes brandy available."}
+        ],
+        "2": [
+          {"chunkId": 2023, "relevance": 2, "description": "Lydgate explicitly orders that Raffles receive no alcohol."},
+          {"chunkId": 2036, "relevance": 3, "description": "Bulstrode gives Mrs. Abel the wine-cooler key and makes brandy available."},
+          {"chunkId": 2037, "relevance": 2, "description": "The overlapped continuation also records access to the brandy."}
+        ]
+      }
+    },
+    {
+      "id": "fred-mary",
+      "question": "Whom does Fred Vincy marry, and what occupation does he successfully pursue?",
+      "expectedAnswer": "Fred marries Mary Garth and becomes a successful farmer.",
+      "tags": ["multi-fact", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 1800, "relevance": 3, "description": "The finale describes Fred and Mary's happy marriage and Fred's work as a farmer."}],
+        "2": [{"chunkId": 2386, "relevance": 3, "description": "The finale describes Fred and Mary's happy marriage and Fred's work as a farmer."}]
+      }
+    },
+    {
+      "id": "dorothea-choice",
+      "question": "Whom does Dorothea ultimately decide to marry, and what inheritance does that decision cost her?",
+      "expectedAnswer": "Dorothea decides to marry Will Ladislaw, which costs her the property inherited from Casaubon.",
+      "tags": ["multi-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {"chunkId": 1059, "relevance": 3, "description": "Casaubon's codicil makes marriage to Will cost Dorothea her inheritance."},
+          {"chunkId": 1782, "relevance": 3, "description": "Dorothea states that she has promised to marry Will Ladislaw."}
+        ],
+        "2": [
+          {"chunkId": 1395, "relevance": 3, "description": "Casaubon's codicil makes marriage to Will cost Dorothea her inheritance."},
+          {"chunkId": 2361, "relevance": 3, "description": "Dorothea states that she has promised to marry Will Ladislaw."},
+          {"chunkId": 2362, "relevance": 2, "description": "The overlapped continuation confirms Dorothea's decision to marry Will."}
+        ]
+      }
+    },
+    {
+      "id": "lydgate-fate",
+      "question": "At what age does Lydgate die, and why does he regard his successful medical career as a failure?",
+      "expectedAnswer": "Lydgate dies at fifty and considers himself a failure because he never accomplishes the scientific work he originally intended to do.",
+      "tags": ["multi-fact", "single-hop"],
+      "goldChunksByIndexProfile": {
+        "1": [{"chunkId": 1805, "relevance": 3, "description": "The finale gives Lydgate's age at death and explains his sense of failure."}],
+        "2": [{"chunkId": 2393, "relevance": 3, "description": "The finale gives Lydgate's age at death and explains his sense of failure."}]
+      }
+    },
+    {
+      "id": "unanswerable-publication-sales",
+      "question": "How many printed copies of Middlemarch were sold during 2025?",
+      "expectedAnswer": "The indexed book does not contain this information.",
+      "tags": ["unanswerable"],
+      "goldChunksByIndexProfile": {"1": [], "2": []}
+    }
+  ]
+}

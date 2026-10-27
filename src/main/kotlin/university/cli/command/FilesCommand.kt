@@ -42,7 +42,12 @@ class FilesCommand(
         if (files.isEmpty()) {
             CommandResult("No matching project text files found.")
         } else {
-            CommandResult(lines = files.flatMapIndexed(::formatFile))
+            CommandResult(
+                lines = files
+                    .groupBy(ProjectFileStatus::fileName)
+                    .values
+                    .flatMapIndexed(::formatFile),
+            )
         }
     } catch (error: IllegalArgumentException) {
         usageError(error.message ?: "Invalid arguments")
@@ -57,12 +62,26 @@ class FilesCommand(
         else -> true
     }
 
-    private fun formatFile(index: Int, file: ProjectFileStatus): List<CommandOutputLine> = buildList {
+    private fun formatFile(index: Int, files: List<ProjectFileStatus>): List<CommandOutputLine> = buildList {
+        val fileName = files.first().fileName
         if (index > 0) add(CommandOutputLine(""))
-        add(CommandOutputLine(topBorder(file.fileName), CommandMessageType.ACCENT))
-        addField("Status", file.status.name, file.status.messageType())
-        file.indexId?.let { addField("Index", it.toString()) }
-        file.indexProfileId?.let { addField("Index profile", it.toString()) }
+        add(CommandOutputLine(topBorder(fileName), CommandMessageType.ACCENT))
+
+        if (files.size == 1 && files.first().indexId == null) {
+            val file = files.first()
+            addField("Status", file.status.name, file.status.messageType())
+        } else {
+            files.forEach { file ->
+                val index = file.indexId ?: return@forEach
+                val profile = file.indexProfileId?.toString() ?: "UNKNOWN"
+                addField(
+                    "Index $index",
+                    "profile $profile — ${file.status.name}",
+                    file.status.messageType(),
+                )
+            }
+        }
+
         add(CommandOutputLine("╰${"─".repeat(BOX_INNER_WIDTH)}╯", CommandMessageType.ACCENT))
     }
 
