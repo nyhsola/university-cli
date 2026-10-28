@@ -1,0 +1,54 @@
+{
+  "default": "Every curated span is a separate required group; alternatives and optional contextual spans use explicit overrides.",
+  "overrides": {
+    "argos": [
+      [
+        1
+      ]
+    ],
+    "queequeg-role": [
+      [
+        0,
+        1
+      ]
+    ],
+    "ahab-leg": [
+      [
+        1,
+        2
+      ]
+    ],
+    "starbuck-position": [
+      [
+        0,
+        1
+      ]
+    ],
+    "sirens": [
+      [
+        0,
+        1
+      ]
+    ],
+    "euryclea-scar": [
+      [
+        0,
+        1
+      ]
+    ],
+    "olive-tree-bed": [
+      [
+        1
+      ],
+      [
+        2
+      ]
+    ],
+    "bulstrode-raffles": [
+      [
+        1
+      ]
+    ]
+  },
+  "warning": "A diagnostic projection of curated source spans, not a human-validated semantic evidence metric; no claims of ground-truth completeness."
+}

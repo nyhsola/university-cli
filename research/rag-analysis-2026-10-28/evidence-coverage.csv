@@ -1,0 +1,2808 @@
+dataset_id,question_id,index_id,query_id,verdict,full_reference_evidence,any_reference_evidence,mean_group_coverage,group_count,group_coverages,gold_recall_at5
+3,dorothea-sister,1,1,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,1,2,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,1,3,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,1,4,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,1,5,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,1,6,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,1,7,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,1,8,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,1,9,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,1,10,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,1,11,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,1,12,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,1,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-work,1,1,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,1,2,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,1,3,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,1,4,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,1,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,1,6,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,1,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,1,8,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,1,9,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,1,10,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,1,11,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,1,12,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,1,13,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,1,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,1,2,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,1,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,1,4,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,1,5,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,1,6,not_complete,True,True,1.0,1,1.00000,0.0
+3,lydgate-research,1,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,1,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,1,9,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,1,10,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,1,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,1,12,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,1,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,1,1,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,1,2,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,1,3,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,1,4,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,1,5,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,1,6,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,1,7,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,1,8,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,1,9,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,1,10,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,1,11,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,1,12,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,1,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,1,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,2,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,3,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,4,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,5,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,6,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,7,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,8,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,9,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,10,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,11,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,12,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,1,13,complete,True,True,1.0,1,1.00000,1.0
+3,bulstrode-raffles,1,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,1,2,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,1,3,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,1,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,1,5,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,1,6,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,1,7,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,1,8,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,1,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,1,10,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,1,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,1,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,1,13,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,1,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,1,2,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,1,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,1,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,1,5,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,1,6,incorrect,True,True,1.0,1,1.00000,1.0
+3,fred-mary,1,7,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,1,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,1,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,1,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,1,11,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,1,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,1,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-choice,1,1,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,1,2,complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,1,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,1,4,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,1,5,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,1,6,complete,True,True,1.0,2,1.00000 1.00000,0.5
+3,dorothea-choice,1,7,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,1,8,not_complete,False,True,0.5,2,0.00000 1.00000,0.0
+3,dorothea-choice,1,9,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,1,10,complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,1,11,complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,1,12,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,1,13,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,lydgate-fate,1,1,incorrect,False,True,0.21551724137931033,1,0.21552,1.0
+3,lydgate-fate,1,2,not_complete,False,True,0.21551724137931033,1,0.21552,1.0
+3,lydgate-fate,1,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,1,4,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,1,5,not_complete,False,True,0.21551724137931033,1,0.21552,1.0
+3,lydgate-fate,1,6,incorrect,False,True,0.21551724137931033,1,0.21552,1.0
+3,lydgate-fate,1,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,1,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,1,9,incorrect,False,True,0.21551724137931033,1,0.21552,1.0
+3,lydgate-fate,1,10,incorrect,False,True,0.21551724137931033,1,0.21552,1.0
+3,lydgate-fate,1,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,1,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,1,13,not_complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,2,1,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,2,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,2,3,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,2,4,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,2,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,2,6,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,2,7,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,2,8,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,2,9,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,2,10,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,2,11,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,2,12,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,2,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-work,2,1,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,2,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,2,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,2,4,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,2,5,not_complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,2,6,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,2,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,2,8,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,2,9,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,2,10,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,2,11,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,2,12,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,2,13,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,1,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,2,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,4,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,5,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,6,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,9,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,10,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,12,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,2,13,not_complete,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,2,1,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,2,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,2,3,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,2,4,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,2,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,2,6,complete,True,True,1.0,1,1.00000,0.0
+3,featherstone-heir,2,7,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,2,8,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,2,9,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,2,10,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,2,11,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,2,12,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,2,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,2,1,incorrect,False,True,0.7854077253218884,1,0.78541,0.0
+3,casaubon-codicil,2,2,incorrect,False,True,0.7854077253218884,1,0.78541,0.0
+3,casaubon-codicil,2,3,complete,False,True,0.7854077253218884,1,0.78541,0.0
+3,casaubon-codicil,2,4,incorrect,False,True,0.7854077253218884,1,0.78541,0.0
+3,casaubon-codicil,2,5,complete,False,True,0.7854077253218884,1,0.78541,0.0
+3,casaubon-codicil,2,6,complete,False,True,0.7854077253218884,1,0.78541,0.0
+3,casaubon-codicil,2,7,not_complete,False,True,0.7854077253218884,1,0.78541,0.0
+3,casaubon-codicil,2,8,not_complete,False,True,0.7854077253218884,1,0.78541,0.0
+3,casaubon-codicil,2,9,incorrect,False,True,0.7854077253218884,1,0.78541,0.0
+3,casaubon-codicil,2,10,incorrect,False,True,0.7854077253218884,1,0.78541,0.0
+3,casaubon-codicil,2,11,not_complete,False,True,0.7854077253218884,1,0.78541,0.0
+3,casaubon-codicil,2,12,not_complete,False,True,0.7854077253218884,1,0.78541,0.0
+3,casaubon-codicil,2,13,incorrect,False,True,0.7854077253218884,1,0.78541,0.0
+3,bulstrode-raffles,2,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,2,2,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,2,3,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+3,bulstrode-raffles,2,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,2,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,2,6,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,2,7,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+3,bulstrode-raffles,2,8,not_complete,False,False,0.0,1,0.00000,0.3333333333333333
+3,bulstrode-raffles,2,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,2,10,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,2,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,2,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,2,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,2,1,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,2,2,not_complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,2,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,2,4,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,2,5,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,2,6,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,2,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,2,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,2,9,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,2,10,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,2,11,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,2,12,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,2,13,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-choice,2,1,incorrect,False,True,0.5,2,0.00000 1.00000,0.6666666666666666
+3,dorothea-choice,2,2,complete,False,True,0.5,2,0.00000 1.00000,0.6666666666666666
+3,dorothea-choice,2,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,2,4,error,False,True,0.5,2,0.00000 1.00000,0.6666666666666666
+3,dorothea-choice,2,5,not_complete,False,True,0.5,2,0.00000 1.00000,0.3333333333333333
+3,dorothea-choice,2,6,complete,False,True,0.5,2,0.00000 1.00000,0.6666666666666666
+3,dorothea-choice,2,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,2,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,2,9,not_complete,False,True,0.5,2,0.00000 1.00000,0.6666666666666666
+3,dorothea-choice,2,10,not_complete,False,True,0.5,2,0.00000 1.00000,0.6666666666666666
+3,dorothea-choice,2,11,incorrect,False,True,0.5,2,0.00000 1.00000,0.6666666666666666
+3,dorothea-choice,2,12,incorrect,False,True,0.5,2,0.00000 1.00000,0.6666666666666666
+3,dorothea-choice,2,13,incorrect,False,True,0.5,2,0.00000 1.00000,0.6666666666666666
+3,lydgate-fate,2,1,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,2,2,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,2,3,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,2,4,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,2,5,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,2,6,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,2,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,2,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,2,9,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,2,10,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,2,11,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,2,12,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,2,13,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,3,1,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,3,2,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,3,3,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,3,4,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,3,5,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,3,6,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,3,7,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,3,8,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,3,9,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,3,10,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,3,11,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,3,12,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,3,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-work,3,1,error,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,3,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,3,3,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,3,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,3,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,3,6,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,3,7,not_complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,3,8,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,3,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,3,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,3,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,3,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,3,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,1,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,4,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,6,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,9,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,11,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,3,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,3,1,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,3,2,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,3,3,complete,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,3,4,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,3,5,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,3,6,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,3,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,3,8,complete,True,True,1.0,1,1.00000,0.0
+3,featherstone-heir,3,9,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,3,10,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,3,11,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,3,12,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,3,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,3,1,incorrect,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,3,2,not_complete,False,True,0.9399141630901288,1,0.93991,0.5
+3,casaubon-codicil,3,3,not_complete,False,True,0.060085836909871244,1,0.06009,0.5
+3,casaubon-codicil,3,4,incorrect,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,3,5,complete,False,True,0.9399141630901288,1,0.93991,0.5
+3,casaubon-codicil,3,6,complete,False,True,0.9399141630901288,1,0.93991,0.5
+3,casaubon-codicil,3,7,not_complete,False,True,0.060085836909871244,1,0.06009,0.5
+3,casaubon-codicil,3,8,complete,True,True,1.0,1,1.00000,0.5
+3,casaubon-codicil,3,9,incorrect,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,3,10,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,3,11,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,3,12,incorrect,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,3,13,complete,True,True,1.0,1,1.00000,1.0
+3,bulstrode-raffles,3,1,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,3,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,3,3,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,3,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,3,5,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,3,6,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,3,7,not_complete,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,3,8,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,3,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,3,10,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,3,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,3,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,3,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,3,1,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,3,2,not_complete,False,True,0.6188811188811189,1,0.61888,0.5
+3,fred-mary,3,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,3,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,3,5,incorrect,False,True,0.6188811188811189,1,0.61888,0.5
+3,fred-mary,3,6,incorrect,False,True,0.6188811188811189,1,0.61888,0.5
+3,fred-mary,3,7,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,3,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,3,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,3,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,3,11,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,3,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,3,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-choice,3,1,complete,False,True,0.9699570815450644,2,0.93991 1.00000,0.3333333333333333
+3,dorothea-choice,3,2,complete,False,True,0.9699570815450644,2,0.93991 1.00000,0.6666666666666666
+3,dorothea-choice,3,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,3,4,complete,False,True,0.9699570815450644,2,0.93991 1.00000,0.3333333333333333
+3,dorothea-choice,3,5,complete,False,True,0.9699570815450644,2,0.93991 1.00000,0.6666666666666666
+3,dorothea-choice,3,6,complete,False,True,0.9699570815450644,2,0.93991 1.00000,0.6666666666666666
+3,dorothea-choice,3,7,complete,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,3,8,not_complete,False,True,0.5,2,0.00000 1.00000,0.0
+3,dorothea-choice,3,9,complete,False,True,0.9699570815450644,2,0.93991 1.00000,0.3333333333333333
+3,dorothea-choice,3,10,complete,False,True,0.9699570815450644,2,0.93991 1.00000,0.3333333333333333
+3,dorothea-choice,3,11,incorrect,False,True,0.9699570815450644,2,0.93991 1.00000,0.6666666666666666
+3,dorothea-choice,3,12,complete,False,True,0.9699570815450644,2,0.93991 1.00000,0.3333333333333333
+3,dorothea-choice,3,13,not_complete,False,True,0.5,2,0.00000 1.00000,0.3333333333333333
+3,lydgate-fate,3,1,incorrect,False,True,0.21551724137931033,1,0.21552,0.5
+3,lydgate-fate,3,2,incorrect,False,True,0.21551724137931033,1,0.21552,0.5
+3,lydgate-fate,3,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,3,4,not_complete,False,True,0.21551724137931033,1,0.21552,0.5
+3,lydgate-fate,3,5,not_complete,False,True,0.21551724137931033,1,0.21552,0.5
+3,lydgate-fate,3,6,complete,True,True,1.0,1,1.00000,0.5
+3,lydgate-fate,3,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,3,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,3,9,incorrect,False,True,0.21551724137931033,1,0.21552,0.5
+3,lydgate-fate,3,10,not_complete,False,True,0.21551724137931033,1,0.21552,0.5
+3,lydgate-fate,3,11,complete,True,True,1.0,1,1.00000,0.5
+3,lydgate-fate,3,12,not_complete,False,True,0.21551724137931033,1,0.21552,0.5
+3,lydgate-fate,3,13,incorrect,False,True,0.21551724137931033,1,0.21552,0.0
+3,dorothea-sister,4,1,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,4,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,4,3,incorrect,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,4,4,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,4,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,4,6,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,4,7,incorrect,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,4,8,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,4,9,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,4,10,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,4,11,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,4,12,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,4,13,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,4,1,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,4,2,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,4,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,4,4,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,4,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,4,6,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-work,4,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,4,8,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,4,9,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,4,10,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,4,11,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,4,12,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,4,13,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,2,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,3,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,4,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,6,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,8,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,9,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,11,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,12,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,4,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,4,1,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,4,2,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,4,3,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,4,4,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,4,5,not_complete,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,4,6,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,4,7,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,4,8,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,4,9,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,4,10,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,4,11,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,4,12,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,4,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,1,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,2,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,3,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,4,not_complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,5,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,6,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,7,incorrect,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,8,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,9,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,10,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,11,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,12,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,4,13,not_complete,True,True,1.0,1,1.00000,1.0
+3,bulstrode-raffles,4,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,4,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,4,3,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,4,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,4,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,4,6,complete,True,True,1.0,1,1.00000,0.5
+3,bulstrode-raffles,4,7,not_complete,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,4,8,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,4,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,4,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,4,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,4,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,4,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,4,1,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,4,2,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,4,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,4,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,4,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,4,6,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,4,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,4,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,4,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,4,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,4,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,4,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,4,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-choice,4,1,incorrect,False,True,0.5,2,1.00000 0.00000,0.5
+3,dorothea-choice,4,2,complete,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,4,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,4,4,complete,False,True,0.5,2,1.00000 0.00000,0.5
+3,dorothea-choice,4,5,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,4,6,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,4,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,4,8,incorrect,False,True,0.5,2,1.00000 0.00000,0.5
+3,dorothea-choice,4,9,complete,False,True,0.5,2,1.00000 0.00000,0.5
+3,dorothea-choice,4,10,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+3,dorothea-choice,4,11,complete,False,True,0.5,2,1.00000 0.00000,0.5
+3,dorothea-choice,4,12,complete,False,True,0.5,2,1.00000 0.00000,0.5
+3,dorothea-choice,4,13,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,lydgate-fate,4,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,4,2,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,4,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,4,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,4,5,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,4,6,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,4,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,4,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,4,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,4,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,4,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,4,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,4,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,5,1,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,5,2,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,5,3,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,5,4,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,5,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,5,6,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,5,7,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,5,8,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,5,9,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,5,10,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,5,11,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,5,12,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,5,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-work,5,1,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,5,2,not_complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,5,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,5,4,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,5,5,not_complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,5,6,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,5,7,not_complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,5,8,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,5,9,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,5,10,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,5,11,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,5,12,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,5,13,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,1,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,2,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,4,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,5,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,6,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,8,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,9,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,10,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,12,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,5,13,not_complete,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,5,1,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,5,2,not_complete,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,5,3,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,5,4,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,5,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,5,6,complete,True,True,1.0,1,1.00000,0.0
+3,featherstone-heir,5,7,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,5,8,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,5,9,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,5,10,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,5,11,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,5,12,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,5,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,5,1,not_complete,False,True,0.7854077253218884,1,0.78541,0.5
+3,casaubon-codicil,5,2,complete,False,True,0.7854077253218884,1,0.78541,0.5
+3,casaubon-codicil,5,3,complete,False,True,0.7854077253218884,1,0.78541,0.5
+3,casaubon-codicil,5,4,incorrect,False,True,0.7854077253218884,1,0.78541,0.5
+3,casaubon-codicil,5,5,complete,False,True,0.7854077253218884,1,0.78541,0.5
+3,casaubon-codicil,5,6,complete,False,True,0.7854077253218884,1,0.78541,0.5
+3,casaubon-codicil,5,7,incorrect,False,True,0.7854077253218884,1,0.78541,0.5
+3,casaubon-codicil,5,8,complete,False,True,0.7854077253218884,1,0.78541,0.5
+3,casaubon-codicil,5,9,not_complete,False,True,0.7854077253218884,1,0.78541,0.5
+3,casaubon-codicil,5,10,complete,False,True,0.7854077253218884,1,0.78541,0.5
+3,casaubon-codicil,5,11,not_complete,False,True,0.7854077253218884,1,0.78541,0.5
+3,casaubon-codicil,5,12,complete,False,True,0.7854077253218884,1,0.78541,0.5
+3,casaubon-codicil,5,13,not_complete,False,True,0.7854077253218884,1,0.78541,0.5
+3,bulstrode-raffles,5,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,5,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,5,3,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,5,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,5,5,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,5,6,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,5,7,not_complete,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,5,8,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,5,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,5,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,5,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,5,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,5,13,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,5,1,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,5,2,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,5,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,5,4,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,5,5,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,5,6,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,5,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,5,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,5,9,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,5,10,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,5,11,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,5,12,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,5,13,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-choice,5,1,not_complete,False,True,0.5,2,0.00000 1.00000,0.3333333333333333
+3,dorothea-choice,5,2,not_complete,False,True,0.5,2,0.00000 1.00000,0.3333333333333333
+3,dorothea-choice,5,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,5,4,incorrect,False,True,0.5,2,0.00000 1.00000,0.3333333333333333
+3,dorothea-choice,5,5,incorrect,False,True,0.5,2,0.00000 1.00000,0.3333333333333333
+3,dorothea-choice,5,6,complete,False,True,0.8927038626609443,2,0.78541 1.00000,0.3333333333333333
+3,dorothea-choice,5,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,5,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,5,9,incorrect,False,True,0.5,2,0.00000 1.00000,0.3333333333333333
+3,dorothea-choice,5,10,incorrect,False,True,0.5,2,0.00000 1.00000,0.3333333333333333
+3,dorothea-choice,5,11,incorrect,False,True,0.5,2,0.00000 1.00000,0.3333333333333333
+3,dorothea-choice,5,12,incorrect,False,True,0.5,2,0.00000 1.00000,0.3333333333333333
+3,dorothea-choice,5,13,incorrect,False,True,0.5,2,0.00000 1.00000,0.3333333333333333
+3,lydgate-fate,5,1,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,5,2,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,5,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,5,4,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,5,5,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,5,6,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,5,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,5,8,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,5,9,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,5,10,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,5,11,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,5,12,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,5,13,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,6,1,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,6,2,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,6,3,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,6,4,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,6,5,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,6,6,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,6,7,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,6,8,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,6,9,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,6,10,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,6,11,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,6,12,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,6,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-work,6,1,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,6,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,6,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,6,4,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,6,5,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,6,6,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,6,7,not_complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,6,8,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,6,9,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,6,10,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,6,11,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,6,12,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,6,13,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,1,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,2,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,4,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,5,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,6,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,9,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,10,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,11,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,12,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,6,13,not_complete,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,6,1,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,6,2,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,6,3,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,6,4,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,6,5,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,6,6,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,6,7,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,6,8,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,6,9,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,6,10,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,6,11,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,6,12,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,6,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,1,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,2,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,3,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,4,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,5,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,6,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,7,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,8,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,9,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,10,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,11,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,12,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,6,13,complete,True,True,1.0,1,1.00000,1.0
+3,bulstrode-raffles,6,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,6,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,6,3,not_complete,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,6,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,6,5,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,6,6,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,6,7,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,6,8,not_complete,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,6,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,6,10,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,6,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,6,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,6,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,6,1,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,6,2,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,6,3,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,6,4,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,6,5,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,6,6,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,6,7,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,6,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,6,9,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,6,10,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,6,11,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,6,12,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,6,13,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-choice,6,1,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,6,2,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,6,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,6,4,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,6,5,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,6,6,complete,True,True,1.0,2,1.00000 1.00000,0.5
+3,dorothea-choice,6,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,6,8,complete,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,6,9,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,6,10,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,6,11,complete,True,True,1.0,2,1.00000 1.00000,1.0
+3,dorothea-choice,6,12,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,6,13,complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,lydgate-fate,6,1,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,6,2,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,6,3,complete,False,True,0.1724137931034483,1,0.17241,0.5
+3,lydgate-fate,6,4,not_complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,6,5,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,6,6,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,6,7,not_complete,False,True,0.1724137931034483,1,0.17241,0.5
+3,lydgate-fate,6,8,not_complete,False,True,0.1724137931034483,1,0.17241,0.5
+3,lydgate-fate,6,9,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,6,10,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,6,11,incorrect,False,True,0.1724137931034483,1,0.17241,0.5
+3,lydgate-fate,6,12,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-fate,6,13,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,7,1,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,7,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,7,3,incorrect,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,7,4,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,7,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,7,6,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,7,7,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,7,8,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,7,9,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,7,10,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,7,11,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,7,12,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,7,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-work,7,1,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,7,2,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,7,3,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,7,4,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,7,5,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,7,6,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,7,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,7,8,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,7,9,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,7,10,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,7,11,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,7,12,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,7,13,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,2,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,4,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,6,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,12,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,7,13,not_complete,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,7,1,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,7,2,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,7,3,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,7,4,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,7,5,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,7,6,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,7,7,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,7,8,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,7,9,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,7,10,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,7,11,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,7,12,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,7,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,7,1,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,7,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-codicil,7,3,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,7,4,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,7,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-codicil,7,6,complete,True,True,1.0,1,1.00000,0.0
+3,casaubon-codicil,7,7,incorrect,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,7,8,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,7,9,not_complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,7,10,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,7,11,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,7,12,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,7,13,complete,True,True,1.0,1,1.00000,1.0
+3,bulstrode-raffles,7,1,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,7,2,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,7,3,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,7,4,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,7,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,7,6,not_complete,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,7,7,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,7,8,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,7,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,7,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,7,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,7,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,7,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,7,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,7,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,7,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,7,4,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,7,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,7,6,complete,True,True,1.0,1,1.00000,0.0
+3,fred-mary,7,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,7,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,7,9,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,7,10,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,7,11,complete,True,True,1.0,1,1.00000,1.0
+3,fred-mary,7,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,7,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-choice,7,1,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,7,2,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,7,3,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,7,4,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,7,5,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,7,6,complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,7,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,7,8,incorrect,False,True,0.5,2,0.00000 1.00000,0.0
+3,dorothea-choice,7,9,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,7,10,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,7,11,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,7,12,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,7,13,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,lydgate-fate,7,1,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,7,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,7,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,7,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,7,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,7,6,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,7,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,7,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,7,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,7,10,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,7,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,7,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,7,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,8,1,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,8,2,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,8,3,incorrect,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,8,4,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,8,5,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,8,6,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,8,7,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,8,8,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,8,9,complete,True,True,1.0,1,1.00000,1.0
+3,dorothea-sister,8,10,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,8,11,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,8,12,complete,False,False,0.0,1,0.00000,0.0
+3,dorothea-sister,8,13,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,2,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,3,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,6,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,8,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,11,complete,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,casaubon-work,8,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,8,1,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,8,2,not_complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-research,8,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,8,4,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,8,5,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,8,6,complete,True,True,1.0,1,1.00000,1.0
+3,lydgate-research,8,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,8,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,8,9,complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,8,10,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,8,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,8,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-research,8,13,complete,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,8,1,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,8,2,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,8,3,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,8,4,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,8,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,featherstone-heir,8,6,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,8,7,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,8,8,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,8,9,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,8,10,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,8,11,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,8,12,complete,True,True,1.0,1,1.00000,1.0
+3,featherstone-heir,8,13,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,1,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,2,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,3,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,4,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,5,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,6,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,7,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,8,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,9,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,10,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,11,not_complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,12,complete,True,True,1.0,1,1.00000,1.0
+3,casaubon-codicil,8,13,complete,True,True,1.0,1,1.00000,1.0
+3,bulstrode-raffles,8,1,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,8,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,8,3,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,8,4,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,8,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,8,6,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,8,7,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,8,8,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,8,9,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,8,10,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,8,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,bulstrode-raffles,8,12,incorrect,False,False,0.0,1,0.00000,0.5
+3,bulstrode-raffles,8,13,incorrect,False,False,0.0,1,0.00000,0.5
+3,fred-mary,8,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,8,2,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,8,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,8,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,8,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,8,6,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,8,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,8,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,8,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,8,10,not_complete,False,False,0.0,1,0.00000,0.0
+3,fred-mary,8,11,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,8,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,fred-mary,8,13,incorrect,False,False,0.0,1,0.00000,0.0
+3,dorothea-choice,8,1,complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,8,2,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,8,3,complete,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,8,4,complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,8,5,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,8,6,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,8,7,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+3,dorothea-choice,8,8,complete,False,True,0.5,2,0.00000 1.00000,0.0
+3,dorothea-choice,8,9,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,8,10,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,8,11,complete,True,True,1.0,2,1.00000 1.00000,1.0
+3,dorothea-choice,8,12,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+3,dorothea-choice,8,13,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+3,lydgate-fate,8,1,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,8,2,not_complete,False,True,0.21551724137931033,1,0.21552,1.0
+3,lydgate-fate,8,3,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,8,4,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,8,5,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,8,6,not_complete,False,True,0.21551724137931033,1,0.21552,1.0
+3,lydgate-fate,8,7,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,8,8,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,8,9,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,8,10,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,8,11,not_complete,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,8,12,incorrect,False,False,0.0,1,0.00000,0.0
+3,lydgate-fate,8,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,1,1,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,1,2,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,1,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,1,4,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,1,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,1,6,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,1,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,1,8,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,1,9,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,1,10,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,1,11,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,1,12,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,1,13,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,1,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,1,2,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,1,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,1,4,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,1,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,1,6,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,1,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,1,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,1,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,1,10,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,1,11,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,1,12,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,1,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,1,1,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,1,2,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,1,3,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,1,4,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,1,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,1,6,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,1,7,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,1,8,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,1,9,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,1,10,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,1,11,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,1,12,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,1,13,complete,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,1,1,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,1,2,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,1,3,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,1,4,not_complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,1,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,1,6,complete,True,True,1.0,1,1.00000,0.3333333333333333
+2,ahab-leg,1,7,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,1,8,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,1,9,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,1,10,not_complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,1,11,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,1,12,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,1,13,not_complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,starbuck-position,1,1,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,1,2,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,1,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,1,4,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,1,5,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,1,6,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,1,7,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,1,8,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,1,9,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,1,10,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,1,11,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,1,12,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,1,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,1,1,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,1,2,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,1,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,1,4,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,1,5,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,1,6,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,1,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,1,8,complete,True,True,1.0,1,1.00000,0.0
+2,gold-ounce,1,9,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,1,10,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,1,11,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,1,12,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,1,13,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,1,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,1,2,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,1,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,1,4,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,1,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,1,6,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,1,7,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,1,8,complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,1,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,1,10,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,1,11,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,1,12,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,1,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,life-buoy,1,1,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,1,2,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,1,3,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,1,4,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,1,5,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,1,6,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,1,7,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,1,8,complete,True,True,1.0,1,1.00000,0.5
+2,life-buoy,1,9,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,1,10,not_complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,1,11,not_complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,1,12,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,1,13,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,ishmael-survival,1,1,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,1,2,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,1,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,1,4,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,1,5,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,1,6,incorrect,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,1,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,1,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,1,9,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,1,10,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,1,11,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,1,12,incorrect,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,1,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,narrator,2,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,2,2,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,2,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,2,4,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,2,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,2,6,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,2,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,2,8,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,2,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,2,10,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,2,11,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,2,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,2,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,2,1,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,2,2,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,2,3,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,2,4,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,2,5,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,2,6,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,2,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,2,8,not_complete,False,False,0.0,1,0.00000,0.0
+2,pequod,2,9,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,2,10,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,2,11,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,2,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,2,13,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,2,1,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,2,2,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,2,3,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,2,4,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,2,5,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,2,6,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,2,7,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,2,8,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,2,9,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,2,10,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,2,11,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,2,12,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,2,13,complete,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,2,1,incorrect,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,2,2,complete,True,True,1.0,1,1.00000,0.3333333333333333
+2,ahab-leg,2,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,2,4,incorrect,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,2,5,complete,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,2,6,complete,True,True,1.0,1,1.00000,0.3333333333333333
+2,ahab-leg,2,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,2,8,incorrect,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,2,9,not_complete,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,2,10,complete,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,2,11,incorrect,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,2,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,2,13,complete,True,True,1.0,1,1.00000,0.3333333333333333
+2,starbuck-position,2,1,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,2,2,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,2,3,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,2,4,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,2,5,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,2,6,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,2,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,2,8,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,2,9,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,2,10,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,2,11,not_complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,2,12,not_complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,2,13,complete,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,2,1,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,2,2,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,2,3,not_complete,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,2,4,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,2,5,incorrect,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,2,6,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,2,7,complete,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,2,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,2,9,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,2,10,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,2,11,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,2,12,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,2,13,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,2,1,complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,2,2,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,2,3,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,2,4,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,2,5,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,2,6,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,2,7,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,2,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,2,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,2,10,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,2,11,not_complete,True,True,1.0,1,1.00000,0.0
+2,white-whale-features,2,12,complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,2,13,complete,False,False,0.0,1,0.00000,0.0
+2,life-buoy,2,1,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,2,2,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,2,3,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,2,4,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,2,5,complete,False,True,0.36909871244635195,1,0.36910,0.5
+2,life-buoy,2,6,not_complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,2,7,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,2,8,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,2,9,not_complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,2,10,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,2,11,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,2,12,not_complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,2,13,complete,True,True,1.0,1,1.00000,1.0
+2,ishmael-survival,2,1,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,2,2,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,2,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,2,4,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,2,5,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,2,6,complete,False,True,0.5,2,1.00000 0.00000,0.0
+2,ishmael-survival,2,7,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,2,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,2,9,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,2,10,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,2,11,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,2,12,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,2,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,narrator,3,1,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,3,2,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,3,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,3,4,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,3,5,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,3,6,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,3,7,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,3,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,3,9,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,3,10,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,3,11,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,3,12,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,3,13,not_complete,False,False,0.0,1,0.00000,0.0
+2,pequod,3,1,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,3,2,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,3,3,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,3,4,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,3,5,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,3,6,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,3,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,3,8,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,3,9,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,3,10,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,3,11,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,3,12,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,3,13,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,3,1,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,3,2,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,3,3,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,3,4,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,3,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,3,6,complete,True,True,1.0,1,1.00000,0.0
+2,queequeg-role,3,7,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,3,8,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,3,9,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,3,10,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,3,11,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,3,12,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,3,13,complete,True,True,1.0,1,1.00000,0.5
+2,ahab-leg,3,1,complete,True,True,1.0,1,1.00000,0.6666666666666666
+2,ahab-leg,3,2,incorrect,True,True,1.0,1,1.00000,0.3333333333333333
+2,ahab-leg,3,3,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,3,4,complete,True,True,1.0,1,1.00000,0.6666666666666666
+2,ahab-leg,3,5,incorrect,True,True,1.0,1,1.00000,0.3333333333333333
+2,ahab-leg,3,6,complete,True,True,1.0,1,1.00000,0.3333333333333333
+2,ahab-leg,3,7,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,3,8,incorrect,True,True,1.0,1,1.00000,0.3333333333333333
+2,ahab-leg,3,9,incorrect,True,True,1.0,1,1.00000,0.6666666666666666
+2,ahab-leg,3,10,incorrect,True,True,1.0,1,1.00000,0.6666666666666666
+2,ahab-leg,3,11,complete,True,True,1.0,1,1.00000,0.6666666666666666
+2,ahab-leg,3,12,complete,True,True,1.0,1,1.00000,0.3333333333333333
+2,ahab-leg,3,13,incorrect,True,True,1.0,1,1.00000,0.6666666666666666
+2,starbuck-position,3,1,complete,True,True,1.0,1,1.00000,0.5
+2,starbuck-position,3,2,complete,True,True,1.0,1,1.00000,0.5
+2,starbuck-position,3,3,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,3,4,complete,True,True,1.0,1,1.00000,0.5
+2,starbuck-position,3,5,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,3,6,complete,True,True,1.0,1,1.00000,0.5
+2,starbuck-position,3,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,3,8,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,3,9,complete,True,True,1.0,1,1.00000,0.5
+2,starbuck-position,3,10,complete,True,True,1.0,1,1.00000,0.5
+2,starbuck-position,3,11,complete,True,True,1.0,1,1.00000,0.5
+2,starbuck-position,3,12,complete,True,True,1.0,1,1.00000,0.5
+2,starbuck-position,3,13,complete,True,True,1.0,1,1.00000,0.5
+2,gold-ounce,3,1,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,3,2,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,3,3,complete,True,True,1.0,1,1.00000,0.0
+2,gold-ounce,3,4,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,3,5,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,3,6,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,3,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,3,8,complete,True,True,1.0,1,1.00000,0.0
+2,gold-ounce,3,9,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,3,10,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,3,11,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,3,12,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,3,13,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,3,1,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,3,2,not_complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,3,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,3,4,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,3,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,3,6,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,3,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,3,8,complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,3,9,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,3,10,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,3,11,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,3,12,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,3,13,not_complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,3,1,complete,True,True,1.0,1,1.00000,0.6666666666666666
+2,life-buoy,3,2,complete,False,True,0.5708154506437768,1,0.57082,0.3333333333333333
+2,life-buoy,3,3,not_complete,True,True,1.0,1,1.00000,0.6666666666666666
+2,life-buoy,3,4,complete,True,True,1.0,1,1.00000,0.6666666666666666
+2,life-buoy,3,5,complete,False,True,0.23776824034334765,1,0.23777,0.3333333333333333
+2,life-buoy,3,6,complete,True,True,1.0,1,1.00000,0.3333333333333333
+2,life-buoy,3,7,complete,False,True,0.23776824034334765,1,0.23777,0.3333333333333333
+2,life-buoy,3,8,complete,True,True,1.0,1,1.00000,0.6666666666666666
+2,life-buoy,3,9,complete,True,True,1.0,1,1.00000,0.3333333333333333
+2,life-buoy,3,10,complete,True,True,1.0,1,1.00000,0.6666666666666666
+2,life-buoy,3,11,complete,True,True,1.0,1,1.00000,0.6666666666666666
+2,life-buoy,3,12,complete,True,True,1.0,1,1.00000,0.3333333333333333
+2,life-buoy,3,13,complete,True,True,1.0,1,1.00000,0.3333333333333333
+2,ishmael-survival,3,1,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+2,ishmael-survival,3,2,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+2,ishmael-survival,3,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,3,4,complete,False,True,0.5,2,1.00000 0.00000,0.5
+2,ishmael-survival,3,5,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+2,ishmael-survival,3,6,complete,False,True,0.5,2,1.00000 0.00000,0.5
+2,ishmael-survival,3,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,3,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,3,9,incorrect,False,True,0.5,2,1.00000 0.00000,0.5
+2,ishmael-survival,3,10,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+2,ishmael-survival,3,11,complete,False,True,0.5,2,1.00000 0.00000,0.0
+2,ishmael-survival,3,12,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,3,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,narrator,4,1,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,4,2,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,4,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,4,4,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,4,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,4,6,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,4,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,4,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,4,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,4,10,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,4,11,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,4,12,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,4,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,4,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,4,2,complete,True,True,1.0,1,1.00000,1.0
+2,pequod,4,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,4,4,not_complete,False,False,0.0,1,0.00000,0.0
+2,pequod,4,5,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,4,6,complete,True,True,1.0,1,1.00000,1.0
+2,pequod,4,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,4,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,4,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,4,10,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,4,11,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,4,12,not_complete,False,False,0.0,1,0.00000,0.0
+2,pequod,4,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,4,1,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,4,2,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,4,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,4,4,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,4,5,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,4,6,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,4,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,4,8,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,4,9,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,4,10,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,4,11,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,4,12,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,4,13,complete,True,True,1.0,1,1.00000,0.5
+2,ahab-leg,4,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,4,2,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,4,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,4,4,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,4,5,not_complete,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,4,6,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,4,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,4,8,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,4,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,4,10,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,4,11,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,4,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,4,13,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,1,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,2,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,3,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,4,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,5,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,6,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,7,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,8,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,9,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,10,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,11,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,12,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,4,13,complete,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,4,1,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,4,2,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,4,3,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,4,4,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,4,5,not_complete,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,4,6,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,4,7,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,4,8,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,4,9,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,4,10,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,4,11,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,4,12,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,4,13,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,4,1,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,4,2,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,4,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,4,4,complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,4,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,4,6,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,4,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,4,8,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,4,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,4,10,complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,4,11,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,4,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,4,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,life-buoy,4,1,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,4,2,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,4,3,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,4,4,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,4,5,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,4,6,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,4,7,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,4,8,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,4,9,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,4,10,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,4,11,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,4,12,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,4,13,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,ishmael-survival,4,1,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,4,2,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,4,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,4,4,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,4,5,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,4,6,incorrect,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,4,7,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,4,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,4,9,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,4,10,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,4,11,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,4,12,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,4,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,narrator,5,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,5,2,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,5,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,5,4,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,5,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,5,6,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,5,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,5,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,5,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,5,10,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,5,11,not_complete,False,False,0.0,1,0.00000,0.0
+2,narrator,5,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,5,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,5,1,not_complete,False,False,0.0,1,0.00000,0.0
+2,pequod,5,2,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,5,3,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,5,4,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,5,5,not_complete,False,False,0.0,1,0.00000,0.0
+2,pequod,5,6,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,5,7,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,5,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,5,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,5,10,not_complete,False,False,0.0,1,0.00000,0.0
+2,pequod,5,11,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,5,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,5,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,5,1,complete,True,True,1.0,1,1.00000,0.0
+2,queequeg-role,5,2,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,5,3,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,5,4,complete,True,True,1.0,1,1.00000,0.0
+2,queequeg-role,5,5,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,5,6,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,5,7,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,5,8,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,5,9,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,5,10,complete,True,True,1.0,1,1.00000,0.0
+2,queequeg-role,5,11,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,5,12,complete,True,True,1.0,1,1.00000,0.0
+2,queequeg-role,5,13,complete,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,5,1,complete,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,5,2,complete,True,True,1.0,1,1.00000,0.3333333333333333
+2,ahab-leg,5,3,not_complete,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,5,4,complete,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,5,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,5,6,incorrect,True,True,1.0,1,1.00000,0.3333333333333333
+2,ahab-leg,5,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,5,8,complete,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,5,9,incorrect,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,5,10,complete,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,5,11,complete,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,5,12,incorrect,True,True,1.0,1,1.00000,0.0
+2,ahab-leg,5,13,not_complete,True,True,1.0,1,1.00000,0.0
+2,starbuck-position,5,1,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,5,2,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,5,3,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,5,4,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,5,5,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,5,6,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,5,7,not_complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,5,8,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,5,9,not_complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,5,10,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,5,11,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,5,12,not_complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,5,13,not_complete,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,5,1,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,5,2,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,5,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,5,4,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,5,5,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,5,6,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,5,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,5,8,complete,True,True,1.0,1,1.00000,0.0
+2,gold-ounce,5,9,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,5,10,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,5,11,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,5,12,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,5,13,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,5,1,not_complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,5,2,not_complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,5,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,5,4,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,5,5,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,5,6,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,5,7,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,5,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,5,9,incorrect,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,5,10,not_complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,5,11,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,5,12,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,5,13,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,5,1,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,5,2,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,5,3,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,5,4,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,5,5,complete,False,True,0.36909871244635195,1,0.36910,0.5
+2,life-buoy,5,6,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,5,7,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,5,8,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,5,9,not_complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,5,10,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,5,11,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,5,12,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,5,13,complete,True,True,1.0,1,1.00000,1.0
+2,ishmael-survival,5,1,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,5,2,incorrect,False,True,0.5,2,1.00000 0.00000,0.5
+2,ishmael-survival,5,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,5,4,not_complete,False,True,0.5,2,1.00000 0.00000,0.0
+2,ishmael-survival,5,5,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,5,6,incorrect,False,True,0.5,2,1.00000 0.00000,0.5
+2,ishmael-survival,5,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,5,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,5,9,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,5,10,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,5,11,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,5,12,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,5,13,complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,narrator,6,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,6,2,not_complete,False,False,0.0,1,0.00000,0.0
+2,narrator,6,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,6,4,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,6,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,6,6,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,6,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,6,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,6,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,6,10,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,6,11,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,6,12,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,6,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,6,1,complete,True,True,1.0,1,1.00000,1.0
+2,pequod,6,2,complete,True,True,1.0,1,1.00000,1.0
+2,pequod,6,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,6,4,complete,True,True,1.0,1,1.00000,1.0
+2,pequod,6,5,complete,True,True,1.0,1,1.00000,1.0
+2,pequod,6,6,complete,True,True,1.0,1,1.00000,1.0
+2,pequod,6,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,6,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,6,9,complete,True,True,1.0,1,1.00000,1.0
+2,pequod,6,10,complete,True,True,1.0,1,1.00000,1.0
+2,pequod,6,11,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,6,12,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,6,13,complete,True,True,1.0,1,1.00000,1.0
+2,queequeg-role,6,1,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,6,2,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,6,3,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,6,4,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,6,5,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,6,6,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,6,7,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,6,8,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,6,9,not_complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,6,10,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,6,11,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,6,12,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,6,13,complete,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,6,1,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,6,2,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,6,3,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,6,4,not_complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,6,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,6,6,complete,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,6,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,6,8,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,6,9,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,6,10,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,6,11,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,6,12,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,6,13,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,starbuck-position,6,1,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,6,2,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,6,3,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,6,4,complete,True,True,1.0,1,1.00000,0.5
+2,starbuck-position,6,5,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,6,6,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,6,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,6,8,complete,True,True,1.0,1,1.00000,0.0
+2,starbuck-position,6,9,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,6,10,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,6,11,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,6,12,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,6,13,complete,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,6,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,6,2,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,6,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,6,4,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,6,5,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,6,6,not_complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,6,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,6,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,6,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,6,10,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,6,11,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,6,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,6,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,6,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,6,2,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,6,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,6,4,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,6,5,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,6,6,not_complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,6,7,complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,6,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,6,9,not_complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,6,10,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,6,11,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,6,12,complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,6,13,complete,False,False,0.0,1,0.00000,0.0
+2,life-buoy,6,1,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,6,2,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,6,3,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,6,4,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,6,5,complete,False,True,0.44206008583690987,1,0.44206,0.5
+2,life-buoy,6,6,not_complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,6,7,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,6,8,not_complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,6,9,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,6,10,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,6,11,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,6,12,complete,True,True,1.0,1,1.00000,1.0
+2,life-buoy,6,13,complete,False,True,0.44206008583690987,1,0.44206,0.5
+2,ishmael-survival,6,1,not_complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,6,2,not_complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,6,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,6,4,incorrect,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,6,5,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,6,6,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,6,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,6,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,6,9,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,6,10,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,6,11,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,6,12,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,6,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,narrator,7,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,7,2,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,7,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,7,4,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,7,5,not_complete,False,False,0.0,1,0.00000,0.0
+2,narrator,7,6,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,7,7,not_complete,False,False,0.0,1,0.00000,0.0
+2,narrator,7,8,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,7,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,7,10,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,7,11,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,7,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,7,13,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,7,1,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,7,2,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,7,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,7,4,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,7,5,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,7,6,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,7,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,7,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,7,9,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,7,10,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,7,11,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,7,12,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,7,13,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,7,1,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,7,2,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,7,3,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,7,4,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,7,5,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,7,6,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,7,7,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,7,8,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,7,9,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,7,10,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,7,11,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,7,12,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,7,13,complete,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,7,1,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,7,2,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,7,3,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,7,4,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,7,5,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,7,6,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,7,7,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,7,8,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,7,9,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,7,10,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,7,11,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,7,12,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,7,13,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,starbuck-position,7,1,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,7,2,incorrect,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,7,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,7,4,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,7,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,7,6,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,7,7,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,7,8,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,7,9,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,7,10,not_complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,7,11,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,7,12,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,7,13,complete,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,7,1,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,7,2,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,7,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,7,4,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,7,5,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,7,6,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,7,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,7,8,complete,True,True,1.0,1,1.00000,0.0
+2,gold-ounce,7,9,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,7,10,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,7,11,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,7,12,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,7,13,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,7,1,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,7,2,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,7,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,7,4,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,7,5,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,7,6,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,7,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,7,8,complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,7,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,7,10,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,7,11,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,7,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,7,13,not_complete,False,False,0.0,1,0.00000,0.0
+2,life-buoy,7,1,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,7,2,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,7,3,not_complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,7,4,not_complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,7,5,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,7,6,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,7,7,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,7,8,complete,True,True,1.0,1,1.00000,0.5
+2,life-buoy,7,9,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,7,10,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,7,11,not_complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,7,12,not_complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,7,13,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,ishmael-survival,7,1,complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,7,2,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,7,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,7,4,complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,7,5,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,7,6,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,7,7,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,7,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,7,9,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,7,10,complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,7,11,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,7,12,complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,7,13,complete,False,False,0.0,2,0.00000 0.00000,0.0
+2,narrator,8,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,8,2,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,8,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,8,4,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,8,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,8,6,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,8,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,8,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,8,9,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,8,10,complete,False,False,0.0,1,0.00000,0.0
+2,narrator,8,11,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,8,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,narrator,8,13,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,8,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,8,2,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,8,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,8,4,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,8,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,8,6,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,8,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,8,8,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,8,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,8,10,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,8,11,complete,False,False,0.0,1,0.00000,0.0
+2,pequod,8,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,pequod,8,13,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,8,1,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,8,2,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,8,3,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,8,4,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,8,5,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,8,6,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,8,7,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,8,8,complete,True,True,1.0,1,1.00000,0.5
+2,queequeg-role,8,9,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,8,10,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,8,11,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,8,12,complete,False,False,0.0,1,0.00000,0.0
+2,queequeg-role,8,13,complete,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,8,1,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,8,2,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,8,3,not_complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,8,4,complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,8,5,not_complete,False,False,0.0,1,0.00000,0.0
+2,ahab-leg,8,6,incorrect,True,True,1.0,1,1.00000,0.3333333333333333
+2,ahab-leg,8,7,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,8,8,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,8,9,not_complete,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,8,10,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,8,11,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,8,12,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,ahab-leg,8,13,incorrect,False,False,0.0,1,0.00000,0.3333333333333333
+2,starbuck-position,8,1,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,8,2,not_complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,8,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,8,4,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,8,5,incorrect,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,8,6,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,8,7,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,8,8,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,8,9,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,8,10,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,8,11,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,8,12,complete,False,False,0.0,1,0.00000,0.0
+2,starbuck-position,8,13,not_complete,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,8,1,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,8,2,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,8,3,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,8,4,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,8,5,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,8,6,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,8,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,gold-ounce,8,8,complete,True,True,1.0,1,1.00000,0.0
+2,gold-ounce,8,9,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,8,10,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,8,11,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,8,12,complete,True,True,1.0,1,1.00000,1.0
+2,gold-ounce,8,13,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,8,1,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,8,2,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,8,3,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,8,4,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,8,5,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,8,6,complete,True,True,1.0,1,1.00000,1.0
+2,white-whale-features,8,7,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,8,8,not_complete,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,8,9,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,8,10,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,8,11,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,8,12,incorrect,False,False,0.0,1,0.00000,0.0
+2,white-whale-features,8,13,complete,False,False,0.0,1,0.00000,0.0
+2,life-buoy,8,1,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,8,2,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,8,3,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,8,4,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,8,5,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,8,6,not_complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,8,7,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,8,8,complete,True,True,1.0,1,1.00000,0.5
+2,life-buoy,8,9,not_complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,8,10,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,8,11,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,8,12,not_complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,life-buoy,8,13,complete,False,True,0.6669527896995708,1,0.66695,0.5
+2,ishmael-survival,8,1,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,8,2,incorrect,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,8,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,8,4,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,8,5,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,8,6,complete,True,True,1.0,2,1.00000 1.00000,1.0
+2,ishmael-survival,8,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,8,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,8,9,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,8,10,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,8,11,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,8,12,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+2,ishmael-survival,8,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso,1,1,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,1,2,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,1,3,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,1,4,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,1,5,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,1,6,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,1,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,calypso,1,8,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,1,9,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,1,10,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,1,11,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,1,12,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,1,13,complete,True,True,1.0,1,1.00000,1.0
+1,argos,1,1,complete,True,True,1.0,1,1.00000,1.0
+1,argos,1,2,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,1,3,complete,True,True,1.0,1,1.00000,1.0
+1,argos,1,4,complete,True,True,1.0,1,1.00000,1.0
+1,argos,1,5,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,1,6,complete,True,True,1.0,1,1.00000,0.5
+1,argos,1,8,complete,True,True,1.0,1,1.00000,1.0
+1,argos,1,9,complete,True,True,1.0,1,1.00000,1.0
+1,argos,1,10,complete,True,True,1.0,1,1.00000,1.0
+1,argos,1,11,complete,True,True,1.0,1,1.00000,1.0
+1,argos,1,12,complete,True,True,1.0,1,1.00000,1.0
+1,argos,1,13,complete,True,True,1.0,1,1.00000,1.0
+1,bow-contest,1,1,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,1,2,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,1,3,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,1,4,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,1,5,complete,False,True,0.5042016806722689,2,1.00000 0.00840,0.5
+1,bow-contest,1,6,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,1,7,complete,False,True,0.4957983193277311,2,0.00000 0.99160,0.5
+1,bow-contest,1,8,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,1,9,not_complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,1,10,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,1,11,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,1,12,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,1,13,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,calypso-and-argos,1,1,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,1,2,complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,1,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,1,4,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,1,5,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,1,6,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,1,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,1,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,1,9,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,1,10,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,1,11,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,1,12,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,1,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,lotus-eaters,1,1,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,1,2,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,1,3,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,1,4,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,1,5,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,1,6,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,1,7,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,1,8,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,1,9,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,1,10,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,1,11,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,1,12,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,1,13,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,1,1,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,1,2,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,1,3,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,sirens,1,4,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,1,5,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,sirens,1,6,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,1,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,sirens,1,8,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,sirens,1,9,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,1,10,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,1,11,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,1,12,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,1,13,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,1,1,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,1,2,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,1,3,complete,False,False,0.0,1,0.00000,0.0
+1,scylla,1,4,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,1,5,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,1,6,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,1,7,complete,False,False,0.0,1,0.00000,0.0
+1,scylla,1,8,complete,True,True,1.0,1,1.00000,0.0
+1,scylla,1,9,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,1,10,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,1,11,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,1,12,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,1,13,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,1,1,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,1,2,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,1,3,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,1,4,not_complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,1,5,incorrect,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,1,6,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,1,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,1,8,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,1,9,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,1,10,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,1,11,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,1,12,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,1,13,complete,True,True,1.0,1,1.00000,0.5
+1,olive-tree-bed,1,1,incorrect,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,1,2,complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,1,3,complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,1,4,complete,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,1,5,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,olive-tree-bed,1,6,complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,1,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,olive-tree-bed,1,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,1,9,not_complete,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,1,10,complete,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,1,11,complete,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,1,12,complete,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,1,13,complete,False,False,0.0,2,0.00000 0.00000,0.5
+1,calypso,2,1,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,2,2,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,2,3,incorrect,False,False,0.0,1,0.00000,0.0
+1,calypso,2,4,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,2,5,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,2,6,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,2,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,calypso,2,8,incorrect,False,False,0.0,1,0.00000,0.0
+1,calypso,2,9,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,2,10,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,2,11,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,2,12,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,2,13,complete,True,True,1.0,1,1.00000,1.0
+1,argos,2,1,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,2,2,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,2,3,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,2,4,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,2,5,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,2,6,complete,True,True,1.0,1,1.00000,0.5
+1,argos,2,7,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,2,8,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,2,9,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,2,10,not_complete,False,False,0.0,1,0.00000,0.5
+1,argos,2,11,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,2,12,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,2,13,incorrect,False,False,0.0,1,0.00000,0.5
+1,bow-contest,2,1,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,2,2,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,2,3,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,2,4,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,2,5,complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,bow-contest,2,6,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,bow-contest,2,7,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,2,8,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,2,9,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,2,10,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,2,11,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,2,12,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,2,13,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,calypso-and-argos,2,1,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,calypso-and-argos,2,2,incorrect,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,2,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,2,4,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,calypso-and-argos,2,5,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,2,6,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,calypso-and-argos,2,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,2,8,incorrect,False,True,0.5,2,0.00000 1.00000,0.0
+1,calypso-and-argos,2,9,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,calypso-and-argos,2,10,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,calypso-and-argos,2,11,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,calypso-and-argos,2,12,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,calypso-and-argos,2,13,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,lotus-eaters,2,1,complete,True,True,1.0,1,1.00000,0.5
+1,lotus-eaters,2,2,complete,True,True,1.0,1,1.00000,0.5
+1,lotus-eaters,2,3,complete,True,True,1.0,1,1.00000,0.5
+1,lotus-eaters,2,4,complete,True,True,1.0,1,1.00000,0.5
+1,lotus-eaters,2,5,complete,True,True,1.0,1,1.00000,0.5
+1,lotus-eaters,2,6,complete,True,True,1.0,1,1.00000,0.5
+1,lotus-eaters,2,7,complete,True,True,1.0,1,1.00000,0.5
+1,lotus-eaters,2,8,complete,True,True,1.0,1,1.00000,0.5
+1,lotus-eaters,2,9,complete,True,True,1.0,1,1.00000,0.5
+1,lotus-eaters,2,10,complete,True,True,1.0,1,1.00000,0.5
+1,lotus-eaters,2,11,complete,True,True,1.0,1,1.00000,0.5
+1,lotus-eaters,2,12,complete,True,True,1.0,1,1.00000,0.5
+1,lotus-eaters,2,13,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,2,1,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,2,2,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,2,3,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,2,4,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,2,5,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,2,6,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,2,7,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,2,8,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,2,9,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,2,10,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,2,11,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,2,12,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,2,13,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,2,1,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,2,2,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,2,3,complete,False,False,0.0,1,0.00000,0.0
+1,scylla,2,4,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,2,5,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,2,6,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,2,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,scylla,2,8,complete,True,True,1.0,1,1.00000,0.0
+1,scylla,2,9,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,2,10,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,2,11,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,2,12,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,2,13,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,2,1,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,2,2,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,2,3,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,2,4,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,2,5,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,2,6,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,2,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,2,8,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,2,9,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,2,10,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,2,11,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,2,12,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,2,13,complete,True,True,1.0,1,1.00000,0.5
+1,olive-tree-bed,2,1,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.5
+1,olive-tree-bed,2,2,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,2,3,not_complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,2,4,not_complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,2,5,complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,olive-tree-bed,2,6,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,2,7,not_complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,2,8,incorrect,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,2,9,incorrect,False,True,0.010924369747899159,2,0.02185 0.00000,0.5
+1,olive-tree-bed,2,10,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.5
+1,olive-tree-bed,2,11,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.5
+1,olive-tree-bed,2,12,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.5
+1,olive-tree-bed,2,13,not_complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,calypso,3,1,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,3,2,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,3,3,complete,True,True,1.0,1,1.00000,0.0
+1,calypso,3,4,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,3,5,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,3,6,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,3,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,calypso,3,8,complete,True,True,1.0,1,1.00000,0.0
+1,calypso,3,9,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,3,10,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,3,11,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,3,12,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,3,13,complete,True,True,1.0,1,1.00000,1.0
+1,argos,3,1,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,argos,3,2,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,argos,3,3,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,argos,3,4,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,argos,3,5,incorrect,False,False,0.0,1,0.00000,0.6666666666666666
+1,argos,3,6,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,argos,3,7,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,argos,3,8,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,argos,3,9,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,argos,3,10,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,argos,3,11,complete,True,True,1.0,1,1.00000,1.0
+1,argos,3,12,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,argos,3,13,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,bow-contest,3,1,complete,True,True,1.0,2,1.00000 1.00000,0.6666666666666666
+1,bow-contest,3,2,complete,False,True,0.9957983193277311,2,1.00000 0.99160,0.3333333333333333
+1,bow-contest,3,3,not_complete,False,True,0.9957983193277311,2,1.00000 0.99160,0.6666666666666666
+1,bow-contest,3,4,complete,True,True,1.0,2,1.00000 1.00000,0.6666666666666666
+1,bow-contest,3,5,complete,False,True,0.4957983193277311,2,0.00000 0.99160,0.3333333333333333
+1,bow-contest,3,6,complete,True,True,1.0,2,1.00000 1.00000,0.3333333333333333
+1,bow-contest,3,7,complete,False,True,0.9957983193277311,2,1.00000 0.99160,0.6666666666666666
+1,bow-contest,3,8,complete,True,True,1.0,2,1.00000 1.00000,0.6666666666666666
+1,bow-contest,3,9,complete,True,True,1.0,2,1.00000 1.00000,0.6666666666666666
+1,bow-contest,3,10,incorrect,True,True,1.0,2,1.00000 1.00000,0.6666666666666666
+1,bow-contest,3,11,complete,True,True,1.0,2,1.00000 1.00000,0.6666666666666666
+1,bow-contest,3,12,complete,True,True,1.0,2,1.00000 1.00000,0.6666666666666666
+1,bow-contest,3,13,complete,True,True,1.0,2,1.00000 1.00000,0.3333333333333333
+1,calypso-and-argos,3,1,complete,True,True,1.0,2,1.00000 1.00000,0.0
+1,calypso-and-argos,3,2,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,3,3,not_complete,False,True,0.5,2,0.00000 1.00000,0.0
+1,calypso-and-argos,3,4,not_complete,False,True,0.5,2,1.00000 0.00000,0.0
+1,calypso-and-argos,3,5,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,3,6,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,calypso-and-argos,3,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,3,8,not_complete,False,True,0.5,2,0.00000 1.00000,0.0
+1,calypso-and-argos,3,9,complete,True,True,1.0,2,1.00000 1.00000,0.0
+1,calypso-and-argos,3,10,complete,True,True,1.0,2,1.00000 1.00000,0.0
+1,calypso-and-argos,3,11,complete,False,True,0.5,2,0.00000 1.00000,0.0
+1,calypso-and-argos,3,12,not_complete,False,True,0.5,2,1.00000 0.00000,0.0
+1,calypso-and-argos,3,13,incorrect,False,True,0.5,2,0.00000 1.00000,0.0
+1,lotus-eaters,3,1,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,3,2,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,3,3,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,3,4,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,3,5,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,3,6,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,3,7,complete,False,True,0.547085201793722,1,0.54709,0.5
+1,lotus-eaters,3,8,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,3,9,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,3,10,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,3,11,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,3,12,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,3,13,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,3,1,complete,True,True,1.0,1,1.00000,0.3333333333333333
+1,sirens,3,2,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,3,3,incorrect,False,True,0.7431693989071039,1,0.74317,0.3333333333333333
+1,sirens,3,4,complete,True,True,1.0,1,1.00000,0.3333333333333333
+1,sirens,3,5,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,sirens,3,6,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,3,7,incorrect,False,True,0.7431693989071039,1,0.74317,0.3333333333333333
+1,sirens,3,8,incorrect,False,True,0.7431693989071039,1,0.74317,0.3333333333333333
+1,sirens,3,9,complete,True,True,1.0,1,1.00000,0.3333333333333333
+1,sirens,3,10,complete,True,True,1.0,1,1.00000,0.3333333333333333
+1,sirens,3,11,complete,True,True,1.0,1,1.00000,0.3333333333333333
+1,sirens,3,12,not_complete,True,True,1.0,1,1.00000,0.3333333333333333
+1,sirens,3,13,complete,True,True,1.0,1,1.00000,0.3333333333333333
+1,scylla,3,1,complete,False,True,0.6571428571428571,1,0.65714,0.5
+1,scylla,3,2,complete,False,True,0.6571428571428571,1,0.65714,0.5
+1,scylla,3,3,complete,False,True,0.6571428571428571,1,0.65714,0.5
+1,scylla,3,4,complete,False,True,0.6571428571428571,1,0.65714,0.5
+1,scylla,3,5,complete,False,True,0.6571428571428571,1,0.65714,0.5
+1,scylla,3,6,complete,False,True,0.6571428571428571,1,0.65714,0.5
+1,scylla,3,7,complete,False,False,0.0,1,0.00000,0.0
+1,scylla,3,8,complete,False,True,0.6571428571428571,1,0.65714,0.5
+1,scylla,3,9,complete,False,True,0.6571428571428571,1,0.65714,0.5
+1,scylla,3,10,complete,False,True,0.6571428571428571,1,0.65714,0.5
+1,scylla,3,11,complete,False,True,0.6571428571428571,1,0.65714,0.5
+1,scylla,3,12,complete,False,True,0.6571428571428571,1,0.65714,0.5
+1,scylla,3,13,complete,False,True,0.6571428571428571,1,0.65714,0.5
+1,euryclea-scar,3,1,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,3,2,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,3,3,complete,True,True,1.0,1,1.00000,0.0
+1,euryclea-scar,3,4,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,3,5,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,3,6,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,3,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,3,8,complete,True,True,1.0,1,1.00000,0.0
+1,euryclea-scar,3,9,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,3,10,not_complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,3,11,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,3,12,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,3,13,complete,True,True,1.0,1,1.00000,0.5
+1,olive-tree-bed,3,1,incorrect,False,True,0.5,2,0.00000 1.00000,0.0
+1,olive-tree-bed,3,2,complete,False,True,0.5,2,0.00000 1.00000,0.16666666666666666
+1,olive-tree-bed,3,3,complete,False,False,0.0,2,0.00000 0.00000,0.16666666666666666
+1,olive-tree-bed,3,4,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,olive-tree-bed,3,5,incorrect,False,True,0.5,2,0.00000 1.00000,0.16666666666666666
+1,olive-tree-bed,3,6,incorrect,False,True,0.5,2,0.00000 1.00000,0.16666666666666666
+1,olive-tree-bed,3,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.16666666666666666
+1,olive-tree-bed,3,8,complete,False,False,0.0,2,0.00000 0.00000,0.16666666666666666
+1,olive-tree-bed,3,9,complete,False,True,0.5,2,0.00000 1.00000,0.16666666666666666
+1,olive-tree-bed,3,10,complete,False,True,0.5,2,0.00000 1.00000,0.0
+1,olive-tree-bed,3,11,not_complete,False,False,0.0,2,0.00000 0.00000,0.16666666666666666
+1,olive-tree-bed,3,12,complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,olive-tree-bed,3,13,incorrect,False,True,0.5,2,0.00000 1.00000,0.16666666666666666
+1,calypso,4,1,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,4,2,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,4,3,incorrect,False,False,0.0,1,0.00000,0.0
+1,calypso,4,4,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,4,5,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,4,6,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,4,7,not_complete,False,False,0.0,1,0.00000,0.0
+1,calypso,4,8,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,4,9,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,4,10,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,4,11,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,4,12,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,4,13,complete,True,True,1.0,1,1.00000,1.0
+1,argos,4,1,complete,True,True,1.0,1,1.00000,1.0
+1,argos,4,2,complete,True,True,1.0,1,1.00000,1.0
+1,argos,4,3,complete,True,True,1.0,1,1.00000,0.5
+1,argos,4,4,complete,True,True,1.0,1,1.00000,1.0
+1,argos,4,5,complete,True,True,1.0,1,1.00000,0.5
+1,argos,4,6,complete,True,True,1.0,1,1.00000,1.0
+1,argos,4,7,complete,True,True,1.0,1,1.00000,0.5
+1,argos,4,8,complete,True,True,1.0,1,1.00000,1.0
+1,argos,4,9,complete,True,True,1.0,1,1.00000,1.0
+1,argos,4,10,complete,True,True,1.0,1,1.00000,1.0
+1,argos,4,11,complete,True,True,1.0,1,1.00000,1.0
+1,argos,4,12,complete,True,True,1.0,1,1.00000,1.0
+1,argos,4,13,complete,True,True,1.0,1,1.00000,1.0
+1,bow-contest,4,1,incorrect,False,True,0.4957983193277311,2,0.00000 0.99160,0.5
+1,bow-contest,4,2,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,bow-contest,4,3,incorrect,False,True,0.4957983193277311,2,0.00000 0.99160,0.5
+1,bow-contest,4,4,incorrect,False,True,0.4957983193277311,2,0.00000 0.99160,0.5
+1,bow-contest,4,5,complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,bow-contest,4,6,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,4,7,complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,bow-contest,4,8,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,4,9,complete,False,True,0.4957983193277311,2,0.00000 0.99160,0.5
+1,bow-contest,4,10,complete,False,True,0.4957983193277311,2,0.00000 0.99160,0.5
+1,bow-contest,4,11,incorrect,False,True,0.4957983193277311,2,0.00000 0.99160,0.5
+1,bow-contest,4,12,not_complete,False,True,0.4957983193277311,2,0.00000 0.99160,0.5
+1,bow-contest,4,13,complete,False,True,0.4957983193277311,2,0.00000 0.99160,0.5
+1,calypso-and-argos,4,1,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,4,2,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,calypso-and-argos,4,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,4,4,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,4,5,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,4,6,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,calypso-and-argos,4,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,4,8,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,4,9,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,4,10,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,4,11,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,4,12,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,4,13,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,lotus-eaters,4,1,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,4,2,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,4,3,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,4,4,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,4,5,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,4,6,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,4,7,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,4,8,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,4,9,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,4,10,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,4,11,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,4,12,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,4,13,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,4,1,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,4,2,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,4,3,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,4,4,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,4,5,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,4,6,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,4,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,sirens,4,8,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,4,9,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,4,10,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,4,11,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,4,12,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,4,13,complete,True,True,1.0,1,1.00000,0.5
+1,scylla,4,1,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,4,2,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,4,3,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,4,4,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,4,5,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,4,6,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,4,7,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,4,8,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,4,9,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,4,10,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,4,11,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,4,12,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,4,13,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,4,1,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,4,2,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,4,3,not_complete,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,4,4,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,4,5,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,4,6,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,4,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,4,8,complete,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,4,9,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,4,10,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,4,11,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,4,12,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,4,13,not_complete,True,True,1.0,1,1.00000,0.5
+1,olive-tree-bed,4,1,complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,olive-tree-bed,4,2,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,olive-tree-bed,4,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,olive-tree-bed,4,4,complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,olive-tree-bed,4,5,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,olive-tree-bed,4,6,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,olive-tree-bed,4,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,olive-tree-bed,4,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,olive-tree-bed,4,9,incorrect,False,True,0.5,2,1.00000 0.00000,0.5
+1,olive-tree-bed,4,10,complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,olive-tree-bed,4,11,complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,olive-tree-bed,4,12,complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,olive-tree-bed,4,13,complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso,5,1,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,5,2,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,5,3,not_complete,False,False,0.0,1,0.00000,0.0
+1,calypso,5,4,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,5,5,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,5,6,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,5,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,calypso,5,8,complete,True,True,1.0,1,1.00000,0.0
+1,calypso,5,9,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,5,10,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,5,11,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,5,12,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,5,13,complete,True,True,1.0,1,1.00000,1.0
+1,argos,5,1,not_complete,False,False,0.0,1,0.00000,0.5
+1,argos,5,2,complete,True,True,1.0,1,1.00000,0.5
+1,argos,5,3,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,5,4,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,5,5,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,5,6,complete,True,True,1.0,1,1.00000,0.5
+1,argos,5,7,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,5,8,not_complete,False,False,0.0,1,0.00000,0.5
+1,argos,5,9,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,5,10,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,5,11,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,5,12,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,5,13,incorrect,False,False,0.0,1,0.00000,0.5
+1,bow-contest,5,1,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,5,2,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,5,3,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,5,4,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,5,5,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,5,6,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,5,7,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,5,8,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,5,9,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,5,10,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,5,11,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,5,12,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,5,13,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,calypso-and-argos,5,1,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,calypso-and-argos,5,2,incorrect,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,5,3,not_complete,False,True,0.5,2,0.00000 1.00000,0.0
+1,calypso-and-argos,5,4,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,calypso-and-argos,5,5,incorrect,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,5,6,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,calypso-and-argos,5,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,5,8,not_complete,False,True,0.5,2,0.00000 1.00000,0.0
+1,calypso-and-argos,5,9,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,calypso-and-argos,5,10,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,calypso-and-argos,5,11,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,calypso-and-argos,5,12,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,calypso-and-argos,5,13,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,lotus-eaters,5,1,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,5,2,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,5,3,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,5,4,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,5,5,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,5,6,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,5,7,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,5,8,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,5,9,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,5,10,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,5,11,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,5,12,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,5,13,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,5,1,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,5,2,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,5,3,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,5,4,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,5,5,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,5,6,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,5,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,sirens,5,8,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,5,9,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,5,10,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,5,11,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,5,12,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,5,13,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,5,1,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,5,2,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,5,3,complete,True,True,1.0,1,1.00000,0.0
+1,scylla,5,4,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,5,5,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,5,6,not_complete,True,True,1.0,1,1.00000,1.0
+1,scylla,5,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,scylla,5,8,complete,True,True,1.0,1,1.00000,0.0
+1,scylla,5,9,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,5,10,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,5,11,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,5,12,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,5,13,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,5,1,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,5,2,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,5,3,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,5,4,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,5,5,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,5,6,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,5,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,5,8,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,5,9,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,5,10,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,5,11,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,5,12,incorrect,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,5,13,complete,True,True,1.0,1,1.00000,0.5
+1,olive-tree-bed,5,1,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,5,2,incorrect,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,5,3,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,5,4,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,5,5,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,5,6,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,5,7,complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,5,8,incorrect,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,5,9,not_complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.5
+1,olive-tree-bed,5,10,incorrect,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,5,11,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,5,12,incorrect,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,olive-tree-bed,5,13,complete,False,True,0.010924369747899159,2,0.02185 0.00000,0.25
+1,calypso,6,1,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,6,2,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,6,3,not_complete,False,False,0.0,1,0.00000,0.0
+1,calypso,6,4,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,6,5,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,6,6,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,6,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,calypso,6,8,incorrect,False,False,0.0,1,0.00000,0.0
+1,calypso,6,9,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,6,10,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,6,11,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,6,12,not_complete,False,False,0.0,1,0.00000,0.0
+1,calypso,6,13,incorrect,False,False,0.0,1,0.00000,0.0
+1,argos,6,1,complete,True,True,1.0,1,1.00000,1.0
+1,argos,6,2,complete,True,True,1.0,1,1.00000,1.0
+1,argos,6,3,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,6,4,complete,True,True,1.0,1,1.00000,1.0
+1,argos,6,5,complete,True,True,1.0,1,1.00000,1.0
+1,argos,6,6,complete,True,True,1.0,1,1.00000,1.0
+1,argos,6,7,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,6,8,complete,True,True,1.0,1,1.00000,0.5
+1,argos,6,9,complete,True,True,1.0,1,1.00000,1.0
+1,argos,6,10,complete,True,True,1.0,1,1.00000,1.0
+1,argos,6,11,complete,True,True,1.0,1,1.00000,1.0
+1,argos,6,12,complete,True,True,1.0,1,1.00000,1.0
+1,argos,6,13,complete,True,True,1.0,1,1.00000,1.0
+1,bow-contest,6,1,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,6,2,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,6,3,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,6,4,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,6,5,complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,bow-contest,6,6,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,6,7,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,6,8,not_complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,6,9,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,6,10,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,6,11,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,6,12,complete,False,True,0.5,2,0.00000 1.00000,0.5
+1,bow-contest,6,13,incorrect,False,True,0.5,2,0.00000 1.00000,0.5
+1,calypso-and-argos,6,1,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,6,2,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,calypso-and-argos,6,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,6,4,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,6,5,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,6,6,complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,calypso-and-argos,6,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,6,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,6,9,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,6,10,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,6,11,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,6,12,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,6,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,lotus-eaters,6,1,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,6,2,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,6,3,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,6,4,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,6,5,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,6,6,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,6,7,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,6,8,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,6,9,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,6,10,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,6,11,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,6,12,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,6,13,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,6,1,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,6,2,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,6,3,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,6,4,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,6,5,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,6,6,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,6,7,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,6,8,complete,True,True,1.0,1,1.00000,0.5
+1,sirens,6,9,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,6,10,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,6,11,incorrect,True,True,1.0,1,1.00000,1.0
+1,sirens,6,12,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,6,13,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,1,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,2,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,3,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,4,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,5,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,6,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,7,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,8,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,9,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,10,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,11,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,12,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,6,13,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,6,1,complete,False,True,0.5622317596566524,1,0.56223,0.3333333333333333
+1,euryclea-scar,6,2,complete,False,True,0.5622317596566524,1,0.56223,0.3333333333333333
+1,euryclea-scar,6,3,complete,False,True,0.5622317596566524,1,0.56223,0.0
+1,euryclea-scar,6,4,complete,False,True,0.5622317596566524,1,0.56223,0.3333333333333333
+1,euryclea-scar,6,5,complete,False,True,0.5622317596566524,1,0.56223,0.3333333333333333
+1,euryclea-scar,6,6,complete,False,True,0.5622317596566524,1,0.56223,0.3333333333333333
+1,euryclea-scar,6,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,6,8,complete,False,True,0.5622317596566524,1,0.56223,0.0
+1,euryclea-scar,6,9,complete,False,True,0.5622317596566524,1,0.56223,0.3333333333333333
+1,euryclea-scar,6,10,complete,False,True,0.5622317596566524,1,0.56223,0.3333333333333333
+1,euryclea-scar,6,11,complete,False,True,0.5622317596566524,1,0.56223,0.3333333333333333
+1,euryclea-scar,6,12,complete,False,True,0.5622317596566524,1,0.56223,0.3333333333333333
+1,euryclea-scar,6,13,complete,False,True,0.5622317596566524,1,0.56223,0.3333333333333333
+1,olive-tree-bed,6,1,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,6,2,complete,False,True,0.573109243697479,2,0.14622 1.00000,0.25
+1,olive-tree-bed,6,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,6,4,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,6,5,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,6,6,incorrect,False,True,0.573109243697479,2,0.14622 1.00000,0.25
+1,olive-tree-bed,6,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,6,8,not_complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,6,9,not_complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,6,10,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,6,11,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,6,12,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,6,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,calypso,7,1,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,7,2,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,7,3,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,7,4,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,7,5,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,7,6,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,7,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,calypso,7,8,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,7,9,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,7,10,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,7,11,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,7,12,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,7,13,complete,True,True,1.0,1,1.00000,1.0
+1,argos,7,1,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,7,2,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,7,3,complete,True,True,1.0,1,1.00000,1.0
+1,argos,7,4,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,7,5,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,7,6,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,7,7,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,7,8,complete,True,True,1.0,1,1.00000,1.0
+1,argos,7,9,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,7,10,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,7,11,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,7,12,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,7,13,incorrect,False,False,0.0,1,0.00000,0.5
+1,bow-contest,7,1,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,7,2,complete,False,True,0.5042016806722689,2,1.00000 0.00840,0.5
+1,bow-contest,7,3,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,7,4,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,7,5,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,bow-contest,7,6,not_complete,True,True,1.0,2,1.00000 1.00000,0.5
+1,bow-contest,7,7,complete,False,True,0.4957983193277311,2,0.00000 0.99160,0.5
+1,bow-contest,7,8,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,7,9,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,7,10,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,7,11,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,7,12,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,7,13,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,calypso-and-argos,7,1,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,7,2,complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,7,3,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,7,4,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,7,5,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,7,6,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,7,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,7,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,7,9,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,7,10,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,7,11,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,7,12,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,7,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,lotus-eaters,7,1,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,7,2,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,7,3,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,7,4,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,7,5,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,7,6,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,7,7,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,7,8,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,7,9,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,7,10,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,7,11,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,7,12,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,7,13,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,7,1,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,7,2,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,7,3,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,sirens,7,4,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,7,5,incorrect,False,True,0.7431693989071039,1,0.74317,0.3333333333333333
+1,sirens,7,6,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,7,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,sirens,7,8,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,sirens,7,9,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,7,10,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,7,11,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,7,12,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,7,13,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,7,1,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,7,2,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,7,3,complete,False,False,0.0,1,0.00000,0.0
+1,scylla,7,4,complete,False,False,0.0,1,0.00000,0.0
+1,scylla,7,5,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,7,6,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,7,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,scylla,7,8,complete,True,True,1.0,1,1.00000,0.0
+1,scylla,7,9,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,7,10,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,7,11,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,7,12,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,7,13,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,7,1,not_complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,7,2,incorrect,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,7,3,not_complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,7,4,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,7,5,incorrect,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,7,6,complete,True,True,1.0,1,1.00000,0.0
+1,euryclea-scar,7,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,7,8,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,7,9,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,7,10,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,7,11,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,7,12,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,7,13,complete,True,True,1.0,1,1.00000,0.5
+1,olive-tree-bed,7,1,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,7,2,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,7,3,complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,7,4,complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,7,5,complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,7,6,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,7,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,olive-tree-bed,7,8,complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,7,9,complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,7,10,not_complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,7,11,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,7,12,not_complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,7,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.25
+1,calypso,8,1,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,8,2,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,8,3,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,8,4,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,8,5,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,8,6,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,8,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,calypso,8,8,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,8,9,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,8,10,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,8,11,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,8,12,complete,True,True,1.0,1,1.00000,1.0
+1,calypso,8,13,complete,True,True,1.0,1,1.00000,1.0
+1,argos,8,1,complete,True,True,1.0,1,1.00000,1.0
+1,argos,8,2,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,8,3,complete,True,True,1.0,1,1.00000,1.0
+1,argos,8,4,complete,True,True,1.0,1,1.00000,1.0
+1,argos,8,5,incorrect,False,False,0.0,1,0.00000,0.5
+1,argos,8,6,complete,True,True,1.0,1,1.00000,0.5
+1,argos,8,7,not_complete,False,False,0.0,1,0.00000,0.5
+1,argos,8,8,complete,True,True,1.0,1,1.00000,1.0
+1,argos,8,9,complete,True,True,1.0,1,1.00000,1.0
+1,argos,8,10,complete,True,True,1.0,1,1.00000,1.0
+1,argos,8,11,complete,True,True,1.0,1,1.00000,1.0
+1,argos,8,12,complete,True,True,1.0,1,1.00000,1.0
+1,argos,8,13,complete,True,True,1.0,1,1.00000,1.0
+1,bow-contest,8,1,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,8,2,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,8,3,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,8,4,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,8,5,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,8,6,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,8,7,complete,False,True,0.4957983193277311,2,0.00000 0.99160,0.5
+1,bow-contest,8,8,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,8,9,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,8,10,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,8,11,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,8,12,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,bow-contest,8,13,complete,True,True,1.0,2,1.00000 1.00000,1.0
+1,calypso-and-argos,8,1,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,8,2,incorrect,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,8,3,not_complete,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,8,4,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,8,5,not_complete,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,8,6,incorrect,False,True,0.5,2,1.00000 0.00000,0.5
+1,calypso-and-argos,8,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,8,8,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,8,9,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,8,10,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,8,11,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,8,12,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,calypso-and-argos,8,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,lotus-eaters,8,1,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,8,2,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,8,3,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,8,4,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,8,5,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,8,6,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,8,7,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,8,8,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,8,9,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,8,10,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,8,11,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,8,12,complete,True,True,1.0,1,1.00000,1.0
+1,lotus-eaters,8,13,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,8,1,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,8,2,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,8,3,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,sirens,8,4,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,8,5,complete,False,True,0.2568306010928962,1,0.25683,0.3333333333333333
+1,sirens,8,6,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,8,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,sirens,8,8,complete,True,True,1.0,1,1.00000,0.6666666666666666
+1,sirens,8,9,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,8,10,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,8,11,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,8,12,complete,True,True,1.0,1,1.00000,1.0
+1,sirens,8,13,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,8,1,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,8,2,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,8,3,complete,False,False,0.0,1,0.00000,0.0
+1,scylla,8,4,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,8,5,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,8,6,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,8,7,not_complete,False,False,0.0,1,0.00000,0.0
+1,scylla,8,8,complete,True,True,1.0,1,1.00000,0.0
+1,scylla,8,9,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,8,10,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,8,11,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,8,12,complete,True,True,1.0,1,1.00000,1.0
+1,scylla,8,13,complete,True,True,1.0,1,1.00000,1.0
+1,euryclea-scar,8,1,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,8,2,complete,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,8,3,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,8,4,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,8,5,incorrect,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,8,6,complete,True,True,1.0,1,1.00000,0.0
+1,euryclea-scar,8,7,incorrect,False,False,0.0,1,0.00000,0.0
+1,euryclea-scar,8,8,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,8,9,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,8,10,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,8,11,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,8,12,complete,True,True,1.0,1,1.00000,0.5
+1,euryclea-scar,8,13,complete,True,True,1.0,1,1.00000,0.5
+1,olive-tree-bed,8,1,not_complete,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,8,2,complete,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,8,3,not_complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,8,4,complete,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,8,5,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,olive-tree-bed,8,6,complete,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,8,7,incorrect,False,False,0.0,2,0.00000 0.00000,0.0
+1,olive-tree-bed,8,8,not_complete,False,False,0.0,2,0.00000 0.00000,0.25
+1,olive-tree-bed,8,9,complete,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,8,10,incorrect,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,8,11,incorrect,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,8,12,not_complete,False,False,0.0,2,0.00000 0.00000,0.5
+1,olive-tree-bed,8,13,incorrect,False,False,0.0,2,0.00000 0.00000,0.5

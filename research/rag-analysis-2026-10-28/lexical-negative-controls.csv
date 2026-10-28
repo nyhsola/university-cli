@@ -1,0 +1,7 @@
+query_id,index_a,index_b,n,identical_context,identical_text,identical_answer,different_verdict,different_complete,complete_a,complete_b
+3,1,7,30,30,30,4,7,6,15,13
+3,1,8,30,30,30,7,7,4,15,13
+7,1,7,29,29,29,3,8,3,12,9
+7,1,8,29,29,29,3,5,3,12,9
+8,1,7,30,30,30,7,4,3,18,21
+8,1,8,30,30,30,4,5,4,18,18
