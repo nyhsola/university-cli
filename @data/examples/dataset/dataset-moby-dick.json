@@ -1,9 +1,9 @@
 {
   "id": 2,
   "name": "Moby-Dick indexing comparison",
-  "description": "Compares baseline and experimental chunk sizes, recursive boundaries, overlap and embedding model sizes on Moby-Dick across context budgets, fusion settings and semantic rewrites.",
-  "indexProfileIds": [1, 2, 3, 4, 5, 6, 7, 8],
-  "queryProfileIds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+  "description": "Compares baseline and experimental chunk sizes, recursive boundaries and overlap on Moby-Dick across context budgets, fusion settings and semantic rewrites.",
+  "indexProfileIds": [1, 2, 3, 4, 5, 6],
+  "queryProfileIds": [1, 2, 3, 4, 9, 10, 11, 12],
   "file": "../books/Moby-Dick.txt",
   "questions": [
     {
@@ -17,9 +17,7 @@
         "3": [{"chunkId": 58, "relevance": 3, "description": "The narrator explicitly asks to be called Ishmael."}],
         "4": [{"chunkId": 15, "relevance": 3, "description": "The narrator explicitly asks to be called Ishmael."}],
         "5": [{"chunkId": 38, "relevance": 3, "description": "The narrator explicitly asks to be called Ishmael."}],
-        "6": [{"chunkId": 34, "relevance": 3, "description": "The narrator explicitly asks to be called Ishmael."}],
-        "7": [{"chunkId": 29, "relevance": 3, "description": "The narrator opens the story by asking the reader to call him Ishmael."}],
-        "8": [{"chunkId": 29, "relevance": 3, "description": "The narrator opens the story by asking the reader to call him Ishmael."}]
+        "6": [{"chunkId": 34, "relevance": 3, "description": "The narrator explicitly asks to be called Ishmael."}]
       }
     },
     {
@@ -33,9 +31,7 @@
         "3": [{"chunkId": 347, "relevance": 3, "description": "The Pequod is chosen for the voyage."}],
         "4": [{"chunkId": 87, "relevance": 3, "description": "The Pequod is chosen for the voyage."}],
         "5": [{"chunkId": 227, "relevance": 3, "description": "The Pequod is chosen for the voyage."}],
-        "6": [{"chunkId": 200, "relevance": 3, "description": "The Pequod is chosen for the voyage."}],
-        "7": [{"chunkId": 174, "relevance": 3, "description": "Ishmael decides that the Pequod is the ship for them."}],
-        "8": [{"chunkId": 174, "relevance": 3, "description": "Ishmael decides that the Pequod is the ship for them."}]
+        "6": [{"chunkId": 200, "relevance": 3, "description": "The Pequod is chosen for the voyage."}]
       }
     },
     {
@@ -55,9 +51,7 @@
         "3": [{"chunkId": 298, "relevance": 3, "description": "Queequeg is explicitly described as an experienced harpooneer."}, {"chunkId": 553, "relevance": 2, "description": "Queequeg is assigned to Starbuck among the harpooneers."}],
         "4": [{"chunkId": 75, "relevance": 3, "description": "Queequeg is explicitly described as an experienced harpooneer."}, {"chunkId": 139, "relevance": 2, "description": "Queequeg is assigned to Starbuck among the harpooneers."}],
         "5": [{"chunkId": 195, "relevance": 3, "description": "Queequeg is explicitly described as an experienced harpooneer."}, {"chunkId": 361, "relevance": 2, "description": "Queequeg is assigned to Starbuck among the harpooneers."}],
-        "6": [{"chunkId": 173, "relevance": 3, "description": "Queequeg is explicitly described as an experienced harpooneer."}, {"chunkId": 322, "relevance": 2, "description": "Queequeg is assigned to Starbuck among the harpooneers."}],
-        "7": [{"chunkId": 149, "relevance": 3, "description": "Queequeg explains that he was made a harpooneer."}, {"chunkId": 277, "relevance": 2, "description": "Queequeg is identified while the Pequod's harpooneers are assigned to their headsmen."}],
-        "8": [{"chunkId": 149, "relevance": 3, "description": "Queequeg explains that he was made a harpooneer."}, {"chunkId": 277, "relevance": 2, "description": "Queequeg is identified while the Pequod's harpooneers are assigned to their headsmen."}]
+        "6": [{"chunkId": 173, "relevance": 3, "description": "Queequeg is explicitly described as an experienced harpooneer."}, {"chunkId": 322, "relevance": 2, "description": "Queequeg is assigned to Starbuck among the harpooneers."}]
       }
     },
     {
@@ -79,9 +73,7 @@
         "3": [{"chunkId": 401, "relevance": 2, "description": "Ahab's lost leg is attributed to a whale on the previous voyage."}, {"chunkId": 745, "relevance": 3, "description": "Ahab identifies Moby Dick as the whale that took his leg."}, {"chunkId": 823, "relevance": 3, "description": "The narrative directly states that Moby Dick took Ahab's leg."}],
         "4": [{"chunkId": 101, "relevance": 2, "description": "Ahab's lost leg is attributed to a whale on the previous voyage."}, {"chunkId": 187, "relevance": 3, "description": "Ahab identifies Moby Dick as the whale that took his leg."}, {"chunkId": 206, "relevance": 3, "description": "The narrative directly states that Moby Dick took Ahab's leg."}],
         "5": [{"chunkId": 261, "relevance": 2, "description": "Ahab's lost leg is attributed to a whale on the previous voyage."}, {"chunkId": 487, "relevance": 3, "description": "Ahab identifies Moby Dick as the whale that took his leg."}, {"chunkId": 538, "relevance": 3, "description": "The narrative directly states that Moby Dick took Ahab's leg."}],
-        "6": [{"chunkId": 232, "relevance": 2, "description": "Ahab's lost leg is attributed to a whale on the previous voyage."}, {"chunkId": 431, "relevance": 3, "description": "Ahab identifies Moby Dick as the whale that took his leg."}, {"chunkId": 476, "relevance": 3, "description": "The narrative directly states that Moby Dick took Ahab's leg."}],
-        "7": [{"chunkId": 201, "relevance": 2, "description": "The passage says Ahab lost his leg to a whale on the previous voyage."}, {"chunkId": 373, "relevance": 3, "description": "Ahab explicitly confirms that Moby Dick took off his leg."}, {"chunkId": 412, "relevance": 3, "description": "The narration describes Moby Dick reaping away Ahab's leg."}],
-        "8": [{"chunkId": 201, "relevance": 2, "description": "The passage says Ahab lost his leg to a whale on the previous voyage."}, {"chunkId": 373, "relevance": 3, "description": "Ahab explicitly confirms that Moby Dick took off his leg."}, {"chunkId": 412, "relevance": 3, "description": "The narration describes Moby Dick reaping away Ahab's leg."}]
+        "6": [{"chunkId": 232, "relevance": 2, "description": "Ahab's lost leg is attributed to a whale on the previous voyage."}, {"chunkId": 431, "relevance": 3, "description": "Ahab identifies Moby Dick as the whale that took his leg."}, {"chunkId": 476, "relevance": 3, "description": "The narrative directly states that Moby Dick took Ahab's leg."}]
       }
     },
     {
@@ -102,9 +94,7 @@
         "3": [{"chunkId": 482, "relevance": 3, "description": "Peleg addresses Starbuck as the chief mate."}, {"chunkId": 553, "relevance": 3, "description": "Starbuck is explicitly identified as chief mate."}],
         "4": [{"chunkId": 121, "relevance": 3, "description": "Peleg addresses Starbuck as the chief mate."}, {"chunkId": 139, "relevance": 3, "description": "Starbuck is explicitly identified as chief mate."}],
         "5": [{"chunkId": 317, "relevance": 3, "description": "Peleg addresses Starbuck as the chief mate."}, {"chunkId": 361, "relevance": 3, "description": "Starbuck is explicitly identified as chief mate."}],
-        "6": [{"chunkId": 282, "relevance": 3, "description": "Peleg addresses Starbuck as the chief mate."}, {"chunkId": 322, "relevance": 3, "description": "Starbuck is explicitly identified as chief mate."}],
-        "7": [{"chunkId": 241, "relevance": 3, "description": "Starbuck is directly called the chief mate."}, {"chunkId": 277, "relevance": 3, "description": "Starbuck is explicitly identified as the chief mate."}],
-        "8": [{"chunkId": 241, "relevance": 3, "description": "Starbuck is directly called the chief mate."}, {"chunkId": 277, "relevance": 3, "description": "Starbuck is explicitly identified as the chief mate."}]
+        "6": [{"chunkId": 282, "relevance": 3, "description": "Peleg addresses Starbuck as the chief mate."}, {"chunkId": 322, "relevance": 3, "description": "Starbuck is explicitly identified as chief mate."}]
       }
     },
     {
@@ -118,9 +108,7 @@
         "3": [{"chunkId": 741, "relevance": 3, "description": "Ahab offers a gold ounce for the first sighting of the white whale."}],
         "4": [{"chunkId": 186, "relevance": 3, "description": "Ahab offers a gold ounce for the first sighting of the white whale."}],
         "5": [{"chunkId": 483, "relevance": 3, "description": "Ahab offers a gold ounce for the first sighting of the white whale."}],
-        "6": [{"chunkId": 428, "relevance": 3, "description": "Ahab offers a gold ounce for the first sighting of the white whale."}],
-        "7": [{"chunkId": 371, "relevance": 3, "description": "Ahab offers a gold ounce for first sighting the white whale."}],
-        "8": [{"chunkId": 371, "relevance": 3, "description": "Ahab offers a gold ounce for first sighting the white whale."}]
+        "6": [{"chunkId": 428, "relevance": 3, "description": "Ahab offers a gold ounce for the first sighting of the white whale."}]
       }
     },
     {
@@ -134,9 +122,7 @@
         "3": [{"chunkId": 818, "relevance": 3, "description": "Moby Dick's distinguishing forehead and white hump are described."}],
         "4": [{"chunkId": 205, "relevance": 3, "description": "Moby Dick's distinguishing forehead and white hump are described."}],
         "5": [{"chunkId": 534, "relevance": 3, "description": "Moby Dick's distinguishing forehead and white hump are described."}],
-        "6": [{"chunkId": 473, "relevance": 3, "description": "Moby Dick's distinguishing forehead and white hump are described."}],
-        "7": [{"chunkId": 409, "relevance": 3, "description": "Ahab names the whale's white wrinkled forehead and high pyramidal white hump."}],
-        "8": [{"chunkId": 409, "relevance": 3, "description": "Ahab names the whale's white wrinkled forehead and high pyramidal white hump."}]
+        "6": [{"chunkId": 473, "relevance": 3, "description": "Moby Dick's distinguishing forehead and white hump are described."}]
       }
     },
     {
@@ -156,9 +142,7 @@
         "3": [{"chunkId": 2271, "relevance": 2, "description": "Contains part of the evidence: Queequeg's coffin is ordered to be converted into a life-buoy."}, {"chunkId": 2272, "relevance": 2, "description": "Contains part of the evidence: Queequeg's coffin is ordered to be converted into a life-buoy."}, {"chunkId": 2273, "relevance": 2, "description": "Contains part of the evidence: Queequeg's coffin is ordered to be converted into a life-buoy."}],
         "4": [{"chunkId": 568, "relevance": 2, "description": "Contains part of the evidence: Queequeg's coffin is ordered to be converted into a life-buoy."}, {"chunkId": 569, "relevance": 2, "description": "Contains part of the evidence: Queequeg's coffin is ordered to be converted into a life-buoy."}],
         "5": [{"chunkId": 1494, "relevance": 2, "description": "Contains part of the evidence: Queequeg's coffin is ordered to be converted into a life-buoy."}, {"chunkId": 1495, "relevance": 2, "description": "Contains part of the evidence: Queequeg's coffin is ordered to be converted into a life-buoy."}],
-        "6": [{"chunkId": 1339, "relevance": 2, "description": "Contains part of the evidence: Queequeg's coffin is ordered to be converted into a life-buoy."}, {"chunkId": 1340, "relevance": 2, "description": "Contains part of the evidence: Queequeg's coffin is ordered to be converted into a life-buoy."}],
-        "7": [{"chunkId": 1136, "relevance": 3, "description": "The crew orders the carpenter to make a life-buoy from Queequeg's coffin."}, {"chunkId": 1137, "relevance": 2, "description": "The carpenter repeats that he was ordered to turn Queequeg's coffin into a life-buoy."}],
-        "8": [{"chunkId": 1136, "relevance": 3, "description": "The crew orders the carpenter to make a life-buoy from Queequeg's coffin."}, {"chunkId": 1137, "relevance": 2, "description": "The carpenter repeats that he was ordered to turn Queequeg's coffin into a life-buoy."}]
+        "6": [{"chunkId": 1339, "relevance": 2, "description": "Contains part of the evidence: Queequeg's coffin is ordered to be converted into a life-buoy."}, {"chunkId": 1340, "relevance": 2, "description": "Contains part of the evidence: Queequeg's coffin is ordered to be converted into a life-buoy."}]
       }
     },
     {
@@ -175,9 +159,7 @@
         "3": [{"chunkId": 2483, "relevance": 3, "description": "The narrator survives by floating on the coffin."}, {"chunkId": 2484, "relevance": 3, "description": "The Rachel rescues the surviving narrator."}],
         "4": [{"chunkId": 621, "relevance": 3, "description": "The narrator survives by floating on the coffin. The Rachel rescues the surviving narrator."}],
         "5": [{"chunkId": 1632, "relevance": 3, "description": "The narrator survives by floating on the coffin."}, {"chunkId": 1633, "relevance": 3, "description": "The Rachel rescues the surviving narrator."}],
-        "6": [{"chunkId": 1465, "relevance": 3, "description": "The narrator survives by floating on the coffin. The Rachel rescues the surviving narrator."}],
-        "7": [{"chunkId": 1242, "relevance": 3, "description": "The epilogue describes Ishmael floating on the coffin and being rescued by the Rachel."}],
-        "8": [{"chunkId": 1242, "relevance": 3, "description": "The epilogue describes Ishmael floating on the coffin and being rescued by the Rachel."}]
+        "6": [{"chunkId": 1465, "relevance": 3, "description": "The narrator survives by floating on the coffin. The Rachel rescues the surviving narrator."}]
       }
     },
     {
@@ -185,7 +167,7 @@
       "question": "In what year was Ishmael born?",
       "expectedAnswer": "The indexed book does not state Ishmael's birth year.",
       "tags": ["unanswerable"],
-      "goldChunksByIndexProfile": {"1": [], "2": [], "3": [], "4": [], "5": [], "6": [], "7": [], "8": []}
+      "goldChunksByIndexProfile": {"1": [], "2": [], "3": [], "4": [], "5": [], "6": []}
     }
   ]
 }

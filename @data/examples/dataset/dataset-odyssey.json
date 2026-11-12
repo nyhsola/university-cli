@@ -1,9 +1,9 @@
 {
   "id": 1,
   "name": "Odyssey indexing comparison",
-  "description": "Compares baseline and experimental chunk sizes, recursive boundaries, overlap and embedding model sizes on Odyssey across context budgets, fusion settings and semantic rewrites.",
-  "indexProfileIds": [1, 2, 3, 4, 5, 6, 7, 8],
-  "queryProfileIds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+  "description": "Compares baseline and experimental chunk sizes, recursive boundaries and overlap on Odyssey across context budgets, fusion settings and semantic rewrites.",
+  "indexProfileIds": [1, 2, 3, 4, 5, 6],
+  "queryProfileIds": [1, 2, 3, 4, 9, 10, 11, 12],
   "file": "../books/Odyssey.txt",
   "questions": [
     {
@@ -17,9 +17,7 @@
         "3": [{"chunkId": 372, "relevance": 3, "description": "Odysseus explicitly states that he stayed with Calypso for seven years."}],
         "4": [{"chunkId": 93, "relevance": 3, "description": "Odysseus explicitly states that he stayed with Calypso for seven years."}],
         "5": [{"chunkId": 262, "relevance": 3, "description": "Odysseus explicitly states that he stayed with Calypso for seven years."}],
-        "6": [{"chunkId": 232, "relevance": 3, "description": "Odysseus explicitly states that he stayed with Calypso for seven years."}],
-        "7": [{"chunkId": 186, "relevance": 3, "description": "Odysseus explicitly says that he stayed with Calypso for seven years."}],
-        "8": [{"chunkId": 186, "relevance": 3, "description": "Odysseus explicitly says that he stayed with Calypso for seven years."}]
+        "6": [{"chunkId": 232, "relevance": 3, "description": "Odysseus explicitly states that he stayed with Calypso for seven years."}]
       }
     },
     {
@@ -39,9 +37,7 @@
         "3": [{"chunkId": 908, "relevance": 2, "description": "Contains part of the evidence: Argos recognizes his returning master and reacts to him."}, {"chunkId": 909, "relevance": 2, "description": "Contains part of the evidence: Argos recognizes his returning master and reacts to him."}, {"chunkId": 911, "relevance": 3, "description": "Argos dies immediately after recognizing his master."}],
         "4": [{"chunkId": 227, "relevance": 2, "description": "Contains part of the evidence: Argos recognizes his returning master and reacts to him."}, {"chunkId": 228, "relevance": 3, "description": "Contains part of the evidence: Argos recognizes his returning master and reacts to him. Argos dies immediately after recognizing his master."}],
         "5": [{"chunkId": 624, "relevance": 2, "description": "Argos recognizes his returning master and reacts to him."}, {"chunkId": 626, "relevance": 3, "description": "Argos dies immediately after recognizing his master."}],
-        "6": [{"chunkId": 559, "relevance": 2, "description": "Argos recognizes his returning master and reacts to him."}, {"chunkId": 560, "relevance": 3, "description": "Argos dies immediately after recognizing his master."}],
-        "7": [{"chunkId": 455, "relevance": 2, "description": "Argos recognizes Odysseus after his long absence."}, {"chunkId": 456, "relevance": 3, "description": "Argos dies immediately after recognizing his master."}],
-        "8": [{"chunkId": 455, "relevance": 2, "description": "Argos recognizes Odysseus after his long absence."}, {"chunkId": 456, "relevance": 3, "description": "Argos dies immediately after recognizing his master."}]
+        "6": [{"chunkId": 559, "relevance": 2, "description": "Argos recognizes his returning master and reacts to him."}, {"chunkId": 560, "relevance": 3, "description": "Argos dies immediately after recognizing his master."}]
       }
     },
     {
@@ -61,9 +57,7 @@
         "3": [{"chunkId": 1131, "relevance": 2, "description": "Ulysses strings the great bow."}, {"chunkId": 1132, "relevance": 2, "description": "Contains part of the evidence: His arrow passes through all the axe handle-holes."}, {"chunkId": 1133, "relevance": 2, "description": "Contains part of the evidence: His arrow passes through all the axe handle-holes."}],
         "4": [{"chunkId": 283, "relevance": 2, "description": "Ulysses strings the great bow. Contains part of the evidence: His arrow passes through all the axe handle-holes."}, {"chunkId": 284, "relevance": 2, "description": "Contains part of the evidence: His arrow passes through all the axe handle-holes."}],
         "5": [{"chunkId": 775, "relevance": 2, "description": "Ulysses strings the great bow."}, {"chunkId": 776, "relevance": 3, "description": "His arrow passes through all the axe handle-holes."}],
-        "6": [{"chunkId": 700, "relevance": 2, "description": "Ulysses strings the great bow."}, {"chunkId": 701, "relevance": 3, "description": "His arrow passes through all the axe handle-holes."}],
-        "7": [{"chunkId": 566, "relevance": 2, "description": "Odysseus receives and strings the bow."}, {"chunkId": 567, "relevance": 3, "description": "Odysseus's arrow passes through every axe handle-hole."}],
-        "8": [{"chunkId": 566, "relevance": 2, "description": "Odysseus receives and strings the bow."}, {"chunkId": 567, "relevance": 3, "description": "Odysseus's arrow passes through every axe handle-hole."}]
+        "6": [{"chunkId": 700, "relevance": 2, "description": "Ulysses strings the great bow."}, {"chunkId": 701, "relevance": 3, "description": "His arrow passes through all the axe handle-holes."}]
       }
     },
     {
@@ -83,9 +77,7 @@
         "3": [{"chunkId": 372, "relevance": 3, "description": "Odysseus stayed with Calypso for seven years."}, {"chunkId": 911, "relevance": 3, "description": "Argos died immediately after recognizing his master."}],
         "4": [{"chunkId": 93, "relevance": 3, "description": "Odysseus stayed with Calypso for seven years."}, {"chunkId": 228, "relevance": 3, "description": "Argos died immediately after recognizing his master."}],
         "5": [{"chunkId": 262, "relevance": 3, "description": "Odysseus stayed with Calypso for seven years."}, {"chunkId": 626, "relevance": 3, "description": "Argos died immediately after recognizing his master."}],
-        "6": [{"chunkId": 232, "relevance": 3, "description": "Odysseus stayed with Calypso for seven years."}, {"chunkId": 560, "relevance": 3, "description": "Argos died immediately after recognizing his master."}],
-        "7": [{"chunkId": 186, "relevance": 3, "description": "Odysseus states how long he stayed with Calypso."}, {"chunkId": 456, "relevance": 3, "description": "The passage states what happens to Argos after recognition."}],
-        "8": [{"chunkId": 186, "relevance": 3, "description": "Odysseus states how long he stayed with Calypso."}, {"chunkId": 456, "relevance": 3, "description": "The passage states what happens to Argos after recognition."}]
+        "6": [{"chunkId": 232, "relevance": 3, "description": "Odysseus stayed with Calypso for seven years."}, {"chunkId": 560, "relevance": 3, "description": "Argos died immediately after recognizing his master."}]
       }
     },
     {
@@ -102,9 +94,7 @@
         "3": [{"chunkId": 451, "relevance": 2, "description": "Contains part of the evidence: The lotus makes the men forget home and want to remain with the Lotus-eaters."}, {"chunkId": 452, "relevance": 2, "description": "Contains part of the evidence: The lotus makes the men forget home and want to remain with the Lotus-eaters."}],
         "4": [{"chunkId": 113, "relevance": 3, "description": "The lotus makes the men forget home and want to remain with the Lotus-eaters."}],
         "5": [{"chunkId": 313, "relevance": 3, "description": "The lotus makes the men forget home and want to remain with the Lotus-eaters."}],
-        "6": [{"chunkId": 278, "relevance": 3, "description": "The lotus makes the men forget home and want to remain with the Lotus-eaters."}],
-        "7": [{"chunkId": 226, "relevance": 3, "description": "The lotus makes the men stop caring about home and want to remain with the Lotus-eaters."}],
-        "8": [{"chunkId": 226, "relevance": 3, "description": "The lotus makes the men stop caring about home and want to remain with the Lotus-eaters."}]
+        "6": [{"chunkId": 278, "relevance": 3, "description": "The lotus makes the men forget home and want to remain with the Lotus-eaters."}]
       }
     },
     {
@@ -125,9 +115,7 @@
         "3": [{"chunkId": 629, "relevance": 2, "description": "Circe instructs Odysseus to use wax and have himself tied to the mast."}, {"chunkId": 642, "relevance": 2, "description": "Contains part of the evidence: The crew use wax and bind Odysseus hand and foot to the mast."}, {"chunkId": 643, "relevance": 2, "description": "Contains part of the evidence: The crew use wax and bind Odysseus hand and foot to the mast."}],
         "4": [{"chunkId": 158, "relevance": 2, "description": "Circe instructs Odysseus to use wax and have himself tied to the mast."}, {"chunkId": 161, "relevance": 3, "description": "The crew use wax and bind Odysseus hand and foot to the mast."}],
         "5": [{"chunkId": 437, "relevance": 2, "description": "Circe instructs Odysseus to use wax and have himself tied to the mast."}, {"chunkId": 445, "relevance": 3, "description": "The crew use wax and bind Odysseus hand and foot to the mast."}],
-        "6": [{"chunkId": 391, "relevance": 2, "description": "Circe instructs Odysseus to use wax and have himself tied to the mast."}, {"chunkId": 399, "relevance": 3, "description": "The crew use wax and bind Odysseus hand and foot to the mast."}],
-        "7": [{"chunkId": 315, "relevance": 2, "description": "Circe instructs Odysseus to stop the crew's ears with wax and be tied to the mast."}, {"chunkId": 321, "relevance": 2, "description": "Odysseus repeats the plan and prepares the wax before reaching the Sirens."}, {"chunkId": 322, "relevance": 3, "description": "The crew's ears are stopped with wax and Odysseus is bound to the mast."}],
-        "8": [{"chunkId": 315, "relevance": 2, "description": "Circe instructs Odysseus to stop the crew's ears with wax and be tied to the mast."}, {"chunkId": 321, "relevance": 2, "description": "Odysseus repeats the plan and prepares the wax before reaching the Sirens."}, {"chunkId": 322, "relevance": 3, "description": "The crew's ears are stopped with wax and Odysseus is bound to the mast."}]
+        "6": [{"chunkId": 391, "relevance": 2, "description": "Circe instructs Odysseus to use wax and have himself tied to the mast."}, {"chunkId": 399, "relevance": 3, "description": "The crew use wax and bind Odysseus hand and foot to the mast."}]
       }
     },
     {
@@ -141,9 +129,7 @@
         "3": [{"chunkId": 649, "relevance": 2, "description": "Contains part of the evidence: Scylla snatches six men from the ship."}, {"chunkId": 650, "relevance": 2, "description": "Contains part of the evidence: Scylla snatches six men from the ship."}],
         "4": [{"chunkId": 163, "relevance": 3, "description": "Scylla snatches six men from the ship."}],
         "5": [{"chunkId": 450, "relevance": 3, "description": "Scylla snatches six men from the ship."}],
-        "6": [{"chunkId": 404, "relevance": 3, "description": "Scylla snatches six men from the ship."}],
-        "7": [{"chunkId": 325, "relevance": 3, "description": "Scylla suddenly snatches Odysseus's six best men."}],
-        "8": [{"chunkId": 325, "relevance": 3, "description": "Scylla suddenly snatches Odysseus's six best men."}]
+        "6": [{"chunkId": 404, "relevance": 3, "description": "Scylla snatches six men from the ship."}]
       }
     },
     {
@@ -163,9 +149,7 @@
         "3": [{"chunkId": 1026, "relevance": 3, "description": "The old nurse recognizes the scar caused by a wild boar."}, {"chunkId": 1034, "relevance": 3, "description": "Euryclea recognizes Odysseus by the scar on his leg."}],
         "4": [{"chunkId": 257, "relevance": 3, "description": "The old nurse recognizes the scar caused by a wild boar."}, {"chunkId": 259, "relevance": 3, "description": "Euryclea recognizes Odysseus by the scar on his leg."}],
         "5": [{"chunkId": 703, "relevance": 3, "description": "The old nurse recognizes the scar caused by a wild boar."}, {"chunkId": 709, "relevance": 3, "description": "Euryclea recognizes Odysseus by the scar on his leg."}],
-        "6": [{"chunkId": 633, "relevance": 3, "description": "The old nurse recognizes the scar caused by a wild boar."}, {"chunkId": 637, "relevance": 2, "description": "Contains part of the evidence: Euryclea recognizes Odysseus by the scar on his leg."}, {"chunkId": 638, "relevance": 2, "description": "Contains part of the evidence: Euryclea recognizes Odysseus by the scar on his leg."}],
-        "7": [{"chunkId": 513, "relevance": 3, "description": "Euryclea recognizes the scar Odysseus received from a wild boar."}, {"chunkId": 517, "relevance": 3, "description": "Euryclea recognizes Odysseus when she handles the scar left by the boar."}],
-        "8": [{"chunkId": 513, "relevance": 3, "description": "Euryclea recognizes the scar Odysseus received from a wild boar."}, {"chunkId": 517, "relevance": 3, "description": "Euryclea recognizes Odysseus when she handles the scar left by the boar."}]
+        "6": [{"chunkId": 633, "relevance": 3, "description": "The old nurse recognizes the scar caused by a wild boar."}, {"chunkId": 637, "relevance": 2, "description": "Contains part of the evidence: Euryclea recognizes Odysseus by the scar on his leg."}, {"chunkId": 638, "relevance": 2, "description": "Contains part of the evidence: Euryclea recognizes Odysseus by the scar on his leg."}]
       }
     },
     {
@@ -189,9 +173,7 @@
         "3": [{"chunkId": 1202, "relevance": 2, "description": "Penelope tests Odysseus by ordering the bed to be moved."}, {"chunkId": 1203, "relevance": 2, "description": "Contains part of the evidence: Odysseus describes making the bed from a rooted olive tree."}, {"chunkId": 1204, "relevance": 2, "description": "Contains part of the evidence: Odysseus describes making the bed from a rooted olive tree."}, {"chunkId": 1205, "relevance": 2, "description": "Moving the bed would require cutting the olive tree at its roots."}, {"chunkId": 1207, "relevance": 2, "description": "Contains part of the evidence: Penelope accepts his knowledge of their private bed as proof."}, {"chunkId": 1208, "relevance": 2, "description": "Contains part of the evidence: Penelope accepts his knowledge of their private bed as proof."}],
         "4": [{"chunkId": 301, "relevance": 3, "description": "Penelope tests Odysseus by ordering the bed to be moved. Odysseus describes making the bed from a rooted olive tree."}, {"chunkId": 302, "relevance": 2, "description": "Moving the bed would require cutting the olive tree at its roots. Penelope accepts his knowledge of their private bed as proof."}],
         "5": [{"chunkId": 822, "relevance": 2, "description": "Penelope tests Odysseus by ordering the bed to be moved. Contains part of the evidence: Odysseus describes making the bed from a rooted olive tree."}, {"chunkId": 823, "relevance": 2, "description": "Contains part of the evidence: Odysseus describes making the bed from a rooted olive tree."}, {"chunkId": 824, "relevance": 2, "description": "Moving the bed would require cutting the olive tree at its roots."}, {"chunkId": 825, "relevance": 2, "description": "Penelope accepts his knowledge of their private bed as proof."}],
-        "6": [{"chunkId": 744, "relevance": 2, "description": "Contains part of the evidence: Penelope tests Odysseus by ordering the bed to be moved."}, {"chunkId": 745, "relevance": 2, "description": "Contains part of the evidence: Penelope tests Odysseus by ordering the bed to be moved. Contains part of the evidence: Odysseus describes making the bed from a rooted olive tree."}, {"chunkId": 746, "relevance": 2, "description": "Contains part of the evidence: Odysseus describes making the bed from a rooted olive tree. Moving the bed would require cutting the olive tree at its roots."}, {"chunkId": 747, "relevance": 2, "description": "Penelope accepts his knowledge of their private bed as proof."}],
-        "7": [{"chunkId": 601, "relevance": 2, "description": "Penelope tests Odysseus by ordering their immovable bed to be taken outside."}, {"chunkId": 602, "relevance": 3, "description": "Odysseus explains that he built the bed around a rooted olive tree and that no man could move it."}, {"chunkId": 603, "relevance": 2, "description": "Odysseus mentions cutting the olive roots, and Penelope accepts this knowledge as proof."}, {"chunkId": 604, "relevance": 2, "description": "Penelope confirms that knowledge of their private bed convinced her."}],
-        "8": [{"chunkId": 601, "relevance": 2, "description": "Penelope tests Odysseus by ordering their immovable bed to be taken outside."}, {"chunkId": 602, "relevance": 3, "description": "Odysseus explains that he built the bed around a rooted olive tree and that no man could move it."}, {"chunkId": 603, "relevance": 2, "description": "Odysseus mentions cutting the olive roots, and Penelope accepts this knowledge as proof."}, {"chunkId": 604, "relevance": 2, "description": "Penelope confirms that knowledge of their private bed convinced her."}]
+        "6": [{"chunkId": 744, "relevance": 2, "description": "Contains part of the evidence: Penelope tests Odysseus by ordering the bed to be moved."}, {"chunkId": 745, "relevance": 2, "description": "Contains part of the evidence: Penelope tests Odysseus by ordering the bed to be moved. Contains part of the evidence: Odysseus describes making the bed from a rooted olive tree."}, {"chunkId": 746, "relevance": 2, "description": "Contains part of the evidence: Odysseus describes making the bed from a rooted olive tree. Moving the bed would require cutting the olive tree at its roots."}, {"chunkId": 747, "relevance": 2, "description": "Penelope accepts his knowledge of their private bed as proof."}]
       }
     },
     {
@@ -199,7 +181,7 @@
       "question": "What tuition fee does the University of Kyiv charge for its computer science program?",
       "expectedAnswer": "The indexed book does not contain this information.",
       "tags": ["unanswerable"],
-      "goldChunksByIndexProfile": {"1": [], "2": [], "3": [], "4": [], "5": [], "6": [], "7": [], "8": []}
+      "goldChunksByIndexProfile": {"1": [], "2": [], "3": [], "4": [], "5": [], "6": []}
     }
   ]
 }
