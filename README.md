@@ -59,6 +59,23 @@ ollama pull qwen3-embedding:8b
 ollama pull qwen3.5:9b
 ```
 
+## Modules
+
+Research materials and sample data are grouped under `@data/research/` and `@data/examples/`, separate from the application modules.
+
+| Module | Responsibility |
+| --- | --- |
+| `core` | Shared domain models, profiles, operation support, basic helpers, and all application resources |
+| `storage-sqlite` | JDBC repositories, Flyway execution, and sqlite-vec loading |
+| `llm-ollama` | Ollama HTTP client and embedding preprocessing |
+| `rag` | Indexing, retrieval, profiles, and answer generation |
+| `evaluation` | Datasets, judging, metrics, comparisons, and reports |
+| `cli` | Commands, terminal UI, dependency wiring, and application startup |
+
+All application resources live in `core/src/main/resources`: configuration profiles, SQL, migrations, and prompts. The core resource-processing task also packages the platform-specific sqlite-vec library.
+
+The root build aggregates all modules. Existing root commands such as `build`, `test`, `check`, and `run --args="profiles"` remain available. Use qualified tasks such as `:rag:compileKotlin` or `:cli:test` to work with one module. Both root `run` and `:cli:run` use the project root as the working directory.
+
 ## Build
 
 Linux and macOS:
@@ -97,7 +114,7 @@ Search without generation, or ask across all ready indexes:
 ```shell
 java -jar build/libs/urag.jar search "What is dependency injection?" --all --profile 1 --explain
 java -jar build/libs/urag.jar ask "Summarize this project" --all --profile 1
-java -jar build/libs/urag.jar report examples/dataset
+java -jar build/libs/urag.jar report @data/examples/dataset
 ```
 
 > [!IMPORTANT]
@@ -143,7 +160,7 @@ Text can be selected normally with the mouse, without holding `Shift`.
 
 ## Configurations
 
-Index profiles live in `src/main/resources/configurations/indexing`. They select the embedding model and chunking behavior:
+Index profiles live in `core/src/main/resources/configurations/indexing`. They select the embedding model and chunking behavior:
 
 ```json
 {
@@ -173,7 +190,7 @@ previous chunk and validates that the result fits within `maxSize`:
 }
 ```
 
-Query profiles live in `src/main/resources/configurations/query`. They select dense, lexical, or hybrid retrieval, control candidate pools, and fill the final context up to a character budget:
+Query profiles live in `core/src/main/resources/configurations/query`. They select dense, lexical, or hybrid retrieval, control candidate pools, and fill the final context up to a character budget:
 
 ```json
 {
@@ -199,7 +216,7 @@ The application stores only the SHA-256 hash of the selected index profile JSON 
 
 ## Evaluation reports
 
-The `report` command accepts a directory containing files named `dataset-<lowercase-bookname>.json`, such as `examples/dataset`. Paths to source books are resolved relative to each dataset file. All datasets must reference the same built-in index and query profile IDs; they do not redefine profile parameters. Each question contains a reference answer and separate graded gold chunks for every selected index profile.
+The `report` command accepts a directory containing files named `dataset-<lowercase-bookname>.json`, such as `@data/examples/dataset`. Paths to source books are resolved relative to each dataset file. All datasets must reference the same built-in index and query profile IDs; they do not redefine profile parameters. Each question contains a reference answer and separate graded gold chunks for every selected index profile.
 
 The command builds every selected index profile for every book and evaluates every question for each index/query profile combination. Every run searches only its selected index, then asks the configured question model to judge the generated answer against the reference answer. All datasets are aggregated into one report; an incorrect answer is an evaluation result, not a command failure.
 

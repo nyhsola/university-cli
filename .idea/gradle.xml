@@ -8,6 +8,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/cli" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/evaluation" />
+            <option value="$PROJECT_DIR$/llm-ollama" />
+            <option value="$PROJECT_DIR$/rag" />
+            <option value="$PROJECT_DIR$/storage-sqlite" />
           </set>
         </option>
         <option name="myGradleHome" value="" />
