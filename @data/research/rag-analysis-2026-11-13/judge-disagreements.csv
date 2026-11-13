@@ -1,0 +1,17 @@
+﻿dataset_id,question_id,actual_answer,reference,n,complete,not_complete,incorrect,profiles
+1,bow-contest,Ulysses,Odysseus strings the bow and sends the arrow through every axe handle-hole.,24,22,2,0,I1/Q2;I1/Q4;I1/Q9;I1/Q10;I1/Q11;I1/Q12;I2/Q2;I2/Q3;I2/Q11;I3/Q1;I3/Q3;I3/Q4;I3/Q9;I3/Q10;I3/Q11;I3/Q12;I4/Q3;I4/Q4;I4/Q10;I5/Q2;I5/Q9;I5/Q12;I6/Q2;I6/Q10
+2,life-buoy,coffin,Queequeg's coffin is converted into a life-buoy.,17,15,2,0,I1/Q4;I1/Q9;I1/Q11;I1/Q12;I2/Q2;I2/Q4;I2/Q11;I3/Q2;I3/Q4;I3/Q11;I3/Q12;I4/Q3;I4/Q10;I5/Q2;I5/Q12;I6/Q1;I6/Q10
+1,unanswerable-tuition,I do not know.,The indexed book does not contain this information.,17,2,15,0,I1/Q1;I1/Q9;I2/Q2;I2/Q10;I2/Q11;I2/Q12;I3/Q1;I3/Q3;I3/Q11;I3/Q12;I4/Q2;I4/Q3;I4/Q12;I5/Q2;I5/Q9;I5/Q11;I6/Q2
+2,unanswerable-birth-year,I do not know.,The indexed book does not state Ishmael's birth year.,13,3,10,0,I1/Q4;I2/Q9;I2/Q10;I3/Q4;I3/Q11;I4/Q1;I4/Q11;I5/Q10;I5/Q12;I6/Q1;I6/Q2;I6/Q4;I6/Q12
+3,lydgate-research,the homogeneous origin of all the tissues,Lydgate hopes to investigate primitive tissue and discover its fundamental nature.,8,3,5,0,I2/Q1;I2/Q2;I2/Q4;I5/Q1;I5/Q4;I5/Q10;I5/Q12;I6/Q1
+2,starbuck-position,mate,Starbuck is the Pequod's chief mate.,8,7,1,0,I1/Q2;I2/Q3;I2/Q9;I4/Q2;I5/Q4;I5/Q9;I6/Q2;I6/Q11
+2,life-buoy,A coffin,Queequeg's coffin is converted into a life-buoy.,6,5,1,0,I1/Q1;I1/Q3;I4/Q1;I4/Q9;I4/Q11;I5/Q4
+2,narrator,I do not know.,The narrator asks to be called Ishmael.,5,0,1,4,I2/Q2;I2/Q12;I4/Q12;I5/Q3;I6/Q10
+2,narrator,Elijah,The narrator asks to be called Ishmael.,4,1,1,2,I4/Q1;I4/Q2;I4/Q9;I4/Q10
+3,bulstrode-raffles,I do not know.,Bulstrode gives Mrs. Abel the key to the wine-cooler and allows her to give Raffles brandy.,2,0,1,1,I2/Q1;I4/Q9
+3,lydgate-research,"special questions of disease, such as the nature of fever or fevers",Lydgate hopes to investigate primitive tissue and discover its fundamental nature.,2,0,1,1,I3/Q2;I3/Q10
+3,lydgate-fate,I do not know.,Lydgate dies at fifty and considers himself a failure because he never accomplishes the scientific work he originally intended to do.,2,0,1,1,I4/Q4;I4/Q9
+3,lydgate-research,Lydgate hopes to demonstrate the homogeneous origin of all the tissues.,Lydgate hopes to investigate primitive tissue and discover its fundamental nature.,2,0,1,1,I5/Q2;I6/Q2
+2,narrator,Queequeg,The narrator asks to be called Ishmael.,2,0,1,1,I2/Q11;I6/Q3
+2,white-whale-features,"A peculiar snow-white wrinkled forehead and a high, pyramidical white hump.","Moby Dick has a snow-white wrinkled forehead and a high, pyramidal white hump.",2,1,1,0,I3/Q9;I5/Q2
+1,unanswerable-tuition,does not know,The indexed book does not contain this information.,2,1,1,0,I4/Q9;I6/Q11

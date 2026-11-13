@@ -1,0 +1,31 @@
+﻿dataset_id,question_id,tags,question,complete,not_complete,incorrect,n,mean_tokens,mean_evidence_coverage
+1,argos,paraphrase;single-hop,What happens to Odysseus's old dog immediately after recognizing his master?,35,1,12,48,1576.3125,0.7291666666666666
+1,bow-contest,exact-term;single-hop,Who strings the great bow and shoots an arrow through all the axe handle-holes?,37,3,8,48,1583.4583333333333,0.65625
+1,calypso,exact-term;single-hop,How many years does Odysseus say he remained with Calypso?,42,1,5,48,1539.5208333333333,0.8958333333333334
+1,calypso-and-argos,multi-hop,"How long did Odysseus stay with Calypso, and what happened to Argos after recognizing him?",8,25,15,48,1617.3541666666667,0.3958333333333333
+1,euryclea-scar,paraphrase;single-hop,How did Euryclea recognize Odysseus while washing him?,43,3,2,48,1603.1041666666667,0.8125
+1,lotus-eaters,paraphrase;single-hop,What effect did eating the lotus have on Odysseus's men?,48,0,0,48,1589.5833333333333,1.0
+1,olive-tree-bed,paraphrase;single-hop,What secret about the marriage bed convinced Penelope that the stranger was Odysseus?,25,5,18,48,1644.7291666666667,0.125
+1,scylla,exact-term;single-hop,How many of Odysseus's men did Scylla snatch from the ship?,48,0,0,48,1583.8125,0.7916666666666666
+1,sirens,multi-fact;single-hop,How did Odysseus and his crew protect themselves while passing the Sirens?,46,1,1,48,1676.9166666666667,0.9791666666666666
+1,unanswerable-tuition,unanswerable,What tuition fee does the University of Kyiv charge for its computer science program?,21,26,1,48,1417.7291666666667,
+2,ahab-leg,paraphrase;single-hop,What happened to Captain Ahab's leg on a previous voyage?,15,7,26,48,1673.4583333333333,0.3958333333333333
+2,gold-ounce,exact-term;single-hop,What reward does Ahab promise to the first person who sights the white whale?,37,0,11,48,1617.3333333333333,0.7708333333333334
+2,ishmael-survival,multi-hop,"What kept Ishmael afloat after the Pequod sank, and which ship rescued him?",8,8,32,48,1662.9791666666667,0.3333333333333333
+2,life-buoy,paraphrase;single-hop,What object is converted into a replacement life-buoy?,45,3,0,48,1606.25,0.6666666666666666
+2,narrator,exact-term;single-hop,What name does the narrator ask the reader to call him?,19,4,25,48,1610.3958333333333,0.0
+2,pequod,exact-term;single-hop,Which whaling ship do Ishmael and Queequeg choose for their voyage?,27,2,19,48,1607.0,0.125
+2,queequeg-role,paraphrase;single-hop,What role does Queequeg serve aboard the whaling ship?,47,0,1,48,1614.0416666666667,0.5416666666666666
+2,starbuck-position,exact-term;single-hop,What position does Starbuck hold on the Pequod?,39,6,3,48,1646.125,0.08333333333333333
+2,unanswerable-birth-year,unanswerable,In what year was Ishmael born?,23,25,0,48,1604.8125,
+2,white-whale-features,multi-fact;single-hop,Which visible features does Ahab use to distinguish Moby Dick from other white whales?,22,10,16,48,1681.6875,0.4166666666666667
+3,bulstrode-raffles,multi-fact;single-hop,How does Bulstrode disobey Lydgate's instruction that Raffles must receive no alcohol?,1,9,38,48,1548.8958333333333,0.0
+3,casaubon-codicil,paraphrase;single-hop,Under what condition would Dorothea lose the property left to her by Casaubon?,31,7,10,48,1574.3958333333333,0.6666666666666666
+3,casaubon-work,exact-term;single-hop,What is the title of the scholarly work Mr. Casaubon is trying to complete?,34,2,12,48,1484.8541666666667,0.0
+3,dorothea-choice,multi-hop,"Whom does Dorothea ultimately decide to marry, and what inheritance does that decision cost her?",22,7,19,48,1677.5625,0.5104166666666666
+3,dorothea-sister,exact-term;single-hop,What is the name of Dorothea Brooke's younger sister?,46,0,2,48,1532.375,0.75
+3,featherstone-heir,exact-term;single-hop,Who receives the residue of Peter Featherstone's property and must take the Featherstone name?,45,1,2,48,1488.8541666666667,0.9375
+3,fred-mary,multi-fact;single-hop,"Whom does Fred Vincy marry, and what occupation does he successfully pursue?",23,6,19,48,1563.7708333333333,0.5
+3,lydgate-fate,multi-fact;single-hop,"At what age does Lydgate die, and why does he regard his successful medical career as a failure?",23,4,21,48,1520.8541666666667,0.4583333333333333
+3,lydgate-research,paraphrase;single-hop,What scientific subject does Lydgate hope to investigate?,8,19,21,48,1456.1458333333333,0.0
+3,unanswerable-publication-sales,unanswerable,How many printed copies of Middlemarch were sold during 2025?,26,22,0,48,1472.6041666666667,

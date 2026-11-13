@@ -1,0 +1,7 @@
+﻿tag,unique_questions,n,complete,not_complete,incorrect,complete_rate
+exact-term,10,480,374,19,87,0.7791666666666667
+multi-fact,5,240,115,30,95,0.4791666666666667
+multi-hop,3,144,38,40,66,0.2638888888888889
+paraphrase,9,432,297,45,90,0.6875
+single-hop,24,1152,786,94,272,0.6822916666666666
+unanswerable,3,144,70,73,1,0.4861111111111111
