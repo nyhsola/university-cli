@@ -9,6 +9,7 @@ import com.github.ajalt.mordant.terminal.Terminal
 import university.cli.command.CommandDispatcher
 import university.cli.command.CommandMessageType
 import university.cli.command.CommandResult
+import university.cli.util.CommandTableFormatter
 import university.cli.service.chat.ChatOutputService
 import university.cli.service.chat.ChatStatusService
 
@@ -51,6 +52,12 @@ class CliService(
     }
 
     private fun printResult(result: CommandResult) {
+        result.table?.let { table ->
+            CommandTableFormatter.format(table, terminal.size.width).forEach {
+                terminal.println(style(it.text, it.type))
+            }
+            return
+        }
         if (result.lines.isNotEmpty()) {
             result.lines.forEach { terminal.println(style(it.text, it.type)) }
             return

@@ -85,38 +85,10 @@ There is no configured ktlint, Detekt, or formatter task. Do not report a lint/f
 
 ## Implementing Changes
 
+- Do not add or write tests unless the user explicitly requests them. Existing checks may still be run to validate changes.
+
 1. Trace the complete path affected by the change: command → service → repository/resource → model.
 2. Preserve package boundaries and inject new collaborators through constructors and `AppModule`.
 3. Update related resource JSON, SQL, migration, command help/order, and README only when runtime behavior changes require it.
 4. Validate configuration parameters and command arguments at their owning boundary with actionable errors.
 5. Do not overwrite unrelated working-tree changes.
-
-## Tests
-
-The current suite contains only `AppLauncherTest`, a smoke test that verifies `AppLauncher.launch()` completes without external services. Keep that test narrow and independent of Ollama and persistent `.data` state.
-
-Do not add or expand tests by default unless the task explicitly requests tests. When tests are requested or an existing test must change:
-
-- use `kotlin.test` on JUnit Platform;
-- name files `<Subject>Test.kt` and mirror the production package;
-- prefer deterministic unit tests for parsing, validation, ranking, and formatting;
-- use temporary directories/databases for filesystem or JDBC tests;
-- do not require a running Ollama instance in the normal test task.
-
-## Do Not Change Without a Good Reason
-
-- Gradle wrapper files, dependency versions, fat-JAR packaging, or platform mapping for `sqlite-vec`.
-- Native extension loading and SQLite foreign-key/load-extension settings.
-- Existing migration history or the persisted database/chunk-file formats.
-- Default configuration IDs, models, or parameters: these affect CLI examples and existing index hashes.
-- Terminal escape sequences, alternate-screen handling, cursor behavior, scrolling, and command ordering when the task is unrelated to the UI.
-- Files in `@data/examples/`, `README.md`, or `INVESTIGATE.md` unless the requested behavior or documentation scope calls for it.
-
-## Completion Checklist
-
-- Review the diff for accidental changes and run `git diff --check`.
-- Run the narrowest relevant verification while iterating, then `./gradlew build` for completed code, dependency, SQL, migration, or resource changes.
-- For test-only changes, run `./gradlew test`; for documentation-only changes, build is unnecessary.
-- Smoke-test affected one-shot commands from `build/libs/urag.jar` when command parsing or visible output changes.
-- Verify interactive behavior in a real terminal when changing raw input, scrolling, cursor, escape sequences, or screen layout.
-- State any checks that could not be run, especially Ollama-dependent indexing or question flows.

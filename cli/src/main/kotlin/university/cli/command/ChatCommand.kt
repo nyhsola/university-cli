@@ -17,11 +17,20 @@ data class CommandResult(
     val messageType: CommandMessageType = CommandMessageType.INFO,
     val shouldExit: Boolean = false,
     val lines: List<CommandOutputLine> = emptyList(),
+    val table: CommandOutputTable? = null,
+)
+
+data class CommandOutputTable(
+    val title: String,
+    val firstColumnTitle: String,
+    val secondColumnTitle: String,
+    val rows: List<Pair<String, String>>,
 )
 
 data class CommandOutputLine(
     val text: String,
     val type: CommandMessageType = CommandMessageType.INFO,
+    val fullWidth: Boolean = false,
 )
 
 enum class CommandMessageType {

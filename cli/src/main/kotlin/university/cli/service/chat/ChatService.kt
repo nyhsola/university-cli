@@ -18,10 +18,12 @@ import com.github.ajalt.mordant.terminal.Terminal
 import com.github.ajalt.mordant.terminal.prompt
 import university.cli.command.CommandDispatcher
 import university.cli.command.CommandMessageType
+import university.cli.command.CommandOutputTable
 import university.cli.command.CommandResult
 import university.cli.command.CommandSuggestion
 import university.cli.service.operation.OperationCancellationService
 import university.cli.util.TextUtil
+import university.cli.util.CommandTableFormatter
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -33,7 +35,40 @@ class ChatService(
     private val chatOutputService: ChatOutputService = ChatOutputService(),
     private val cancellationService: OperationCancellationService = OperationCancellationService(),
 ) {
+    companion object {
+        private const val MAX_SUGGESTIONS = 5
+        private const val MINIMUM_WIDTH = 20
+        private const val MINIMUM_HEIGHT = 18
+        private const val COMPOSER_HEIGHT = 2
+        private const val COMMAND_INPUT_POLL_MILLIS = 50L
+        private const val HISTORY_SCROLL_STEP = 5
+        private const val HEADER_GAP = 2
+        private const val CHAT_PADDING = "   "
+        private const val DEFAULT_STATUS_HINT = "Type / for commands"
+        private const val ENTER_ALTERNATE_SCREEN = "\u001B[?1049h"
+        private const val LEAVE_ALTERNATE_SCREEN = "\u001B[?1049l"
+        private const val ENABLE_ALTERNATE_SCROLL = "\u001B[?1007h"
+        private const val DISABLE_ALTERNATE_SCROLL = "\u001B[?1007l"
+        private const val SHOW_CURSOR = "\u001B[?25h"
+        private const val BLINKING_BAR_CURSOR = "\u001B[5 q"
+        private const val DEFAULT_CURSOR = "\u001B[0 q"
+        private const val SAVE_CURSOR = "\u001B[s"
+        private const val RESTORE_CURSOR = "\u001B[u"
+        private const val BEGIN_SYNCHRONIZED_UPDATE = "\u001B[?2026h"
+        private const val END_SYNCHRONIZED_UPDATE = "\u001B[?2026l"
+        private val HEADER_ART = """
+             __  __     ______     ______     ______
+            /\ \/\ \   /\  == \   /\  __ \   /\  ___\
+            \ \ \_\ \  \ \  __<   \ \  __ \  \ \ \__ \
+             \ \_____\  \ \_\ \_\  \ \_\ \_\  \ \_____\
+              \/_____/   \/_/ /_/   \/_/\/_/   \/_____/
+        """.trimIndent()
+    }
+
+    private var renderedScreen: ScreenState? = null
+
     fun start() {
+        renderedScreen = null
         val rawMode = terminal.enterRawModeOrNull(MouseTracking.Off)
         if (rawMode == null) {
             startLineMode()
@@ -90,7 +125,7 @@ class ChatService(
                 selectedIndex = selectedIndex.coerceIn(0, (suggestions.size - 1).coerceAtLeast(0))
                 scrollOffset = renderScreen(history, buffer, suggestions, selectedIndex, scrollOffset)
 
-                val event = inputReader.read()
+            val event = inputReader.poll(COMMAND_INPUT_POLL_MILLIS) ?: continue
                 if (event is MouseEvent) {
                     scrollOffset = mouseScrollOffset(scrollOffset, event)
                     continue
@@ -108,8 +143,8 @@ class ChatService(
                         history += ScreenMessage("> $enteredValue", CommandMessageType.INFO, isUser = true)
                         scrollOffset = renderScreen(history, StringBuilder(), emptyList(), 0, 0)
 
-                        val result = executeCommand(inputReader, commandExecutor, enteredValue) { mouseEvent ->
-                            scrollOffset = mouseScrollOffset(scrollOffset, mouseEvent)
+                    val result = executeCommand(inputReader, commandExecutor, enteredValue) { mouseEvent ->
+                        if (mouseEvent != null) scrollOffset = mouseScrollOffset(scrollOffset, mouseEvent)
                             scrollOffset = renderScreen(
                                 history,
                                 StringBuilder(),
@@ -179,7 +214,7 @@ class ChatService(
         inputReader: ConsoleInputReader,
         commandExecutor: ExecutorService,
         command: String,
-        onMouseEvent: (MouseEvent) -> Unit,
+        updateScreen: (MouseEvent?) -> Unit,
     ): CommandResult {
         val future = commandExecutor.submit<CommandResult> {
             cancellationService.execute { commandDispatcher.dispatch(command) }
@@ -191,8 +226,8 @@ class ChatService(
                     chatStatusService.set("Cancelling...")
                 }
 
-                is MouseEvent -> onMouseEvent(event)
-                null -> Unit
+                is MouseEvent -> updateScreen(event)
+                null -> updateScreen(null)
             }
         }
 
@@ -235,8 +270,21 @@ class ChatService(
         selectedIndex: Int,
         scrollOffset: Int,
     ): Int {
-        val width = terminal.size.width.coerceAtLeast(MINIMUM_WIDTH)
-        val height = terminal.size.height.coerceAtLeast(MINIMUM_HEIGHT)
+        val size = terminal.updateSize()
+        val width = size.width.coerceAtLeast(MINIMUM_WIDTH)
+        val height = size.height.coerceAtLeast(MINIMUM_HEIGHT)
+        val screen = ScreenState(
+            history.toList(),
+            buffer.toString(),
+            suggestions.toList(),
+            selectedIndex,
+            scrollOffset,
+            width,
+            height,
+            chatStatusService.status,
+        )
+        if (screen == renderedScreen) return scrollOffset
+
         val headerLines = headerLines()
         val suggestionStart = (selectedIndex - MAX_SUGGESTIONS + 1)
             .coerceAtLeast(0)
@@ -253,10 +301,10 @@ class ChatService(
         }
         val fixedLineCount = renderedSuggestionLines.size + COMPOSER_HEIGHT
         val historyHeight = (height - fixedLineCount).coerceAtLeast(0)
-        val renderedHistory = history.flatMap { message ->
+        val renderedHistory = history.flatMap { message -> message.render(width) }.flatMap { message ->
             val messageWidth = (width - message.padding().length).coerceAtLeast(1)
             wrapLine(message.text, messageWidth).map { line ->
-                ScreenMessage(line, message.type, message.isUser)
+                ScreenMessage(line, message.type, message.isUser, message.fullWidth)
             }
         }
         val maximumScrollOffset = (renderedHistory.size - historyHeight).coerceAtLeast(0)
@@ -288,6 +336,7 @@ class ChatService(
         } finally {
             terminal.rawPrint(END_SYNCHRONIZED_UPDATE)
         }
+        renderedScreen = screen.copy(scrollOffset = boundedScrollOffset)
         return boundedScrollOffset
     }
 
@@ -322,20 +371,21 @@ class ChatService(
 
     private fun printTranscript(history: List<ScreenMessage>) {
         terminal.println((bold + red)("UNIVERSITY RAG session"))
-        history.forEach { message ->
+        history.flatMap { it.render(terminal.size.width) }.forEach { message ->
             terminal.println(message.padding() + styleMessage(message.text, message.type))
         }
     }
 
     private fun printResult(result: CommandResult) {
-        result.toScreenMessages().forEach { message ->
-            terminal.println(CHAT_PADDING + styleMessage(message.text, message.type))
+        result.toScreenMessages().flatMap { it.render(terminal.size.width) }.forEach { message ->
+            terminal.println(message.padding() + styleMessage(message.text, message.type))
         }
     }
 
     private fun CommandResult.toScreenMessages(): List<ScreenMessage> {
+        table?.let { return listOf(ScreenMessage("", CommandMessageType.INFO, table = it)) }
         if (lines.isNotEmpty()) {
-            return lines.map { line -> ScreenMessage(line.text, line.type) }
+            return lines.map { line -> ScreenMessage(line.text, line.type, fullWidth = line.fullWidth) }
         }
         return message?.lineSequence()
             ?.map { line -> ScreenMessage(line, messageType) }
@@ -357,7 +407,7 @@ class ChatService(
         width: Int,
         headerLines: List<String>,
     ) {
-        val headerLine = headerLines.getOrNull(row)?.takeLast(width)
+        val headerLine = headerLines.getOrNull(row)?.takeLast(width).takeUnless { message?.fullWidth == true }
         if (headerLine == null) {
             val content = message?.let {
                 val padding = it.padding()
@@ -412,41 +462,30 @@ class ChatService(
     private fun wrapLine(value: String, width: Int): List<String> =
         if (value.isEmpty()) listOf("") else value.chunked(width.coerceAtLeast(1))
 
+    private data class ScreenState(
+        val history: List<ScreenMessage>,
+        val input: String,
+        val suggestions: List<CommandSuggestion>,
+        val selectedIndex: Int,
+        val scrollOffset: Int,
+        val width: Int,
+        val height: Int,
+        val status: String?,
+    )
+
     private data class ScreenMessage(
         val text: String,
         val type: CommandMessageType,
         val isUser: Boolean = false,
+        val fullWidth: Boolean = false,
+        val table: CommandOutputTable? = null,
     )
 
-    private fun ScreenMessage.padding(): String = if (isUser) "" else CHAT_PADDING
+    private fun ScreenMessage.render(width: Int): List<ScreenMessage> = table?.let {
+        CommandTableFormatter.format(it, width).map { line ->
+            ScreenMessage(line.text, line.type, fullWidth = true)
+        }
+    } ?: listOf(this)
 
-    companion object {
-        private const val MAX_SUGGESTIONS = 5
-        private const val MINIMUM_WIDTH = 20
-        private const val MINIMUM_HEIGHT = 18
-        private const val COMPOSER_HEIGHT = 2
-        private const val COMMAND_INPUT_POLL_MILLIS = 50L
-        private const val HISTORY_SCROLL_STEP = 5
-        private const val HEADER_GAP = 2
-        private const val CHAT_PADDING = "   "
-        private const val DEFAULT_STATUS_HINT = "Type / for commands"
-        private const val ENTER_ALTERNATE_SCREEN = "\u001B[?1049h"
-        private const val LEAVE_ALTERNATE_SCREEN = "\u001B[?1049l"
-        private const val ENABLE_ALTERNATE_SCROLL = "\u001B[?1007h"
-        private const val DISABLE_ALTERNATE_SCROLL = "\u001B[?1007l"
-        private const val SHOW_CURSOR = "\u001B[?25h"
-        private const val BLINKING_BAR_CURSOR = "\u001B[5 q"
-        private const val DEFAULT_CURSOR = "\u001B[0 q"
-        private const val SAVE_CURSOR = "\u001B[s"
-        private const val RESTORE_CURSOR = "\u001B[u"
-        private const val BEGIN_SYNCHRONIZED_UPDATE = "\u001B[?2026h"
-        private const val END_SYNCHRONIZED_UPDATE = "\u001B[?2026l"
-        private val HEADER_ART = """
-             __  __     ______     ______     ______
-            /\ \/\ \   /\  == \   /\  __ \   /\  ___\
-            \ \ \_\ \  \ \  __<   \ \  __ \  \ \ \__ \
-             \ \_____\  \ \_\ \_\  \ \_\ \_\  \ \_____\
-              \/_____/   \/_/ /_/   \/_/\/_/   \/_____/
-        """.trimIndent()
-    }
+    private fun ScreenMessage.padding(): String = if (isUser || fullWidth) "" else CHAT_PADDING
 }
