@@ -133,11 +133,26 @@ The `/` prefix is required in interactive mode and optional in one-shot shell mo
 | `profiles [index\|query]` | List index and query profiles. |
 | `search "query" [--all\|--file PATH\|--index ID] [--profile ID] [--explain]` | Retrieve chunks without answer generation. |
 | `ask "question" [--all\|--file PATH\|--index ID] [--profile ID]` | Retrieve context and generate an answer. |
+| `research "question" [--explain]` | Research across all ready indexes with up to three searches, cited claims, and unresolved questions. |
 | `report <dataset-directory>` | Run all evaluation datasets in a directory and generate one report. |
 | `help` | Display the available commands. |
 | `exit` | Exit interactive mode. |
 
 Running without arguments, with `-h`, or with `--help` displays command help. Failed one-shot commands return a non-zero exit code.
+
+## Agentic research
+
+```shell
+java -jar build/libs/urag.jar research "Who participated in the event and what were its consequences?" --explain
+```
+
+Use `/research "question"` in interactive mode. Research always searches all ready indexes with the default query profile. After an initial search, the model can choose a focused follow-up query or finish early. The run stops after at most three searches, a repeated query, or two consecutive searches without new sources. Multi-query expansion is disabled for research.
+
+When ready indexes use different embedding models, research announces a switch to lexical search so it can search all indexes. Stale indexes whose configuration hashes no longer match a resource profile require reindexing.
+
+The answer lists supported claims with source IDs, source files and chunk IDs, unresolved questions, the stopping reason, and total token usage. Source IDs are validated against the evidence supplied to the answer model; this does not independently verify the factual support of a claim. A failed citation validation allows one answer regeneration. `--explain` displays search queries and new-source counts. The terminal status shows progress, and `Ctrl+C` cancels the active operation in interactive mode.
+
+Research logs in `.data/logs/` include search steps, model decisions, the collected sources, the final context source IDs, token usage, and the answer or failure. Questions are limited to 1,000 characters. Each search selects at most eight chunks within a 5,500-character context; the shared model evidence context holds at most twelve sources within 12,000 serialized characters.
 
 ## Interactive mode
 
@@ -220,6 +235,14 @@ The `report` command accepts a directory containing files named `dataset-<lowerc
 
 The command builds every selected index profile for every book and evaluates every question for each index/query profile combination. Every run searches only its selected index, then asks the configured question model to judge the generated answer against the reference answer. All datasets are aggregated into one report; an incorrect answer is an evaluation result, not a command failure.
 
+Datasets can set `"answerMode": "RESEARCH"` to run the bounded research workflow before judging. The default is `"ASK"`, preserving existing datasets. Every research search is restricted to the dataset's current book and index profile. The report includes the research trace and evidence recall for the final context; ranking metrics are omitted for the combined research context. All datasets in one report directory must use the same answer mode.
+
+The one-book starter in `@data/examples/dataset-agent/dataset-odyssey-agent.json` runs four Odyssey questions with index/query profile 1:
+
+```shell
+java -jar build/libs/urag.jar report @data/examples/dataset-agent
+```
+
 Reports are written relative to the project directory:
 
 ```text
@@ -241,6 +264,7 @@ The Gradle `jar` and `build` tasks copy example books and datasets next to the p
 build/libs/
 ├── books/
 ├── dataset/
+├── dataset-agent/
 └── urag.jar
 ```
 
@@ -248,6 +272,7 @@ The packaged example can therefore be run from `build/libs`:
 
 ```shell
 java -jar urag.jar report dataset
+java -jar urag.jar report dataset-agent
 ```
 
 ## Runtime data
@@ -262,7 +287,7 @@ The current working directory is treated as the project root. Run the JAR from t
 ```
 
 - `.data/university.db` contains documents, chunks, index records, statuses, vectors, and the FTS5 index.
-- `.data/logs/` contains automatic indexing, search, and answer-generation diagnostics, including duration and token usage.
+- `.data/logs/` contains automatic indexing, search, answer-generation, and research diagnostics, including duration and token usage.
 - `.data` itself is excluded from recursive indexing.
 
 > [!NOTE]

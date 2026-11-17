@@ -1,5 +1,8 @@
 package university.cli.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class TokenUsage(
     val inputTokens: Long = 0,
     val outputTokens: Long = 0,

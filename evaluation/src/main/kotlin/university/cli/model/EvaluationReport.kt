@@ -14,6 +14,7 @@ data class EvaluationReport(
     val indexing: List<ReportIndexing>,
     val summary: List<ReportProfileSummary>,
     val questions: List<ReportQuestionResult>,
+    val answerMode: ReportAnswerMode = ReportAnswerMode.ASK,
 )
 
 @Serializable
@@ -67,10 +68,13 @@ data class ReportQuestionResult(
     val error: String? = null,
     val retrieval: RetrievalEvaluation,
     val judge: JudgeReport,
+    val research: ResearchTrace? = null,
 )
 
 @Serializable
 data class RetrievalEvaluation(
+    val evidenceRecall: Double? = null,
+    val rankingMetricsApplicable: Boolean = true,
     val contextCharBudget: Int? = null,
     val maxChunks: Int? = null,
     val contextUsedChars: Int? = null,
@@ -103,6 +107,7 @@ data class JudgeReport(
 
 @Serializable
 data class ReportProfileSummary(
+    val meanEvidenceRecall: Double? = null,
     val indexProfileId: Long,
     val queryProfileId: Long,
     val runs: Int,

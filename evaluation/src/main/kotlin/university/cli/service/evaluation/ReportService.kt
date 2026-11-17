@@ -2,6 +2,7 @@ package university.cli.service.evaluation
 
 import university.cli.database.FlywayMigrator
 import university.cli.model.AnswerVerdict
+import university.cli.model.ReportAnswerMode
 import university.cli.model.EvaluationReport
 import university.cli.model.JudgeReport
 import university.cli.model.ProjectIndexingResult
@@ -20,7 +21,6 @@ import university.cli.service.configuration.QueryProfileService
 import university.cli.service.indexing.ProjectIndexingService
 import university.cli.service.operation.OperationCancellationService
 import university.cli.service.operation.OperationLogService
-import university.cli.service.retrieval.AskService
 import java.time.Duration
 import java.time.Instant
 import java.util.concurrent.CancellationException
@@ -31,7 +31,7 @@ class ReportService(
     private val indexProfileService: IndexProfileService,
     private val queryProfileService: QueryProfileService,
     private val projectIndexingService: ProjectIndexingService,
-    private val askService: AskService,
+    private val answerService: ReportAnswerService,
     private val judgeService: JudgeService,
     private val metricsService: ReportMetricsService,
     private val comparisonService: ReportComparisonService,
@@ -96,6 +96,8 @@ class ReportService(
                                     indexed.indexing.indexProfileId,
                                     indexConfigurationId,
                                     queryProfile.id,
+                                dataset.answerMode,
+                                onProgress,
                                 )
                             },
                         )
@@ -128,6 +130,7 @@ class ReportService(
             indexing = indexings,
             summary = metricsService.summarize(questionResults),
             questions = questionResults,
+            answerMode = firstDataset.answerMode,
         )
         val writtenReports = reportWriter.write(startedAt, report, comparisonService.create(report))
         val evaluations = questionResults.mapNotNull { it.judge.evaluation }
@@ -185,14 +188,16 @@ class ReportService(
         indexProfileId: Long,
         indexConfigurationId: Long,
         queryProfileId: Long,
+        answerMode: ReportAnswerMode,
+        onProgress: (String) -> Unit,
     ): ReportQuestionResult {
         val startedAt = Instant.now()
         val scope = SearchScope.Index(indexConfigurationId)
         return try {
             val profile = queryProfileService.get(queryProfileId)
-            val answer = askService.ask(scope, profile, question.question)
+            val answer = answerService.answer(scope, profile, question.question, answerMode, onProgress)
             val logFile = operationLogService.write(
-                "ask",
+                if (answerMode == ReportAnswerMode.ASK) "ask" else "report-research",
                 startedAt,
                 scope,
                 queryProfileId,
@@ -220,8 +225,10 @@ class ReportService(
                     checkNotNull(question.goldChunksByIndexProfile[indexProfileId]),
                     answer.relevantChunks,
                     answer.contextStats,
+                    rankedMetrics = answer.research == null,
                 ),
                 judge = judge,
+                research = answer.research,
             )
         } catch (error: CancellationException) {
             throw error

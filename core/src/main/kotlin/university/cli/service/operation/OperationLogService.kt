@@ -8,6 +8,7 @@ import university.cli.model.IndexingOperationLog
 import university.cli.model.OperationLog
 import university.cli.model.ProjectIndexingResult
 import university.cli.model.RelevantChunk
+import university.cli.model.ResearchOperationLog
 import university.cli.model.RetrievedChunkLog
 import university.cli.model.SearchScope
 import university.cli.model.TokenUsage
@@ -112,6 +113,9 @@ class OperationLogService(
             outputTokens = result.tokenUsage.outputTokens,
             totalTokens = result.tokenUsage.totalTokens,
         )
+
+    fun writeResearch(log: ResearchOperationLog): Path =
+        write(log.command, Instant.parse(log.completedAt), JsonUtil.json.encodeToString(log))
 
     private fun write(command: String, completedAt: Instant, content: String): Path {
         Files.createDirectories(logsDirectory)

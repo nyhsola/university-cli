@@ -1,0 +1,89 @@
+{
+  "id": 101,
+  "name": "Odyssey: agentic research pilot",
+  "description": "Index Odyssey with profile 1, run research for each question with query profile 1, evaluate answers against references with Judge, and write reports and research logs.",
+  "answerMode": "RESEARCH",
+  "indexProfileIds": [
+    1
+  ],
+  "queryProfileIds": [
+    1
+  ],
+  "file": "../books/Odyssey.txt",
+  "questions": [
+    {
+      "id": "calypso",
+      "question": "How many years does Odysseus say he remained with Calypso?",
+      "expectedAnswer": "Odysseus says he stayed with Calypso for seven years.",
+      "tags": [
+        "exact-term",
+        "single-hop"
+      ],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {
+            "chunkId": 186,
+            "relevance": 3,
+            "description": "Odysseus explicitly says that he stayed with Calypso for seven years."
+          }
+        ]
+      }
+    },
+    {
+      "id": "argos",
+      "question": "What happens to Odysseus's old dog immediately after recognizing his master?",
+      "expectedAnswer": "Argos dies immediately after recognizing Odysseus.",
+      "tags": [
+        "paraphrase",
+        "single-hop"
+      ],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {
+            "chunkId": 455,
+            "relevance": 2,
+            "description": "Argos recognizes Odysseus after his long absence."
+          },
+          {
+            "chunkId": 456,
+            "relevance": 3,
+            "description": "Argos dies immediately after recognizing his master."
+          }
+        ]
+      }
+    },
+    {
+      "id": "calypso-and-argos",
+      "question": "How long did Odysseus stay with Calypso, and what happened to Argos after recognizing him?",
+      "expectedAnswer": "Odysseus stayed with Calypso for seven years, and Argos died immediately after recognizing him.",
+      "tags": [
+        "multi-hop"
+      ],
+      "goldChunksByIndexProfile": {
+        "1": [
+          {
+            "chunkId": 186,
+            "relevance": 3,
+            "description": "Odysseus states how long he stayed with Calypso."
+          },
+          {
+            "chunkId": 456,
+            "relevance": 3,
+            "description": "The passage states what happens to Argos after recognition."
+          }
+        ]
+      }
+    },
+    {
+      "id": "unanswerable-tuition",
+      "question": "What tuition fee does the University of Kyiv charge for its computer science program?",
+      "expectedAnswer": "The indexed book does not contain this information.",
+      "tags": [
+        "unanswerable"
+      ],
+      "goldChunksByIndexProfile": {
+        "1": []
+      }
+    }
+  ]
+}

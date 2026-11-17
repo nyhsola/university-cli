@@ -46,7 +46,11 @@ class ReportDatasetService(
 
         val expectedIndexProfiles = loaded.first().dataset.indexProfileIds
         val expectedQueryProfiles = loaded.first().dataset.queryProfileIds
+        val expectedAnswerMode = loaded.first().dataset.answerMode
         loaded.drop(1).forEach { candidate ->
+            require(candidate.dataset.answerMode == expectedAnswerMode) {
+                "Dataset ${candidate.datasetFile.fileName} must use answer mode $expectedAnswerMode"
+            }
             require(candidate.dataset.indexProfileIds == expectedIndexProfiles) {
                 "Dataset ${candidate.datasetFile.fileName} must use index profiles $expectedIndexProfiles"
             }

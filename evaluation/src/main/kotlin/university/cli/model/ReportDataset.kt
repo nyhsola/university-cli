@@ -11,6 +11,7 @@ data class ReportDataset(
     val queryProfileIds: List<Long>,
     val file: String,
     val questions: List<ReportQuestion>,
+    val answerMode: ReportAnswerMode = ReportAnswerMode.ASK,
 ) {
     init {
         require(id > 0) { "Dataset id must be positive" }
@@ -34,6 +35,12 @@ data class ReportDataset(
             }
         }
     }
+}
+
+@Serializable
+enum class ReportAnswerMode {
+    ASK,
+    RESEARCH,
 }
 
 @Serializable

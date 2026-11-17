@@ -16,20 +16,23 @@ class ReportMetricsService {
         goldChunks: List<GoldChunk>,
         chunks: List<RelevantChunk>,
         contextStats: ContextSelectionStats,
+        rankedMetrics: Boolean = true,
     ): RetrievalEvaluation {
         val gold = goldChunks.associate { it.chunkId to it.relevance }
         val ranked = chunks.map(RelevantChunk::chunkId)
         return RetrievalEvaluation(
+            evidenceRecall = metric(gold) { recallAt(ranked, gold.keys, ranked.size) },
+            rankingMetricsApplicable = rankedMetrics,
             contextCharBudget = contextStats.contextCharBudget,
             maxChunks = contextStats.maxChunks,
             contextUsedChars = contextStats.contextUsedChars,
             effectiveTopK = contextStats.effectiveTopK,
             availableCandidates = contextStats.availableCandidates,
-            recallAt3 = metric(gold) { recallAt(ranked, gold.keys, 3) },
-            recallAt5 = metric(gold) { recallAt(ranked, gold.keys, 5) },
-            reciprocalRank = metric(gold) { reciprocalRank(ranked, gold.keys) },
-            ndcgAt3 = metric(gold) { ndcgAt(ranked, gold, 3) },
-            ndcgAt5 = metric(gold) { ndcgAt(ranked, gold, 5) },
+            recallAt3 = if (rankedMetrics) metric(gold) { recallAt(ranked, gold.keys, 3) } else null,
+            recallAt5 = if (rankedMetrics) metric(gold) { recallAt(ranked, gold.keys, 5) } else null,
+            reciprocalRank = if (rankedMetrics) metric(gold) { reciprocalRank(ranked, gold.keys) } else null,
+            ndcgAt3 = if (rankedMetrics) metric(gold) { ndcgAt(ranked, gold, 3) } else null,
+            ndcgAt5 = if (rankedMetrics) metric(gold) { ndcgAt(ranked, gold, 5) } else null,
             retrievedChunks = chunks.map { chunk ->
                 ReportRetrievedChunk(
                     chunk.chunkId,
@@ -45,6 +48,7 @@ class ReportMetricsService {
         results.groupBy { it.indexProfileId to it.queryProfileId }.map { (profileIds, runs) ->
             val evaluations = runs.mapNotNull { it.judge.evaluation }
             ReportProfileSummary(
+                meanEvidenceRecall = runs.mapNotNull { it.retrieval.evidenceRecall }.averageOrNull(),
                 indexProfileId = profileIds.first,
                 queryProfileId = profileIds.second,
                 runs = runs.size,

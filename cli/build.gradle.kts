@@ -33,6 +33,11 @@ val copyExampleDatasets = tasks.register<Sync>("copyExampleDatasets") {
     into(rootProject.layout.buildDirectory.dir("libs/dataset"))
 }
 
+val copyAgentDatasets = tasks.register<Sync>("copyAgentDatasets") {
+    from(rootProject.layout.projectDirectory.dir("@data/examples/dataset-agent"))
+    into(rootProject.layout.buildDirectory.dir("libs/dataset-agent"))
+}
+
 tasks.jar {
     archiveFileName.set("urag.jar")
     destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
@@ -43,5 +48,5 @@ tasks.jar {
     val runtimeClasspath = configurations.runtimeClasspath
     dependsOn(runtimeClasspath)
     from({ runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) } })
-    dependsOn(copyExampleBooks, copyExampleDatasets)
+    dependsOn(copyExampleBooks, copyExampleDatasets, copyAgentDatasets)
 }

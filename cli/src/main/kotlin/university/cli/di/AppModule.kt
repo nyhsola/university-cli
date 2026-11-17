@@ -4,6 +4,7 @@ import com.github.ajalt.mordant.terminal.Terminal
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import university.cli.command.AskCommand
+import university.cli.command.ResearchCommand
 import university.cli.command.CommandDispatcher
 import university.cli.command.ExitCommand
 import university.cli.command.FilesCommand
@@ -28,6 +29,7 @@ import university.cli.service.indexing.ChunkerService
 import university.cli.service.configuration.IndexProfileService
 import university.cli.service.configuration.QueryProfileService
 import university.cli.service.evaluation.JudgeService
+import university.cli.service.evaluation.ReportAnswerService
 import university.cli.service.evaluation.ReportComparisonService
 import university.cli.service.evaluation.ReportDatasetService
 import university.cli.service.evaluation.ReportMetricsService
@@ -46,6 +48,10 @@ import university.cli.service.llm.OllamaService
 import university.cli.service.operation.OperationCancellationService
 import university.cli.service.operation.OperationLogService
 import university.cli.service.retrieval.AskService
+import university.cli.service.research.ResearchAnswerService
+import university.cli.service.research.ResearchDecisionService
+import university.cli.service.research.ResearchSearchService
+import university.cli.service.research.ResearchService
 import university.cli.service.retrieval.ContextFormatter
 import university.cli.service.retrieval.ContextSelectionService
 import university.cli.service.retrieval.LexicalSearchService
@@ -102,7 +108,12 @@ val appModule = module {
     single { SearchService(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
     single { QueryProfileService() }
     single { AskService(get(), get(), get(), get()) }
+    single { ResearchSearchService(get(), get(), get(), get()) }
+    single { ResearchDecisionService(get(), get()) }
+    single { ResearchAnswerService(get(), get()) }
+    single { ResearchService(get(), get(), get(), get(), get(), get()) }
     single { JudgeService(get(), get()) }
+    single { ReportAnswerService(get(), get()) }
     single { ReportDatasetService(get(), get()) }
     single { ReportMetricsService() }
     single { ReportComparisonService(get()) }
@@ -118,12 +129,13 @@ val appModule = module {
     single { ProfilesCommand(get(), get()) }
     single { SearchCommand(get(), get(), get(), get(), get(), get()) }
     single { AskCommand(get(), get(), get(), get(), get(), get()) }
+    single { ResearchCommand(get(), get(), get(), get(), get()) }
     single { ReportCommand(get(), get()) }
     single { ExitCommand() }
-    single { HelpCommand(listOf(get<FilesCommand>(), get<IndexCommand>(), get<UnindexCommand>(), get<ProfilesCommand>(), get<SearchCommand>(), get<AskCommand>(), get<ReportCommand>(), get<ExitCommand>())) }
+    single { HelpCommand(listOf(get<FilesCommand>(), get<IndexCommand>(), get<UnindexCommand>(), get<ProfilesCommand>(), get<SearchCommand>(), get<AskCommand>(), get<ResearchCommand>(), get<ReportCommand>(), get<ExitCommand>())) }
 
     single {
-        CommandDispatcher(listOf(get<FilesCommand>(), get<IndexCommand>(), get<UnindexCommand>(), get<ProfilesCommand>(), get<SearchCommand>(), get<AskCommand>(), get<ReportCommand>(), get<HelpCommand>(), get<ExitCommand>()))
+        CommandDispatcher(listOf(get<FilesCommand>(), get<IndexCommand>(), get<UnindexCommand>(), get<ProfilesCommand>(), get<SearchCommand>(), get<AskCommand>(), get<ResearchCommand>(), get<ReportCommand>(), get<HelpCommand>(), get<ExitCommand>()))
     }
 
     single { ChatService(get(), get(), get(), get(), get()) }

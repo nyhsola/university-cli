@@ -9,6 +9,8 @@ If the reference supplies the requested information, apply the first matching ru
 2. not_complete: at least one required fact is correct, but another is missing or ambiguous, with no material error.
 3. complete: all required facts are explicitly present, with no material error.
 
+not_complete requires an explicitly correct required fact. A candidate stating only that the answer could not be established is incorrect when the reference supplies it.
+
 If the reference says the source lacks the requested information or it cannot be determined from the source, use these rules instead:
 1. incorrect: the candidate supplies an unsupported concrete answer or makes a materially false or contradictory claim.
 2. complete: the candidate explicitly states that the source does not provide enough information to answer.

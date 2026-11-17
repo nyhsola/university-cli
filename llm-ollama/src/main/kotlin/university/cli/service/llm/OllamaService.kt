@@ -11,6 +11,7 @@ import university.cli.model.TokenUsage
 import university.cli.model.Vector
 import university.cli.util.JsonSchemaUtil
 import university.cli.util.JsonUtil
+import java.net.ConnectException
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
@@ -67,7 +68,14 @@ class OllamaService(
             .header("Content-Type", CONTENT_TYPE)
             .POST(HttpRequest.BodyPublishers.ofString(json.encodeToString(payload)))
             .build()
-        val response = httpClient.send(request, HttpResponse.BodyHandlers.ofString())
+        val response = try {
+            httpClient.send(request, HttpResponse.BodyHandlers.ofString())
+        } catch (error: ConnectException) {
+            throw IllegalStateException(
+                "Cannot connect to Ollama at ${config.baseUrl}. Start Ollama with 'ollama serve' and retry.",
+                error,
+            )
+        }
 
         if (response.statusCode() !in 200..299) {
             throw OllamaException(response.statusCode(), errorMessage(response.body()))
