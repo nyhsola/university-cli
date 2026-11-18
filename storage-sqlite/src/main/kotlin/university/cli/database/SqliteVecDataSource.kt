@@ -13,17 +13,13 @@ class SqliteVecDataSource(
     private val delegate: SQLiteDataSource = createDataSource(jdbcUrl),
 ) : DataSource by delegate {
 
-    override fun getConnection(): Connection =
-        delegate.connection.also(sqliteVecExtension::load)
+    override fun getConnection(): Connection = delegate.connection.also(sqliteVecExtension::load)
 
-    override fun getConnection(username: String, password: String): Connection =
-        delegate.getConnection(username, password).also(sqliteVecExtension::load)
+    override fun getConnection(username: String, password: String): Connection = delegate.getConnection(username, password).also(sqliteVecExtension::load)
 
-    override fun createConnectionBuilder(): ConnectionBuilder =
-        delegate.createConnectionBuilder()
+    override fun createConnectionBuilder(): ConnectionBuilder = delegate.createConnectionBuilder()
 
-    override fun createShardingKeyBuilder(): ShardingKeyBuilder =
-        delegate.createShardingKeyBuilder()
+    override fun createShardingKeyBuilder(): ShardingKeyBuilder = delegate.createShardingKeyBuilder()
 
     companion object {
         private fun createDataSource(jdbcUrl: String): SQLiteDataSource {

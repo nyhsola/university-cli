@@ -28,6 +28,5 @@ internal object ConfigurationCommandFormatter {
         return "╭$decoratedTitle${"─".repeat((BOX_INNER_WIDTH - decoratedTitle.length).coerceAtLeast(0))}╮"
     }
 
-    private fun row(value: String): String =
-        "│ ${value.take(BOX_CONTENT_WIDTH).padEnd(BOX_CONTENT_WIDTH)} │"
+    private fun row(value: String): String = "│ ${value.take(BOX_CONTENT_WIDTH).padEnd(BOX_CONTENT_WIDTH)} │"
 }

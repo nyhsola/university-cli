@@ -15,13 +15,7 @@ class ReportAnswerService(
     private val askService: AskService,
     private val researchService: ResearchService,
 ) {
-    fun answer(
-        scope: SearchScope,
-        profile: QueryProfile,
-        question: String,
-        mode: ReportAnswerMode,
-        onProgress: (String) -> Unit,
-    ): ReportAnswer {
+    fun answer(scope: SearchScope, profile: QueryProfile, question: String, mode: ReportAnswerMode, onProgress: (String) -> Unit): ReportAnswer {
         if (mode == ReportAnswerMode.ASK) {
             val result = askService.ask(scope, profile, question)
             return ReportAnswer(result.answer, result.relevantChunks, result.tokenUsage, result.contextStats)

@@ -7,11 +7,7 @@ import university.cli.model.RelevantChunk
 class ContextSelectionService(
     private val contextFormatter: ContextFormatter,
 ) {
-    fun select(
-        candidates: List<RelevantChunk>,
-        contextCharBudget: Int,
-        maxChunks: Int,
-    ): ContextSelection {
+    fun select(candidates: List<RelevantChunk>, contextCharBudget: Int, maxChunks: Int): ContextSelection {
         require(contextCharBudget > 0) { "Context character budget must be positive" }
         require(maxChunks > 0) { "Maximum context chunks must be positive" }
 

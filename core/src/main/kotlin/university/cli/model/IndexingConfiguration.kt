@@ -11,9 +11,12 @@ data class IndexingConfiguration(
     val createdAt: Instant,
 )
 
-enum class ChunkingStrategy(val code: Int) {
+enum class ChunkingStrategy(
+    val code: Int,
+) {
     FIXED_SIZE(0),
-    RECURSIVE(1);
+    RECURSIVE(1),
+    ;
 
     companion object {
         fun fromCode(code: Int): ChunkingStrategy = entries.firstOrNull { it.code == code }
@@ -21,11 +24,14 @@ enum class ChunkingStrategy(val code: Int) {
     }
 }
 
-enum class IndexingStatus(val code: Int) {
+enum class IndexingStatus(
+    val code: Int,
+) {
     PROCESSING(0),
     READY(1),
     FAILED(2),
-    CANCELLED(3);
+    CANCELLED(3),
+    ;
 
     companion object {
         fun fromCode(code: Int): IndexingStatus = entries.firstOrNull { it.code == code }

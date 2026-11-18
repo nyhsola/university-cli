@@ -9,8 +9,8 @@ import university.cli.service.operation.OperationLogService
 import university.cli.service.retrieval.AskService
 import university.cli.util.QueryCommandParser
 import university.cli.util.TextUtil
-import java.util.concurrent.CancellationException
 import java.time.Instant
+import java.util.concurrent.CancellationException
 
 class AskCommand(
     private val migrator: FlywayMigrator,
@@ -30,6 +30,7 @@ class AskCommand(
         const val ANSWER_CONTENT_WIDTH = ANSWER_INNER_WIDTH - 2
     }
 
+    @Suppress("TooGenericExceptionCaught")
     override fun execute(arguments: List<String>): CommandResult = try {
         val startedAt = Instant.now()
         val request = QueryCommandParser.parse(arguments, allowExplain = false)
@@ -72,15 +73,16 @@ class AskCommand(
         chatStatusService.clear()
     }
 
-    private fun normalizeScope(scope: SearchScope): SearchScope =
-        when (scope) {
-            SearchScope.All,
-            is SearchScope.Index -> scope
-            is SearchScope.File -> {
-                val file = projectFileService.resolve(scope.fileName)
-                SearchScope.File(projectFileService.relativeName(file))
-            }
+    private fun normalizeScope(scope: SearchScope): SearchScope = when (scope) {
+        SearchScope.All,
+        is SearchScope.Index,
+        -> scope
+
+        is SearchScope.File -> {
+            val file = projectFileService.resolve(scope.fileName)
+            SearchScope.File(projectFileService.relativeName(file))
         }
+    }
 
     private fun formatAnswer(answer: String): List<CommandOutputLine> = buildList {
         add(CommandOutputLine(answerTopBorder(), CommandMessageType.ACCENT))
@@ -95,6 +97,5 @@ class AskCommand(
         return "╭$title${"─".repeat(ANSWER_INNER_WIDTH - title.length)}╮"
     }
 
-    private fun answerRow(value: String): String =
-        "│ ${value.take(ANSWER_CONTENT_WIDTH).padEnd(ANSWER_CONTENT_WIDTH)} │"
+    private fun answerRow(value: String): String = "│ ${value.take(ANSWER_CONTENT_WIDTH).padEnd(ANSWER_CONTENT_WIDTH)} │"
 }

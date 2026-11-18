@@ -11,21 +11,20 @@ class JdbcChunkRepository(
         val FIND_BY_CONFIGURATION = JdbcChunkRepository::class.loadResource("db/sql/chunk/find_by_configuration.sql")
     }
 
-    fun findByConfiguration(indexConfigurationId: Long): Map<Long, DocumentChunk> =
-        dataSource.connection.use { connection ->
-            connection.prepareStatement(FIND_BY_CONFIGURATION).use { statement ->
-                statement.setLong(1, indexConfigurationId)
-                statement.executeQuery().use { resultSet ->
-                    buildMap {
-                        while (resultSet.next()) {
-                            val chunk = DocumentChunk(
-                                resultSet.getLong("chunkId"),
-                                resultSet.getString("content"),
-                            )
-                            put(chunk.id, chunk)
-                        }
+    fun findByConfiguration(indexConfigurationId: Long): Map<Long, DocumentChunk> = dataSource.connection.use { connection ->
+        connection.prepareStatement(FIND_BY_CONFIGURATION).use { statement ->
+            statement.setLong(1, indexConfigurationId)
+            statement.executeQuery().use { resultSet ->
+                buildMap {
+                    while (resultSet.next()) {
+                        val chunk = DocumentChunk(
+                            resultSet.getLong("chunkId"),
+                            resultSet.getString("content"),
+                        )
+                        put(chunk.id, chunk)
                     }
                 }
             }
         }
+    }
 }

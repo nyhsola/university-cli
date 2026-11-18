@@ -20,6 +20,7 @@ class FilesCommand(
         const val BOX_CONTENT_WIDTH = BOX_INNER_WIDTH - 2
     }
 
+    @Suppress("TooGenericExceptionCaught")
     override fun execute(arguments: List<String>): CommandResult = try {
         val parsed = CommandOptionParser.parse(
             arguments,
@@ -33,7 +34,7 @@ class FilesCommand(
         require(parsed.positionals.isEmpty()) { "Unexpected positional arguments" }
         require(parsed.flags.size <= 1) { "Only one status filter may be specified" }
         val profileId = parsed.options["config"]?.toLongOrNull()
-        require(parsed.options["config"] == null || profileId != null && profileId > 0) {
+        require(parsed.options["config"] == null || (profileId != null && profileId > 0)) {
             "Index profile id must be positive"
         }
 
@@ -85,11 +86,7 @@ class FilesCommand(
         add(CommandOutputLine("╰${"─".repeat(BOX_INNER_WIDTH)}╯", CommandMessageType.ACCENT))
     }
 
-    private fun MutableList<CommandOutputLine>.addField(
-        label: String,
-        value: String,
-        type: CommandMessageType = CommandMessageType.INFO,
-    ) {
+    private fun MutableList<CommandOutputLine>.addField(label: String, value: String, type: CommandMessageType = CommandMessageType.INFO) {
         TextUtil.wrap("$label: $value", BOX_CONTENT_WIDTH).forEach { line ->
             add(CommandOutputLine(row(line), type))
         }

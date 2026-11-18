@@ -24,6 +24,7 @@ class ResearchCommand(
     override val usage = "/research <question> [--explain]"
     override val description = "Research a question across all indexes with up to three searches"
 
+    @Suppress("TooGenericExceptionCaught")
     override fun execute(arguments: List<String>): CommandResult = try {
         val parsed = CommandOptionParser.parse(arguments, flagOptions = mapOf("--explain" to "explain"))
         val question = parsed.positionals.joinToString(" ").trim()

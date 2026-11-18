@@ -3,11 +3,7 @@ package university.cli.service.retrieval
 import university.cli.model.RelevantVector
 
 class MultiQueryFusionService {
-    fun fuse(
-        rankings: List<List<RelevantVector>>,
-        rrfK: Int,
-        limit: Int,
-    ): List<RelevantVector> {
+    fun fuse(rankings: List<List<RelevantVector>>, rrfK: Int, limit: Int): List<RelevantVector> {
         require(rankings.isNotEmpty()) { "Multi-query rankings must not be empty" }
         require(rrfK > 0) { "Multi-query RRF k must be positive" }
         require(limit > 0) { "Multi-query result limit must be positive" }

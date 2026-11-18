@@ -1,7 +1,7 @@
 package university.cli.service.research
 
-import university.cli.model.RelevantChunk
 import university.cli.model.ContextSelectionStats
+import university.cli.model.RelevantChunk
 import university.cli.model.ResearchSource
 import university.cli.util.JsonUtil
 

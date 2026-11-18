@@ -16,6 +16,7 @@ class UnindexCommand(
     override val usage = "/unindex (<file> [--config ID]|--all)"
     override val description = "Remove stored indexes for one file or all documents"
 
+    @Suppress("TooGenericExceptionCaught")
     override fun execute(arguments: List<String>): CommandResult = try {
         val parsed = CommandOptionParser.parse(
             arguments,
@@ -27,7 +28,7 @@ class UnindexCommand(
         require(!all || "config" !in parsed.options) { "--config cannot be used with --all" }
 
         val profileId = parsed.options["config"]?.toLongOrNull()
-        require(parsed.options["config"] == null || profileId != null && profileId > 0) {
+        require(parsed.options["config"] == null || (profileId != null && profileId > 0)) {
             "Index profile id must be positive"
         }
 

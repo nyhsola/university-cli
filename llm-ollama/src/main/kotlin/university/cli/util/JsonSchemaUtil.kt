@@ -19,18 +19,21 @@ object JsonSchemaUtil {
     private fun schema(descriptor: SerialDescriptor): JsonElement {
         val schema = when (descriptor.kind) {
             StructureKind.CLASS, StructureKind.OBJECT -> objectSchema(descriptor)
+
             StructureKind.LIST -> JsonObject(
                 mapOf(
                     "type" to JsonPrimitive("array"),
                     "items" to schema(descriptor.getElementDescriptor(0)),
                 ),
             )
+
             StructureKind.MAP -> JsonObject(
                 mapOf(
                     "type" to JsonPrimitive("object"),
                     "additionalProperties" to schema(descriptor.getElementDescriptor(1)),
                 ),
             )
+
             SerialKind.ENUM -> JsonObject(
                 mapOf(
                     "type" to JsonPrimitive("string"),
@@ -39,18 +42,23 @@ object JsonSchemaUtil {
                     ),
                 ),
             )
+
             PrimitiveKind.BOOLEAN -> primitiveSchema("boolean")
+
             PrimitiveKind.BYTE,
             PrimitiveKind.SHORT,
             PrimitiveKind.INT,
             PrimitiveKind.LONG,
             -> primitiveSchema("integer")
+
             PrimitiveKind.FLOAT,
             PrimitiveKind.DOUBLE,
             -> primitiveSchema("number")
+
             PrimitiveKind.CHAR,
             PrimitiveKind.STRING,
             -> primitiveSchema("string")
+
             else -> error("Unsupported serial kind ${descriptor.kind} for ${descriptor.serialName}")
         }
         if (!descriptor.isNullable) return schema

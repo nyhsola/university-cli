@@ -48,6 +48,7 @@ class CommandDispatcher(
         input.forEach { character ->
             when {
                 character == '"' -> quoted = !quoted
+
                 character.isWhitespace() && !quoted -> {
                     if (current.isNotEmpty()) {
                         tokens += current.toString()
@@ -69,11 +70,10 @@ data class CommandSuggestion(
     val description: String,
 )
 
-internal fun Iterable<ChatCommand>.sortedForDisplay(): List<ChatCommand> =
-    sortedWith(
-        compareBy<ChatCommand> { COMMAND_DISPLAY_ORDER[it.name] ?: Int.MAX_VALUE }
-            .thenBy(ChatCommand::name),
-    )
+internal fun Iterable<ChatCommand>.sortedForDisplay(): List<ChatCommand> = sortedWith(
+    compareBy<ChatCommand> { COMMAND_DISPLAY_ORDER[it.name] ?: Int.MAX_VALUE }
+        .thenBy(ChatCommand::name),
+)
 
 private val COMMAND_DISPLAY_ORDER = listOf(
     "/files",

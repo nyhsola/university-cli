@@ -27,11 +27,7 @@ class ReportWriter(
         "Data directory must have a project parent"
     }
 
-    fun write(
-        startedAt: Instant,
-        report: EvaluationReport,
-        comparison: EvaluationComparison,
-    ): WrittenReports {
+    fun write(startedAt: Instant, report: EvaluationReport, comparison: EvaluationComparison): WrittenReports {
         val timestamp = TIMESTAMP_FORMAT.format(startedAt)
         val directory = projectDirectory.resolve("reports/run-$timestamp")
         Files.createDirectories(directory)
@@ -41,8 +37,7 @@ class ReportWriter(
         )
     }
 
-    fun relative(path: Path): String =
-        projectDirectory.relativize(path.toAbsolutePath().normalize()).toString().replace('\\', '/')
+    fun relative(path: Path): String = projectDirectory.relativize(path.toAbsolutePath().normalize()).toString().replace('\\', '/')
 
     private fun write(file: Path, content: String): Path {
         Files.writeString(file, content + System.lineSeparator(), StandardCharsets.UTF_8)

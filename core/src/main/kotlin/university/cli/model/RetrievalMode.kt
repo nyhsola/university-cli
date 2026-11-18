@@ -3,7 +3,8 @@ package university.cli.model
 enum class RetrievalMode {
     DENSE,
     LEXICAL,
-    HYBRID;
+    HYBRID,
+    ;
 
     companion object {
         fun from(value: String): RetrievalMode = entries.firstOrNull {

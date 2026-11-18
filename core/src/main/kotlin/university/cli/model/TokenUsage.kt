@@ -10,8 +10,7 @@ data class TokenUsage(
     val totalTokens: Long
         get() = inputTokens + outputTokens
 
-    operator fun plus(other: TokenUsage): TokenUsage =
-        TokenUsage(inputTokens + other.inputTokens, outputTokens + other.outputTokens)
+    operator fun plus(other: TokenUsage): TokenUsage = TokenUsage(inputTokens + other.inputTokens, outputTokens + other.outputTokens)
 }
 
 data class LlmResult<T>(

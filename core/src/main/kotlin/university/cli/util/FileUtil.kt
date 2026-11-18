@@ -1,9 +1,9 @@
 package university.cli.util
 
+import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Path
 import java.security.MessageDigest
-import java.nio.charset.StandardCharsets
 import java.util.HexFormat
 
 object FileUtil {

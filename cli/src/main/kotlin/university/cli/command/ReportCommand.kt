@@ -13,6 +13,7 @@ class ReportCommand(
     override val usage = "/report <dataset-directory>"
     override val description = "Generate a retrieval and answer evaluation report"
 
+    @Suppress("TooGenericExceptionCaught")
     override fun execute(arguments: List<String>): CommandResult {
         val datasetDirectory = arguments.singleOrNull()
             ?: return usageError("Specify exactly one dataset directory")
@@ -33,9 +34,9 @@ class ReportCommand(
                 ReportStatus.COMPLETED_WITH_ERRORS, ReportStatus.FAILED -> CommandMessageType.WARNING
             }
             CommandResult(message, type)
-        } catch (error: CancellationException) {
+        } catch (_: CancellationException) {
             CommandResult("Report generation cancelled", CommandMessageType.MUTED)
-        } catch (error: InterruptedException) {
+        } catch (_: InterruptedException) {
             Thread.currentThread().interrupt()
             CommandResult("Report generation cancelled", CommandMessageType.MUTED)
         } catch (error: IllegalArgumentException) {

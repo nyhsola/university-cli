@@ -27,6 +27,7 @@ class ProjectIndexingService(
         onChunkProgress: (ChunkIndexingProgress) -> Unit,
     ): ProjectIndexingResult = index(listOf(file), indexConfiguration, onFileProgress, onChunkProgress)
 
+    @Suppress("TooGenericExceptionCaught")
     private fun index(
         files: List<Path>,
         indexConfiguration: IndexConfiguration,

@@ -5,6 +5,7 @@ import university.cli.model.DocumentIndexingOutcome
 import university.cli.model.DocumentIndexingResult
 import university.cli.model.IndexConfiguration
 import university.cli.model.IndexingStatus
+import university.cli.model.TokenUsage
 import university.cli.repository.JdbcDocumentRepository
 import university.cli.repository.JdbcIndexingConfigurationRepository
 import university.cli.service.llm.EmbedService
@@ -26,12 +27,8 @@ class DocumentIndexingService(
 ) {
     private val chunkersByStrategy = chunkers.associateBy(ChunkerService::strategy)
 
-    fun index(
-        source: Path,
-        relativeFileName: String,
-        indexConfiguration: IndexConfiguration,
-        onChunkProgress: (ChunkIndexingProgress) -> Unit,
-    ): DocumentIndexingResult {
+    @Suppress("TooGenericExceptionCaught")
+    fun index(source: Path, relativeFileName: String, indexConfiguration: IndexConfiguration, onChunkProgress: (ChunkIndexingProgress) -> Unit): DocumentIndexingResult {
         val file = source.toAbsolutePath().normalize()
 
         require(Files.isRegularFile(file)) { "File does not exist or is not a regular file: $file" }
@@ -69,44 +66,56 @@ class DocumentIndexingService(
         }
 
         return try {
-            cancellationService.ensureActive()
-            val content = String(Files.readAllBytes(file), StandardCharsets.UTF_8)
-            val chunks = chunker.chunk(content, indexConfiguration.parameters)
-
-            onChunkProgress(ChunkIndexingProgress(0, chunks.size))
-
-            var tokenUsage = university.cli.model.TokenUsage()
-            val vectors = chunks.mapIndexed { index, chunk ->
-                cancellationService.ensureActive()
-                val embedding = embedService.embedDocument(indexConfiguration.embeddingModel, chunk.content)
-                tokenUsage += embedding.tokenUsage
-                cancellationService.ensureActive()
-                onChunkProgress(ChunkIndexingProgress(index + 1, chunks.size))
-                embedding.value
-            }
-
-            cancellationService.ensureActive()
-            searchIndexService.replace(configuration.id, chunks, vectors)
-
-            cancellationService.ensureActive()
-            configurationRepository.markReady(configuration.id)
-            DocumentIndexingResult(
-                configuration.id,
-                document.id,
-                chunks.size,
-                DocumentIndexingOutcome.INDEXED,
-                tokenUsage,
-            )
-        } catch (error: CancellationException) {
-            configurationRepository.updateStatus(configuration.id, IndexingStatus.CANCELLED)
-            throw error
-        } catch (error: InterruptedException) {
-            configurationRepository.updateStatus(configuration.id, IndexingStatus.CANCELLED)
-            Thread.currentThread().interrupt()
-            throw error
+            rebuild(file, document.id, configuration.id, indexConfiguration, chunker, onChunkProgress)
         } catch (error: Exception) {
-            configurationRepository.updateStatus(configuration.id, IndexingStatus.FAILED)
+            val status = when (error) {
+                is CancellationException, is InterruptedException -> IndexingStatus.CANCELLED
+                else -> IndexingStatus.FAILED
+            }
+            try {
+                configurationRepository.updateStatus(configuration.id, status)
+            } finally {
+                if (error is InterruptedException) Thread.currentThread().interrupt()
+            }
             throw error
         }
+    }
+
+    private fun rebuild(
+        file: Path,
+        documentId: Long,
+        configurationId: Long,
+        indexConfiguration: IndexConfiguration,
+        chunker: ChunkerService,
+        onChunkProgress: (ChunkIndexingProgress) -> Unit,
+    ): DocumentIndexingResult {
+        cancellationService.ensureActive()
+        val content = String(Files.readAllBytes(file), StandardCharsets.UTF_8)
+        val chunks = chunker.chunk(content, indexConfiguration.parameters)
+
+        onChunkProgress(ChunkIndexingProgress(0, chunks.size))
+
+        var tokenUsage = TokenUsage()
+        val vectors = chunks.mapIndexed { index, chunk ->
+            cancellationService.ensureActive()
+            val embedding = embedService.embedDocument(indexConfiguration.embeddingModel, chunk.content)
+            tokenUsage += embedding.tokenUsage
+            cancellationService.ensureActive()
+            onChunkProgress(ChunkIndexingProgress(index + 1, chunks.size))
+            embedding.value
+        }
+
+        cancellationService.ensureActive()
+        searchIndexService.replace(configurationId, chunks, vectors)
+
+        cancellationService.ensureActive()
+        configurationRepository.markReady(configurationId)
+        return DocumentIndexingResult(
+            configurationId,
+            documentId,
+            chunks.size,
+            DocumentIndexingOutcome.INDEXED,
+            tokenUsage,
+        )
     }
 }

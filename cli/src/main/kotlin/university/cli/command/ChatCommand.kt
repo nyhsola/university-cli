@@ -8,8 +8,7 @@ interface ChatCommand {
 
     fun execute(arguments: List<String>): CommandResult
 
-    fun usageError(message: String): CommandResult =
-        CommandResult("$message\nUsage: $usage", CommandMessageType.WARNING)
+    fun usageError(message: String): CommandResult = CommandResult("$message\nUsage: $usage", CommandMessageType.WARNING)
 }
 
 data class CommandResult(

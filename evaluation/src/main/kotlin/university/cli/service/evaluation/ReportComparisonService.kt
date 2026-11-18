@@ -69,38 +69,36 @@ class ReportComparisonService(
         )
     }
 
-    private fun indexComparisons(
-        questions: List<ReportQuestionResult>,
-        indexProfiles: Map<Long, ReportProfile>,
-    ): List<IndexProfileComparison> = questions.groupBy { it.indexProfileId }.map { (profileId, runs) ->
-        val evaluations = runs.mapNotNull { it.judge.evaluation }
-        IndexProfileComparison(
-            indexProfileId = profileId,
-            indexProfileName = checkNotNull(indexProfiles[profileId]).name,
-            queryProfiles = runs.map { it.queryProfileId }.distinct().size,
-            runs = runs.size,
-            successfulRuns = runs.count { it.status == ReportStatus.COMPLETED },
-            completeAnswers = evaluations.count { it.verdict == AnswerVerdict.COMPLETE },
-            incompleteAnswers = evaluations.count { it.verdict == AnswerVerdict.NOT_COMPLETE },
-            incorrectAnswers = evaluations.count { it.verdict == AnswerVerdict.INCORRECT },
-            judgeErrors = runs.count { it.judge.error != null },
-            meanContextUsedChars = runs.mapNotNull {
-                it.retrieval.contextUsedChars?.toDouble()
-            }.averageOrNull(),
-            meanEffectiveTopK = runs.mapNotNull {
-                it.retrieval.effectiveTopK?.toDouble()
-            }.averageOrNull(),
-            meanAvailableCandidates = runs.mapNotNull {
-                it.retrieval.availableCandidates?.toDouble()
-            }.averageOrNull(),
-            meanJudgeScore = evaluations.map { it.score.toDouble() }.averageOrNull(),
-            meanRecallAt3 = runs.mapNotNull { it.retrieval.recallAt3 }.averageOrNull(),
-            meanRecallAt5 = runs.mapNotNull { it.retrieval.recallAt5 }.averageOrNull(),
-            meanReciprocalRank = runs.mapNotNull { it.retrieval.reciprocalRank }.averageOrNull(),
-            meanNdcgAt3 = runs.mapNotNull { it.retrieval.ndcgAt3 }.averageOrNull(),
-            meanNdcgAt5 = runs.mapNotNull { it.retrieval.ndcgAt5 }.averageOrNull(),
-        )
-    }.sortedBy(IndexProfileComparison::indexProfileId)
+    private fun indexComparisons(questions: List<ReportQuestionResult>, indexProfiles: Map<Long, ReportProfile>): List<IndexProfileComparison> =
+        questions.groupBy { it.indexProfileId }.map { (profileId, runs) ->
+            val evaluations = runs.mapNotNull { it.judge.evaluation }
+            IndexProfileComparison(
+                indexProfileId = profileId,
+                indexProfileName = checkNotNull(indexProfiles[profileId]).name,
+                queryProfiles = runs.map { it.queryProfileId }.distinct().size,
+                runs = runs.size,
+                successfulRuns = runs.count { it.status == ReportStatus.COMPLETED },
+                completeAnswers = evaluations.count { it.verdict == AnswerVerdict.COMPLETE },
+                incompleteAnswers = evaluations.count { it.verdict == AnswerVerdict.NOT_COMPLETE },
+                incorrectAnswers = evaluations.count { it.verdict == AnswerVerdict.INCORRECT },
+                judgeErrors = runs.count { it.judge.error != null },
+                meanContextUsedChars = runs.mapNotNull {
+                    it.retrieval.contextUsedChars?.toDouble()
+                }.averageOrNull(),
+                meanEffectiveTopK = runs.mapNotNull {
+                    it.retrieval.effectiveTopK?.toDouble()
+                }.averageOrNull(),
+                meanAvailableCandidates = runs.mapNotNull {
+                    it.retrieval.availableCandidates?.toDouble()
+                }.averageOrNull(),
+                meanJudgeScore = evaluations.map { it.score.toDouble() }.averageOrNull(),
+                meanRecallAt3 = runs.mapNotNull { it.retrieval.recallAt3 }.averageOrNull(),
+                meanRecallAt5 = runs.mapNotNull { it.retrieval.recallAt5 }.averageOrNull(),
+                meanReciprocalRank = runs.mapNotNull { it.retrieval.reciprocalRank }.averageOrNull(),
+                meanNdcgAt3 = runs.mapNotNull { it.retrieval.ndcgAt3 }.averageOrNull(),
+                meanNdcgAt5 = runs.mapNotNull { it.retrieval.ndcgAt5 }.averageOrNull(),
+            )
+        }.sortedBy(IndexProfileComparison::indexProfileId)
 
     private fun leaders(rows: List<IndexProfileComparison>): ComparisonLeaders = ComparisonLeaders(
         leadersByInt(rows, IndexProfileComparison::completeAnswers),
@@ -112,18 +110,12 @@ class ReportComparisonService(
         leadersByDouble(rows, IndexProfileComparison::meanNdcgAt5),
     )
 
-    private fun leadersByInt(
-        rows: List<IndexProfileComparison>,
-        metric: (IndexProfileComparison) -> Int,
-    ): List<Long> {
+    private fun leadersByInt(rows: List<IndexProfileComparison>, metric: (IndexProfileComparison) -> Int): List<Long> {
         val maximum = rows.maxOfOrNull(metric) ?: return emptyList()
         return rows.filter { metric(it) == maximum }.map(IndexProfileComparison::indexProfileId)
     }
 
-    private fun leadersByDouble(
-        rows: List<IndexProfileComparison>,
-        metric: (IndexProfileComparison) -> Double?,
-    ): List<Long> {
+    private fun leadersByDouble(rows: List<IndexProfileComparison>, metric: (IndexProfileComparison) -> Double?): List<Long> {
         val maximum = rows.mapNotNull(metric).maxOrNull() ?: return emptyList()
         return rows.filter { metric(it) == maximum }.map(IndexProfileComparison::indexProfileId)
     }

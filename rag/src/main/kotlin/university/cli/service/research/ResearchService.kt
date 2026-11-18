@@ -2,7 +2,6 @@ package university.cli.service.research
 
 import university.cli.config.OllamaConfig
 import university.cli.model.QueryProfile
-import university.cli.model.SearchScope
 import university.cli.model.ResearchAction
 import university.cli.model.ResearchAnswer
 import university.cli.model.ResearchDecision
@@ -13,6 +12,7 @@ import university.cli.model.ResearchResult
 import university.cli.model.ResearchStep
 import university.cli.model.ResearchStopReason
 import university.cli.model.ResearchTrace
+import university.cli.model.SearchScope
 import university.cli.model.TokenUsage
 import university.cli.service.operation.OperationCancellationService
 import university.cli.service.operation.OperationLogService
@@ -36,12 +36,8 @@ class ResearchService(
         const val MAX_EMPTY_SEARCHES = 2
     }
 
-    fun research(
-        question: String,
-        profile: QueryProfile,
-        scope: SearchScope = SearchScope.All,
-        onProgress: (ResearchProgress) -> Unit = {},
-    ): ResearchResult {
+    @Suppress("TooGenericExceptionCaught")
+    fun research(question: String, profile: QueryProfile, scope: SearchScope = SearchScope.All, onProgress: (ResearchProgress) -> Unit = {}): ResearchResult {
         require(question.isNotBlank()) { "Question must not be blank" }
         require(question.length <= MAX_QUESTION_LENGTH) { "Question must be at most $MAX_QUESTION_LENGTH characters" }
         val startedAt = Instant.now()
@@ -65,47 +61,43 @@ class ResearchService(
             cancellationService.ensureActive()
             status = "completed"
             return ResearchResult(answer, run.trace(), run.evidence.contextStats())
-        } catch (error: InterruptedException) {
-            Thread.currentThread().interrupt()
-            status = "cancelled"
-            failure = error
-            throw error
-        } catch (error: CancellationException) {
-            status = "cancelled"
-            failure = error
-            throw error
         } catch (error: Exception) {
+            if (error is InterruptedException) Thread.currentThread().interrupt()
+            if (error is InterruptedException || error is CancellationException) status = "cancelled"
             failure = error
             throw error
         } finally {
             val completedAt = Instant.now()
-            val log = ResearchOperationLog(
-                "research", startedAt.toString(), completedAt.toString(),
-                Duration.between(startedAt, completedAt).toMillis(), question,
-                status, run.trace(), answer, failure?.let { it.message ?: it.javaClass.simpleName },
+            writeLog(
+                ResearchOperationLog(
+                    "research", startedAt.toString(), completedAt.toString(),
+                    Duration.between(startedAt, completedAt).toMillis(), question,
+                    status, run.trace(), answer, failure?.let { it.message ?: it.javaClass.simpleName },
+                ),
+                failure,
             )
-            val interrupted = Thread.interrupted()
-            try {
-                operationLogService.writeResearch(log)
-            } catch (logError: Exception) {
-                if (failure == null) throw logError
-                failure.addSuppressed(logError)
-            } finally {
-                if (interrupted) Thread.currentThread().interrupt()
-            }
         }
     }
 
-    private fun collect(
-        question: String,
-        profile: QueryProfile,
-        run: ResearchRun,
-        onProgress: (ResearchProgress) -> Unit,
-    ) {
+    @Suppress("TooGenericExceptionCaught")
+    private fun writeLog(log: ResearchOperationLog, failure: Exception?) {
+        val interrupted = Thread.interrupted()
+        try {
+            operationLogService.writeResearch(log)
+        } catch (logError: Exception) {
+            if (failure == null) throw logError
+            failure.addSuppressed(logError)
+        } finally {
+            if (interrupted) Thread.currentThread().interrupt()
+        }
+    }
+
+    private fun collect(question: String, profile: QueryProfile, run: ResearchRun, onProgress: (ResearchProgress) -> Unit) {
         var decision = ResearchDecision(ResearchAction.SEARCH, question, "Find initial evidence")
         val queries = mutableSetOf<String>()
         var emptySearches = 0
-        repeat(MAX_SEARCHES) { index ->
+        for (index in 0 until MAX_SEARCHES) {
+            if (decision.action == ResearchAction.FINISH) break
             cancellationService.ensureActive()
             val query = decision.query.trim().replace(Regex("\\s+"), " ")
             check(query.isNotBlank() && query.length <= MAX_QUERY_LENGTH) {
@@ -129,12 +121,13 @@ class ResearchService(
             )
             onProgress(ResearchProgress("Reviewing evidence...", "Found ${result.chunks.size} chunks, ${added.size} new sources."))
             emptySearches = if (added.isEmpty()) emptySearches + 1 else 0
-            if (emptySearches >= MAX_EMPTY_SEARCHES) {
-                run.stopReason = ResearchStopReason.NO_PROGRESS
-                return
+            val stopReason = when {
+                emptySearches >= MAX_EMPTY_SEARCHES -> ResearchStopReason.NO_PROGRESS
+                index == MAX_SEARCHES - 1 -> ResearchStopReason.SEARCH_LIMIT
+                else -> null
             }
-            if (index == MAX_SEARCHES - 1) {
-                run.stopReason = ResearchStopReason.SEARCH_LIMIT
+            if (stopReason != null) {
+                run.stopReason = stopReason
                 return
             }
             val context = run.evidence.context()
@@ -143,18 +136,11 @@ class ResearchService(
             run.decisions += ResearchDecisionLog(next.value, context.map { it.id }, next.tokenUsage)
             cancellationService.ensureActive()
             decision = next.value
-            if (decision.action == ResearchAction.FINISH) {
-                run.stopReason = ResearchStopReason.FINISHED
-                return
-            }
+            if (decision.action == ResearchAction.FINISH) run.stopReason = ResearchStopReason.FINISHED
         }
     }
 
-    private fun generateAnswer(
-        question: String,
-        run: ResearchRun,
-        onProgress: (ResearchProgress) -> Unit,
-    ): ResearchAnswer {
+    private fun generateAnswer(question: String, run: ResearchRun, onProgress: (ResearchProgress) -> Unit): ResearchAnswer {
         val context = run.evidence.context()
         run.contextSourceIds = context.map { it.id }
         if (context.isEmpty()) {
@@ -175,7 +161,11 @@ class ResearchService(
         error("Research model returned an invalid answer: $correction")
     }
 
-    private class ResearchRun(profile: QueryProfile, private val model: String, val scope: SearchScope) {
+    private class ResearchRun(
+        profile: QueryProfile,
+        private val model: String,
+        val scope: SearchScope,
+    ) {
         private val queryProfileId = profile.id
         val evidence = ResearchEvidence()
         val decisions = mutableListOf<ResearchDecisionLog>()

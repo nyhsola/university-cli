@@ -19,7 +19,9 @@ class ResearchSearchService(
         val ready = configurationRepository.findAllByStatus(IndexingStatus.READY)
         val configurations = when (scope) {
             SearchScope.All -> ready
+
             is SearchScope.Index -> ready.filter { it.id == scope.id }
+
             is SearchScope.File -> {
                 val documentIds = configurationRepository.findAllWithDocuments()
                     .filter { it.fileName == scope.fileName }.map { it.documentId }.toSet()
@@ -45,6 +47,5 @@ class ResearchSearchService(
         )
     }
 
-    fun search(profile: QueryProfile, query: String, scope: SearchScope = SearchScope.All): SearchResult =
-        searchService.search(scope, profile, query)
+    fun search(profile: QueryProfile, query: String, scope: SearchScope = SearchScope.All): SearchResult = searchService.search(scope, profile, query)
 }

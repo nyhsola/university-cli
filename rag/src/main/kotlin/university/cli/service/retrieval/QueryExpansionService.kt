@@ -2,7 +2,6 @@ package university.cli.service.retrieval
 
 import kotlinx.serialization.Serializable
 import university.cli.model.LlmResult
-import university.cli.model.TokenUsage
 import university.cli.service.llm.OllamaService
 import university.cli.util.JsonUtil
 import university.cli.util.loadResource

@@ -12,12 +12,7 @@ import university.cli.model.RetrievalEvaluation
 import kotlin.math.ln
 
 class ReportMetricsService {
-    fun retrieval(
-        goldChunks: List<GoldChunk>,
-        chunks: List<RelevantChunk>,
-        contextStats: ContextSelectionStats,
-        rankedMetrics: Boolean = true,
-    ): RetrievalEvaluation {
+    fun retrieval(goldChunks: List<GoldChunk>, chunks: List<RelevantChunk>, contextStats: ContextSelectionStats, rankedMetrics: Boolean = true): RetrievalEvaluation {
         val gold = goldChunks.associate { it.chunkId to it.relevance }
         val ranked = chunks.map(RelevantChunk::chunkId)
         return RetrievalEvaluation(
@@ -44,37 +39,35 @@ class ReportMetricsService {
         )
     }
 
-    fun summarize(results: List<ReportQuestionResult>): List<ReportProfileSummary> =
-        results.groupBy { it.indexProfileId to it.queryProfileId }.map { (profileIds, runs) ->
-            val evaluations = runs.mapNotNull { it.judge.evaluation }
-            ReportProfileSummary(
-                meanEvidenceRecall = runs.mapNotNull { it.retrieval.evidenceRecall }.averageOrNull(),
-                indexProfileId = profileIds.first,
-                queryProfileId = profileIds.second,
-                runs = runs.size,
-                successfulRuns = runs.count { it.status == ReportStatus.COMPLETED },
-                completeAnswers = evaluations.count { it.verdict == AnswerVerdict.COMPLETE },
-                incompleteAnswers = evaluations.count { it.verdict == AnswerVerdict.NOT_COMPLETE },
-                incorrectAnswers = evaluations.count { it.verdict == AnswerVerdict.INCORRECT },
-                judgeErrors = runs.count { it.judge.error != null },
-                contextCharBudget = runs.mapNotNull { it.retrieval.contextCharBudget }.distinct().singleOrNull(),
-                maxChunks = runs.mapNotNull { it.retrieval.maxChunks }.distinct().singleOrNull(),
-                meanContextUsedChars = runs.mapNotNull { it.retrieval.contextUsedChars?.toDouble() }.averageOrNull(),
-                meanEffectiveTopK = runs.mapNotNull { it.retrieval.effectiveTopK?.toDouble() }.averageOrNull(),
-                meanAvailableCandidates = runs.mapNotNull {
-                    it.retrieval.availableCandidates?.toDouble()
-                }.averageOrNull(),
-                meanJudgeScore = evaluations.map { it.score.toDouble() }.averageOrNull(),
-                meanRecallAt3 = runs.mapNotNull { it.retrieval.recallAt3 }.averageOrNull(),
-                meanRecallAt5 = runs.mapNotNull { it.retrieval.recallAt5 }.averageOrNull(),
-                meanReciprocalRank = runs.mapNotNull { it.retrieval.reciprocalRank }.averageOrNull(),
-                meanNdcgAt3 = runs.mapNotNull { it.retrieval.ndcgAt3 }.averageOrNull(),
-                meanNdcgAt5 = runs.mapNotNull { it.retrieval.ndcgAt5 }.averageOrNull(),
-            )
-        }.sortedWith(compareBy(ReportProfileSummary::indexProfileId, ReportProfileSummary::queryProfileId))
+    fun summarize(results: List<ReportQuestionResult>): List<ReportProfileSummary> = results.groupBy { it.indexProfileId to it.queryProfileId }.map { (profileIds, runs) ->
+        val evaluations = runs.mapNotNull { it.judge.evaluation }
+        ReportProfileSummary(
+            meanEvidenceRecall = runs.mapNotNull { it.retrieval.evidenceRecall }.averageOrNull(),
+            indexProfileId = profileIds.first,
+            queryProfileId = profileIds.second,
+            runs = runs.size,
+            successfulRuns = runs.count { it.status == ReportStatus.COMPLETED },
+            completeAnswers = evaluations.count { it.verdict == AnswerVerdict.COMPLETE },
+            incompleteAnswers = evaluations.count { it.verdict == AnswerVerdict.NOT_COMPLETE },
+            incorrectAnswers = evaluations.count { it.verdict == AnswerVerdict.INCORRECT },
+            judgeErrors = runs.count { it.judge.error != null },
+            contextCharBudget = runs.mapNotNull { it.retrieval.contextCharBudget }.distinct().singleOrNull(),
+            maxChunks = runs.mapNotNull { it.retrieval.maxChunks }.distinct().singleOrNull(),
+            meanContextUsedChars = runs.mapNotNull { it.retrieval.contextUsedChars?.toDouble() }.averageOrNull(),
+            meanEffectiveTopK = runs.mapNotNull { it.retrieval.effectiveTopK?.toDouble() }.averageOrNull(),
+            meanAvailableCandidates = runs.mapNotNull {
+                it.retrieval.availableCandidates?.toDouble()
+            }.averageOrNull(),
+            meanJudgeScore = evaluations.map { it.score.toDouble() }.averageOrNull(),
+            meanRecallAt3 = runs.mapNotNull { it.retrieval.recallAt3 }.averageOrNull(),
+            meanRecallAt5 = runs.mapNotNull { it.retrieval.recallAt5 }.averageOrNull(),
+            meanReciprocalRank = runs.mapNotNull { it.retrieval.reciprocalRank }.averageOrNull(),
+            meanNdcgAt3 = runs.mapNotNull { it.retrieval.ndcgAt3 }.averageOrNull(),
+            meanNdcgAt5 = runs.mapNotNull { it.retrieval.ndcgAt5 }.averageOrNull(),
+        )
+    }.sortedWith(compareBy(ReportProfileSummary::indexProfileId, ReportProfileSummary::queryProfileId))
 
-    private fun recallAt(ranked: List<Long>, gold: Set<Long>, k: Int): Double =
-        ranked.take(k).toSet().count { it in gold }.toDouble() / gold.size
+    private fun recallAt(ranked: List<Long>, gold: Set<Long>, k: Int): Double = ranked.take(k).toSet().count { it in gold }.toDouble() / gold.size
 
     private fun reciprocalRank(ranked: List<Long>, gold: Set<Long>): Double {
         val rank = ranked.indexOfFirst { it in gold }
@@ -91,8 +84,7 @@ class ReportMetricsService {
         return if (ideal == 0.0) 0.0 else dcg / ideal
     }
 
-    private fun metric(gold: Map<Long, Int>, calculate: () -> Double): Double? =
-        if (gold.isEmpty()) null else calculate()
+    private fun metric(gold: Map<Long, Int>, calculate: () -> Double): Double? = if (gold.isEmpty()) null else calculate()
 
     private fun log2(value: Int): Double = ln(value.toDouble()) / ln(2.0)
 

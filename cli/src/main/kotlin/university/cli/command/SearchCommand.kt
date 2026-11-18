@@ -10,8 +10,8 @@ import university.cli.service.operation.OperationLogService
 import university.cli.service.retrieval.SearchService
 import university.cli.util.QueryCommandParser
 import university.cli.util.TextUtil
-import java.util.Locale
 import java.time.Instant
+import java.util.Locale
 import java.util.concurrent.CancellationException
 
 class SearchCommand(
@@ -32,6 +32,7 @@ class SearchCommand(
         const val BOX_CONTENT_WIDTH = BOX_INNER_WIDTH - 2
     }
 
+    @Suppress("TooGenericExceptionCaught")
     override fun execute(arguments: List<String>): CommandResult = try {
         val startedAt = Instant.now()
         val request = QueryCommandParser.parse(arguments, allowExplain = true)
@@ -74,6 +75,7 @@ class SearchCommand(
 
     private fun normalizeScope(scope: SearchScope): SearchScope = when (scope) {
         SearchScope.All, is SearchScope.Index -> scope
+
         is SearchScope.File -> {
             val file = projectFileService.resolve(scope.fileName)
             SearchScope.File(projectFileService.relativeName(file))

@@ -60,17 +60,12 @@ class OperationLogService(
                     chunk.content,
                 )
             },
-            answer
+            answer,
         )
         return write(log.command, completedAt, JsonUtil.json.encodeToString(log))
     }
 
-    fun writeIndexing(
-        startedAt: Instant,
-        scope: String,
-        indexProfileId: Long,
-        result: ProjectIndexingResult,
-    ): Path {
+    fun writeIndexing(startedAt: Instant, scope: String, indexProfileId: Long, result: ProjectIndexingResult): Path {
         val completedAt = Instant.now()
         val tokenUsage = (result.indexedFiles + result.skippedFiles)
             .fold(TokenUsage()) { total, file -> total + file.result.tokenUsage }
@@ -102,20 +97,18 @@ class OperationLogService(
         return write(log.command, completedAt, JsonUtil.json.encodeToString(log))
     }
 
-    private fun IndexedFile.toLog(status: IndexingFileLogStatus): IndexedFileLog =
-        IndexedFileLog(
-            fileName = path.toString(),
-            status = status,
-            indexId = result.configurationId,
-            documentId = result.documentId,
-            chunksCount = result.chunksCount,
-            inputTokens = result.tokenUsage.inputTokens,
-            outputTokens = result.tokenUsage.outputTokens,
-            totalTokens = result.tokenUsage.totalTokens,
-        )
+    private fun IndexedFile.toLog(status: IndexingFileLogStatus): IndexedFileLog = IndexedFileLog(
+        fileName = path.toString(),
+        status = status,
+        indexId = result.configurationId,
+        documentId = result.documentId,
+        chunksCount = result.chunksCount,
+        inputTokens = result.tokenUsage.inputTokens,
+        outputTokens = result.tokenUsage.outputTokens,
+        totalTokens = result.tokenUsage.totalTokens,
+    )
 
-    fun writeResearch(log: ResearchOperationLog): Path =
-        write(log.command, Instant.parse(log.completedAt), JsonUtil.json.encodeToString(log))
+    fun writeResearch(log: ResearchOperationLog): Path = write(log.command, Instant.parse(log.completedAt), JsonUtil.json.encodeToString(log))
 
     private fun write(command: String, completedAt: Instant, content: String): Path {
         Files.createDirectories(logsDirectory)

@@ -21,14 +21,14 @@ internal class ConsoleInputReader(
 
     fun read(): InputEvent = events.take().getOrThrow()
 
-    fun poll(timeoutMillis: Long): InputEvent? =
-        events.poll(timeoutMillis, TimeUnit.MILLISECONDS)?.getOrThrow()
+    fun poll(timeoutMillis: Long): InputEvent? = events.poll(timeoutMillis, TimeUnit.MILLISECONDS)?.getOrThrow()
 
     override fun close() {
         running = false
         readerThread.interrupt()
     }
 
+    @Suppress("TooGenericExceptionCaught")
     private fun readEvents() {
         while (running) {
             try {
@@ -43,11 +43,15 @@ internal class ConsoleInputReader(
     private sealed interface ReadResult {
         fun getOrThrow(): InputEvent
 
-        data class Event(val event: InputEvent) : ReadResult {
+        data class Event(
+            val event: InputEvent,
+        ) : ReadResult {
             override fun getOrThrow() = event
         }
 
-        data class Failure(val error: Exception) : ReadResult {
+        data class Failure(
+            val error: Exception,
+        ) : ReadResult {
             override fun getOrThrow(): InputEvent = throw error
         }
     }

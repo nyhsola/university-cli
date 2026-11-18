@@ -13,12 +13,7 @@ class AskService(
     private val ollamaConfig: OllamaConfig,
     private val contextFormatter: ContextFormatter,
 ) {
-    fun ask(
-        scope: SearchScope,
-        queryProfile: QueryProfile,
-        question: String,
-        onContextReady: () -> Unit = {},
-    ): AskResult {
+    fun ask(scope: SearchScope, queryProfile: QueryProfile, question: String, onContextReady: () -> Unit = {}): AskResult {
         val searchResult = searchService.search(scope, queryProfile, question)
         val relevantChunks = searchResult.chunks
         require(relevantChunks.isNotEmpty()) { "No relevant chunks found" }

@@ -18,9 +18,10 @@ class ProfilesCommand(
         const val QUERY = "query"
     }
 
+    @Suppress("TooGenericExceptionCaught")
     override fun execute(arguments: List<String>): CommandResult {
         val type = arguments.singleOrNull()?.lowercase()
-        if (arguments.size > 1 || type != null && type !in setOf(INDEX, QUERY)) {
+        if (arguments.size > 1 || (type != null && type !in setOf(INDEX, QUERY))) {
             return usageError("Expected either index or query")
         }
 
@@ -38,40 +39,38 @@ class ProfilesCommand(
         }
     }
 
-    private fun indexProfiles(): List<CommandOutputLine> =
-        indexProfileService.getAll().entries.flatMapIndexed { index, (name, configuration) ->
-            ConfigurationCommandFormatter.format(
-                index,
-                "Index profile ${configuration.id}",
-                buildList {
-                    add("Name" to configuration.name)
-                    add("Description" to configuration.description)
-                    if (name == DEFAULT_PROFILE) add("Default" to "yes")
-                    add("Embedding model" to configuration.embeddingModel)
-                    add("Chunking strategy" to configuration.chunkingStrategy.name)
-                    add("Parameters" to ConfigurationCommandFormatter.parameters(configuration.parameters))
-                },
-            )
-        }
+    private fun indexProfiles(): List<CommandOutputLine> = indexProfileService.getAll().entries.flatMapIndexed { index, (name, configuration) ->
+        ConfigurationCommandFormatter.format(
+            index,
+            "Index profile ${configuration.id}",
+            buildList {
+                add("Name" to configuration.name)
+                add("Description" to configuration.description)
+                if (name == DEFAULT_PROFILE) add("Default" to "yes")
+                add("Embedding model" to configuration.embeddingModel)
+                add("Chunking strategy" to configuration.chunkingStrategy.name)
+                add("Parameters" to ConfigurationCommandFormatter.parameters(configuration.parameters))
+            },
+        )
+    }
 
-    private fun queryProfiles(): List<CommandOutputLine> =
-        queryProfileService.getAll().entries.flatMapIndexed { index, (name, configuration) ->
-            ConfigurationCommandFormatter.format(
-                index,
-                "Query profile ${configuration.id}",
-                buildList {
-                    add("Name" to configuration.name)
-                    add("Description" to configuration.description)
-                    if (name == DEFAULT_PROFILE) add("Default" to "yes")
-                    add("Parameters" to ConfigurationCommandFormatter.parameters(configuration.parameters))
-                    configuration.multiQuery?.let { multiQuery ->
-                        add("Multi-query strategy" to multiQuery.strategy.name)
-                        add(
-                            "Multi-query parameters" to
-                                ConfigurationCommandFormatter.parameters(multiQuery.parameters),
-                        )
-                    }
-                },
-            )
-        }
+    private fun queryProfiles(): List<CommandOutputLine> = queryProfileService.getAll().entries.flatMapIndexed { index, (name, configuration) ->
+        ConfigurationCommandFormatter.format(
+            index,
+            "Query profile ${configuration.id}",
+            buildList {
+                add("Name" to configuration.name)
+                add("Description" to configuration.description)
+                if (name == DEFAULT_PROFILE) add("Default" to "yes")
+                add("Parameters" to ConfigurationCommandFormatter.parameters(configuration.parameters))
+                configuration.multiQuery?.let { multiQuery ->
+                    add("Multi-query strategy" to multiQuery.strategy.name)
+                    add(
+                        "Multi-query parameters" to
+                            ConfigurationCommandFormatter.parameters(multiQuery.parameters),
+                    )
+                }
+            },
+        )
+    }
 }

@@ -18,12 +18,7 @@ class ResearchAnswerService(
         val PROMPT = ResearchAnswerService::class.loadResource("prompts/research_answer.txt")
     }
 
-    fun generate(
-        question: String,
-        sources: List<ResearchSource>,
-        stopReason: ResearchStopReason,
-        correction: String = "",
-    ): LlmResult<ResearchAnswer> {
+    fun generate(question: String, sources: List<ResearchSource>, stopReason: ResearchStopReason, correction: String = ""): LlmResult<ResearchAnswer> {
         val input = AnswerInput(question, sources, stopReason, correction)
         val prompt = PROMPT.replace("{{input}}", JsonUtil.json.encodeToString(input))
         return ollamaService.question<ResearchAnswer>(ollamaConfig.questionModel, prompt)
@@ -33,11 +28,16 @@ class ResearchAnswerService(
         val sourceIds = sources.map(ResearchSource::id).toSet()
         return when {
             answer.claims.isEmpty() && answer.unresolved.isEmpty() -> "Provide supported claims or unresolved questions."
+
             answer.claims.any { it.text.isBlank() } -> "Every claim must have nonblank text."
+
             answer.claims.any { it.sourceIds.isEmpty() } -> "Every claim must cite at least one supplied source."
+
             answer.claims.any { claim -> claim.sourceIds.any { it !in sourceIds } } ->
                 "Use only supplied source IDs: ${sourceIds.joinToString()}."
+
             answer.unresolved.any(String::isBlank) -> "Unresolved questions must not be blank."
+
             else -> null
         }
     }

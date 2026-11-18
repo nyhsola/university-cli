@@ -32,7 +32,9 @@ Use the Gradle wrapper:
 ```bash
 ./gradlew compileKotlin
 ./gradlew test
+./gradlew detekt
 ./gradlew check
+./gradlew formatKotlin
 ./gradlew build
 ./gradlew run --args="profiles"
 ./gradlew run --args="--interactive"
@@ -52,7 +54,7 @@ java -jar build/libs/urag.jar --interactive
 
 Indexing and question commands require Ollama at the endpoint in `OllamaConfig` and the models named by the active resource configurations.
 
-There is no configured ktlint, Detekt, or formatter task. Do not report a lint/format check that does not exist. Use `./gradlew check` and `git diff --check`.
+Detekt checks all modules with `config/detekt/detekt.yml` and the ktlint rule set. Run `./gradlew detekt` for static analysis or `./gradlew check` for analysis and tests. Run `./gradlew formatKotlin` to apply formatting fixes, then rerun Detekt for any remaining findings. Use `git diff --check` to check the patch for whitespace errors.
 
 ## Architectural Rules
 

@@ -3,7 +3,11 @@ package university.cli.service.llm
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.*
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.serializer
 import university.cli.config.OllamaConfig
 import university.cli.model.LlmResult
@@ -39,8 +43,7 @@ class OllamaService(
         return LlmResult(Vector(values), TokenUsage(inputTokens = response.promptEvalCount))
     }
 
-    inline fun <reified T> question(model: String, text: String): LlmResult<T> =
-        question(model, text, serializer())
+    inline fun <reified T> question(model: String, text: String): LlmResult<T> = question(model, text, serializer())
 
     @PublishedApi
     internal fun <T> question(model: String, text: String, serializer: KSerializer<T>): LlmResult<T> {

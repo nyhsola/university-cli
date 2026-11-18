@@ -6,7 +6,7 @@ data class QueryCommandRequest(
     val query: String,
     val scope: SearchScope,
     val profileId: Long?,
-    val explain: Boolean
+    val explain: Boolean,
 )
 
 object QueryCommandParser {
@@ -40,14 +40,14 @@ object QueryCommandParser {
         require(scopeOptions.size <= 1) { "Specify only one of --all, --file, or --index" }
 
         val profileId = parsed.options["profile"]?.toLongOrNull()
-        require(parsed.options["profile"] == null || profileId != null && profileId > 0) {
+        require(parsed.options["profile"] == null || (profileId != null && profileId > 0)) {
             "Query profile id must be positive"
         }
         return QueryCommandRequest(
             query,
             scopeOptions.singleOrNull() ?: SearchScope.All,
             profileId,
-            "explain" in parsed.flags
+            "explain" in parsed.flags,
         )
     }
 }

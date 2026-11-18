@@ -7,7 +7,9 @@ import university.cli.util.loadResource
 import java.time.Instant
 import javax.sql.DataSource
 
-class JdbcIndexingConfigurationRepository(private val dataSource: DataSource) {
+class JdbcIndexingConfigurationRepository(
+    private val dataSource: DataSource,
+) {
     private companion object {
         val FIND_BY_ID = JdbcIndexingConfigurationRepository::class
             .loadResource("db/sql/indexing_configuration/find_by_id.sql")
@@ -40,16 +42,15 @@ class JdbcIndexingConfigurationRepository(private val dataSource: DataSource) {
         }
     }
 
-    fun findByDocumentAndHash(documentId: Long, hash: String): IndexingConfiguration? =
-        dataSource.connection.use { connection ->
-            connection.prepareStatement(FIND_BY_DOCUMENT_AND_HASH).use { statement ->
-                statement.setLong(1, documentId)
-                statement.setString(2, hash)
-                statement.executeQuery().use { resultSet ->
-                    if (resultSet.next()) resultSet.toConfiguration() else null
-                }
+    fun findByDocumentAndHash(documentId: Long, hash: String): IndexingConfiguration? = dataSource.connection.use { connection ->
+        connection.prepareStatement(FIND_BY_DOCUMENT_AND_HASH).use { statement ->
+            statement.setLong(1, documentId)
+            statement.setString(2, hash)
+            statement.executeQuery().use { resultSet ->
+                if (resultSet.next()) resultSet.toConfiguration() else null
             }
         }
+    }
 
     fun findAllByStatus(status: IndexingStatus): List<IndexingConfiguration> = dataSource.connection.use { connection ->
         connection.prepareStatement(FIND_BY_STATUS).use { statement ->
@@ -83,13 +84,7 @@ class JdbcIndexingConfigurationRepository(private val dataSource: DataSource) {
         }
     }
 
-    fun create(
-        documentId: Long,
-        hash: String,
-        documentHash: String,
-        status: IndexingStatus,
-        createdAt: Instant,
-    ): IndexingConfiguration = dataSource.connection.use { connection ->
+    fun create(documentId: Long, hash: String, documentHash: String, status: IndexingStatus, createdAt: Instant): IndexingConfiguration = dataSource.connection.use { connection ->
         connection.prepareStatement(INSERT).use { statement ->
             statement.setLong(1, documentId)
             statement.setString(2, hash)

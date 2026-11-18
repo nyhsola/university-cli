@@ -18,12 +18,7 @@ class ResearchDecisionService(
         val PROMPT = ResearchDecisionService::class.loadResource("prompts/research_decision.txt")
     }
 
-    fun decide(
-        question: String,
-        steps: List<ResearchStep>,
-        sources: List<ResearchSource>,
-        remainingSearches: Int,
-    ): LlmResult<ResearchDecision> {
+    fun decide(question: String, steps: List<ResearchStep>, sources: List<ResearchSource>, remainingSearches: Int): LlmResult<ResearchDecision> {
         val input = DecisionInput(question, steps, sources, remainingSearches)
         val prompt = PROMPT.replace("{{input}}", JsonUtil.json.encodeToString(input))
         return ollamaService.question<ResearchDecision>(ollamaConfig.questionModel, prompt)

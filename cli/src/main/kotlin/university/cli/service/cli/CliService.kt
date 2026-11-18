@@ -9,9 +9,9 @@ import com.github.ajalt.mordant.terminal.Terminal
 import university.cli.command.CommandDispatcher
 import university.cli.command.CommandMessageType
 import university.cli.command.CommandResult
-import university.cli.util.CommandTableFormatter
 import university.cli.service.chat.ChatOutputService
 import university.cli.service.chat.ChatStatusService
+import university.cli.util.CommandTableFormatter
 
 class CliService(
     private val commandDispatcher: CommandDispatcher = CommandDispatcher(emptyList()),
@@ -90,6 +90,5 @@ class CliService(
         CommandMessageType.ACCENT -> (bold + cyan)(text)
     }
 
-    private fun CommandResult.isFailure(): Boolean =
-        messageType == CommandMessageType.WARNING || lines.any { it.type == CommandMessageType.WARNING }
+    private fun CommandResult.isFailure(): Boolean = messageType == CommandMessageType.WARNING || lines.any { it.type == CommandMessageType.WARNING }
 }

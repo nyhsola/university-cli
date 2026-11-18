@@ -14,11 +14,7 @@ class RankFusionService {
         val rrfScore: Double,
     )
 
-    fun fuse(
-        dense: List<RelevantVector>,
-        lexical: List<LexicalMatch>,
-        rrfK: Int,
-    ): List<FusedMatch> {
+    fun fuse(dense: List<RelevantVector>, lexical: List<LexicalMatch>, rrfK: Int): List<FusedMatch> {
         require(rrfK > 0) { "RRF k must be positive" }
 
         val denseById = dense.withIndex().associate { (index, match) ->

@@ -7,11 +7,7 @@ data class ParsedCommandArguments(
 )
 
 object CommandOptionParser {
-    fun parse(
-        arguments: List<String>,
-        valueOptions: Map<String, String> = emptyMap(),
-        flagOptions: Map<String, String> = emptyMap(),
-    ): ParsedCommandArguments {
+    fun parse(arguments: List<String>, valueOptions: Map<String, String> = emptyMap(), flagOptions: Map<String, String> = emptyMap()): ParsedCommandArguments {
         val positionals = mutableListOf<String>()
         val options = mutableMapOf<String, String>()
         val flags = mutableSetOf<String>()
@@ -36,6 +32,7 @@ object CommandOptionParser {
                 }
 
                 argument.startsWith('-') -> error("Unknown option: $argument")
+
                 else -> {
                     positionals += argument
                     index++

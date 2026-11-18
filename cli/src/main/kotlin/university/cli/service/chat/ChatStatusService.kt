@@ -26,5 +26,4 @@ class ChatStatusService {
         this.status = status
         listeners.forEach { it(status) }
     }
-
 }

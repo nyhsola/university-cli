@@ -16,11 +16,8 @@ class JdbcSearchIndexRepository(
         val INSERT_VECTOR = JdbcSearchIndexRepository::class.loadResource("db/sql/search_index/insert_vector.sql")
     }
 
-    fun replace(
-        indexConfigurationId: Long,
-        chunks: List<DocumentChunk>,
-        vectors: List<VectorRecord>,
-    ) {
+    @Suppress("TooGenericExceptionCaught")
+    fun replace(indexConfigurationId: Long, chunks: List<DocumentChunk>, vectors: List<VectorRecord>) {
         dataSource.connection.use { connection ->
             connection.autoCommit = false
             try {

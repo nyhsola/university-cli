@@ -10,8 +10,7 @@ data class AnswerEvaluation private constructor(
     val reason: String,
 ) {
     companion object {
-        fun from(verdict: AnswerVerdict, reason: String): AnswerEvaluation =
-            AnswerEvaluation(verdict, verdict.score, reason)
+        fun from(verdict: AnswerVerdict, reason: String): AnswerEvaluation = AnswerEvaluation(verdict, verdict.score, reason)
     }
 
     init {

@@ -6,10 +6,10 @@ import com.github.ajalt.mordant.input.MouseTracking
 import com.github.ajalt.mordant.input.RawModeScope
 import com.github.ajalt.mordant.input.enterRawModeOrNull
 import com.github.ajalt.mordant.input.isCtrlC
+import com.github.ajalt.mordant.rendering.TextColors.Companion.rgb
 import com.github.ajalt.mordant.rendering.TextColors.brightWhite
 import com.github.ajalt.mordant.rendering.TextColors.cyan
 import com.github.ajalt.mordant.rendering.TextColors.green
-import com.github.ajalt.mordant.rendering.TextColors.Companion.rgb
 import com.github.ajalt.mordant.rendering.TextColors.red
 import com.github.ajalt.mordant.rendering.TextColors.yellow
 import com.github.ajalt.mordant.rendering.TextStyles.bold
@@ -22,12 +22,13 @@ import university.cli.command.CommandOutputTable
 import university.cli.command.CommandResult
 import university.cli.command.CommandSuggestion
 import university.cli.service.operation.OperationCancellationService
-import university.cli.util.TextUtil
 import university.cli.util.CommandTableFormatter
+import university.cli.util.TextUtil
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
+@Suppress("TooManyFunctions")
 class ChatService(
     private val terminal: Terminal = Terminal(),
     private val commandDispatcher: CommandDispatcher = CommandDispatcher(emptyList()),
@@ -91,17 +92,19 @@ class ChatService(
             terminal.println(CHAT_PADDING + styleMessage(message.text, message.type))
         }
         try {
-            while (true) {
+            var running = true
+            while (running) {
                 val input = terminal.prompt("", promptSuffix = "> ") ?: break
                 val result = commandDispatcher.dispatch(input)
                 printResult(result)
-                if (result.shouldExit) break
+                running = !result.shouldExit
             }
         } finally {
             outputSubscription.close()
         }
     }
 
+    @Suppress("LongMethod", "CyclomaticComplexMethod")
     private fun startInteractiveMode(input: RawModeScope): List<ScreenMessage> {
         val history = commandDispatcher.dispatch("/help").toScreenMessages().toMutableList()
         val buffer = StringBuilder()
@@ -125,79 +128,76 @@ class ChatService(
                 selectedIndex = selectedIndex.coerceIn(0, (suggestions.size - 1).coerceAtLeast(0))
                 scrollOffset = renderScreen(history, buffer, suggestions, selectedIndex, scrollOffset)
 
-            val event = inputReader.poll(COMMAND_INPUT_POLL_MILLIS) ?: continue
-                if (event is MouseEvent) {
-                    scrollOffset = mouseScrollOffset(scrollOffset, event)
-                    continue
-                }
+                val event = inputReader.poll(COMMAND_INPUT_POLL_MILLIS)
+                if (event is MouseEvent) scrollOffset = mouseScrollOffset(scrollOffset, event)
                 val key = event as? KeyboardEvent ?: continue
                 if (key.isCtrlC) {
                     history += ScreenMessage("Goodbye!", CommandMessageType.MUTED)
-                    break
+                    return history
                 }
 
                 when (key.key) {
-                "Enter" -> {
-                    val enteredValue = completeInput(buffer.toString(), suggestions.getOrNull(selectedIndex))
-                    if (enteredValue.isNotBlank()) {
-                        history += ScreenMessage("> $enteredValue", CommandMessageType.INFO, isUser = true)
-                        scrollOffset = renderScreen(history, StringBuilder(), emptyList(), 0, 0)
+                    "Enter" -> {
+                        val enteredValue = completeInput(buffer.toString(), suggestions.getOrNull(selectedIndex))
+                        if (enteredValue.isNotBlank()) {
+                            history += ScreenMessage("> $enteredValue", CommandMessageType.INFO, isUser = true)
+                            scrollOffset = renderScreen(history, StringBuilder(), emptyList(), 0, 0)
 
-                    val result = executeCommand(inputReader, commandExecutor, enteredValue) { mouseEvent ->
-                        if (mouseEvent != null) scrollOffset = mouseScrollOffset(scrollOffset, mouseEvent)
-                            scrollOffset = renderScreen(
-                                history,
-                                StringBuilder(),
-                                emptyList(),
-                                0,
-                                scrollOffset,
-                            )
+                            val result = executeCommand(inputReader, commandExecutor, enteredValue) { mouseEvent ->
+                                if (mouseEvent != null) scrollOffset = mouseScrollOffset(scrollOffset, mouseEvent)
+                                scrollOffset = renderScreen(
+                                    history,
+                                    StringBuilder(),
+                                    emptyList(),
+                                    0,
+                                    scrollOffset,
+                                )
+                            }
+                            history += result.toScreenMessages()
+                            scrollOffset = 0
+                            running = !result.shouldExit
                         }
-                        history += result.toScreenMessages()
-                        scrollOffset = 0
-                        running = !result.shouldExit
+                        buffer.clear()
+                        selectedIndex = 0
+                        suggestionsDismissed = false
                     }
-                    buffer.clear()
-                    selectedIndex = 0
-                    suggestionsDismissed = false
-                }
 
-                "ArrowUp" -> {
-                    if (suggestions.isNotEmpty()) {
-                        selectedIndex = (selectedIndex - 1 + suggestions.size) % suggestions.size
-                    } else {
-                        scrollOffset += HISTORY_SCROLL_STEP
+                    "ArrowUp" -> {
+                        if (suggestions.isNotEmpty()) {
+                            selectedIndex = (selectedIndex - 1 + suggestions.size) % suggestions.size
+                        } else {
+                            scrollOffset += HISTORY_SCROLL_STEP
+                        }
                     }
-                }
 
-                "ArrowDown" -> {
-                    if (suggestions.isNotEmpty()) {
-                        selectedIndex = (selectedIndex + 1) % suggestions.size
-                    } else {
+                    "ArrowDown" -> {
+                        if (suggestions.isNotEmpty()) {
+                            selectedIndex = (selectedIndex + 1) % suggestions.size
+                        } else {
+                            scrollOffset = (scrollOffset - HISTORY_SCROLL_STEP).coerceAtLeast(0)
+                        }
+                    }
+
+                    "PageUp", "Page Up" -> scrollOffset += HISTORY_SCROLL_STEP
+
+                    "PageDown", "Page Down" -> {
                         scrollOffset = (scrollOffset - HISTORY_SCROLL_STEP).coerceAtLeast(0)
                     }
-                }
 
-                "PageUp", "Page Up" -> scrollOffset += HISTORY_SCROLL_STEP
+                    "Backspace" -> if (buffer.isNotEmpty()) {
+                        buffer.deleteCharAt(buffer.lastIndex)
+                        selectedIndex = 0
+                        suggestionsDismissed = false
+                    }
 
-                "PageDown", "Page Down" -> {
-                    scrollOffset = (scrollOffset - HISTORY_SCROLL_STEP).coerceAtLeast(0)
-                }
+                    "Escape" -> suggestionsDismissed = true
 
-                "Backspace" -> if (buffer.isNotEmpty()) {
-                    buffer.deleteCharAt(buffer.lastIndex)
-                    selectedIndex = 0
-                    suggestionsDismissed = false
-                }
-
-                "Escape" -> suggestionsDismissed = true
-
-                else -> if (!key.ctrl && !key.alt && key.key.length == 1) {
-                    buffer.append(key.key)
-                    scrollOffset = 0
-                    selectedIndex = 0
-                    suggestionsDismissed = false
-                }
+                    else -> if (!key.ctrl && !key.alt && key.key.length == 1) {
+                        buffer.append(key.key)
+                        scrollOffset = 0
+                        selectedIndex = 0
+                        suggestionsDismissed = false
+                    }
                 }
             }
         } finally {
@@ -210,12 +210,7 @@ class ChatService(
         return history
     }
 
-    private fun executeCommand(
-        inputReader: ConsoleInputReader,
-        commandExecutor: ExecutorService,
-        command: String,
-        updateScreen: (MouseEvent?) -> Unit,
-    ): CommandResult {
+    private fun executeCommand(inputReader: ConsoleInputReader, commandExecutor: ExecutorService, command: String, updateScreen: (MouseEvent?) -> Unit): CommandResult {
         val future = commandExecutor.submit<CommandResult> {
             cancellationService.execute { commandDispatcher.dispatch(command) }
         }
@@ -227,6 +222,7 @@ class ChatService(
                 }
 
                 is MouseEvent -> updateScreen(event)
+
                 null -> updateScreen(null)
             }
         }
@@ -238,10 +234,7 @@ class ChatService(
         }
     }
 
-    private fun visibleSuggestions(
-        buffer: StringBuilder,
-        suggestionsDismissed: Boolean,
-    ): List<CommandSuggestion> = if (suggestionsDismissed) {
+    private fun visibleSuggestions(buffer: StringBuilder, suggestionsDismissed: Boolean): List<CommandSuggestion> = if (suggestionsDismissed) {
         emptyList()
     } else {
         commandDispatcher.suggestions(buffer.toString())
@@ -263,13 +256,7 @@ class ChatService(
     }
 
     @Synchronized
-    private fun renderScreen(
-        history: List<ScreenMessage>,
-        buffer: StringBuilder,
-        suggestions: List<CommandSuggestion>,
-        selectedIndex: Int,
-        scrollOffset: Int,
-    ): Int {
+    private fun renderScreen(history: List<ScreenMessage>, buffer: StringBuilder, suggestions: List<CommandSuggestion>, selectedIndex: Int, scrollOffset: Int): Int {
         val size = terminal.updateSize()
         val width = size.width.coerceAtLeast(MINIMUM_WIDTH)
         val height = size.height.coerceAtLeast(MINIMUM_HEIGHT)
@@ -286,19 +273,7 @@ class ChatService(
         if (screen == renderedScreen) return scrollOffset
 
         val headerLines = headerLines()
-        val suggestionStart = (selectedIndex - MAX_SUGGESTIONS + 1)
-            .coerceAtLeast(0)
-            .coerceAtMost((suggestions.size - MAX_SUGGESTIONS).coerceAtLeast(0))
-        val suggestionLines = suggestions.drop(suggestionStart).take(MAX_SUGGESTIONS)
-        val renderedSuggestionLines = suggestionLines.flatMapIndexed { index, suggestion ->
-            val suggestionIndex = suggestionStart + index
-            val selected = suggestionIndex == selectedIndex
-            TextUtil.wrap("${suggestion.name} — ${suggestion.description}", (width - 2).coerceAtLeast(1))
-                .mapIndexed { lineIndex, line ->
-                    val marker = if (lineIndex == 0 && selected) ">" else " "
-                    "$marker $line" to selected
-                }
-        }
+        val renderedSuggestionLines = renderSuggestions(suggestions, selectedIndex, width)
         val fixedLineCount = renderedSuggestionLines.size + COMPOSER_HEIGHT
         val historyHeight = (height - fixedLineCount).coerceAtLeast(0)
         val renderedHistory = history.flatMap { message -> message.render(width) }.flatMap { message ->
@@ -340,6 +315,22 @@ class ChatService(
         return boundedScrollOffset
     }
 
+    private fun renderSuggestions(suggestions: List<CommandSuggestion>, selectedIndex: Int, width: Int): List<Pair<String, Boolean>> {
+        val suggestionStart = (selectedIndex - MAX_SUGGESTIONS + 1)
+            .coerceAtLeast(0)
+            .coerceAtMost((suggestions.size - MAX_SUGGESTIONS).coerceAtLeast(0))
+        val suggestionLines = suggestions.drop(suggestionStart).take(MAX_SUGGESTIONS)
+        return suggestionLines.flatMapIndexed { index, suggestion ->
+            val suggestionIndex = suggestionStart + index
+            val selected = suggestionIndex == selectedIndex
+            TextUtil.wrap("${suggestion.name} — ${suggestion.description}", (width - 2).coerceAtLeast(1))
+                .mapIndexed { lineIndex, line ->
+                    val marker = if (lineIndex == 0 && selected) ">" else " "
+                    "$marker $line" to selected
+                }
+        }
+    }
+
     private fun printComposer(buffer: StringBuilder, width: Int, status: String?) {
         val inputPrefix = "> "
         val availableInputWidth = (width - inputPrefix.length).coerceAtLeast(0)
@@ -364,7 +355,7 @@ class ChatService(
         val row = terminal.size.height.coerceAtLeast(1)
         val statusLine = fitLine(status ?: DEFAULT_STATUS_HINT, width).padEnd(width)
 
-        terminal.rawPrint(BEGIN_SYNCHRONIZED_UPDATE + SAVE_CURSOR + "\u001B[${row};1H")
+        terminal.rawPrint(BEGIN_SYNCHRONIZED_UPDATE + SAVE_CURSOR + "\u001B[$row;1H")
         terminal.print(dim(statusLine))
         terminal.rawPrint(RESTORE_CURSOR + END_SYNCHRONIZED_UPDATE)
     }
@@ -382,15 +373,10 @@ class ChatService(
         }
     }
 
-    private fun CommandResult.toScreenMessages(): List<ScreenMessage> {
-        table?.let { return listOf(ScreenMessage("", CommandMessageType.INFO, table = it)) }
-        if (lines.isNotEmpty()) {
-            return lines.map { line -> ScreenMessage(line.text, line.type, fullWidth = line.fullWidth) }
-        }
-        return message?.lineSequence()
-            ?.map { line -> ScreenMessage(line, messageType) }
-            ?.toList()
-            .orEmpty()
+    private fun CommandResult.toScreenMessages(): List<ScreenMessage> = when {
+        table != null -> listOf(ScreenMessage("", CommandMessageType.INFO, table = table))
+        lines.isNotEmpty() -> lines.map { line -> ScreenMessage(line.text, line.type, fullWidth = line.fullWidth) }
+        else -> message?.lineSequence()?.map { line -> ScreenMessage(line, messageType) }?.toList().orEmpty()
     }
 
     private fun printHeader() {
@@ -401,12 +387,7 @@ class ChatService(
         }
     }
 
-    private fun printHistoryRow(
-        message: ScreenMessage?,
-        row: Int,
-        width: Int,
-        headerLines: List<String>,
-    ) {
+    private fun printHistoryRow(message: ScreenMessage?, row: Int, width: Int, headerLines: List<String>) {
         val headerLine = headerLines.getOrNull(row)?.takeLast(width).takeUnless { message?.fullWidth == true }
         if (headerLine == null) {
             val content = message?.let {
@@ -459,8 +440,7 @@ class ChatService(
         else -> value.take(width - 1) + "…"
     }
 
-    private fun wrapLine(value: String, width: Int): List<String> =
-        if (value.isEmpty()) listOf("") else value.chunked(width.coerceAtLeast(1))
+    private fun wrapLine(value: String, width: Int): List<String> = if (value.isEmpty()) listOf("") else value.chunked(width.coerceAtLeast(1))
 
     private data class ScreenState(
         val history: List<ScreenMessage>,
@@ -482,10 +462,10 @@ class ChatService(
     )
 
     private fun ScreenMessage.render(width: Int): List<ScreenMessage> = table?.let {
-        CommandTableFormatter.format(it, width).map { line ->
-            ScreenMessage(line.text, line.type, fullWidth = true)
+        CommandTableFormatter.format(it, width - padding().length).map { line ->
+            ScreenMessage(line.text, line.type, fullWidth = line.fullWidth)
         }
     } ?: listOf(this)
 
-    private fun ScreenMessage.padding(): String = if (isUser || fullWidth) "" else CHAT_PADDING
+    private fun ScreenMessage.padding(): String = if (isUser) "" else CHAT_PADDING
 }

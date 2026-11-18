@@ -3,12 +3,14 @@ package university.cli.service.retrieval
 import university.cli.model.IndexConfiguration
 import university.cli.model.IndexingConfiguration
 import university.cli.model.IndexingStatus
+import university.cli.model.LlmResult
 import university.cli.model.MultiQueryStrategy
 import university.cli.model.QueryProfile
 import university.cli.model.RelevantChunk
+import university.cli.model.RelevantVector
 import university.cli.model.RetrievalMode
-import university.cli.model.SearchScope
 import university.cli.model.SearchResult
+import university.cli.model.SearchScope
 import university.cli.model.TokenUsage
 import university.cli.repository.JdbcChunkRepository
 import university.cli.repository.JdbcDocumentRepository
@@ -59,7 +61,7 @@ class SearchService(
         val maxChunks: Int,
     )
 
-    fun search(scope: SearchScope, queryProfile: QueryProfile, query: String, ): SearchResult {
+    fun search(scope: SearchScope, queryProfile: QueryProfile, query: String): SearchResult {
         require(query.isNotBlank()) { "Search query must not be blank" }
 
         val options = options(queryProfile)
@@ -75,37 +77,10 @@ class SearchService(
         }
 
         val resources = configurations.associateWith(::resolveResourceConfiguration)
-        var tokenUsage = TokenUsage()
-
         val dense = if (options.mode != RetrievalMode.LEXICAL) {
-            val models = resources.values.map(IndexConfiguration::embeddingModel).distinct()
-            require(models.size == 1) {
-                "Dense search across multiple embedding models is not supported; use --index or --file"
-            }
-            val queries = options.multiQuery?.let { multiQuery ->
-                cancellationService.ensureActive()
-                val expansion = queryExpansionService.expand(query, multiQuery.model, multiQuery.rewriteCount)
-                tokenUsage += expansion.tokenUsage
-                listOf(query) + expansion.value
-            } ?: listOf(query)
-            val rankings = queries.map { searchQuery ->
-                cancellationService.ensureActive()
-                val embedding = embedService.embedQuery(models.single(), searchQuery)
-                tokenUsage += embedding.tokenUsage
-                configurations.flatMap { configuration ->
-                    cancellationService.ensureActive()
-                    vectorService.getTopRelevant(configuration.id, embedding.value, options.denseCandidateLimit)
-                }.sortedBy { it.distance }
-            }
-            options.multiQuery?.let { multiQuery ->
-                multiQueryFusionService.fuse(
-                    rankings,
-                    multiQuery.rrfK,
-                    options.denseCandidateLimit * configurations.size,
-                )
-            } ?: rankings.single()
+            searchDense(resources, options, query)
         } else {
-            emptyList()
+            LlmResult(emptyList(), TokenUsage())
         }
 
         val lexical = if (options.mode != RetrievalMode.DENSE) {
@@ -118,7 +93,7 @@ class SearchService(
         }
 
         val matches = when (options.mode) {
-            RetrievalMode.DENSE -> dense.mapIndexed { index, match ->
+            RetrievalMode.DENSE -> dense.value.mapIndexed { index, match ->
                 RankFusionService.FusedMatch(
                     match.indexConfigurationId,
                     match.id,
@@ -142,7 +117,7 @@ class SearchService(
                 )
             }
 
-            RetrievalMode.HYBRID -> rankFusionService.fuse(dense, lexical, options.rrfK)
+            RetrievalMode.HYBRID -> rankFusionService.fuse(dense.value, lexical, options.rrfK)
         }
         val candidates = resolveMatches(configurations, matches)
         val context = contextSelectionService.select(
@@ -150,7 +125,39 @@ class SearchService(
             options.contextCharBudget,
             options.maxChunks,
         )
-        return SearchResult(context.chunks, tokenUsage, context.stats)
+        return SearchResult(context.chunks, dense.tokenUsage, context.stats)
+    }
+
+    private fun searchDense(resources: Map<IndexingConfiguration, IndexConfiguration>, options: SearchOptions, query: String): LlmResult<List<RelevantVector>> {
+        var tokenUsage = TokenUsage()
+        val configurations = resources.keys
+        val models = resources.values.map(IndexConfiguration::embeddingModel).distinct()
+        require(models.size == 1) {
+            "Dense search across multiple embedding models is not supported; use --index or --file"
+        }
+        val queries = options.multiQuery?.let { multiQuery ->
+            cancellationService.ensureActive()
+            val expansion = queryExpansionService.expand(query, multiQuery.model, multiQuery.rewriteCount)
+            tokenUsage += expansion.tokenUsage
+            listOf(query) + expansion.value
+        } ?: listOf(query)
+        val rankings = queries.map { searchQuery ->
+            cancellationService.ensureActive()
+            val embedding = embedService.embedQuery(models.single(), searchQuery)
+            tokenUsage += embedding.tokenUsage
+            configurations.flatMap { configuration ->
+                cancellationService.ensureActive()
+                vectorService.getTopRelevant(configuration.id, embedding.value, options.denseCandidateLimit)
+            }.sortedBy { it.distance }
+        }
+        val matches = options.multiQuery?.let { multiQuery ->
+            multiQueryFusionService.fuse(
+                rankings,
+                multiQuery.rrfK,
+                options.denseCandidateLimit * configurations.size,
+            )
+        } ?: rankings.single()
+        return LlmResult(matches, tokenUsage)
     }
 
     private fun configurations(scope: SearchScope): List<IndexingConfiguration> {
@@ -176,10 +183,7 @@ class SearchService(
         }
     }
 
-    private fun resolveMatches(
-        configurations: List<IndexingConfiguration>,
-        matches: List<RankFusionService.FusedMatch>,
-    ): List<RelevantChunk> {
+    private fun resolveMatches(configurations: List<IndexingConfiguration>, matches: List<RankFusionService.FusedMatch>): List<RelevantChunk> {
         val configurationsById = configurations.associateBy(IndexingConfiguration::id)
         val chunksByConfiguration = mutableMapOf<Long, Map<Long, university.cli.model.DocumentChunk>>()
         val documentsById = mutableMapOf<Long, university.cli.model.Document>()
@@ -282,8 +286,7 @@ class SearchService(
         return value
     }
 
-    private fun resolveResourceConfiguration(configuration: IndexingConfiguration): IndexConfiguration =
-        checkNotNull(configurationService.findByHash(configuration.hash)) {
-            "Index profile for index ${configuration.id} was changed or removed; reindex the document"
-        }
+    private fun resolveResourceConfiguration(configuration: IndexingConfiguration): IndexConfiguration = checkNotNull(configurationService.findByHash(configuration.hash)) {
+        "Index profile for index ${configuration.id} was changed or removed; reindex the document"
+    }
 }

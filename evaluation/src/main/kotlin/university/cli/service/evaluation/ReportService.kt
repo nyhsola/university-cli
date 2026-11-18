@@ -2,10 +2,12 @@ package university.cli.service.evaluation
 
 import university.cli.database.FlywayMigrator
 import university.cli.model.AnswerVerdict
-import university.cli.model.ReportAnswerMode
 import university.cli.model.EvaluationReport
+import university.cli.model.IndexConfiguration
 import university.cli.model.JudgeReport
 import university.cli.model.ProjectIndexingResult
+import university.cli.model.QueryProfile
+import university.cli.model.ReportAnswerMode
 import university.cli.model.ReportDatasetReference
 import university.cli.model.ReportGenerationResult
 import university.cli.model.ReportIndexing
@@ -49,62 +51,8 @@ class ReportService(
         migrator.migrate()
         cancellationService.ensureActive()
 
-        val totalIndexings = loadedDatasets.size * indexProfiles.size
-        var currentIndexing = 0
-        val indexedDatasets = buildList {
-            loadedDatasets.forEach { loaded ->
-                indexProfiles.forEach { profile ->
-                    currentIndexing++
-                    onProgress(
-                        "Indexing ${loaded.dataset.name} with index profile ${profile.id} " +
-                            "($currentIndexing/$totalIndexings)",
-                    )
-                    add(IndexedReportDataset(loaded, index(loaded, profile.id, onProgress)))
-                }
-            }
-        }
-
-        val totalRuns = loadedDatasets.sumOf { it.dataset.questions.size } *
-            indexProfiles.size * queryProfiles.size
-        var currentRun = 0
-        val questionResults = buildList {
-            indexedDatasets.forEach { indexed ->
-                val dataset = indexed.loaded.dataset
-                dataset.questions.forEach { question ->
-                    queryProfiles.forEach { queryProfile ->
-                        cancellationService.ensureActive()
-                        currentRun++
-                        onProgress(
-                            "Evaluating $currentRun/$totalRuns: dataset ${dataset.id}, question ${question.id}, " +
-                                "index profile ${indexed.indexing.indexProfileId}, " +
-                                "query profile ${queryProfile.id}",
-                        )
-                        val indexConfigurationId = indexed.indexing.indexConfigurationId
-                        add(
-                            if (indexConfigurationId == null) {
-                                failedEvaluation(
-                                    dataset.id,
-                                    question,
-                                    indexed.indexing.indexProfileId,
-                                    queryProfile.id,
-                                    indexed.indexing.error ?: "Indexing did not produce a ready index",
-                                )
-                            } else {
-                                evaluate(
-                                    dataset.id,
-                                    question,
-                                    indexed.indexing.indexProfileId,
-                                    indexConfigurationId,
-                                    queryProfile.id,
-                                dataset.answerMode,
-                                onProgress,
-                                )
-                            },
-                        )
-                    }
-                }
-            }
-        }
+        val indexedDatasets = indexDatasets(loadedDatasets, indexProfiles, onProgress)
+        val questionResults = evaluateQuestions(indexedDatasets, queryProfiles, onProgress)
 
         val completedAt = Instant.now()
         val indexings = indexedDatasets.map(IndexedReportDataset::indexing)
@@ -147,11 +95,67 @@ class ReportService(
         )
     }
 
-    private fun index(
-        loaded: LoadedReportDataset,
-        indexProfileId: Long,
-        onProgress: (String) -> Unit,
-    ): ReportIndexing {
+    private fun indexDatasets(loadedDatasets: List<LoadedReportDataset>, indexProfiles: List<IndexConfiguration>, onProgress: (String) -> Unit): List<IndexedReportDataset> {
+        val totalIndexings = loadedDatasets.size * indexProfiles.size
+        var currentIndexing = 0
+        return buildList {
+            loadedDatasets.forEach { loaded ->
+                indexProfiles.forEach { profile ->
+                    currentIndexing++
+                    onProgress(
+                        "Indexing ${loaded.dataset.name} with index profile ${profile.id} " +
+                            "($currentIndexing/$totalIndexings)",
+                    )
+                    add(IndexedReportDataset(loaded, index(loaded, profile.id, onProgress)))
+                }
+            }
+        }
+    }
+
+    private fun evaluateQuestions(indexedDatasets: List<IndexedReportDataset>, queryProfiles: List<QueryProfile>, onProgress: (String) -> Unit): List<ReportQuestionResult> {
+        val totalRuns = indexedDatasets.sumOf { it.loaded.dataset.questions.size } * queryProfiles.size
+        var currentRun = 0
+        return buildList {
+            indexedDatasets.forEach { indexed ->
+                val dataset = indexed.loaded.dataset
+                dataset.questions.forEach { question ->
+                    queryProfiles.forEach { queryProfile ->
+                        cancellationService.ensureActive()
+                        currentRun++
+                        onProgress(
+                            "Evaluating $currentRun/$totalRuns: dataset ${dataset.id}, question ${question.id}, " +
+                                "index profile ${indexed.indexing.indexProfileId}, " +
+                                "query profile ${queryProfile.id}",
+                        )
+                        val indexConfigurationId = indexed.indexing.indexConfigurationId
+                        add(
+                            if (indexConfigurationId == null) {
+                                failedEvaluation(
+                                    dataset.id,
+                                    question,
+                                    indexed.indexing.indexProfileId,
+                                    queryProfile.id,
+                                    indexed.indexing.error ?: "Indexing did not produce a ready index",
+                                )
+                            } else {
+                                evaluate(
+                                    dataset.id,
+                                    question,
+                                    indexed.indexing.indexProfileId,
+                                    indexConfigurationId,
+                                    queryProfile.id,
+                                    dataset.answerMode,
+                                    onProgress,
+                                )
+                            },
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    private fun index(loaded: LoadedReportDataset, indexProfileId: Long, onProgress: (String) -> Unit): ReportIndexing {
         val startedAt = Instant.now()
         val result = projectIndexingService.indexFile(
             loaded.sourceFile,
@@ -182,6 +186,7 @@ class ReportService(
         )
     }
 
+    @Suppress("TooGenericExceptionCaught")
     private fun evaluate(
         datasetId: Long,
         question: ReportQuestion,
@@ -236,19 +241,13 @@ class ReportService(
             Thread.currentThread().interrupt()
             throw error
         } catch (error: Exception) {
-            ReportQuestionResult(
-                datasetId = datasetId,
-                questionId = question.id,
-                indexProfileId = indexProfileId,
-                queryProfileId = queryProfileId,
-                question = question.question,
-                expectedAnswer = question.expectedAnswer,
-                tags = question.tags,
-                status = ReportStatus.FAILED,
-                durationMs = Duration.between(startedAt, Instant.now()).toMillis(),
-                error = error.message ?: error.javaClass.simpleName,
-                retrieval = RetrievalEvaluation(),
-                judge = JudgeReport(error = "Answer was not generated"),
+            failedEvaluation(
+                datasetId,
+                question,
+                indexProfileId,
+                queryProfileId,
+                error.message ?: error.javaClass.simpleName,
+                Duration.between(startedAt, Instant.now()).toMillis(),
             )
         }
     }
@@ -259,6 +258,7 @@ class ReportService(
         indexProfileId: Long,
         queryProfileId: Long,
         error: String,
+        durationMs: Long = 0,
     ): ReportQuestionResult = ReportQuestionResult(
         datasetId = datasetId,
         questionId = question.id,
@@ -268,12 +268,13 @@ class ReportService(
         expectedAnswer = question.expectedAnswer,
         tags = question.tags,
         status = ReportStatus.FAILED,
-        durationMs = 0,
+        durationMs = durationMs,
         error = error,
         retrieval = RetrievalEvaluation(),
         judge = JudgeReport(error = "Answer was not generated"),
     )
 
+    @Suppress("TooGenericExceptionCaught")
     private fun judge(question: ReportQuestion, actualAnswer: String): JudgeReport {
         val startedAt = Instant.now()
         return try {
@@ -297,10 +298,7 @@ class ReportService(
         }
     }
 
-    private fun reportStatus(
-        indexing: List<ReportIndexing>,
-        questions: List<ReportQuestionResult>,
-    ): ReportStatus = when {
+    private fun reportStatus(indexing: List<ReportIndexing>, questions: List<ReportQuestionResult>): ReportStatus = when {
         indexing.all { it.status == ReportStatus.FAILED } -> ReportStatus.FAILED
         indexing.any { it.status != ReportStatus.COMPLETED } -> ReportStatus.COMPLETED_WITH_ERRORS
         questions.any { it.status != ReportStatus.COMPLETED } -> ReportStatus.COMPLETED_WITH_ERRORS
@@ -313,8 +311,7 @@ class ReportService(
         else -> ReportStatus.COMPLETED_WITH_ERRORS
     }
 
-    private fun ProjectIndexingResult.tokenUsage(): TokenUsage =
-        (indexedFiles + skippedFiles).fold(TokenUsage()) { total, file -> total + file.result.tokenUsage }
+    private fun ProjectIndexingResult.tokenUsage(): TokenUsage = (indexedFiles + skippedFiles).fold(TokenUsage()) { total, file -> total + file.result.tokenUsage }
 }
 
 private data class IndexedReportDataset(

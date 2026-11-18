@@ -4,7 +4,6 @@ import com.github.ajalt.mordant.terminal.Terminal
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import university.cli.command.AskCommand
-import university.cli.command.ResearchCommand
 import university.cli.command.CommandDispatcher
 import university.cli.command.ExitCommand
 import university.cli.command.FilesCommand
@@ -12,20 +11,26 @@ import university.cli.command.HelpCommand
 import university.cli.command.IndexCommand
 import university.cli.command.ProfilesCommand
 import university.cli.command.ReportCommand
+import university.cli.command.ResearchCommand
 import university.cli.command.SearchCommand
 import university.cli.command.UnindexCommand
-import university.cli.database.FlywayMigrator
 import university.cli.config.DatabaseConfig
 import university.cli.config.DirectoryConfig
 import university.cli.config.OllamaConfig
+import university.cli.database.FlywayMigrator
 import university.cli.database.SqliteVecDataSource
 import university.cli.database.SqliteVecExtension
 import university.cli.launcher.AppLauncher
+import university.cli.repository.JdbcChunkRepository
+import university.cli.repository.JdbcDocumentRepository
+import university.cli.repository.JdbcIndexingConfigurationRepository
+import university.cli.repository.JdbcLexicalRepository
+import university.cli.repository.JdbcSearchIndexRepository
+import university.cli.repository.JdbcVectorRepository
 import university.cli.service.chat.ChatOutputService
 import university.cli.service.chat.ChatService
 import university.cli.service.chat.ChatStatusService
 import university.cli.service.cli.CliService
-import university.cli.service.indexing.ChunkerService
 import university.cli.service.configuration.IndexProfileService
 import university.cli.service.configuration.QueryProfileService
 import university.cli.service.evaluation.JudgeService
@@ -35,23 +40,24 @@ import university.cli.service.evaluation.ReportDatasetService
 import university.cli.service.evaluation.ReportMetricsService
 import university.cli.service.evaluation.ReportService
 import university.cli.service.evaluation.ReportWriter
+import university.cli.service.indexing.ChunkerService
 import university.cli.service.indexing.DocumentIndexingService
 import university.cli.service.indexing.FixedSizeChunkerService
 import university.cli.service.indexing.IndexRemovalService
-import university.cli.service.indexing.ProjectIndexingService
 import university.cli.service.indexing.ProjectFileService
 import university.cli.service.indexing.ProjectFileStatusService
+import university.cli.service.indexing.ProjectIndexingService
 import university.cli.service.indexing.RecursiveChunkerService
 import university.cli.service.indexing.SearchIndexService
 import university.cli.service.llm.EmbedService
 import university.cli.service.llm.OllamaService
 import university.cli.service.operation.OperationCancellationService
 import university.cli.service.operation.OperationLogService
-import university.cli.service.retrieval.AskService
 import university.cli.service.research.ResearchAnswerService
 import university.cli.service.research.ResearchDecisionService
 import university.cli.service.research.ResearchSearchService
 import university.cli.service.research.ResearchService
+import university.cli.service.retrieval.AskService
 import university.cli.service.retrieval.ContextFormatter
 import university.cli.service.retrieval.ContextSelectionService
 import university.cli.service.retrieval.LexicalSearchService
@@ -60,12 +66,6 @@ import university.cli.service.retrieval.QueryExpansionService
 import university.cli.service.retrieval.RankFusionService
 import university.cli.service.retrieval.SearchService
 import university.cli.service.retrieval.VectorService
-import university.cli.repository.JdbcDocumentRepository
-import university.cli.repository.JdbcChunkRepository
-import university.cli.repository.JdbcIndexingConfigurationRepository
-import university.cli.repository.JdbcLexicalRepository
-import university.cli.repository.JdbcSearchIndexRepository
-import university.cli.repository.JdbcVectorRepository
 import javax.sql.DataSource
 
 val appModule = module {
@@ -132,10 +132,37 @@ val appModule = module {
     single { ResearchCommand(get(), get(), get(), get(), get()) }
     single { ReportCommand(get(), get()) }
     single { ExitCommand() }
-    single { HelpCommand(listOf(get<FilesCommand>(), get<IndexCommand>(), get<UnindexCommand>(), get<ProfilesCommand>(), get<SearchCommand>(), get<AskCommand>(), get<ResearchCommand>(), get<ReportCommand>(), get<ExitCommand>())) }
+    single {
+        HelpCommand(
+            listOf(
+                get<FilesCommand>(),
+                get<IndexCommand>(),
+                get<UnindexCommand>(),
+                get<ProfilesCommand>(),
+                get<SearchCommand>(),
+                get<AskCommand>(),
+                get<ResearchCommand>(),
+                get<ReportCommand>(),
+                get<ExitCommand>(),
+            ),
+        )
+    }
 
     single {
-        CommandDispatcher(listOf(get<FilesCommand>(), get<IndexCommand>(), get<UnindexCommand>(), get<ProfilesCommand>(), get<SearchCommand>(), get<AskCommand>(), get<ResearchCommand>(), get<ReportCommand>(), get<HelpCommand>(), get<ExitCommand>()))
+        CommandDispatcher(
+            listOf(
+                get<FilesCommand>(),
+                get<IndexCommand>(),
+                get<UnindexCommand>(),
+                get<ProfilesCommand>(),
+                get<SearchCommand>(),
+                get<AskCommand>(),
+                get<ResearchCommand>(),
+                get<ReportCommand>(),
+                get<HelpCommand>(),
+                get<ExitCommand>(),
+            ),
+        )
     }
 
     single { ChatService(get(), get(), get(), get(), get()) }
