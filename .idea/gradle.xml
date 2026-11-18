@@ -8,12 +8,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/cli" />
-            <option value="$PROJECT_DIR$/core" />
-            <option value="$PROJECT_DIR$/evaluation" />
-            <option value="$PROJECT_DIR$/llm-ollama" />
-            <option value="$PROJECT_DIR$/rag" />
-            <option value="$PROJECT_DIR$/storage-sqlite" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/backend-parent" />
+            <option value="$PROJECT_DIR$/backend-parent/cli-impl" />
+            <option value="$PROJECT_DIR$/backend-parent/core" />
+            <option value="$PROJECT_DIR$/backend-parent/index-impl" />
+            <option value="$PROJECT_DIR$/backend-parent/judge-impl" />
+            <option value="$PROJECT_DIR$/backend-parent/llm-impl" />
+            <option value="$PROJECT_DIR$/backend-parent/query-impl" />
+            <option value="$PROJECT_DIR$/backend-parent/storage-impl" />
           </set>
         </option>
         <option name="myGradleHome" value="" />

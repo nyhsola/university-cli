@@ -19,7 +19,9 @@ allprojects {
     }
 }
 
-subprojects {
+val modules = subprojects.filter { it.childProjects.isEmpty() }
+
+configure(modules) {
     apply(plugin = "dev.detekt")
 
     extensions.configure<DetektExtension> {
@@ -71,35 +73,35 @@ subprojects {
 }
 
 tasks.assemble {
-    dependsOn(subprojects.map { "${it.path}:assemble" })
+    dependsOn(modules.map { "${it.path}:assemble" })
 }
 
 tasks.check {
-    dependsOn(subprojects.map { "${it.path}:check" })
+    dependsOn(modules.map { "${it.path}:check" })
 }
 
 tasks.register("formatKotlin") {
     group = "formatting"
     description = "Formats Kotlin sources in all modules."
-    dependsOn(subprojects.map { "${it.path}:detektFormat" })
+    dependsOn(modules.map { "${it.path}:detektFormat" })
 }
 
 tasks.clean {
-    dependsOn(subprojects.map { "${it.path}:clean" })
+    dependsOn(modules.map { "${it.path}:clean" })
 }
 
 tasks.register("compileKotlin") {
-    dependsOn(subprojects.map { "${it.path}:compileKotlin" })
+    dependsOn(modules.map { "${it.path}:compileKotlin" })
 }
 
 tasks.register("test") {
-    dependsOn(subprojects.map { "${it.path}:test" })
+    dependsOn(modules.map { "${it.path}:test" })
 }
 
 tasks.register<JavaExec>("run") {
     group = "application"
     description = "Runs the CLI from the project directory."
-    dependsOn(":cli:jar")
+    dependsOn(":app:jar")
     classpath = files(layout.buildDirectory.file("libs/urag.jar"))
     mainClass.set("university.cli.MainKt")
     workingDir = rootDir

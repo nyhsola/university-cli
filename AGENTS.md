@@ -10,18 +10,21 @@ The main libraries are Koin, Mordant, kotlinx.serialization, SQLite JDBC, Flyway
 
 The root project coordinates builds and runs. Kotlin packages remain under `university.cli`; module directories define compilation boundaries.
 
-- `core/`: shared domain models, profiles, operation cancellation/logging, directory settings, JSON/resource/file helpers, and all application resources. It has no dependencies on other project modules.
-- `storage-sqlite/`: concrete JDBC repositories, datasource setup, Flyway, and native `sqlite-vec` loading. SQL and migrations live in `core/src/main/resources/db/{sql,migration}/`.
-- `llm-ollama/`: Ollama HTTP/serialization, embedding preprocessing, Ollama settings, JSON schema generation, and loading embedding instructions from core resources.
-- `rag/`: project discovery, chunking, indexing/removal, retrieval, context assembly, and question answering. Profile loaders live in `service/configuration/`; profile JSON lives in `core/src/main/resources/configurations/{indexing,query}/`.
-- `evaluation/`: evaluation datasets/models, LLM judging, metrics, profile comparisons, report orchestration/writing, and loading the judge prompt from core resources.
-- `cli/`: `Main.kt`, `launcher/`, `di/AppModule.kt`, commands, one-shot and interactive terminal front ends, and terminal formatting/parsing helpers. The launcher smoke test lives in `cli/src/test/kotlin/`.
+- `app/`: `Main.kt`, Koin wiring in `di/AppModule.kt`, application resources, and the runnable JAR.
+- `backend-parent/`: groups the CLI and backend modules.
+  - `cli-impl/`: `launcher/`, commands, one-shot and interactive terminal front ends, and terminal formatting/parsing helpers. The launcher smoke test lives in `backend-parent/cli-impl/src/test/kotlin/`.
+  - `core/`: shared models, operation cancellation/logging, directory settings, and JSON/resource/file helpers.
+  - `storage-impl/`: concrete JDBC repositories, datasource setup, Flyway, and native sqlite-vec loading.
+  - `llm-impl/`: Ollama HTTP/serialization, embedding preprocessing, Ollama settings, and JSON schema generation.
+  - `index-impl/`: project discovery, chunking, indexing/removal, and indexing profile loading.
+  - `query-impl/`: retrieval, context assembly, answering, research, and query profile loading.
+  - `judge-impl/`: evaluation datasets/models, LLM judging, metrics, profile comparisons, and report orchestration/writing.
 - `@data/examples/`: sample text corpus, not test fixtures.
 - `@data/research/`: research notes, experiment evidence, and development plans.
 
-Each module uses the standard `src/main/kotlin` directory. Store all application resources centrally in `core/src/main/resources`, including SQL, migrations, profile JSON, and prompts. Do not add resource directories to other modules. The `core` resource-processing task packages the platform-specific sqlite-vec library under `native/sqlite-vec`. Preserve classpath paths and configuration bytes when moving resources; the consuming services remain in their respective modules.
+Each module uses the standard `src/main/kotlin` directory. Store all application resources centrally in `app/src/main/resources`, including SQL, migrations, profile JSON, and prompts. The `app:processResources` task packages the platform-specific sqlite-vec library under `native/sqlite-vec`. Preserve resource paths on the classpath and configuration bytes when moving resources.
 
-Dependencies flow from `storage-sqlite` and `llm-ollama` to `core`; `rag` uses those three modules; `evaluation` uses `rag`, `storage-sqlite`, `llm-ollama`, and `core`; `cli` assembles all modules. Koin and Mordant belong only to `cli`. Keep concrete repository dependencies for now; introduce interfaces only for an explicit architectural need. Avoid circular dependencies and a catch-all utilities module.
+`app` assembles the modules under `backend-parent`. `cli-impl` calls backend services. `storage-impl` and `llm-impl` depend on `core`, and `index-impl` and `query-impl` use those modules. `query-impl` also uses `IndexProfileService` from `index-impl` to resolve stored profile hashes. `judge-impl` orchestrates indexing, query, and judging. Koin wiring belongs in `app` and Mordant is declared in `cli-impl`. Keep concrete repository dependencies and introduce interfaces only for an explicit architectural need. Avoid circular dependencies and a catch-all utilities module.
 
 Runtime state is written under `.data/`; generated outputs also include `build/`, `.gradle/`, `.gradle-user-home/`, and `.kotlin/`. Never commit or hand-edit these directories.
 
@@ -40,7 +43,7 @@ Use the Gradle wrapper:
 ./gradlew run --args="--interactive"
 ```
 
-Root tasks aggregate module compilation, tests, and checks. `run` launches from the root directory; module tasks can also be addressed directly, such as `:rag:compileKotlin` or `:cli:test`.
+Root tasks aggregate module compilation, tests, and checks. `run` launches from the root directory; module tasks can also be addressed directly, such as `:backend-parent:query-impl:compileKotlin` or `:backend-parent:cli-impl:test`.
 
 On Windows, replace `./gradlew` with `.\gradlew.bat`. `build` compiles, runs tests, processes the native extension, and creates the fat JAR at `build/libs/urag.jar`.
 
@@ -64,9 +67,9 @@ Detekt checks all modules with `config/detekt/detekt.yml` and the ktlint rule se
 - Keep `Main.kt` and `AppLauncher` thin. Commands validate arguments and render output; services own workflows; repositories own JDBC.
 - Use constructor injection. Production classes must not call Koin APIs directly.
 - Prefer concrete `Jdbc...Repository` classes. Add an interface only when multiple implementations or an explicit boundary requires one.
-- Put every repository query in `core/src/main/resources/db/sql` and load it with `KClass<*>.loadResource`; do not embed SQL strings in Kotlin.
+- Put every repository query in `app/src/main/resources/db/sql` and load it with `KClass<*>.loadResource`; do not embed SQL strings in Kotlin.
 - Add schema changes as ordered Flyway migrations. Do not rewrite an already-applied migration unless the task explicitly requires a baseline change; doing so changes Flyway checksums for existing `.data/university.db` files.
-- `IndexProfileService` and `QueryProfileService` own resource discovery, ID validation, defaults, and decoding. Keep index and query profiles in their respective resource directories in `core`.
+- `IndexProfileService` and `QueryProfileService` own resource discovery, ID validation, defaults, and decoding. Keep index and query profiles in their respective resource directories in `app`.
 - The database stores an indexing configuration hash, not its model and chunking fields. Retrieval resolves the current JSON by that hash. Changing an indexing JSON file, including formatting, invalidates matching stored indexes and requires reindexing. Do not casually renumber configuration IDs.
 - All document and query embeddings go through `EmbedService`. Only it should call `OllamaService.embed`, because it owns model-specific instructions. Structured generation uses `OllamaService.question<T>()` with a kotlinx-serializable result type.
 - Keep `OllamaService` as the low-level HTTP/serialization boundary; do not add retrieval, prompting strategy, or UI concerns to it.

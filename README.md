@@ -65,16 +65,18 @@ Research materials and sample data are grouped under `@data/research/` and `@dat
 
 | Module | Responsibility |
 | --- | --- |
-| `core` | Shared domain models, profiles, operation support, basic helpers, and all application resources |
-| `storage-sqlite` | JDBC repositories, Flyway execution, and sqlite-vec loading |
-| `llm-ollama` | Ollama HTTP client and embedding preprocessing |
-| `rag` | Indexing, retrieval, profiles, and answer generation |
-| `evaluation` | Datasets, judging, metrics, comparisons, and reports |
-| `cli` | Commands, terminal UI, dependency wiring, and application startup |
+| `app` | Entry point, Koin wiring, application resources, and JAR packaging |
+| `backend-parent:cli-impl` | Commands, terminal UI, and launcher |
+| `backend-parent:core` | Shared models, operation support, and helpers |
+| `backend-parent:storage-impl` | JDBC repositories, Flyway, and sqlite-vec loading |
+| `backend-parent:llm-impl` | Ollama HTTP client and embedding preprocessing |
+| `backend-parent:index-impl` | File discovery, chunking, indexing, removal, and index profiles |
+| `backend-parent:query-impl` | Retrieval, query profiles, answers, and research |
+| `backend-parent:judge-impl` | Datasets, judging, metrics, comparisons, and reports |
 
-All application resources live in `core/src/main/resources`: configuration profiles, SQL, migrations, and prompts. The core resource-processing task also packages the platform-specific sqlite-vec library.
+Application resources live in `app/src/main/resources`. The `app:processResources` task also packages the platform-specific sqlite-vec library.
 
-The root build aggregates all modules. Existing root commands such as `build`, `test`, `check`, and `run --args="profiles"` remain available. Use qualified tasks such as `:rag:compileKotlin` or `:cli:test` to work with one module. Both root `run` and `:cli:run` use the project root as the working directory.
+The root build aggregates the application, CLI, and backend modules. Use qualified tasks such as `:backend-parent:query-impl:compileKotlin` or `:backend-parent:cli-impl:test` to work with one module. Both root `run` and `:app:run` use the project root as the working directory.
 
 ## Build
 
@@ -175,7 +177,7 @@ Text can be selected normally with the mouse, without holding `Shift`.
 
 ## Configurations
 
-Index profiles live in `core/src/main/resources/configurations/indexing`. They select the embedding model and chunking behavior:
+Index profiles live in `app/src/main/resources/configurations/indexing`. They select the embedding model and chunking behavior:
 
 ```json
 {
@@ -205,7 +207,7 @@ previous chunk and validates that the result fits within `maxSize`:
 }
 ```
 
-Query profiles live in `core/src/main/resources/configurations/query`. They select dense, lexical, or hybrid retrieval, control candidate pools, and fill the final context up to a character budget:
+Query profiles live in `app/src/main/resources/configurations/query`. They select dense, lexical, or hybrid retrieval, control candidate pools, and fill the final context up to a character budget:
 
 ```json
 {
